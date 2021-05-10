@@ -1,6 +1,6 @@
 
 
-# Documentation for tspls streamline project
+# Documentation for TSPLS streamline project
 
 ## Introduction
 
