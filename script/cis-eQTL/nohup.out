@@ -1,0 +1,87 @@
+Error in read.table("rare.SNPpos") : no lines available in input
+Execution halted
+Error in genepos[i, 2] - upstream : 
+  non-numeric argument to binary operator
+Calls: which
+Execution halted
+Error in genepos[i, 2] - upstream : 
+  non-numeric argument to binary operator
+Calls: which
+Execution halted
+Error in genepos[i, 2] - upstream : 
+  non-numeric argument to binary operator
+Calls: which
+Execution halted
+
+Execution halted
+
+Execution halted
+Error in colMeans(x, na.rm = TRUE) : 'x' must be numeric
+Calls: scale -> scale.default -> colMeans
+Execution halted
+Error in file(file, "rt") : cannot open the connection
+Calls: read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'low.cispair.idx': No such file or directory
+Execution halted
+Error in colMeans(x, na.rm = TRUE) : 'x' must be numeric
+Calls: scale -> scale.default -> colMeans
+Execution halted
+Error in file(file, "rt") : cannot open the connection
+Calls: read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'low.cispair.idx': No such file or directory
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+Error in file(file, "rt") : cannot open the connection
+Calls: read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'low.cispair.idx': No such file or directory
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted
+Error in colMeans(x, na.rm = TRUE) : 'x' must be numeric
+Calls: scale -> scale.default -> colMeans
+Execution halted
+Error in SumTest(Y, Xs, alpha0) : object 'alpha0' not found
+Execution halted
+
+Execution halted
+
+Execution halted
+
+Execution halted

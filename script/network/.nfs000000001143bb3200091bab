@@ -1,0 +1,30 @@
+ncis=$1
+r=$2
+nboots=$3
+nnodes=$4
+ncores=$5
+memory=$6
+walltime=$7
+
+echo 'Select uncorrelated SNPs [ncis:'$ncis',r:'$r']......'
+Rscript uncor.R
+Rscript gendata.R
+
+wait
+echo 'Stage 1 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory']......'
+
+./stage1.sh $nboots
+
+wait
+echo 'Stage 2 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory']......'
+
+#./stage2.sh $nboots $ncores $memory
+
+echo 'Summary......'
+
+./summarize.sh $nboots
+
+Rscript summary.boot.R
+
+
+
