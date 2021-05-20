@@ -31,6 +31,15 @@ Here we set the number of chromosome to 22
 tspls config -m nchr 22
 ```
 
+<!-- 
+1. I would like to change the whole package name of tspls to signet (for Statistical Inference on Gene Networks), so in the following I will always use signet in my comments;
+2. What about use -[character] for each function? For example, we can use
+```bash
+signet -c nchr 22
+```
+to set the #chromosome to 22.
+-->
+
 #### 3. Genotype Preprocess
 
 ```bash
