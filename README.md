@@ -37,7 +37,24 @@ tspls config -m nchr 22
 ```bash
 signet -c nchr 22
 ```
-to set the #chromosome to 22.
+to set the #chromosome to 22. Otherwise, if we want to check the #chromosome, we can use
+```bash
+signet -c nchr
+```
+That is, when no value is provided, we will list the value of the specified parameter. We can also use 
+```bash
+signet -c
+```
+to display the values of parameters. We may also provide a way to reset the value of one parameter or all parameters to default values? Like the following?
+```bash
+signet -c -d
+```
+or 
+```bash
+signet -c nchar -d
+```
+
+
 **3.** We also need a parameter to record the number of cohorts (or groups) so we can later on incoporate the codes of ReDNet and NANOVA into this package:
 ```bash
 signet -c ngrp 1
@@ -95,12 +112,29 @@ for cis-eQTL analysis
 tspls network --nboots 10
 ```
 
+**Comments**
+I would suggest to take
+```bash
+signet -n
+```
+for network construction. Is it necessary to separate the two stages of the network construction (like `-n1` and `-n2`)? Of cource, it will be better if we can take it in one step.
+
+
 #### 7. Network Visualization
 Based on the coefficient matrix we got in the network analysis part, we will visualize our constructed gene regulatory networks.
 
 ```bash
 tspls netvis --freq 0.8 --ncount 2
 ```
+
+**Comments**
+**1.** I would suggest to take
+```bash
+signet -v
+```
+for network visualization.
+**2.** Is `--ncount 2` for the top 2 networks? If so, I'd rather use `--top 2`?
+
 
 ## Command Guide
 
@@ -113,6 +147,9 @@ Config command is used for look up and modify parameter in the config file confi
 ```bash
 config [-l [SECTION,]PARAM][-m [SECTION,]PARAM VALUE]
 ```
+
+
+
 #### Description
 ```bash
 -l: list parameter value (section name may not be necessary)
