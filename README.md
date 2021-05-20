@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This streamline project provide users easy linux user interface for constructing gene regulatory networks using RNA sequence. 
+This streamline project provide users easy linux user interface for constructing whole-genome gene regulatory networks using transciptomic data (frome RNA sequence) and genotypic data. 
 
 Procedures of constructing gene regulatory networks can be split into five main steps:
 1. genenotype preprocess
