@@ -38,7 +38,11 @@ tspls config -m nchr 22
 signet -c nchr 22
 ```
 to set the #chromosome to 22.
-
+3. We also need a parameter to record the number of cohorts (or groups) so we can later on incoporate the codes of ReDNet and NANOVA into this package:
+```bash
+signet -c ngrp 1
+```
+If `ngrp` is set to be larger than 1, we have to decide how to manage the transcriptomic files and genotype files. For example, if we want to use one file for each group, we need a separate file to map files for different groups?
 
 
 #### 3. Genotype Preprocess
@@ -47,16 +51,43 @@ to set the #chromosome to 22.
 tspls geno-preprocess 
 ```
 
+** Comments **
+I would suggest to take
+```bash
+signet -g
+```
+for preprocessing genotype data
+
+
 #### 4. Genexpression Preprocess
+
 ```bash
 tspls genexp-preprocess
 ```
+
+** Comments **
+I would suggest to take
+```bash
+signet -t
+```
+for preprocessing transcriptomic (gene expression) data
+
+
 
 #### 5. cis-eQTL Analysis
 
 ```bash
 tspls cis-eQTL 
 ```
+
+** Comments **
+I would suggest to take
+```bash
+signet -qtl
+```
+for cis-eQTL analysis
+
+
 
 #### 6. Network Analysis
 
