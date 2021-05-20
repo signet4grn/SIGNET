@@ -31,14 +31,14 @@ Here we set the number of chromosome to 22
 tspls config -m nchr 22
 ```
 
-** Comments **
-1. I would like to change the whole package name of tspls to `signet` (for Statistical Inference on Gene Networks), so in the following I will always use `signet` in my comments;
-2. What about use `-[character]' for each function? For example, we can use
+**Comments**
+**1.** I would like to change the whole package name of tspls to `signet` (for **Statistical Inference on Gene Networks**), so in the following I will always use `signet` in my comments;
+**2.** What about use `-[character]' for each function? For example, we can use
 ```bash
 signet -c nchr 22
 ```
 to set the #chromosome to 22.
-3. We also need a parameter to record the number of cohorts (or groups) so we can later on incoporate the codes of ReDNet and NANOVA into this package:
+**3.** We also need a parameter to record the number of cohorts (or groups) so we can later on incoporate the codes of ReDNet and NANOVA into this package:
 ```bash
 signet -c ngrp 1
 ```
@@ -51,7 +51,7 @@ If `ngrp` is set to be larger than 1, we have to decide how to manage the transc
 tspls geno-preprocess 
 ```
 
-** Comments **
+**Comments**
 I would suggest to take
 ```bash
 signet -g
@@ -65,7 +65,7 @@ for preprocessing genotype data
 tspls genexp-preprocess
 ```
 
-** Comments **
+**Comments**
 I would suggest to take
 ```bash
 signet -t
@@ -80,10 +80,10 @@ for preprocessing transcriptomic (gene expression) data
 tspls cis-eQTL 
 ```
 
-** Comments **
+**Comments**
 I would suggest to take
 ```bash
-signet -qtl
+signet -c
 ```
 for cis-eQTL analysis
 
