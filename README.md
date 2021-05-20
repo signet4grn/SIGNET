@@ -16,9 +16,12 @@ Procedures of constructing gene regulatory networks can be split into five main 
 To use this streamline tool, user need first to prepare the genetype data in xxx format and gene expression data in xxx format.  Then set the configuration file properly, and run each step command seperately.
 
 **Comments**
+
 We have to think about how to organize the data, especially intermediate results and final results in general,
 **1.** Setting (or configuration) files should be put in the current directory;
+
 **2.** Intermediate results may be put in different subdirectory of current directory? Like in `./tmp/` (or inside it to have `./tmpt` for transcriptomic preprocessing; `./tmpg/` for genotpic preprocessing; `./tmpc/` for cis-eQTL mapping; './tmpn/' for network construction)? 
+
 **3.** Final results may be put in current directory or a subdirectory? Like in `./res/`?
 
 
