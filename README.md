@@ -313,6 +313,7 @@ signet -c --alpha 0.05 --ncis 5 --maxcor 0.8 --nperms 100 --up 1000 --down 1000
 ```
 **2.** Use
 ```
+  --rmax MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene
   --up UP_STREAM		upstream region to flank the genetic region 
   --down DOWN_STREAM	downstream region to flank the genetic region
   --map MAP_FILE		snps map file path  [file or path?]
@@ -380,6 +381,14 @@ signet -n [OPTION VAL] ...
  --walltime WALLTIME	
 ```
 
+**Comments**
+Possible changes:
+```bash
+ --rmax MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene
+```
+
+
+
 ### netvis
 
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
@@ -395,14 +404,21 @@ In addition, we also need user to provide node information file to identify tran
 ```bash
 netvis [OPTION VAL] ...
 ```
+
+**Comments**
+Possible changes:
+```bash
+signet -v [OPTION VAL] ...
+```
+
+
 #### description
 
 ```bash
-  -freq FREQENCY	 	bootstrap frequecy for the visualization
+  --freq FREQENCY	 	bootstrap frequecy for the visualization
   --ncount NET_COUNT		number of sub-networks
   --ninfo NODE_INFO_FILE        node information file
-  -h | --help                   usage
-
+  --h | --help                  usage
 ```
 
 
@@ -423,6 +439,7 @@ netvis [OPTION VAL] ...
 config.ini file  is under the main folder and saving the costomized parameters for the four stages of tspls process. Settings in config.ini are orgnized by different sections. 
 
 Users can change the tspls process by modifying the paramter settings in the configuration file.
+
 
 ```bash
 # basic settings
