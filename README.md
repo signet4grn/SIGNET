@@ -43,7 +43,9 @@ tspls config -m nchr 22
 ```
 
 **Comments**
+
 **1.** I would like to change the whole package name of tspls to `signet` (for **Statistical Inference on Gene (or Global) Networks**, or even simpler with `sign`?), so in the following I will always use `signet` in my comments;
+
 **2.** What about use `-[character]' for each function? For example, we can use
 ```bash
 signet -c nchr 22
@@ -64,6 +66,7 @@ or
 ```bash
 signet -c nchar --d
 ```
+
 **3.** We also need a parameter to record the number of cohorts (or groups) so we can later on incoporate the codes of ReDNet and NANOVA into this package:
 ```bash
 signet -c ngrp 1
@@ -79,6 +82,7 @@ tspls geno-preprocess
 ```
 
 **Comments**
+
 I would suggest to take
 ```bash
 signet -g
@@ -93,6 +97,7 @@ tspls genexp-preprocess
 ```
 
 **Comments**
+
 I would suggest to take
 ```bash
 signet -t
@@ -108,6 +113,7 @@ tspls cis-eQTL
 ```
 
 **Comments**
+
 I would suggest to take
 ```bash
 signet -c
@@ -123,6 +129,7 @@ tspls network --nboots 10
 ```
 
 **Comments**
+
 I would suggest to take
 ```bash
 signet -n
@@ -138,11 +145,13 @@ tspls netvis --freq 0.8 --ncount 2
 ```
 
 **Comments**
+
 **1.** I would suggest to take
 ```bash
 signet -v
 ```
 for network visualization.
+
 **2.** We should unify the way to set up options (or configurations). Previously, we simply use, for example, `nchar`, to list/set up its value. Should we remove the double dashes here (`--`) or include the double dashes also for configurations? Is `ncount 2` for the top 2 networks? If so, I'd rather use `ntop 2`?
 
 
@@ -159,6 +168,7 @@ config [-l [SECTION,]PARAM][-m [SECTION,]PARAM VALUE]
 ```
 
 **Comments**
+
 My proposed commands instead are
 ```bash
 signet -c [PARAM [PARAM VALUE]] 
@@ -173,6 +183,7 @@ Please see related comments in the above. I would rather not use the section nam
 ```
 
 **Comments**
+
 Following my suggested way, when a parameter value is provided, we reset the parameter value as given; otherwise, we display the specified parameter value.
 
 
@@ -190,6 +201,7 @@ config -m Basic,nchr 24
 ```
 
 **Comments**
+
 Following my suggestion, we will have
 ```bash
 # List the paramter
@@ -222,6 +234,7 @@ geno-prep [--map MAP_FILE] [--ped PED_FILE][--imputation]
 ```
 
 **Comments**
+
 Following my previous suggestion,
 ```bash
 signet -g [--map MAP_FILE] [--ped PED_FILE][--imput]
@@ -238,7 +251,9 @@ Does ``--imput`` imply to impute the missing genotype values? Are there any othe
 ```
 
 **Comments**
-**1.** Do you mean to use `-p` instead of `--p`?
+
+**1.** Do you mean to use `-p` instead of `--p`? Anyway, we should unify the way to set up options/configurations.
+
 **2.** Should the intermediate results be saved in `./tmp/tmpg/`? I would replace `./data/` with either `./tmp/[tmpg/]` or `./res/[tmpg/]`, depending on whether you want to save the results for users. 
 
 
@@ -256,8 +271,11 @@ output of `match` will be saved under `/data/match`:
 - `new.Geno.maf`: each element is the minor allele frequency (MAF) for each SNP.
 
 **Comments**
-**1.** `match` should be replaced by `signet -match`?
+
+**1.** `match` should be replaced by `signet -match` (or simply `signet -m`)?
+
 **2.** The output should be saved under `./res/` or `./tmp/`?
+
 **2.** Should we unify all files with `new.Geno*` by `matched.Geno*` (any better names)?
 
 
@@ -277,6 +295,7 @@ match [--ma 5]
 ```
 
 **Comments**
+
 Have to separate it from `-match`: should we use `--amin` for *minimum number of alleles*?
 
 
@@ -299,9 +318,13 @@ The results of `cis-eqtl` are output in to the following files, and they are all
 * `[common|low|rare|all].sig.weight_0.05`: includes the weight of collapsed SNPs for marginally significant cis-eQTL. The first column is the gene index, the second column is the SNP index, the third column is the index of collapsed SNP group, and the fourth column is the weight of each SNP in its collapsed group (with value 1 or -1).
 
 **Comments**
+
 **1.** Why shouldn't we directly access the output from the previous steps instead as we should try to minimize the usage of space?
+
 **2.** Use `signet -c` instead of `cis-eqtl`?
-**3.** The outputs should be save into `./tmp/[tmpc/]` or `./res/[resc/]`?
+
+**3.** The outputs should be saved into `./tmp/[tmpc/]` or `./res/[resc/]`?
+
 **4.** While we may allow users to specify the output file names, we should have default file names at the same time so users may not have to specify.
 
 
@@ -311,10 +334,12 @@ The results of `cis-eqtl` are output in to the following files, and they are all
   ```
 
 **Comments**
+
 **1.** Would suggest:
 ```bash
 signet -c --alpha 0.05 --ncis 5 --maxcor 0.8 --nperms 100 --up 1000 --down 1000
 ```
+
 **2.** Use
 ```
   --rmax MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene
@@ -367,7 +392,8 @@ network [OPTION VAL] ...
 ```
 
 **Comments**
-**1.** Change to
+
+Would rather take the commands
 ```bash
 signet -n [OPTION VAL] ...
 ```
@@ -386,6 +412,7 @@ signet -n [OPTION VAL] ...
 ```
 
 **Comments**
+
 Possible changes:
 ```bash
  --rmax MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene
