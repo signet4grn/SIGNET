@@ -46,7 +46,7 @@ tspls config -m nchr 22
 
 **1.** I would like to change the whole package name of tspls to `signet` (for **Statistical Inference on Gene (or Global) Networks**, or even simpler with `sign`?), so in the following I will always use `signet` in my comments;
 
-**2.** What about use `-[character]' for each function? For example, we can use
+**2.** What about use `-[character]` for each function? So we may replace `config` with `-c` (or `-s` for settings?) For example, we can use
 ```bash
 signet -c nchr 22
 ```
