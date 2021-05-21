@@ -1,6 +1,6 @@
 usage() {
 
-    echo "Usage:"
+	ech=() "Usage:"
     echo " config  [-l SECTION,PARAM] [-m SECTION,PARAM VAL]"
     echo "Description:"
     echo "    -l | --list [SECTION,]PARAM		list config"
@@ -13,11 +13,11 @@ usage() {
 get_param (){ 
     local args=$1;
     local params=(${args//,/ }) 
-    if [ ${#params[@]} = 1 ]; then
+    if [ ${#params[@]} == 1 ]; then
 	local param=${params[0]}
 	local val=$(sed -nr '/^'${param}'[ ]*=/ { s/.*=[ ]*//; p; q;};' ../config.ini);
     	echo $val;
-    elif [ ${#params[@]} = 2 ]; then
+    elif [ ${#params[@]} == 2 ]; then
 	local section=${params[0]}
 	local param=${params[1]}
     	local val=$(sed -nr '/^\['${section}'\]/ { :l /^'${param}'[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}' ../config.ini);
@@ -30,14 +30,14 @@ set_param(){
     local args=$1;
     local params=(${args//,/ }) 
     local val=$2;
-    if [ ${#params[@]} = 1 ]; then
+    if [ ${#params[@]} == 1 ]; then
 	local param=${params[0]}
-	local cmd =$(echo '/^\[/ s/^'${param}'[ ]*=.*/'${param} '=' ${val}'/');
+	local cmd =$(echo '$/,/^\[/ s@^'${param}'[ ]*=.*@'${param} '=' ${val}'@');
 	sed -i "${cmd}" ../config.ini;
-    elif [ ${#params[@]} = 2 ]; then
+    elif [ ${#params[@]} == 2 ]; then
 	local section=${params[0]}
 	local param=${params[1]}
-    	local cmd=$(echo '/^\['${section}'\]$/,/^\[/ s/^'${param}'[ ]*=.*/'${param} '=' ${val}'/');
+    	local cmd=$(echo '/^\['${section}'\]$/,/^\[/ s@^'${param}'[ ]*=.*@'${param} '=' ${val}'@');
     	sed -i "${cmd}" ../config.ini
     fi
     #local section=$1;

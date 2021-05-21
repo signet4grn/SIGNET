@@ -1,6 +1,6 @@
 
 cd ../../data/geno-prep
-chr=25
+chr=22
 
 for i in {1..25} 
 do 

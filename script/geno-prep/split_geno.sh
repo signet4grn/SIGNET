@@ -1,11 +1,10 @@
-
 chr="25"
 map="fake.map"
 ped="fake.ped"
 geno='fake'
 cd ../../data/geno-prep
 
-plink --noweb --file $geno --mind 0.1 --geno 0.1 --hwe 0.0001 --recodeAD --out clean_Genotype & 
+plink --noweb --file $geno --mind 0.1 --geno 0.1 --hwe 0.0001 --recodeA --out clean_Genotype & 
 
 # Split the .map file
 for i in `seq 1 ${chr}`
