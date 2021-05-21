@@ -39,7 +39,7 @@ tspls config -m nchr 22
 ```
 
 **Comments**
-**1.** I would like to change the whole package name of tspls to `signet` (for **Statistical Inference on Gene Networks**), so in the following I will always use `signet` in my comments;
+**1.** I would like to change the whole package name of tspls to `signet` (for **Statistical Inference on Gene (or Global) Networks**, or even simpler with `sign`?), so in the following I will always use `signet` in my comments;
 **2.** What about use `-[character]' for each function? For example, we can use
 ```bash
 signet -c nchr 22
@@ -48,11 +48,11 @@ to set the #chromosome to 22. Otherwise, if we want to check the #chromosome, we
 ```bash
 signet -c nchr
 ```
-That is, when no value is provided, we will list the value of the specified parameter. We can also use 
+That is, when no value is provided, we will display the value of the specified parameter. We can also use 
 ```bash
 signet -c
 ```
-to display the values of parameters. We may also provide a way to reset the value of one parameter or all parameters to default values? Like the following?
+to display the values of all parameters. We may also provide a way to reset the value of one parameter or all parameters to default values? Like the following?
 ```bash
 signet -c --d
 ```
