@@ -173,14 +173,7 @@ Config command is used for look up and modify parameter in the config file confi
 
 #### Usage
 ```bash
-config [-l [SECTION,]PARAM][-m [SECTION,]PARAM VALUE]
-```
-
-**Comments**
-
-My proposed commands instead are
-```bash
-signet -s [PARAM [PARAM VALUE]] 
+signet -s [--PARAM] [PARAM VAL] 
 ```
 Please see related comments in the above. I would rather not use the section name.
 
@@ -191,27 +184,8 @@ Please see related comments in the above. I would rather not use the section nam
 -m: modify parameter value (section name may not be necessary)
 ```
 
-**Comments**
-
-Following my suggested way, when a parameter value is provided, we reset the parameter value as given; otherwise, we display the specified parameter value.
-
-
 
 #### Example
-```bash
-# List the paramter
-config -l Basic,nchr
-## echo: 26
-config -l nchr
-## echo: 26
-
-# Modify the paramter
-config -m Basic,nchr 24
-```
-
-**Comments**
-
-Following my suggestion, we will have
 ```bash
 # List the paramter
 signet -s --nchr
