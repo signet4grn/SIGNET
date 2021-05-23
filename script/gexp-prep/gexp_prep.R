@@ -1,8 +1,8 @@
 args <- commandArgs(TRUE)
 eval(parse(text=args))
-library(DESeq2)
-library(GenomicRanges)
-library(data.table)
+suppressPackageStartupMessages(library(DESeq2))
+suppressPackageStartupMessages(library(GenomicRanges))
+suppressPackageStartupMessages(library(data.table))
 
 print(paste0("preprocessing file", file))
 
@@ -23,12 +23,12 @@ mcounts=round(mcounts)
 #mcounts <- mcounts[,-lowcount.id]    
 #LUSC and LUAD: none removed
 
-sampleinfo <- matrix(factor(1),nrow=576)
+sampleinfo <- matrix(factor(1),nrow=ncol(mcounts))
 rownames(sampleinfo) <- colnames(mcounts)
 colnames(sampleinfo) <- "SampleID"
 
 dds <- DESeqDataSetFromMatrix(countData=mcounts,colData=sampleinfo,design=~1)
-gidx <- (rowSums(counts(dds))>(576/5))
+gidx <- (rowSums(counts(dds))>(ncol(mcounts)/5))
 dds <- dds[gidx,]
 geneinfo <- geneinfo[gidx,]
 
