@@ -191,6 +191,10 @@ signet -s [--PARAM] [PARAM VAL]
 
 #### Example
 ```bash
+# list all the parameters
+signet -s 
+## echo: all the current parameters
+
 # List the paramter
 signet -s --nchr
 ## echo: 22
@@ -201,13 +205,16 @@ signet -settings --nchr
 # Modify the paramter
 signet -s --nchr 22
 ## echo: Modification applied to nchr
+
+# Set all the parameters to default 
+signet -s --d 
+## echo: Set all the parameters to default 
 ```
 
 #### Error input handling 
 ```bash
-# If you input wrong format such as "-nchr" or " "
+# If you input wrong format such as "-nchr"
 signet -s -nchr
-signet -s 
 echo: The usage and description instruction.
 
 # If you input wrong name such as "-nchro"
@@ -216,7 +223,7 @@ echo: Please check the file name
 
 
 
-### Transcript 
+### Transcript-prep 
 
 This command will take the matrix of transcriptome count data and preprocess it. Each row represent the data for each gene, each column represeing the data for each sample, while the first row is the sample name, and the first column is the gene name.
 
@@ -241,7 +248,7 @@ signet -t --help
 
 # Modify the paramter
 signet -t --g ./data/gexp-prep/test.gexp --p ./data/gexp-prep/hugo_gencode_good_hg19_V24lift37_probemap
-## The preprocessed gene expresion result with correpsonding position file will be stored in /res/gexp-prep
+## The preprocessed gene expresion result with correpsonding position file will be stored in /res/resg/
 ```
 
 
