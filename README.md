@@ -4,10 +4,11 @@
 
 
 ## Getting started 
-First we  
+First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path
 ```bash
+git clone https://github.itap.purdue.edu/jiang548/2SPLS.git
 
-export 
+export PATH=$PATH:/path/to/tslps
 ```
 
 ## Introduction
