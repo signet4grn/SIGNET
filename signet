@@ -61,22 +61,22 @@ echo -e ""
 
 
 case "$operate" in
-    -g|--geno)
+    -g|-geno)
         geno_prep;;
-    -t|--transcript)
+    -t|-transcript)
         gexp_prep;;
-    -n|--network)
+    -n|-network)
         network;;
-    -c|--cis_eqtl)
+    -c|-cis_eqtl)
         cis_eqtl;;
-    -s|--settings)
+    -s|-settings)
 	config;;
-    -v|--vis)
+    -v|-vis)
 	netvis;;
-    -m|--match)
+    -m|-match)
 	match;;
     *)
-        echo -e "Usage params: g|t|n|c|s|v|m"
+        echo -e "Usage params: -g|-t|-n|-c|-s|-v|-m"
         ;;
 esac        
 
