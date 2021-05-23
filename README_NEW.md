@@ -10,6 +10,10 @@ git clone https://github.itap.purdue.edu/jiang548/2SPLS.git
 
 export PATH=$PATH:/path/to/tslps
 ```
+**Caution**
+```bash
+All the result for each step will return to the corresponding folders in the res_root directory in the configuration file config.ini, by default, the /res directory where the package is installed. You should change the res_root directory in the config.ini file if you want to start a new analysis.
+```
 
 ## Introduction
 
