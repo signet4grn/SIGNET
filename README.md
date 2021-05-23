@@ -2,6 +2,14 @@
 
 # Documentation for TSPLS streamline project
 
+
+## Getting started 
+First we  
+```bash
+
+export 
+```
+
 ## Introduction
 
 This streamline project provide users easy linux user interface for constructing whole-genome gene regulatory networks using transciptomic data (frome RNA sequence) and genotypic data. 
