@@ -4,24 +4,26 @@ suppressPackageStartupMessages(library(DESeq2))
 suppressPackageStartupMessages(library(GenomicRanges))
 suppressPackageStartupMessages(library(data.table))
 
-print(paste0("preprocessing file", file))
-
 mcounts=fread(file)
+
+cat(paste0("Preprocessing file", file, "\n"))
+
 geneinfo=mcounts[,1]
 #fwrite(mcounts[,1],"gene_id")
 mcounts=mcounts[,-1]
 
-#undo the log transformation
-mcounts=as.matrix(mcounts)
-mcounts=(2^mcounts)-1
+mcounts=round(mcounts)
 
 # Quality Control: Exclude samples with total counts < 2.5M (NIH Standard)
 stcounts <- colSums(mcounts)  # total count of each sample
 lowcount.id <- which(stcounts<2500000)
 #round the counts into integers
-mcounts=round(mcounts)
-#mcounts <- mcounts[,-lowcount.id]    
-#LUSC and LUAD: none removed
+if(length(lowcount.id)>0){
+mcounts <- mcounts[, -lowcount.id]
+}
+
+cat(paste0("Removed ", length(lowcount.id), " samples with total counts < 2.5 M\n"))
+cat("Applying variance stabalizing transformation\n")
 
 sampleinfo <- matrix(factor(1),nrow=ncol(mcounts))
 rownames(sampleinfo) <- colnames(mcounts)
@@ -49,5 +51,5 @@ ge <- t(assay(vsd))  # Normalized gene expression
 #plotPCA(vsd,intgroup="SampleID")
 
 #obtain gene position information
-write.table(ge, 'Gexp', col.names = F, quote = F)
-write.table(geneinfo, 'gene_pos', col.names = F, quote = F)
+write.table(ge, paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/rest/gexp"), col.names = F, quote = F)
+write.table(geneinfo, paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpt/gene_pos"), col.names = F, quote = F)

@@ -1,61 +1,49 @@
 usage() {
-
-	ech=() "Usage:"
-    echo " config  [-l SECTION,PARAM] [-m SECTION,PARAM VAL]"
+    echo "Usage:"
+    echo "signet -s [--PARAM] [PARAM VAL]"
+    echo -e "\n"
     echo "Description:"
-    echo "    -l | --list [SECTION,]PARAM		list config"
-    echo "    -m | --modify [SECTION,]PARAM VAL	modify config"
-    echo "    -h | --help				usage help"
+    echo "    --PARAM                                      list the value of parameter PARAM"
+    echo "    --PARAM [PARAM VAL]      modify the value of parameter PARAM to be [PARAM VAL]"
     exit -1
 }
 
 # get parameter
-get_param (){ 
-    local args=$1;
-    local params=(${args//,/ }) 
-    if [ ${#params[@]} == 1 ]; then
-	local param=${params[0]}
-	local val=$(sed -nr '/^'${param}'[ ]*=/ { s/.*=[ ]*//; p; q;};' ../config.ini);
+get_param (){
+        local args=$1	
+	local param=${args/--/}
+	local val=$(sed -nr '/^'${param}'[ ]*=/ { s/.*=[ ]*//; p; q;};' "$SIGNET_ROOT/config.ini")
+
+	if [[ -z $val ]];then	
+        echo "Please check the file name";else
     	echo $val;
-    elif [ ${#params[@]} == 2 ]; then
-	local section=${params[0]}
-	local param=${params[1]}
-    	local val=$(sed -nr '/^\['${section}'\]/ { :l /^'${param}'[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}' ../config.ini);
-    	echo $val;
-    fi
+        fi
 }
 
 # set parameter
 set_param(){
     local args=$1;
-    local params=(${args//,/ }) 
+     
+    if [[ $args == "--d" ]];then
+    scp $SIGNET_DATA_ROOT/config.ini.default $SIGNET_ROOT/config.ini    
+    echo "Set all the parameters to default"
+    exit
+    elif [[ $args == --* ]];then
+    local param=(${args/--/});else
+    usage
+    exit 1
+    fi 
     local val=$2;
-    if [ ${#params[@]} == 1 ]; then
-	local param=${params[0]}
-	local cmd =$(echo '$/,/^\[/ s@^'${param}'[ ]*=.*@'${param} '=' ${val}'@');
-	sed -i "${cmd}" ../config.ini;
-    elif [ ${#params[@]} == 2 ]; then
-	local section=${params[0]}
-	local param=${params[1]}
-    	local cmd=$(echo '/^\['${section}'\]$/,/^\[/ s@^'${param}'[ ]*=.*@'${param} '=' ${val}'@');
-    	sed -i "${cmd}" ../config.ini
+
+    if [[ -z $val ]]; then
+    get_param $args; else
+    local cmd=$(echo 's@^'${param}'[ ]*=.*@'${param} '=' ${val}'@')
+    sed -i "${cmd}" "$SIGNET_ROOT/config.ini"
+    echo  "Modification applied to ${param}"
     fi
-    #local section=$1;
-    #local param=$2;
-    #local val=$3;
-    #local cmd=$(echo '/^\['${section}'\]$/,/^\[/ s/^'${param}'[ ]*=.*/'${param} '=' ${val}'/');
-    #sed -i "${cmd}" ./settings.ini
 }
 
-case "$1" in
-    -l | --list)   get_param   $2 $3;;
-    -m | --modify)    set_param   $2 $3 $4;;
-    -h | --help)  usage;;
-    *)	usage;;
-
-esac
-    
-
-
-
-
+if [[ -z $1 ]];then
+cat $SIGNET_ROOT/config.ini;else
+set_param $1 $2
+fi

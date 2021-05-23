@@ -85,3 +85,7 @@ Execution halted
 Execution halted
 
 Execution halted
+Error in fread("final.gexpdata0") : 
+  File 'final.gexpdata0' does not exist or is non-readable. getwd()=='/work/jiang_bio/2SPLS_automation/data/cis-eQTL'
+Calls: as.matrix -> fread
+Execution halted

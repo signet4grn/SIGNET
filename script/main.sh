@@ -1,11 +1,7 @@
 #!/bin/bash
 
-
-#!/bin/bash
-export APP_PATH=/usr/local/SmartDataStack
 operate=${1}
 #echo "${0}"
-APP_NAME="sds"
 
 options=""
 for((i=2;i<=$#;i++)); do 
@@ -13,54 +9,85 @@ for((i=2;i<=$#;i++)); do
     options="${options} $j "
 done
 
+#Set directories
+cd $(dirname $0)
+
+SIGNET_ROOT=$(/bin/pwd)
+SIGNET_DATA_ROOT="$SIGNET_ROOT/data"
+SIGNET_TMP_ROOT="$SIGNET_ROOT/tmp"
+SIGNET_RESULT_ROOT="$SIGNET_ROOT/res"
+SIGNET_SCRIPT_ROOT="$SIGNET_ROOT/script"
+echo -n The directory that stores data is:
+echo $SIGNET_DATA_ROOT
+echo -n The directory that stores the temporary files is:
+echo $SIGNET_TMP_ROOT
+echo -n The directory that stores the results is:
+echo $SIGNET_RESULT_ROOT
+echo -n The directory that stores the scripts is:
+echo $SIGNET_SCRIPT_ROOT
+export SIGNET_ROOT=$SIGNET_ROOT
+export SIGNET_DATA_ROOT=$SIGNET_DATA_ROOT
+export SIGNET_TMP_ROOT=$SIGNET_TMP_ROOT
+export SIGNET_RESULT_ROOT=$SIGNET_RESULT_ROOT
+export SIGNET_SCRIPT_ROOT=$SIGNET_SCRIPT_ROOT
+
+
+cd script
+
+./config_controller.sh -m basic,root $SIGNET_ROOT
+./config_controller.sh -m basic,data_root $SIGNET_DATA_ROOT
+./config_controller.sh -m basic,tmp_root $SIGNET_TMP_ROOT
+./config_controller.sh -m basic,script_root $SIGNET_SCRIPT_ROOT
+
+cd ..
 
 geno_prep(){
-	./geno_prep_portal.sh ${options};
+	$SINET_SCRIPT_ROOT/geno_prep_portal.sh ${options};
 }
 
 gexp_prep(){
-	./gexp_prep_portal.sh ${options};
+	$SIGNET_SCRIPT_ROOT/gexp_prep_portal.sh ${options};
 }
 
 
 config(){
-    ./config_controller.sh ${options};
+    $SINET_SCRIPT_ROOT/config_controller.sh ${options};
 }
 
 network(){
-	./network_portal.sh ${options};
+	$SINET_SCRIPT_ROOT/network_portal.sh ${options};
 }
 
 cis_eqtl(){
-	./cis_portal.sh ${options};
+	$SINET_SCRIPT_ROOT/cis_portal.sh ${options};
 }
 netvis(){
-	./netvis_portal.sh ${options};
+	$SINET_SCRIPT_ROOT/netvis_portal.sh ${options};
 }
 match(){
-	./match_portal.sh ${options};
+	$SINET_SCRIPT_ROOT/match_portal.sh ${options};
 }
 echo -e ""
 
 
 case "$operate" in
-    geno-prep)
+    g)
         geno_prep ;;
-    gexp-prep)
+    t)
         gexp_prep;;
-    network)
+    n)
         network;;
-    cis-eqtl)
+    c)
         cis_eqtl;;
-    config)
+    s)
 	config
 	;;
-    netvis)
+    v)
 	netvis;;
-    match)
+    m)
 	match;;
     *)
-        echo -e "Usage params: geno-prep|gexp-prep|network|cis-eqtl|config|netvis|match"
+        echo -e "Usage params: g|t|n|c|s|v|m"
         ;;
 esac        
 

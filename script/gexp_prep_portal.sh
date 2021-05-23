@@ -1,35 +1,47 @@
+#!/bin/bash
+
 usage() {
     echo "Usage:"
-    echo "  gexp-prep [-g GEXP_FILE] [-p GPOS_FILE]"
+    echo "  signet -t [--g GEXP_FILE] [--p MAP_FILE]" 
     echo -e "\n"
     echo "Description:"
-    echo "    -g, set gene expression file"
-    echo "    -p, set position file for genes"
+    echo "    --g | --gexp, set gene expression file"
+    echo "    --p | --pmap, set the USSC xena probemap file "
     exit -1
 }
 
-gexpfile=$($SIGNET_SCRIPT_ROOT/config_controller.sh -l gexp,gexp.file);
-gposfile=$($SIGNET_SCRIPT_ROOT/config_controller.sh -l gexp,gpos.file);
 
-while [["$#" -gt 0 ]];
+gexpfile=$($SIGNET_ROOT/signet -s --gexp.file)
+pmapfile=$($SIGNET_ROOT/signet -s --pmap.file)
+
+ARGS=`getopt -a -o a:r -l g:,p:,h:,help -- "$@"`
+
+eval set -- "${ARGS}"
+
+while [ $# -gt 0 ]
 do
-   case "${option}"  in
-	        g) gexpfile=${OPTARG};;
-                p) gposfile=${OPTARG};;
-                h) usage;;
-	        ?) usage;;
-   esac
-
+case "$1" in
+	--g|--gexp)
+		gexpfile=$2
+		$SIGNET_ROOT/signet -s --gexp.file $gexpfile
+		shift;;
+        --p|--pmap) 
+		pmapfile=$2
+		$SIGNET_ROOT/signet -s --pmap.file $pmapfile
+		shift;;
+        --h|--help)
+		usage
+		exit;;
+	--)
+	     shift
+	     break;;
+esac
+shift
 done
 
-##Directly modify the files in the parameter files
-$SIGNET_SCRIPT_ROOT/config_controller.sh -m gexp,gexp.file $gexpfile
-$SIGNET_SCRIPT_ROOT/config_controller.sh -m gexp,gpos.file $gposfile
 
 echo "gexp.file: "$gexpfile
-echo "gpos.file: "$gposfile
+echo "pamp.file: "$pmapfile
+echo -e "\n"
 
-cd ./gexp-prep
-./gexp-prep.sh
-
-echo "Gene Expression Preprocessing Finished"
+$SIGNET_SCRIPT_ROOT/gexp-prep/gexp-prep.sh $gexpfile $pmapfile && echo "Gene Expression Preprocessing Finished"
