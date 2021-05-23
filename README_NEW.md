@@ -166,22 +166,21 @@ for network visualization.
 
 ## Command Guide
 
-### config
+### Settings
 
-Config command is used for look up and modify parameter in the config file config.ini 
+Settings command is used for look up and modify parameter in the configuration file config.ini 
 [click here](#config-file) for detailed introduction for configuration file 
 
 #### Usage
 ```bash
 signet -s [--PARAM] [PARAM VAL] 
 ```
-Please see related comments in the above. I would rather not use the section name.
 
 
 #### Description
 ```bash
--l: list parameter value (section name may not be necessary)
--m: modify parameter value (section name may not be necessary)
+    --PARAM                                      list the value of parameter PARAM
+    --PARAM [PARAM VAL]      modify the value of parameter PARAM to be [PARAM VAL]
 ```
 
 
@@ -191,9 +190,26 @@ Please see related comments in the above. I would rather not use the section nam
 signet -s --nchr
 ## echo: 22
 
+# Replace s with settings would also work
+signet -settings --nchr 
+
 # Modify the paramter
-signet -s --nchr 24
+signet -s --nchr 22
+## echo: Modification applied to nchr
 ```
+
+#### Error input handling 
+```bash
+# If you input wrong format such as "-nchr" or " "
+signet -s -nchr
+signet -s 
+echo: The usage and description instruction.
+
+# If you input wrong name such as "-nchro"
+echo: Please check the file name
+```
+
+
 
 ### gexp-prep
 
