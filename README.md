@@ -39,7 +39,7 @@ We have to think about how to organize the data, especially intermediate results
 
 #### 1. Prepare the DataSet
 
-Prepare the gene expression data and genotype data at fisrt, then put them into the given folder:
+We highly recommand you to prepare the gene expression data and genotype data first, and place them to a specific data folder, to organize each step as it may involve many files:
 
 [Click here](#data-format) for more detail about genotype and genexpression dataset
 
@@ -221,6 +221,10 @@ signet -s --nchr
 signet -s --nchr 24
 ```
 
+### gexp-prep
+
+
+
 
 ### geno-prep
 
@@ -266,7 +270,7 @@ Does ``--imput`` imply to impute the missing genotype values? Are there any othe
 **2.** Should the intermediate results be saved in `./tmp/tmpg/`? I would replace `./data/` with either `./tmp/[tmpg/]` or `./res/[tmpg/]`, depending on whether you want to save the results for users. 
 
 
-### gexp-prep
+
 
 ### match
 `match` command provide users the interface of matching genotype and gene expression file and the calculation for maf
