@@ -172,8 +172,9 @@ for network visualization.
 
 ### Settings
 
-Settings command is used for look up and modify parameter in the configuration file config.ini 
-[click here](#config-file) for detailed introduction for configuration file 
+Settings command is used for look up and modify parameter in the configuration file config.ini. You don't have to modify the parameters at the very beginning, as you will have options to change your input parameters in each step. 
+
+[click here](#config-file) for detailed introduction for configuration file. 
 
 #### Usage
 ```bash
@@ -215,9 +216,32 @@ echo: Please check the file name
 
 
 
-### gexp-prep
+### Transcript 
+
+This command will take the matrix of transcriptome count data and preprocess it. The 
+
+#### Usage
+```bash
+signet -t [--g GEXP_FILE]
+```
 
 
+#### Description
+```bash
+    --g | --gexp, set gene expression file
+```
+
+
+#### Example
+```bash
+# List the paramter
+signet -t --help
+## Display the help page 
+
+# Modify the paramter
+signet -t --g 
+## Preprocess according to the default files in the config.ini
+```
 
 
 ### geno-prep
