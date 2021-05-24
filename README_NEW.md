@@ -291,8 +291,8 @@ signet -g --help
 ## Display the help page 
 
 # Modify the paramter
-signet -g --g ./data/gexp-prep/test.gexp --p ./data/gexp-prep/hugo_gencode_good_hg19_V24lift37_probemap
-## The
+signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map
+
 ```
 
 
