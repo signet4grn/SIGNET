@@ -274,7 +274,7 @@ signet -g [OPTION VAL] ...
 
 #### Description
 
-```bash 
+```
   --p | --ped, set ped file
   --m | --map, set map file
   --mind set the missing per individual cutoff
@@ -366,7 +366,7 @@ The results of `cis-eqtl` are output in to the following files, and they are all
 
 
 #### Usage
-```bash
+```
   cis-eqtl --alpha 0.5 --ncis 9 --maxcor 1 --nperms 5 --upstream 1000 --downstream 1000 --map ./data/cis-eQTL/snps.map --maf ./data/cis-eQTL/snps.maf
   ```
 
@@ -405,7 +405,7 @@ signet -c --alpha 0.05 --ncis 5 --maxcor 0.8 --nperms 100 --up 1000 --down 1000
 ```
 
 #### Example
-```bash
+```
 cis-eqtl -a 0.05 --upstream 1000 --map snp.map
 ```
 
@@ -424,14 +424,14 @@ The final output files of `network` will be saved under `/data/network/stage2`:
 * `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
 
 #### usage
-```bash
+```
 network [OPTION VAL] ...
 ```
 
 **Comments**
 
 Would rather take the commands
-```bash
+```
 signet -n [OPTION VAL] ...
 ```
 
@@ -469,20 +469,20 @@ In addition, we also need user to provide node information file to identify tran
 
 
 #### usage
-```bash
+```
 netvis [OPTION VAL] ...
 ```
 
 **Comments**
 Possible changes:
-```bash
+```
 signet -v [OPTION VAL] ...
 ```
 
 
 #### description
 
-```bash
+```
   --freq FREQENCY	 	bootstrap frequecy for the visualization
   --ncount NET_COUNT		number of sub-networks
   --ninfo NODE_INFO_FILE        node information file
