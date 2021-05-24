@@ -269,22 +269,30 @@ Output of `geno-prep` will be saved under `/data/geno-prep`:
 #### Usage
 
 ```bash
-geno-prep [--map MAP_FILE] [--ped PED_FILE][--imputation]
+signet -g [OPTION VAL] ...
 ```
 
-**Comments**
+#### Description
 
-Following my previous suggestion,
+```bash 
+  --p | --ped, set ped file
+  --m | --map, set map file
+  --mind set the missing per individual cutoff
+  --geno set the missing per markder cutoff
+  --hwe set  Hardy-Weinberg equilibrium cutoff
+  --nchr set the chromosome number
+  --r | --ref, set the reference file for imputation
+```
+
+#### Example
 ```bash
-signet -g [--p PED_FILE] [--m MAP_FILE] [--r REF_FILE]
-```
-Does ``--imput`` imply to impute the missing genotype values? Are there any other options on how to impute the missing genotypes?
+# List the paramter
+signet -g --help
+## Display the help page 
 
-
-#### Options
-
-```
- 
+# Modify the paramter
+signet -g --g ./data/gexp-prep/test.gexp --p ./data/gexp-prep/hugo_gencode_good_hg19_V24lift37_probemap
+## The
 ```
 
 
