@@ -191,6 +191,10 @@ signet -s [--PARAM] [PARAM VAL]
 
 #### Example
 ```bash
+# list all the parameters
+signet -s 
+## echo: all the current parameters
+
 # List the paramter
 signet -s --nchr
 ## echo: 22
@@ -201,13 +205,16 @@ signet -settings --nchr
 # Modify the paramter
 signet -s --nchr 22
 ## echo: Modification applied to nchr
+
+# Set all the parameters to default 
+signet -s --d 
+## echo: Set all the parameters to default 
 ```
 
 #### Error input handling 
 ```bash
-# If you input wrong format such as "-nchr" or " "
+# If you input wrong format such as "-nchr"
 signet -s -nchr
-signet -s 
 echo: The usage and description instruction.
 
 # If you input wrong name such as "-nchro"
@@ -216,7 +223,7 @@ echo: Please check the file name
 
 
 
-### Transcript 
+### Transcript-prep 
 
 This command will take the matrix of transcriptome count data and preprocess it. Each row represent the data for each gene, each column represeing the data for each sample, while the first row is the sample name, and the first column is the gene name.
 
@@ -241,7 +248,7 @@ signet -t --help
 
 # Modify the paramter
 signet -t --g ./data/gexp-prep/test.gexp --p ./data/gexp-prep/hugo_gencode_good_hg19_V24lift37_probemap
-## The preprocessed gene expresion result with correpsonding position file will be stored in /res/gexp-prep
+## The preprocessed gene expresion result with correpsonding position file will be stored in /res/resg/
 ```
 
 
@@ -262,33 +269,31 @@ Output of `geno-prep` will be saved under `/data/geno-prep`:
 #### Usage
 
 ```bash
-geno-prep [--map MAP_FILE] [--ped PED_FILE][--imputation]
+signet -g [OPTION VAL] ...
 ```
 
-**Comments**
+#### Description
 
-Following my previous suggestion,
+```
+  --p | --ped, set ped file
+  --m | --map, set map file
+  --mind set the missing per individual cutoff
+  --geno set the missing per markder cutoff
+  --hwe set  Hardy-Weinberg equilibrium cutoff
+  --nchr set the chromosome number
+  --r | --ref, set the reference file for imputation
+```
+
+#### Example
 ```bash
-signet -g [--map MAP_FILE] [--ped PED_FILE][--imput]
+# List the paramter
+signet -g --help
+## Display the help page 
+
+# Modify the paramter
+signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map
+
 ```
-Does ``--imput`` imply to impute the missing genotype values? Are there any other options on how to impute the missing genotypes?
-
-
-#### Options
-
-```
--p | --ped, set ped file
--m | --map, set map file
--i | --imputaion, use 1000genome for imputation
-```
-
-**Comments**
-
-**1.** Do you mean to use `-p` instead of `--p`? Anyway, we should unify the way to set up options/configurations.
-
-**2.** Should the intermediate results be saved in `./tmp/tmpg/`? I would replace `./data/` with either `./tmp/[tmpg/]` or `./res/[tmpg/]`, depending on whether you want to save the results for users. 
-
-
 
 
 ### match
@@ -361,7 +366,7 @@ The results of `cis-eqtl` are output in to the following files, and they are all
 
 
 #### Usage
-```bash
+```
   cis-eqtl --alpha 0.5 --ncis 9 --maxcor 1 --nperms 5 --upstream 1000 --downstream 1000 --map ./data/cis-eQTL/snps.map --maf ./data/cis-eQTL/snps.maf
   ```
 
@@ -400,7 +405,7 @@ signet -c --alpha 0.05 --ncis 5 --maxcor 0.8 --nperms 100 --up 1000 --down 1000
 ```
 
 #### Example
-```bash
+```
 cis-eqtl -a 0.05 --upstream 1000 --map snp.map
 ```
 
@@ -419,14 +424,14 @@ The final output files of `network` will be saved under `/data/network/stage2`:
 * `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
 
 #### usage
-```bash
+```
 network [OPTION VAL] ...
 ```
 
 **Comments**
 
 Would rather take the commands
-```bash
+```
 signet -n [OPTION VAL] ...
 ```
 
@@ -464,20 +469,20 @@ In addition, we also need user to provide node information file to identify tran
 
 
 #### usage
-```bash
+```
 netvis [OPTION VAL] ...
 ```
 
 **Comments**
 Possible changes:
-```bash
+```
 signet -v [OPTION VAL] ...
 ```
 
 
 #### description
 
-```bash
+```
   --freq FREQENCY	 	bootstrap frequecy for the visualization
   --ncount NET_COUNT		number of sub-networks
   --ninfo NODE_INFO_FILE        node information file
