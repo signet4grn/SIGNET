@@ -1,0 +1,15 @@
+## This sciprt will apply plink commands to the files
+ped=$1
+map=$2
+mind=$3
+geno=$4
+hwe=$5
+
+echo -e "Preprocessing using Plink\n"
+
+echo $SIGNET_TMP_ROOT/tmpg/clean_Genotype
+
+plink --noweb --ped $ped --geno $geno --hwe $hwe --recode --snps-only --list-duplicate-vars suppress-first --out $SCRIPT_TMP_ROOT/tmpg/clean_Genotype &&
+plink --noweb --file $SCRIPT_TMP_ROOT/tmpg/clean_Genotype --mind $mind --exclude $SCRIPT_TMP_ROOT/tmpg/clean_Genotype.dupvar --recode --out $SCRIPT_TMP_ROOT/tmpg/clean_Genotype --set-hh-missing &&
+
+echo -e "Plink preprocessing finished\n"

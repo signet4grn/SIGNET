@@ -5,8 +5,8 @@ usage() {
     echo "  signet -t [--g GEXP_FILE] [--p MAP_FILE]" 
     echo -e "\n"
     echo "Description:"
-    echo "    --g | --gexp, set gene expression file"
-    echo "    --p | --pmap, set the USSC xena probemap file "
+    echo " --g | --gexp                   set gene expression file"
+    echo " --p | --pmap                   set the USSC xena probemap file "
     exit -1
 }
 
@@ -14,7 +14,7 @@ usage() {
 gexpfile=$($SIGNET_ROOT/signet -s --gexp.file)
 pmapfile=$($SIGNET_ROOT/signet -s --pmap.file)
 
-ARGS=`getopt -a -o a:r -l g:,p:,h:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l g:,gexp:,p:,pmap:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -29,7 +29,7 @@ case "$1" in
 		pmapfile=$2
 		$SIGNET_ROOT/signet -s --pmap.file $pmapfile
 		shift;;
-        --h|--help)
+        -h|--help)
 		usage
 		exit;;
 	--)

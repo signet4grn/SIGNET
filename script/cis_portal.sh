@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cmdprefix="./config_controller.sh -l CISEQTL,"
+cmdprefix="$SIGNET_ROOT/signet -s --"
 snps_map=$(${cmdprefix}snps.map);
 snps_maf=$(${cmdprefix}snps.maf);
 gexp=$(${cmdprefix}gexp.file);
@@ -18,6 +18,7 @@ ARGS=`getopt -a -o a:r -l alpha:,map:,maf:,gexp:,geno:,ncis:,nperms:,upstream:,d
 function usage() {
 	echo 'Usage:'
 	echo '  cis-eqtl [OPTION VAL] ...'
+	echo -e '\n'
 	echo 'Description:'
 	echo '  --alpha | -a			significant level for cis-eQTL'
 	echo '  --ncis NCIS			maximum number of cis-eQTL for each gene'

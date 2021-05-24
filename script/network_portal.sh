@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-cmdprefix="./config_controller.sh -l NETWORK,"
+cmdprefix="$SIGNET_ROOT/signet -s --"
 ncis=$(${cmdprefix}uncor.ncis);
 r=$(${cmdprefix}uncor.r);
 nboots=$(${cmdprefix}nboots);
@@ -9,19 +8,21 @@ nnodes=$(${cmdprefix}nnodes);
 ncores=$(${cmdprefix}ncores);
 memory=$(${cmdprefix}memory);
 walltime=$(${cmdprefix}walltime)
-ARGS=`getopt -a -o r: -l ncis:,maxcor:,nnodes:,memory:,walltime:,help:,nboots: -- "$@"`
+
+ARGS=`getopt -a -o r: -l ncis:,r:,maxcor:,nnodes:,memory:,walltime:,nboots:,h:,help -- "$@"`
 
 function usage() {
 	echo 'Usage:'
 	echo '  network [OPTION VAL] ...'
+	echo -e "\n"
 	echo 'Description:'
 	echo '  --ncis NCIS			maximum number of cis-eQTL for each gene'
-	echo '  -r MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene'
+	echo '  -r MAX_COR		        maximum corr. coeff. b/w cis-eQTL of same gene'
 	echo '  --nnodes N_NODE			'
-echo '  --ncores N_CORES			'
-	echo '  --memory MEMORY			'
-	echo '  --walltime WALLTIME		'
-	echo '  --nboots NBOOTS'
+        echo '  --ncores N_CORES		number of cores in each node'
+	echo '  --memory MEMORY		memory in each node'
+	echo '  --walltime WALLTIME		walltime of the server'
+	echo '  --nboots NBOOTS               number of bootstraps'                   
 	exit
 }
 [ $? -ne 0 ] && usage
@@ -35,7 +36,7 @@ case "$1" in
 		ncis=$2
 		shift
               ;;
-	-r)
+	--r)
 		r=$2
 		shift;;
 	--nboots)
@@ -53,7 +54,7 @@ case "$1" in
 	--walltime)
 		walltime=$2
 		shift;;
-	-h|--help)
+	--h|--help)
 		usage
 		exit
               ;;
