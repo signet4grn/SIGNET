@@ -276,7 +276,7 @@ geno-prep [--map MAP_FILE] [--ped PED_FILE][--imputation]
 
 Following my previous suggestion,
 ```bash
-signet -g [--map MAP_FILE] [--ped PED_FILE][--imput]
+signet -g [--p PED_FILE] [--m MAP_FILE] [--r REF_FILE]
 ```
 Does ``--imput`` imply to impute the missing genotype values? Are there any other options on how to impute the missing genotypes?
 
@@ -284,18 +284,8 @@ Does ``--imput`` imply to impute the missing genotype values? Are there any othe
 #### Options
 
 ```
--p | --ped, set ped file
--m | --map, set map file
--i | --imputaion, use 1000genome for imputation
+ 
 ```
-
-**Comments**
-
-**1.** Do you mean to use `-p` instead of `--p`? Anyway, we should unify the way to set up options/configurations.
-
-**2.** Should the intermediate results be saved in `./tmp/tmpg/`? I would replace `./data/` with either `./tmp/[tmpg/]` or `./res/[tmpg/]`, depending on whether you want to save the results for users. 
-
-
 
 
 ### match
