@@ -1,12 +1,12 @@
 
 
-# Documentation for TSPLS streamline project
+# Documentation for SIGNET streamline project
 
 
 ## Getting started 
 First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path
 ```bash
-git clone https://github.itap.purdue.edu/jiang548/2SPLS.git
+git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
 
 export PATH=$PATH:/path/to/tslps
 ```
