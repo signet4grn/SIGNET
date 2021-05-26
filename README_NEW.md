@@ -254,17 +254,14 @@ signet -t --g ./data/gexp-prep/test.gexp --p ./data/gexp-prep/hugo_gencode_good_
 
 ### geno-prep
 
-`geno-prep` command provide the user the interface of preprocessing genotype data
+`geno-prep` command provide the user the interface of preprocessing genotype data. We will do quality control, after which we will use IMPUTE2 for imputation. 
 
 `geno-prep` receive the `map` file and `ped` file as input:
 - `data.map`: includes SNP location information with four columns,i.e.,[chromosomeSNP_name genetic_distance locus] for each of p SNPs.
 - `data.ped`: includes pedgree information, i.e.,[family_IDindividual_IDmother_IDfather_ID gender phenotype] in the ﬁrst six columns, followed by 2p columns with two columns for each of p SNPs
 
-Output of `geno-prep` will be saved under `/data/geno-prep`:
+Output of `geno-prep` will be saved under `/res/resg`:
 
-• `Geno`: each row is a sample and each column is a SNP, with the ﬁrst column for Sample ID; 
-• `clean_Genotype.map`: the corresponding map ﬁle; 
-• `clean_Genotype_chr$i.map`: map ﬁle for ith chromosome, with i =1,2,··· 
 
 #### Usage
 
@@ -275,14 +272,24 @@ signet -g [OPTION VAL] ...
 #### Description
 
 ```
-  --p | --ped, set ped file
-  --m | --map, set map file
-  --mind set the missing per individual cutoff
-  --geno set the missing per markder cutoff
-  --hwe set  Hardy-Weinberg equilibrium cutoff
-  --nchr set the chromosome number
-  --r | --ref, set the reference file for imputation
+ --p | --ped                   set ped file"
+ --m | --map                   set map file"
+ --mind                        set the missing per individual cutoff"
+ --geno                        set the missing per markder cutoff"
+ --hwe                         set Hardy-Weinberg equilibrium cutoff"
+ --nchr                        set the chromosome number"
+ --r | --ref                   set the reference file for imputation"
+ --gmap                        set the genomic map file"
+ --ncores                      set the number of cores"
 ```
+
+#### Details 
+
+```
+--r the reference file 
+--gmap 
+```
+
 
 #### Example
 ```bash
@@ -291,8 +298,7 @@ signet -g --help
 ## Display the help page 
 
 # Modify the paramter
-signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map
-
+signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map --ref /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr --gmap /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ```
 
 
