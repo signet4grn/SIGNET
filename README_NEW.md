@@ -225,7 +225,7 @@ echo: Please check the file name
 
 ### Transcript-prep 
 
-This command will take the matrix of transcriptome count data and preprocess it. Each row represent the data for each gene, each column represeing the data for each sample, while the first row is the sample name, and the first column is the gene name.
+This command will take the matrix of log2(x+1) transcriptome count data and preprocess it. Each row represent the data for each gene, each column represeing the data for each sample, while the first row is the sample name, and the first column is the gene name.
 
 #### Usage
 ```bash
@@ -236,7 +236,7 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
 #### Description
 ```bash
     --g | --gexp, set gene expression file
-    --p | --pmap, set the USSC xena probemap file
+    --p | --pmap, set the genecode gtf file
 ```
 
 
@@ -247,7 +247,7 @@ signet -t --help
 ## Display the help page 
 
 # Modify the paramter
-signet -t --g ./data/gexp-prep/test.gexp --p ./data/gexp-prep/hugo_gencode_good_hg19_V24lift37_probemap
+signet -t --g ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv --p ./data/gexp-prep/gencode.v22.gene.gtf
 ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/resg/
 ```
 
