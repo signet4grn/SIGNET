@@ -1,12 +1,12 @@
 
 
-# Documentation for TSPLS streamline project
+# Documentation for SIGNET streamline project
 
 
 ## Getting started 
 First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path
 ```bash
-git clone https://github.itap.purdue.edu/jiang548/2SPLS.git
+git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
 
 export PATH=$PATH:/path/to/tslps
 ```
@@ -225,7 +225,7 @@ echo: Please check the file name
 
 ### Transcript-prep 
 
-This command will take the matrix of transcriptome count data and preprocess it. Each row represent the data for each gene, each column represeing the data for each sample, while the first row is the sample name, and the first column is the gene name.
+This command will take the matrix of log2(x+1) transcriptome count data and preprocess it. Each row represent the data for each gene, each column represeing the data for each sample, while the first row is the sample name, and the first column is the gene name.
 
 #### Usage
 ```bash
@@ -236,7 +236,7 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
 #### Description
 ```bash
     --g | --gexp, set gene expression file
-    --p | --pmap, set the USSC xena probemap file
+    --p | --pmap, set the genecode gtf file
 ```
 
 
@@ -247,24 +247,21 @@ signet -t --help
 ## Display the help page 
 
 # Modify the paramter
-signet -t --g ./data/gexp-prep/test.gexp --p ./data/gexp-prep/hugo_gencode_good_hg19_V24lift37_probemap
+signet -t --g ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv --p ./data/gexp-prep/gencode.v22.gene.gtf
 ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/resg/
 ```
 
 
 ### geno-prep
 
-`geno-prep` command provide the user the interface of preprocessing genotype data
+`geno-prep` command provide the user the interface of preprocessing genotype data. We will do quality control, after which we will use IMPUTE2 for imputation. 
 
 `geno-prep` receive the `map` file and `ped` file as input:
 - `data.map`: includes SNP location information with four columns,i.e.,[chromosomeSNP_name genetic_distance locus] for each of p SNPs.
 - `data.ped`: includes pedgree information, i.e.,[family_IDindividual_IDmother_IDfather_ID gender phenotype] in the ﬁrst six columns, followed by 2p columns with two columns for each of p SNPs
 
-Output of `geno-prep` will be saved under `/data/geno-prep`:
+Output of `geno-prep` will be saved under `/res/resg`:
 
-• `Geno`: each row is a sample and each column is a SNP, with the ﬁrst column for Sample ID; 
-• `clean_Genotype.map`: the corresponding map ﬁle; 
-• `clean_Genotype_chr$i.map`: map ﬁle for ith chromosome, with i =1,2,··· 
 
 #### Usage
 
@@ -275,14 +272,24 @@ signet -g [OPTION VAL] ...
 #### Description
 
 ```
-  --p | --ped, set ped file
-  --m | --map, set map file
-  --mind set the missing per individual cutoff
-  --geno set the missing per markder cutoff
-  --hwe set  Hardy-Weinberg equilibrium cutoff
-  --nchr set the chromosome number
-  --r | --ref, set the reference file for imputation
+ --p | --ped                   set ped file"
+ --m | --map                   set map file"
+ --mind                        set the missing per individual cutoff"
+ --geno                        set the missing per markder cutoff"
+ --hwe                         set Hardy-Weinberg equilibrium cutoff"
+ --nchr                        set the chromosome number"
+ --r | --ref                   set the reference file for imputation"
+ --gmap                        set the genomic map file"
+ --ncores                      set the number of cores"
 ```
+
+#### Details 
+
+```
+--r the reference file 
+--gmap 
+```
+
 
 #### Example
 ```bash
@@ -291,8 +298,7 @@ signet -g --help
 ## Display the help page 
 
 # Modify the paramter
-signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map
-
+signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map --ref /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr --gmap /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ```
 
 
@@ -323,8 +329,6 @@ match [--ma 5]
 
 
 
-
-
 #### option
 
 ```bash
@@ -334,6 +338,12 @@ match [--ma 5]
 **Comments**
 
 Have to separate it from `-match`: should we use `--amin` for *minimum number of alleles*?
+
+
+#### Example
+```bash
+signet -m --c ./data/clinical.tsv
+```
 
 
 ### cis-eqtl
