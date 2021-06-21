@@ -329,8 +329,6 @@ match [--ma 5]
 
 
 
-
-
 #### option
 
 ```bash
@@ -340,6 +338,12 @@ match [--ma 5]
 **Comments**
 
 Have to separate it from `-match`: should we use `--amin` for *minimum number of alleles*?
+
+
+#### Example
+```bash
+signet -m --c ./data/clinical.tsv
+```
 
 
 ### cis-eqtl
