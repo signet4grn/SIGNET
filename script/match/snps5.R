@@ -1,8 +1,7 @@
 ### snps5.R
 ### Generate a map file for SNPs with >=5 minor alleles
 #
-setwd('../../data/match')
-map=read.table("clean_Genotype.map")
+map=read.table("matched_Genotype.map")
 map=as.matrix(map)
 idx5=read.table("snps5.idx")
 idx5=as.matrix(idx5)

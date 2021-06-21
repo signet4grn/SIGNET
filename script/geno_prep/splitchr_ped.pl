@@ -25,7 +25,7 @@ while(<SIZES>) {
 }
 close(SIZES);
 
-$endcol[0] = 0;
+$endcol[0] = -1;
 foreach $i (1..$ARGV[2]) {
         $startcol[$i] = $endcol[$i-1] + 1;
         $endcol[$i] = $startcol[$i] + (2 * $size[$i]) - 1;

@@ -6,7 +6,7 @@ usage() {
     echo -e "\n"
     echo "Description:"
     echo " --g | --gexp                   set gene expression file"
-    echo " --p | --pmap                   set the USSC xena probemap file "
+    echo " --p | --pmap                   set the genecode gtf file "
     exit -1
 }
 
@@ -44,4 +44,4 @@ echo "gexp.file: "$gexpfile
 echo "pamp.file: "$pmapfile
 echo -e "\n"
 
-$SIGNET_SCRIPT_ROOT/gexp-prep/gexp-prep.sh $gexpfile $pmapfile && echo "Gene Expression Preprocessing Finished"
+$SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep.sh $gexpfile $pmapfile && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA"

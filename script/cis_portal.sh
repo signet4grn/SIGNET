@@ -5,6 +5,7 @@ snps_map=$(${cmdprefix}snps.map);
 snps_maf=$(${cmdprefix}snps.maf);
 gexp=$(${cmdprefix}gexp.file);
 gene_pos=$(${cmdprefix}gene.pos);
+matched_gexp=$(${cmpprefix}matched.gexp);
 matched_geno=$(${cmdprefix}matched.geno);
 alpha_cis=$(${cmdprefix}alpha.cis);
 uncor_ncis=$(${cmdprefix}alpha.cis)

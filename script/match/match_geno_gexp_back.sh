@@ -1,3 +1,4 @@
+Rscript orderge.R
 
 cd ../../data/match
 ### Extract genotype data that match Gexp Sample ID 

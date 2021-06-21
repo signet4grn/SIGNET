@@ -5,13 +5,15 @@ usage() {
     echo "signet -g [OPTION VAL] ..."
     echo -e "\n"
     echo "Description:"
-    echo "  --p | --ped,                  set ped file"
-    echo "  --m | --map,                  set map file"
+    echo "  --p | --ped                   set ped file"
+    echo "  --m | --map                   set map file"
     echo "  --mind                        set the missing per individual cutoff"
     echo "  --geno                        set the missing per markder cutoff"
     echo "  --hwe                         set Hardy-Weinberg equilibrium cutoff"
     echo "  --nchr                        set the chromosome number"
-    echo "  --r | --ref,                  set the reference file for imputation"
+    echo "  --r | --ref                   set the reference file for imputation"
+    echo "  --gmap                        set the genomic map file"
+    echo "  --ncore                       set the number of cores"
     exit -1
 }
 
@@ -23,8 +25,10 @@ geno=$($SIGNET_ROOT/signet -s --geno)
 hwe=$($SIGNET_ROOT/signet -s --hwe)
 nchr=$($SIGNET_ROOT/signet -s --nchr)
 ref=$($SIGNET_ROOT/signet -s --ref)
+gmap=$($SIGNET_ROOT/signet -s --gmap)
+ncore=$($SIGNET_ROOT/signet -s --ncore_local)
 
-ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,h:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,gmap:,ncore:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -59,6 +63,14 @@ case "$1" in
                 ref=$2
                 $SIGNET_ROOT/signet -s --ref $ref
                 shift;;
+	--gmap)
+		gmap=$2 
+                $SIGNET_ROOT/signet -s --gmap $gmap
+		shift;;
+	--ncore) 
+		ncore=$2
+		$SINGNET_ROOT/signet -s --ncore $ncore
+		shift;;
 	-h|--help)
 	        usage
 	        exit;;	
@@ -74,4 +86,4 @@ echo "ped.file: "$pedfile
 echo "map.file: "$mapfile
 echo -e "\n"
 
-$SIGNET_SCRIPT_ROOT/geno-prep/geno-prep.sh $pedfile $mapfile $mind $geno $hwe $nchr $ref  && echo "Genotype Preprocessing Finished"
+$SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh $pedfile $mapfile $mind $geno $hwe $nchr $ref $gmap $ncore  && echo "Genotype Preprocessing Finished"

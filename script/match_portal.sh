@@ -1,36 +1,37 @@
 #!/bin/bash
 
-
 usage() {
     echo "Usage:"
-    echo "  match gene expression and genotype data"
+    echo "  signet -m [--c CLINICAL_FILE]" 
+    echo -e "\n"
     echo "Description:"
-    echo "    -m | --ma, minor alleles threshold"
+    echo " --c | clinical                   set the clinical file for your cohort"
     exit -1
 }
 
-pedfile=$(./config_controller.sh -l Genotype ped.file);
-ma=$(./config_controller.sh -l Genotype map.file);
+clifile=$($SIGNET_ROOT/signet -s --cli.file)
 
-while getopts u:t:c:d:p: option
+ARGS=`getopt -a -o a:r -l h:,c:,clinical:,help -- "$@"`
+
+eval set -- "${ARGS}"
+
+while [ $# -gt 0 ]
 do
-   case "${option}"  in  
-                m) ma=${OPTARG};;
-                h) usage;;
-                ?) usage;;
-   esac
-    
+case "$1" in
+        -h|--help)
+		usage
+		exit;;
+	--c|--clinical)
+                clifile=$2
+		$SIGNET_ROOT/signet -s --cli.file $clifile
+		shift;;
+	--)
+	     shift
+	     break;;
+esac
+shift
 done
 
 
-cd ./match
-./match.sh $ma
 
-
-
-
-
-
-
-
-
+$SIGNET_SCRIPT_ROOT/match/match.sh $clifile  && echo -e "Gene Expression and Genotype matching Finished\n"
