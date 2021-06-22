@@ -327,7 +327,11 @@ output of `match` will be saved under `/data/match`:
 match [--ma 5]
 ```
 
-
+####
+```
+pca plot (sex) step 
+elbow eigen
+```
 
 #### option
 
