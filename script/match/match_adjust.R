@@ -1,30 +1,33 @@
-setwd(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpm"))
-
+##Adjust for covariates and truncate the genotype data
 args <- commandArgs(TRUE)
 eval(parse(text=args))
 
 library(data.table)
 library(plyr)
 library(ggplot2)
-evec <-read.table('Geno.pca.evec')
+evec <-read.table(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpm/Geno.pca.evec"))
 evecid <- evec[, 1]
 evec <-evec[,2:11]
 #load the 10 PCA
 pca = as.matrix(evec)
+## for common varints
 
-
-clinic=read.table(paste0(Sys.getenv("SIGNET_ROOT"), "/data/clinical.tsv"),sep="\t",header=T)
+clinic=read.table(clifile,sep="\t",header=T)
 id=fread(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpg/geno_id"),header=F)
 tmpid <- sapply(id, substring, 1, 12)
 ##identify whose genotype data have outliers
 rmidx <- which(is.na(match(tmpid, evecid)))
+if(length(rmidx)>0){
 id <- id[-rmidx, ]
+}
 id <- as.data.frame(id)
 clinic$submitter_id=as.character(clinic$submitter_id)
 id$patient=sapply(strsplit(id$V1,split = "-"),`[`,3)
 clinic$patient=sapply(strsplit(clinic$submitter_id,split = "-"),`[`,3)
 clinic=clinic[!duplicated(clinic$patient),]
+if(length(rmidx)>0){
 pca <- pca[match(tmpid[-rmidx, ], evecid), ]
+}
 id2=cbind(pca,id)
 merged=join(id2, clinic, by="patient")
 ggplot(aes(x=V2,y=V3,color=race),data=merged)+geom_point()
@@ -46,8 +49,9 @@ ggplot(aes(x=V2,y=V3,color=race),data=merged)+geom_point()
 vst_gexp <- as.matrix(fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resm/matched.gexp"))) # gene by sample
 vst_gexp<-t(vst_gexp)
 ##remove the genes whose genotyoe data is considered outliers.
+if(length(rmidx)>0){
 vst_gexp <- vst_gexp[, -rmidx]
-
+}
 # merged$age_at_diagnosis=as.character(merged$age_at_diagnosis)
 # merged$age_at_diagnosis=as.integer(merged$age_at_diagnosis)
 # #impute missing with mean
@@ -84,7 +88,7 @@ for( i in 1:p)
   #tmp_int <- qnorm(R/(n+1))
   tmpfit <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
   #tmpfit$coefficients[2:11]
-  tmpfit_pca <- lm(tmp_int ~  as.matrix(merged[, 1:10]) + factor(merged$race) + factor(merged$gender))
+  tmpfit_pca <- lm(tmp_int ~  as.matrix(merged[, 1:npc]) + factor(merged$race) + factor(merged$gender))
 
   gexp_int[i, ] <- resid(tmpfit)
   gexp_int_pca[i, ] <- resid(tmpfit_pca)
@@ -100,6 +104,8 @@ gexp_int_pca <- t(gexp_int_pca)
 write.table(gexp_int,file=paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resm/gexp.data")),quote=F,row.names=F,col.names=F)
 write.table(gexp_int_pca,file=paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resm/gexp_rmpc.data")),quote=F,row.names=F,col.names=F)
 geno <- fread(paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resm/new.Geno")))
+if(length(rmidx)>0){
 geno <- geno[-rmidx, ]
+}
 fwrite(geno,file=paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resm/geno.data")),quote=F,sep= " ",col.names = F, row.names = F)
 

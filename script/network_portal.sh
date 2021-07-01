@@ -67,5 +67,4 @@ shift
 done 
 
 
-cd network
-./network.sh $nboots $r $ncis $nnode $ncores $memory $walltime 
+$SIGNET_SCRIPT_ROOT/network/network.sh $nboots $r $ncis $nnode $ncores $memory $walltime 

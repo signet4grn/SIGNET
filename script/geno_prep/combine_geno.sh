@@ -18,6 +18,14 @@ do
     plink --silent --data 'imputed_chr'$i --recode --out 'clean_Genotype_chr'$i
 done
 
+for i in `seq 1 22`
+do
+echo -n "$i "
+n=`wc -l clean_Genotype_chr$i.map | awk '{print $1}'`
+echo "$n"
+done > impute_Genotype.sizes
+
+
 for i in `seq 1 ${nchr}`
 do 
     tail -n+2 'clean_Genotype_chr'$i'.raw' | cut -d " " -f 7- > 'clean_Genotype_chr'$i'.data'

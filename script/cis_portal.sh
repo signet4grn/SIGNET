@@ -5,8 +5,6 @@ snps_map=$(${cmdprefix}snps.map);
 snps_maf=$(${cmdprefix}snps.maf);
 gexp=$(${cmdprefix}gexp.file);
 gene_pos=$(${cmdprefix}gene.pos);
-matched_gexp=$(${cmpprefix}matched.gexp);
-matched_geno=$(${cmdprefix}matched.geno);
 alpha_cis=$(${cmdprefix}alpha.cis);
 uncor_ncis=$(${cmdprefix}alpha.cis)
 uncor_r=$(${cmdprefix}uncor.r)
@@ -18,19 +16,15 @@ ARGS=`getopt -a -o a:r -l alpha:,map:,maf:,gexp:,geno:,ncis:,nperms:,upstream:,d
 
 function usage() {
 	echo 'Usage:'
-	echo '  cis-eqtl [OPTION VAL] ...'
+	echo 'signet -c [OPTION VAL] ...'
 	echo -e '\n'
 	echo 'Description:'
 	echo '  --alpha | -a			significant level for cis-eQTL'
-	echo '  --ncis NCIS			maximum number of cis-eQTL for each gene'
-	echo '  --maxcor MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene'
 	echo '  --nperms N_PERMS		numer of permutations'
 	echo '  --upstream UP_STREAM		upstream region to flank the genetic region '
 	echo '  --downstram DOWN_STREAM	downstream region to flank the genetic region'
 	echo '  --map MAP_FILE		snps map file path'
 	echo '  --maf MAF_FILE		snps maf file path'
-	echo '  --gexp GEXP_FILE		gene expression file path'
-	echo '  --geno GENO_FILE		genotype file path'
 	echo '  --help | -h			user guide'
 }
 [ $? -ne 0 ] && usage
@@ -42,22 +36,29 @@ do
 case "$1" in
 	-a|--alpha)
 		alpha_cis=$2
+		${cmdprefix}alpha_cis $alpha_cis
 		shift
               ;;
 	--map)
 		snps_map=$2
+		${cmdprefix}snps_map $snps_map
 		shift;;
 	--maf)
 		snps_maf=$2
+		${cmdprefix}snps.maf $snps_maf
 		shift;;
-	--gexp)
-		gexp=$2
-		shift;;
-	--geno)
-		geno=$2
-		shift;;
+	--upstream)
+                upstream=$2
+		${cmdprefix}upstream $upstream
+                shift;;
+        --downstream)
+	        downstream=$2
+		${cmdprefix}downstream $downstream
+                shift;;
+
 	--nperms)
 		nperms=$2
+		${cmdprefix}nperms $nperms
 		shift;;
 	-h|--help)
 		usage
@@ -72,5 +73,4 @@ shift
 done 
 
 
-cd ./cis-eQTL
-./ciseQTL.sh $gene_pos $gexp $snps_maf $snps_map $alpha_cis $upstream $downstream $nperms
+$SIGNET_SCRIPT_ROOT/cis-eQTL/cis-eQTL.sh $gene_pos $gexp $snps_maf $snps_map $alpha_cis $upstream $downstream $nperms

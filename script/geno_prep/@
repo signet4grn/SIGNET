@@ -49,7 +49,6 @@ plink --silent --file 'clean_Genotype_chr'$i --recode oxford --out $i
 done
 
 [ -e impute_params.txt ] && rm impute_params.txt
-rm -f impute_params.txt.completed
 
 ## begin to impute 
 for i in `seq 1 ${nchr}`

@@ -3,7 +3,6 @@ geno_id=fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resg/Genotype.sampleID"
 geno_id$geno_idx=1:dim(geno_id)[1]
 
 gexp=fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/rest/gexp"))
-gexp <- gexp[, -1]
 gexp_id=fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/rest/gexpID"), header=F)
 gexp_id$gexp_idx=1:dim(gexp_id)[1]
 
@@ -20,8 +19,6 @@ type=as.integer(substring(gexp_id$V1,14,15))
 #length(which(type>9))
 canc=which(type<10)
 gexp_id=gexp_id[which(type<10),]
-#LUSC: 51 normal
-#LUAD: 59 normal
 
 #average different vials for the same patient
 dup=gexp_id[duplicated(gexp_id$patient) | duplicated(gexp_id$patient, fromLast=T),]

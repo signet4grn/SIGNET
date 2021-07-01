@@ -1,9 +1,8 @@
 ### sig.lowcis.R
 ### Select significant collapsed low-freq cis-eQTL (p<0.05)
 #
-setwd("../../data/cis-eQTL")
-args=commandArgs(T)
-alpha=args[1]
+args <- commandArgs(TRUE)
+eval(parse(text=args))
 
 pval=read.table("low.theoP")
 names(pval)=c("y","cx","p")
@@ -28,5 +27,5 @@ lx=nrow(unique(sex[,2:3]))
 
 ### save p-values and weights for significant collapsed cis-eQTL
 sigp$cx <- 1:lyx
-write.table(sigp,paste("low.sig.pValue_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
-write.table(sigw,paste("low.sig.weight_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
+write.table(sigp,paste(Sys.getenv("SIGNET_RESULT_ROOT"),"/resc/low.sig.pValue_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
+write.table(sigw,paste(Sys.getenv("SIGNET_RESULT_ROOT"),"/resc/low.sig.weight_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")

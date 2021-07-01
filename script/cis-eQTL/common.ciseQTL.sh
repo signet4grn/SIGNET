@@ -1,23 +1,23 @@
 #!/bin/bash
+alpha=$1
 
+cd $SIGNET_TMP_ROOT/tmpc
 
-alpha=${1}
-echo "Cis-eQTL Analyis for common variants [alpha:"$alpha"]......"
+echo -e "Cis-eQTL Analyis for common variants [alpha:"$alpha"]......\n"
 
-#Rscript ./common.ciseQTL.r 
+#Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/common.ciseQTL.r 
+
+echo -e "\nSummarizing the result for common variants \n"
 
 ##select significant ones 
-Rscript ./sig.commoncis.r $alpha
+Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/sig.commoncis.r "alpha='$alpha'"
 
 ### Obtain genotype for eQTL data
-Rscript ./common.eQTLdata.r $alpha
+Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/common.eQTLdata.r "alpha='$alpha'"
 
 wait
 
-
-cd ../../data/cis-eQTL
-nsig=$(awk 'END{print NR}' common.sig.pValue_${alpha})
-ngene=$(awk '{print $1}' common.sig.pValue_${alpha} | sort | uniq | wc -l)
-echo "----" $nsig "significant common variants found for "$ngene" genes" 
-cd ../../script/cis-eQTL
+nsig=$(awk '{print $2}' $SIGNET_RESULT_ROOT/resc/common.sig.pValue_${alpha} | sort | uniq | wc -l)
+ngene=$(awk '{print $1}' $SIGNET_RESULT_ROOT/resc/common.sig.pValue_${alpha} | sort | uniq | wc -l)
+echo -e "----" $nsig "significant common variants found for "$ngene" genes\n" 
 

@@ -1,7 +1,11 @@
-library(data.table)
-y=as.matrix(fread('final.gexpdata0'))
-x=as.matrix(fread('rare.snpsdata0'))
+### rare.ciseQTL.R
+### Calculate p-values of rare-freq cis-eQTL via permutation
+#
+y=read.table(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), '/resm/gexp_rmpc.data'))
+x=read.table('rare.Geno.data')
 idx=read.table('rare.cispair.idx')
+y=as.matrix(y)
+x=as.matrix(x)
 idx=as.matrix(idx)
 yidx=unique(idx[,1])
 ylen=length(yidx)
@@ -12,8 +16,8 @@ alpha0=0.1 #the cut-off value;
            #we flip its coding;
 B=100 #the number of permutations
 
-source("SumTest.r")
-source("rSumTest.r")
+source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), '/cis-eQTL/SumTest.r'))
+source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), '/cis-eQTL/rSumTest.r'))
 
 w <- NULL
 aSumP <- NULL
@@ -37,7 +41,7 @@ for (i in YYstartYY:YYendYY){
         pv <- fit[1,4] #p-value 
         w <- rbind(w, cbind(rep(1,ng), fit[,5])) #weight of X
 
-        fit0 <- rSumTest(Y,X,B,alpha0)
+        fit0 <- rSumTest(Y,Xs,B,alpha0)
         u0 <- fit0[1,1]
         v0 <- fit0[1,2]
         a <- fit0[1,3]
@@ -56,7 +60,7 @@ for (i in YYstartYY:YYendYY){
             pv <- fit[1,4] #p-value  
             w <- rbind(w, cbind(rep(j,wsize), fit[,5])) #weight of X
 
-            fit0 <- rSumTest(Y,X,B,alpha0)
+            fit0 <- rSumTest(Y,Xs,B,alpha0)
             u0 <- fit0[1,1]
             v0 <- fit0[1,2]
             a <- fit0[1,3]
@@ -77,7 +81,7 @@ for (i in YYstartYY:YYendYY){
             pv <- fit[1,4] #p-value   
             w <- rbind(w, cbind(rep(j,ng%%wsize), fit[,5])) #weight of X
 
-            fit0 <- rSumTest(Y,X,B,alpha0)
+            fit0 <- rSumTest(Y,Xs,B,alpha0)
             u0 <- fit0[1,1]
             v0 <- fit0[1,2]
             a <- fit0[1,3]
@@ -89,7 +93,7 @@ for (i in YYstartYY:YYendYY){
         }
     }    
 
-    print(i)
+    if((i%%100)==0) print(i)
 }
 
 write.table(w,"rare.ciseQTL.weightYYY",row.names=F,col.names=F,quote=F,sep=" ")

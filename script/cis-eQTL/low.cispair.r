@@ -1,9 +1,16 @@
-setwd('../../data/cis-eQTL')
-args = commandArgs(T)
-upstream = 1000
-downstream = 1000
+args <- commandArgs(TRUE)
+eval(parse(text=args))
 # load data
-genepos=read.table('final.genepos');#Column 1 is chr#; Column 2 is start pos; Column 3 is end pos;
+upstream=as.numeric(upstream)
+downstream=as.numeric(downstream)
+
+size <- file.info("low.SNPpos")$size
+if(size==0){
+file.create("low.cispair.idx")
+quit()
+}
+
+genepos=read.table('genepos');#Column 1 is chr#; Column 2 is start pos; Column 3 is end pos;
 SNPpos=read.table('low.SNPpos');#Column 1 is chr#; Column 2 is SNP pos;
 ly=dim(genepos)[1];
 
@@ -11,7 +18,7 @@ ly=dim(genepos)[1];
 cisSNP_idx=list();
 for (i in 1:ly) {
 	
-  cisSNP_idx[[i]]=which((SNPpos[,1]==genepos[i,1])&((genepos[i,2]-upstream)<=SNPpos[,2])&(SNPpos[,2]<=(genepos[i,3]+downstream))); #the same chromosome, up 1kb, down 1kb
+  cisSNP_idx[[i]]=which((SNPpos[,1]==genepos[i,1])&((genepos[i,2]-downstream)<=SNPpos[,2])&(SNPpos[,2]<=(genepos[i,3]+upstream))); #the same chromosome, down 1kb, down 1kb
   #print(i)
 }
 

@@ -1,9 +1,9 @@
-### low.ciseQTL.R
-### Calculate p-values of low-freq cis-eQTL via permutation
+### rare.ciseQTL.R
+### Calculate p-values of rare-freq cis-eQTL via permutation
 #
-y=read.table(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), '/resm/gexp_rmpc.data'))
-x=read.table('low.Geno.data')
-idx=read.table('low.cispair.idx')
+y=read.table(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), '/resm/gexp.data'))
+x=read.table('rare.Geno.data')
+idx=read.table('rare.cispair.idx')
 y=as.matrix(y)
 x=as.matrix(x)
 idx=as.matrix(idx)
@@ -29,7 +29,7 @@ for (i in YYstartYY:YYendYY){
     X <- as.matrix(X)
 
     ng <- ncol(X)
-    wsize <- 50
+    wsize <- 100
     nw <- ng %/% wsize
    
     if (nw==0){
@@ -96,9 +96,9 @@ for (i in YYstartYY:YYendYY){
     if((i%%100)==0) print(i)
 }
 
-write.table(w,"low.ciseQTL.weightYYY",row.names=F,col.names=F,quote=F,sep=" ")
+write.table(w,"rare.ciseQTL.weightYYY",row.names=F,col.names=F,quote=F,sep=" ")
 #Col 1: index of collapsed SNPs for a gene, Col 2: weight of collapsed SNPs
-write.table(aSumP,"low.aSumPYYY",row.names=F,col.names=F,quote=F,sep=" ")
+write.table(aSumP,"rare.aSumPYYY",row.names=F,col.names=F,quote=F,sep=" ")
 #Col 1: index of gene, Col 2: index of collapsed SNPs for a gene, Col 3: p-value
-write.table(theoP,"low.theoPYYY",row.names=F,col.names=F,quote=F,sep=" ")
+write.table(theoP,"rare.theoPYYY",row.names=F,col.names=F,quote=F,sep=" ")
 #Col 1: index of gene, Col 2: index of collapsed SNPs for a gene, Col 3: p-value

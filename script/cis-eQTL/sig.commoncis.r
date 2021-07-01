@@ -1,12 +1,13 @@
-setwd("../../data/cis-eQTL")
+args <- commandArgs(TRUE)
+eval(parse(text=args))
+
 pval=read.table("common.pValue")
 names(pval)=c("y","x","p")
-args=commandArgs(T)
-alpha=args[1]
 
 sigp=pval[pval$p<alpha,] # significant cis-eQTL
 lyx=nrow(sigp) # number of gene&cis-eQTL pairs
 ##4316
+
 y=unique(sigp$y)
 ly=length(y) # number of genes that have cis-eQTL
 ##2019
@@ -27,6 +28,7 @@ uniqy=y[ind!=0]
 luy=length(uniqy) # number of genes that have at least one unique cis-eQTL
 ##2000
 
-### p-value for genes that have at least one unique cis-eQTL
+
+## p-value for genes that have at least one unique cis-eQTL
 uniqsigp=sigp[sigp$y%in%uniqy,]
-write.table(uniqsigp,paste("common.sig.pValue_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
+write.table(uniqsigp,paste(Sys.getenv("SIGNET_RESULT_ROOT"), "/resc/common.sig.pValue_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")

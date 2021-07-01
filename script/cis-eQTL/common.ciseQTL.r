@@ -1,12 +1,10 @@
-.libPaths(c("/depot/bigcare/data/2020/Rlibs","~/R/x86_64-pc-linux-gnu-library/3.6",.libPaths()))
-setwd("../../data/cis-eQTL")
-library(data.table)
-
-y=fread('final.gexpdata0')
-x=fread('common.snpsdata0')
+### common.ciseQTL.R
+### Calculate p-values of all common cis-eQTL
+#
+y=read.table(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), '/resm/gexp_rmpc.data'))
+x=read.table('common.Geno.data')
 y=as.matrix(y)
 x=as.matrix(x)
-x=apply(x,2,as.numeric)
 y=scale(y)
 x=scale(x)
 idx=read.table('common.cispair.idx')
