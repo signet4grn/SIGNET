@@ -23,7 +23,11 @@ echo -e "Begin to summarize the results\n"
 $SIGNET_SCRIPT_ROOT/cis-eQTL/combine.sh $alpha
 
 #
-echo -e "\nBegin to find the uncorrelated SNPs and fit a ridge regression to genes that has more than one cis-eQTL region\n"
+#echo -e "\nBegin to find the uncorrelated SNPs and fit a ridge regression to genes that has more than one cis-eQTL region\n"
 
+echo -e "\nCis-eQTL analysis completed!\n"
+echo -e "Please copy the following files into research cluster for computing:\n"
 
-echo -e 'Cis-eQTL analysis completed!\n'
+echo -e "1. all.sig.pValue_$alpha\n"
+echo -e "2. net.Gexp.data\n"
+echo -e "3. all.eQTL.data\n"
