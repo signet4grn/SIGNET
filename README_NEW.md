@@ -420,7 +420,7 @@ signet -c --alpha 0.05 --ncis 5 --maxcor 0.8 --nperms 100 --up 1000 --down 1000
 
 #### Example
 ```
-cis-eqtl -a 0.05 --upstream 1000 --map snp.map
+ signet -c --upstream 100000 --downstream 100000 --nperms 100 --alpha 0.1
 ```
 
 ### network
