@@ -9,13 +9,13 @@ downstream=$7
 nperms=$8
 
 ##Find cis-SNPs
-#$SIGNET_SCRIPT_ROOT/cis-eQTL/cis-SNPs.sh $upstream $downstream 
+$SIGNET_SCRIPT_ROOT/cis-eQTL/cis-SNPs.sh $upstream $downstream 
 
 # Cis-eQTL Analysis
 wait
-#$SIGNET_SCRIPT_ROOT/cis-eQTL/common.ciseQTL.sh $alpha
-#$SIGNET_SCRIPT_ROOT/cis-eQTL/low.ciseQTL.sh $alpha $nperms
-#$SIGNET_SCRIPT_ROOT/cis-eQTL/rare.ciseQTL.sh $alpha $nperms
+$SIGNET_SCRIPT_ROOT/cis-eQTL/common.ciseQTL.sh $alpha
+$SIGNET_SCRIPT_ROOT/cis-eQTL/low.ciseQTL.sh $alpha $nperms
+$SIGNET_SCRIPT_ROOT/cis-eQTL/rare.ciseQTL.sh $alpha $nperms
 wait
 
 #Combine the results
