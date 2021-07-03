@@ -1,11 +1,13 @@
-setwd('../../data/cis-eQTL')
+args <- commandArgs(TRUE)
+eval(parse(text=args))
+
 library(data.table)
 ### input files
-r=0.90;
 ##change
 y <- as.matrix(fread("net.Gexp.data"))
 x=fread("all.eQTL.data"); #genotype data
-res=read.table("all.sig.pValue_0.05"); #Col 1 is index of gene, Col 2 is index of cis-eQTL, Col 3 is p-value
+sig <- list.files(pattern="all.sig.pValue_")
+res <- read.table(sig) 
 y=as.matrix(y);
 x=as.matrix(x);
 res=as.matrix(res);
@@ -92,7 +94,7 @@ for (i in 1:ly){
 uncoryx_idx=paste(unlist(uncory_idx),unlist(uncorx_idx)) #index of gene and its uncorrelated cis-eQTL
 uncoryx_idx=as.matrix(uncoryx_idx)
 
-setwd('../../data/network')
+setwd(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpn"))
 write.table(uncoryx_idx,"uncoryx_idx",row.names=F,col.names=F,quote=F,sep=" ")
 
 ########################################
@@ -130,12 +132,8 @@ indicator=matrix(0,len,1)
 for (i in 1:len){
    indicator[i]=(sum(!(netyx_idx[which(netyx_idx[,1]==uniq_nety_idx[i]),2]%in%netyx_idx[which(netyx_idx[,1]!=uniq_nety_idx[i]),2]))>=1) #1 if the gene has at least one unique cis-eQTL
 }
-sum(indicator)
-##20
 
-sum(table(netyx_idx[,1])==1)
-# 11
-sum(table(netyx_idx[,1])==2)
-# 4
-sum(table(netyx_idx[,1])==3)
-# 5
+cat(paste0(sum(table(netyx_idx[,1])==1), " genes have one cis-eQTL\n"))
+cat(paste0(sum(table(netyx_idx[,1])==2), " genes have two cis-eQTL\n"))
+cat(paste0(sum(table(netyx_idx[,1])==3), " genes have three cis-eQTL\n"))
+

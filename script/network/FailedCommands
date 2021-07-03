@@ -1,5 +1,0 @@
-Rscript ./stage2/bs10_1-80.r 
-Rscript ./stage2/bs8_1-80.r 
-Rscript ./stage2/bs9_1-80.r 
-Rscript ./stage2/bs6_1-80.r 
-Rscript ./stage2/bs7_1-80.r 

@@ -1,28 +1,30 @@
 #!/bin/bash
 
 cmdprefix="$SIGNET_ROOT/signet -s --"
-ncis=$(${cmdprefix}uncor.ncis);
-r=$(${cmdprefix}uncor.r);
+loc=$(${cmdprefix}cis.loc);
+ncis=$(${cmdprefix}ncis);
+cor=$(${cmdprefix}cor);
 nboots=$(${cmdprefix}nboots);
-nnodes=$(${cmdprefix}nnodes);
 ncores=$(${cmdprefix}ncores);
+queue=$(${cmdprefix}queue);
 memory=$(${cmdprefix}memory);
 walltime=$(${cmdprefix}walltime)
 
-ARGS=`getopt -a -o r: -l ncis:,r:,maxcor:,nnodes:,memory:,walltime:,nboots:,h:,help -- "$@"`
+ARGS=`getopt -a -o r: -l loc:,l:,ncis:,r:,maxcor:,memory:,m:,walltime:,:w:,nboots:,h:,help -- "$@"`
 
 function usage() {
 	echo 'Usage:'
-	echo '  network [OPTION VAL] ...'
+	echo '  signet -s [OPTION VAL] ...'
 	echo -e "\n"
 	echo 'Description:'
-	echo '  --ncis NCIS			maximum number of cis-eQTL for each gene'
-	echo '  -r MAX_COR		        maximum corr. coeff. b/w cis-eQTL of same gene'
-	echo '  --nnodes N_NODE			'
-        echo '  --ncores N_CORES		number of cores in each node'
-	echo '  --memory MEMORY		memory in each node'
-	echo '  --walltime WALLTIME		walltime of the server'
-	echo '  --nboots NBOOTS               number of bootstraps'                   
+	echo '  --loc CIS.LOC                 location of the result after the cis-eQTL analysis'
+        echo '  --ncis NCIS		        maximum number of cis-eQTL for each gene'
+	echo '  --cor MAX_COR 		        maximum corr. coeff. b/w cis-eQTL of same gene'
+        echo '  --ncores N_CORE		number of cores in each node'
+	echo '  --memory MEMEORY	        memory in each node in GB'
+	echo '  --queue QUEUE                 queue name'
+        echo '  --walltime WALLTIME		maximum walltime of the server in seconds'
+	echo '  --nboots NBOOTS               number of bootstraps datasets'                   
 	exit
 }
 [ $? -ne 0 ] && usage
@@ -32,28 +34,36 @@ eval set -- "${ARGS}"
 while true
 do
 case "$1" in
-	--ncis)
+	--loc)
+                loc=$2
+                ${cmdprefix}cis.loc $loc
+                shift
+              ;;
+        --ncis)
 		ncis=$2
-		shift
+		${cmdprefix}ncis $ncis
+                shift
               ;;
 	--r)
-		r=$2
-		shift;;
+		cor=$2
+		${cmdprefix}cor $cor
+                shift;;
 	--nboots)
 		nboots=$2
-		shift;;
-	--nnodes)
-		nnodes=$2
-		shift;;
+		${cmdprefix}nboots $nboots
+                shift;;
 	--ncores)
 		ncores=$2
-		shift;;
+		${cmdprefix}ncores $ncores
+                shift;;
 	--memory)
 		memory=$2
+                ${cmdprefix}memory $memory
 		shift;;
 	--walltime)
 		walltime=$2
-		shift;;
+		${cmdprefix}walltime $walltime
+                shift;;
 	--h|--help)
 		usage
 		exit
@@ -66,5 +76,4 @@ case "$1" in
 shift
 done 
 
-
-$SIGNET_SCRIPT_ROOT/network/network.sh $nboots $r $ncis $nnode $ncores $memory $walltime 
+$SIGNET_SCRIPT_ROOT/network/network.sh $nboots $cor $ncis $queue $ncores $memory $walltime $loc
