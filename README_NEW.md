@@ -439,16 +439,8 @@ The final output files of `network` will be saved under `/data/network/stage2`:
 
 #### usage
 ```
-network [OPTION VAL] ...
+signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 ```
-
-**Comments**
-
-Would rather take the commands
-```
-signet -n [OPTION VAL] ...
-```
-
 
 
 #### description
