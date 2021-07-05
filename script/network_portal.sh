@@ -2,7 +2,6 @@
 
 cmdprefix="$SIGNET_ROOT/signet -s --"
 loc=$(${cmdprefix}cis.loc);
-ncis=$(${cmdprefix}ncis);
 cor=$(${cmdprefix}cor);
 nboots=$(${cmdprefix}nboots);
 ncores=$(${cmdprefix}ncores);
@@ -18,7 +17,6 @@ function usage() {
 	echo -e "\n"
 	echo 'Description:'
 	echo '  --loc CIS.LOC                 location of the result after the cis-eQTL analysis'
-        echo '  --ncis NCIS		        maximum number of cis-eQTL for each gene'
 	echo '  --cor MAX_COR 		        maximum corr. coeff. b/w cis-eQTL of same gene'
         echo '  --ncores N_CORE		number of cores in each node'
 	echo '  --memory MEMEORY	        memory in each node in GB'
@@ -37,11 +35,6 @@ case "$1" in
 	--loc)
                 loc=$2
                 ${cmdprefix}cis.loc $loc
-                shift
-              ;;
-        --ncis)
-		ncis=$2
-		${cmdprefix}ncis $ncis
                 shift
               ;;
 	--r)
@@ -76,4 +69,4 @@ case "$1" in
 shift
 done 
 
-$SIGNET_SCRIPT_ROOT/network/network.sh $nboots $cor $ncis $queue $ncores $memory $walltime $loc
+$SIGNET_SCRIPT_ROOT/network/network.sh $nboots $cor $queue $ncores $memory $walltime $loc

@@ -2,7 +2,6 @@
 ### Predict y using x in Stage 1, Ridge Regression  
 ### Screening and variable selection for y(i) on y(-i) hat in Stage 2
 
-setwd('../../data/network')
 ### load data
 library(data.table)
 y=fread("nety") #expression data for all genes

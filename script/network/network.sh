@@ -1,31 +1,39 @@
-cd $SIGNET_TMP_ROOT/tmpn
-
 module load r/4.0.0
 
 nboots=$1
 cor=$2
-ncis=$3
-queue=$4
-ncores=$5
-memory=$6
-walltime=$7
-loc=$8
+queue=$3
+ncores=$4
+memory=$5
+walltime=$6
+loc=$7
 
 rm -f IDX* 
 
+cd $SIGNET_ROOT/data/network
+
+#Prepare for network analysis
 echo -e 'Select uncorrelated SNPs [ncis:'$ncis',r:'$r',nboots:'$nboots']......\n'
-Rscript $SIGNET_SCRIPT_ROOT/network/uncor.R "r=$cor"
-Rscript $SIGNET_SCRIPT_ROOT/network/gendata.R "nboots=$nboots"
+#Rscript $SIGNET_SCRIPT_ROOT/network/uncor.R "r=$cor"
+#Rscript $SIGNET_SCRIPT_ROOT/network/gendata.R "nboots=$nboots"
+#Rscript $SIGNET_SCRIPT_ROOT/network/rmcons.R "nboots=$nboots" 
+
+##create the template.sub file
+sed -i "s/queue/$queue/g" $SIGNET_SCRIPT_ROOT/network/template.sub
+sed -i "s/ncores/$ncores/g" $SIGNET_SCRIPT_ROOT/network/template.sub
+sed -i "s/walltime/$walltime/g" $SIGNET_SCRIPT_ROOT/network/template.sub
+
+#begin stage1
+echo -e 'Stage 1 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory', queue:'$queue']......\n'
+
+$SIGNET_SCRIPT_ROOT/network/stage1.sh $nboots $memory $walltime $ncores 
 
 wait
-echo -e 'Stage 1 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory']......\n'
 
-nohup ./stage1.sh $nboots &
+#begin stage2
+echo -e 'Stage 2 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory', queue:'$queue']......\n'
 
-wait
-echo -e 'Stage 2 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory']......\n'
-
-nohup ./stage2.sh $nboots $ncores $memory &
+$SIGNET_SCRIPT_ROOT/network/stage2.sh $nboots $memory $walltime $ncores
 
 wait
 echo -e 'Summary......\n'
