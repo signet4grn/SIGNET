@@ -2,7 +2,6 @@
 
 # Documentation for SIGNET streamline project
 
-
 ## Getting started 
 First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path
 ```bash
@@ -10,6 +9,11 @@ git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
 
 export PATH=$PATH:/path/to/tslps
 ```
+
+## Requirement
+This package assumes you are using the Slurm Workload Manager for supercomputers in the network analysis stage.  
+
+
 **Caution**
 ```bash
 All the result for each step will return to the corresponding folders in the res_root directory in the configuration file config.ini, by default, the /res directory where the package is installed. You should change the res_root directory in the config.ini file if you want to start a new analysis.
