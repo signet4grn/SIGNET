@@ -2,15 +2,17 @@
 ### Predict y using x in Stage 1, Ridge Regression  
 ### Screening and variable selection for y(i) on y(-i) hat in Stage 2
 
-.libPaths(c("/depot/bigcare/data/2020/Rlibs","~/R/x86_64-pc-linux-gnu-library/3.6",.libPaths()))
 ### load data
-setwd('../../data/network')
-library(data.table)
-y=fread("nety") #expression data for genes
+suppressMessages(library(data.table))
+suppressMessages(library(MASS))
+suppressMessages(library(parcor))
+suppressMessages(library(matrixcalc))
+
+y=fread("../nety") #expression data for genes
 y=as.matrix(y)
-x=fread("netx") #cis-eQTL data
+x=fread("../netx") #cis-eQTL data
 x=as.matrix(x)
-netyx_idx=read.table("netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
+netyx_idx=read.table("../netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
 netyx_idx=as.matrix(netyx_idx)
 y=y[, YYfirstYY:YYlastYY]
 ##change2
@@ -18,11 +20,10 @@ py1 = length(unique(netyx_idx[,1]))
 N=dim(y)[1]
 py=dim(y)[2]
 px=dim(x)[2]
-library(MASS)
-library(parcor)
-source("../../script/network/SIS.R")
-source("../../script/network/subfuns.R")
-library(matrixcalc)
+
+source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/network/SIS.R"))
+source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/network/subfuns.R"))
+
 ##ptm <- proc.time()
 ##change
 ##change2
@@ -37,14 +38,14 @@ if(py1 >= YYfirstYY){
 }
 
 ### Bootstrap
-idx=read.table('IDXXXbsXX')
+idx=read.table('../IDXXXbsXX')
 idx=as.matrix(idx)
 y=y[idx,]
 x=x[idx,]
 
 
 ### predicted y 
-ypre=read.table("./stage1/ypreXXbsXX")
+ypre=read.table("../stage1/output/ypreXXbsXX")
 ypre=as.matrix(ypre[,1:py1])
 nypre=dim(ypre)[2]
 
@@ -163,5 +164,5 @@ if(py1 < YYlastYY){
 
 
 ### save results and all objects
-write.table(estimatedA,'./stage2/AdjMatXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")
-write.table(estimatedC,'./stage2/CoeffMatXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")
+write.table(estimatedA,'AdjMatXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")
+write.table(estimatedC,'CoeffMatXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")

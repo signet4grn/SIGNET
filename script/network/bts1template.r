@@ -1,18 +1,18 @@
 
 ### Predict y using x in Stage 1, Ridge Regression  
 ### Screening and variable selection for y(i) on y(-i) hat in Stage 2
-
 ### load data
+library(MASS)
 library(data.table)
-y=fread("nety") #expression data for all genes
+y=fread("../nety") #expression data for all genes
 y=as.matrix(y)
-x=fread("netx") #cis-eQTL data
+x=fread("../netx") #cis-eQTL data
 x=as.matrix(x)
-netyx_idx=read.table("netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
+netyx_idx=read.table("../netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
 netyx_idx=as.matrix(netyx_idx)
 y=y[,YYfirstYY:YYlastYY]
 ##change 
-uniqy_idx=read.table("uniqy_idx")
+uniqy_idx=read.table("../uniqy_idx")
 ##change2
 py1 = dim(uniqy_idx)[1]
 if(YYlastYY > py1){
@@ -21,7 +21,6 @@ if(YYlastYY > py1){
 N=dim(y)[1]
 py=dim(y)[2]
 px=dim(x)[2]
-library(MASS)
 
 
 ### index of instruments for each gene
@@ -33,7 +32,7 @@ for (i in 1:py){
 }
 
 ### Bootstrap
-idx=read.table('IDXXXbsXX')
+idx=read.table('../IDXXXbsXX')
 idx=as.matrix(idx)
 y=y[idx,]
 x=x[idx,]
@@ -57,4 +56,4 @@ for (i in 1:py) {
   print(i)  
 }
 
-write.table(ypre,file='./stage1/ypreXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")
+write.table(ypre,file='ypreXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")

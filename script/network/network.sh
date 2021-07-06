@@ -26,19 +26,20 @@ sed -i "s/walltime/$walltime/g" $SIGNET_SCRIPT_ROOT/network/template.sub
 #begin stage1
 echo -e 'Stage 1 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory', queue:'$queue']......\n'
 
-$SIGNET_SCRIPT_ROOT/network/stage1.sh $nboots $memory $walltime $ncores 
+#$SIGNET_SCRIPT_ROOT/network/stage1.sh $nboots $memory $walltime $ncores $queue
 
 wait
 
 #begin stage2
 echo -e 'Stage 2 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory', queue:'$queue']......\n'
 
-$SIGNET_SCRIPT_ROOT/network/stage2.sh $nboots $memory $walltime $ncores
+$SIGNET_SCRIPT_ROOT/network/stage2.sh $nboots $memory $walltime $ncores $queue
 
 wait
 echo -e 'Summary......\n'
 
-./summarize.sh $nboots
+$SIGNET_SCRIPT_ROOT/network/summarize.sh $nboots
+
 
 
 

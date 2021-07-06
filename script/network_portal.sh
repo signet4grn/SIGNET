@@ -9,7 +9,7 @@ queue=$(${cmdprefix}queue);
 memory=$(${cmdprefix}memory);
 walltime=$(${cmdprefix}walltime)
 
-ARGS=`getopt -a -o r: -l loc:,l:,ncis:,r:,maxcor:,memory:,m:,walltime:,:w:,nboots:,h:,help -- "$@"`
+ARGS=`getopt -a -o r: -l loc:,l:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,h:,help -- "$@"`
 
 function usage() {
 	echo 'Usage:'
@@ -17,7 +17,7 @@ function usage() {
 	echo -e "\n"
 	echo 'Description:'
 	echo '  --loc CIS.LOC                 location of the result after the cis-eQTL analysis'
-	echo '  --cor MAX_COR 		        maximum corr. coeff. b/w cis-eQTL of same gene'
+	echo '  --cor MAX_COR 		maximum corr. coeff. b/w cis-eQTL of same gene'
         echo '  --ncores N_CORE		number of cores in each node'
 	echo '  --memory MEMEORY	        memory in each node in GB'
 	echo '  --queue QUEUE                 queue name'
@@ -37,7 +37,7 @@ case "$1" in
                 ${cmdprefix}cis.loc $loc
                 shift
               ;;
-	--r)
+	--cor | --r)
 		cor=$2
 		${cmdprefix}cor $cor
                 shift;;
@@ -49,11 +49,15 @@ case "$1" in
 		ncores=$2
 		${cmdprefix}ncores $ncores
                 shift;;
-	--memory)
+	--memory | --m)
 		memory=$2
                 ${cmdprefix}memory $memory
 		shift;;
-	--walltime)
+	 --queue | --q)
+                queue=$2
+                ${cmdprefix}queue $queue
+                shift;;
+        --walltime)
 		walltime=$2
 		${cmdprefix}walltime $walltime
                 shift;;
