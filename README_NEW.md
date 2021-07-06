@@ -11,7 +11,7 @@ export PATH=$PATH:/path/to/tslps
 ```
 
 ## Requirement
-This package assumes you are using the Slurm Workload Manager for supercomputers in the network analysis stage.  
+This package assumes you are using the *Slurm Workload Manager* for supercomputers in the network analysis stage.  
 
 
 **Caution**
