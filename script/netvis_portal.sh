@@ -1,22 +1,21 @@
 #!/bin/bash
 
-
-cmdprefix="./config_controller.sh -l NETVIS,"
+cmdprefix="$SIGNET_ROOT/signet -v --"
 freq=$(${cmdprefix}freq);
 ncount=$(${cmdprefix}ncount)
-ninfo=$(${cmdprefix}ninfo)
-ARGS=`getopt -a -o r:,h -l ncount:,freq:,ninfo:,help: -- "$@"`
+
+ARGS=`getopt -a -o r:,h -l nsub:,freq:,help: -- "$@"`
 
 function usage() {
 	echo 'Usage:'
-	echo '  netvis [OPTION VAL] ...'
+	echo 'signet -v  [OPTION VAL] ...'
 	echo 'Description:'
 	echo '  --freq FREQENCY			bootstrap frequecy for the visualization'
 	echo '  --ncount NET_COUNT		number of sub-networks'
-	echo '  --ninfo NODE_INFO_FILE          node information file'
 	echo '  -h | --help                     usage'
 	exit
 }
+
 [ $? -ne 0 ] && usage
 
 eval set -- "${ARGS}"
@@ -49,5 +48,4 @@ shift
 done 
 
 
-cd netvis
-./netvis.sh $freq $ncount $ninfo
+$SIGNET_SCRIPT_ROOT/netvis.sh $freq $ncount $ninfo
