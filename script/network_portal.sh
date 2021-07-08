@@ -53,7 +53,7 @@ case "$1" in
 		memory=$2
                 ${cmdprefix}memory $memory
 		shift;;
-	 --queue | --q)
+	--queue | --q)
                 queue=$2
                 ${cmdprefix}queue $queue
                 shift;;
@@ -72,5 +72,9 @@ case "$1" in
       esac
 shift
 done 
+
+touch $SIGNET_TMP_ROOT/tmpn
+touch $SIGNET_RESULT_ROOT/resn
+touch $SIGNET_DATA_ROOT/network
 
 $SIGNET_SCRIPT_ROOT/network/network.sh $nboots $cor $queue $ncores $memory $walltime $loc

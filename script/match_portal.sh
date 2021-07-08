@@ -33,5 +33,8 @@ shift
 done
 
 
+touch $SIGNET_TMP_ROOT/tmpm
+touch $SIGNET_RESULT_ROOT/resm
+touch $SIGNET_DATA_ROOT/match
 
 $SIGNET_SCRIPT_ROOT/match/match.sh $clifile  && echo -e "Gene Expression and Genotype matching Finished\n"

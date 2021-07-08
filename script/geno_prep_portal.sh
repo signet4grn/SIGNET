@@ -86,4 +86,8 @@ echo "ped.file: "$pedfile
 echo "map.file: "$mapfile
 echo -e "\n"
 
+touch $SIGNET_TMP_ROOT/tmpg
+touch $SIGNET_RESULT_ROOT/resg
+touch $SIGNET_DATA_ROOT/geno-prep
+
 $SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh $pedfile $mapfile $mind $geno $hwe $nchr $ref $gmap $ncore  && echo "Genotype Preprocessing Finished"
