@@ -172,6 +172,7 @@ for network visualization.
 **2.** We should unify the way to set up options (or configurations). Previously, we simply use, for example, `nchar`, to list/set up its value. Should we remove the double dashes here (`--`) or include the double dashes also for configurations? Is `ncount 2` for the top 2 networks? If so, I'd rather use `ntop 2`?
 
 
+
 ## Command Guide
 
 ### Settings
@@ -276,24 +277,16 @@ signet -g [OPTION VAL] ...
 #### Description
 
 ```
- --p | --ped                   set ped file"
- --m | --map                   set map file"
- --mind                        set the missing per individual cutoff"
- --geno                        set the missing per markder cutoff"
- --hwe                         set Hardy-Weinberg equilibrium cutoff"
- --nchr                        set the chromosome number"
- --r | --ref                   set the reference file for imputation"
- --gmap                        set the genomic map file"
- --ncores                      set the number of cores"
+ --p | --ped                   set ped file
+ --m | --map                   set map file
+ --mind                        set the missing per individual cutoff
+ --geno                        set the missing per markder cutoff
+ --hwe                         set Hardy-Weinberg equilibrium cutoff
+ --nchr                        set the chromosome number
+ --r | --ref                   set the reference file for imputation
+ --gmap                        set the genomic map file
+ --ncores                      set the number of cores
 ```
-
-#### Details 
-
-```
---r the reference file 
---gmap 
-```
-
 
 #### Example
 ```bash
@@ -311,41 +304,19 @@ signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map --ref 
 
 `match` read the output from `geno-prep` and `gexp-prep`
 
-output of `match` will be saved under `/data/match`:
-- `new.Geno`: genotype ﬁle; 
-- `new.Geno.idx`: index of SNPs selected to new.Geno;  
-- `new.Geno.map`: map ﬁle;
-- `new.Geno.maf`: each element is the minor allele frequency (MAF) for each SNP.
-
-**Comments**
-
-**1.** `match` should be replaced by `signet -match` (or simply `signet -m`)?
-
-**2.** The output should be saved under `./res/` or `./tmp/`?
-
-**2.** Should we unify all files with `new.Geno*` by `matched.Geno*` (any better names)?
+output of `match` will be saved under `/res/resm`:
 
 
 #### usage
 ```bash
-match [--ma 5]
+signet -m [--c CLINIVAL_FILE]
 ```
 
-####
+
+#### Description
 ```
-pca plot (sex) step 
-elbow eigen
+--c | clinical                   set the clinical file for your cohort
 ```
-
-#### option
-
-```bash
---ma | -m, minor alleles threshold 
-```
-
-**Comments**
-
-Have to separate it from `-match`: should we use `--amin` for *minimum number of alleles*?
 
 
 #### Example
