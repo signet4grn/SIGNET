@@ -521,50 +521,56 @@ Users can change the tspls process by modifying the paramter settings in the con
 
 ```bash
 # basic settings
-# basic settings
-[BASIC]
-nchr = 26
-storage.path = STORAGE_PATH
+[basic]
+nchr = 22
+ncore_local = 20
 
-[GENO]
-ped.file = xxx
-map.file = PATH/xxx.map
+[geno]
+ped.file = ./data/geno-prep/test.ped
+map.file = ./data/geno-prep/test.map
+gmap = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+ref = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
 
+[gexp]
+gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
+pmap.file = ./data/gexp-prep/gencode.v22.gene.gtf
 
-[GENEXP]
-ge.file = PATH/xxx.ge
-gpos.file = PATH/xxx.gpos
+[match]
+cli.file = ./data/clinical.tsv
 
-[PLINK]
+[plink]
 mind = 0.1
-ggeno = 0.1
+geno = 0.1
 hwe = 0.0001
-recode = A
 
-[CISEQTL]
-snps.map = ./data/cis-eQTL/snps.map
-snps.maf = ./data/cis-eQTL/snps.maf
-gexp.file = ./data/cis-eQTL/gexp_prostate
-matched.geno = ./data/cis-eQTL/matched.Geno
-gene.pos = ./data/cis-eQTL/prostate_gene_pos
+[ciseqtl]
+#snps.map = ./data/cis-eQTL/snps.map
+#snps.maf = ./data/cis-eQTL/snps.maf
+#gexp.file = ./data/cis-eQTL/gexp_prostate
+#matched.geno = ./data/cis-eQTL/matched.Geno
+#gene.pos = ./data/cis-eQTL/prostate_gene_pos
+snps.map = ./res/resm/new.Geno.map
+snps.maf = ./res/resm/new.Geno.maf
+matched.gexp = ./res/resm/gexp_rmpc.data
+matched.geno = ./res/resm/geno.data
+gene.pos = ./res/rest/gene_pos
 alpha.cis = 0.05
 nperms = 100
-upstream = 1000
-downstream = 500
+upstream = 100000
+downstream = 100000
 
-[NETWORK]
-uncor.ncis = 3
-uncor.r = 0.5
-nboots = 5
-nnodes = 500
-ncores = 16
-memory = 64
-walltime = 4
+[network]
+cis.loc = ./data/resn
+ncis = 3
+cor = 0.9
+nboots = 10
+ncores = 128
+queue = standby
+memory = 256
 
-[NETVIS]
+[netvis]
 freq = 0.8
-ncount = 2
-ninfo = ./data/netvis/mart_export_protein_coding_37.txt
+nsubs = 2
 ```
 
 ### File Structure
@@ -580,6 +586,7 @@ ninfo = ./data/netvis/mart_export_protein_coding_37.txt
 	- network_portal.sh # entrance for network analysis 
 	- netvis_portal.sh #entrance for network visualization
 	- main.sh # main entrance 
+	
 config.ini
 # data folder save all the relavant data and intermediate data
 - data/
