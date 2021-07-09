@@ -327,7 +327,7 @@ signet -m --c ./data/clinical.tsv
 
 ### cis-eqtl
 
-`cis-eqtl` command provide the basic tool for cis-eQTL analysis.  `cis-eqtl` command receive the input file from the previous preprocess step. We will automatically copy the following output from the precious preprocess step to `data/cis-eQTL`:
+`cis-eqtl` command provide the basic tool for cis-eQTL analysis.  `cis-eqtl` command receive the input file from the previous preprocess step. We will automatically use the result from the previous steps:
 - `snps.map` : snp map data
 - `snps.maf` : snp maf data from previous step
 - `gexp.file` : gene expression file
@@ -335,61 +335,30 @@ signet -m --c ./data/clinical.tsv
 - `gene.pos` : gene position file
 
 
-The results of `cis-eqtl` are output in to the following files, and they are all saved under  `/data/cis-eQTL`:
+The results of `cis-eqtl` are output in to the following files, and they are all saved under  `res/resc/cis-eQTL`:
 
-* `net.Gexp.data`: is the expression data for genes with cis-eQTL;
+* `net.Gexp.data`: is the expression data for genes;
 * `net.genepos`: include the position for genes in `net.Gexp.data`;
 * `[common|low|rare|all].eQTL.data`: includes the genotype data for marginally significant [ common | low | rare | all ] cis-eQTL;
 * `[common|low|rare|all].sig.pValue_0.05`: includes the p-value of each pair of gene and its marginally significant [ common | low | rare | all ]  cis-eQTL, where Column 1 is Gene Index, Column is SNP Index in `common.eQTL.data`, and Column 3 is p-Value.
 * `[common|low|rare|all].sig.weight_0.05`: includes the weight of collapsed SNPs for marginally significant cis-eQTL. The first column is the gene index, the second column is the SNP index, the third column is the index of collapsed SNP group, and the fourth column is the weight of each SNP in its collapsed group (with value 1 or -1).
 
-**Comments**
-
-**1.** Why shouldn't we directly access the output from the previous steps instead as we should try to minimize the usage of space?
-
-**2.** Use `signet -c` instead of `cis-eqtl`?
-
-**3.** The outputs should be saved into `./tmp/[tmpc/]` or `./res/[resc/]`?
-
-**4.** While we may allow users to specify the output file names, we should have default file names at the same time so users may not have to specify.
 
 
-#### Usage
+**2.** Usage
 ```
-  cis-eqtl --alpha 0.5 --ncis 9 --maxcor 1 --nperms 5 --upstream 1000 --downstream 1000 --map ./data/cis-eQTL/snps.map --maf ./data/cis-eQTL/snps.maf
-  ```
-
-**Comments**
-
-**1.** Would suggest:
-```bash
-signet -c --alpha 0.05 --ncis 5 --maxcor 0.8 --nperms 100 --up 1000 --down 1000
-```
-
-**2.** Use
-```
-  --rmax MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene
-  --up UP_STREAM		upstream region to flank the genetic region 
-  --down DOWN_STREAM	downstream region to flank the genetic region
-  --map MAP_FILE		snps map file path  [file or path?]
-  --maf MAF_FILE		snps maf file path  [file or path?]
-  --gexp GEXP_FILE		gene expression file path [file or path?]
-  --geno GENO_FILE		genotype file path [file or path?]
+signet -c [OPTION VAL] ...
 ```
 
 
 #### Options
 ```
   --alpha | -a			significant level for cis-eQTL
-  --ncis NCIS			maximum number of cis-eQTL for each gene
-  --maxcor MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene
   --nperms N_PERMS		numer of permutations
-  --upstream UP_STREAM		upstream region to flank the genetic region 
-  --downstream DOWN_STREAM	downstream region to flank the genetic region
+  --upstream UP_STREAM		upstream region to flank the genetic region
+  --downstram DOWN_STREAM	downstream region to flank the genetic region
   --map MAP_FILE		snps map file path
   --maf MAF_FILE		snps maf file path
-  --gexp GEXP_FILE		gene expression file path
-  --geno GENO_FILE		genotype file path
   --help | -h			user guide
 ```
 
@@ -408,32 +377,31 @@ signet -c --alpha 0.05 --ncis 5 --maxcor 0.8 --nperms 100 --up 1000 --down 1000
 * `all.eQTL.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL:  
 * `all.sig.pValue_0.05`: output from `cis-eqtl`,includes the $p$-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
  
-The final output files of `network` will be saved under `/data/network/stage2`:
+The final output files of `network` will be saved under `/res/network/resn`:
 * `adjacency_matrix`: the adjancency matrix for the estimated regulatory effects;
 * `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
 
 #### usage
 ```
-signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
+signet -n [OPTION VAL] ...
 ```
 
 
 #### description
 
-```bash
- --ncis NCIS	maximum number of cis-eQTL for each gene
- -r MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene
- --nnodes N_NODE			
- --ncores N_CORES  		
- --memory MEMORY			
- --walltime WALLTIME	
+```
+  --loc CIS.LOC                 location of the result after the cis-eQTL analysis
+  --cor MAX_COR 		maximum corr. coeff. b/w cis-eQTL of same gene
+  --ncores N_CORE		number of cores in each node
+  --memory MEMEORY	        memory in each node in GB
+  --queue QUEUE                 queue name
+  --walltime WALLTIME		maximum walltime of the server in seconds
+  --nboots NBOOTS               number of bootstraps datasets
 ```
 
-**Comments**
-
-Possible changes:
-```bash
- --rmax MAX_COR		maximum corr. coeff. b/w cis-eQTL of same gene
+#### example
+```
+signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 ```
 
 
