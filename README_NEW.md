@@ -506,10 +506,11 @@ nboots = 10
 ncores = 128
 queue = standby
 memory = 256
+walltime = 4:00:00
 
 [netvis]
 freq = 0.8
-nsubs = 2
+ntop = 2
 ```
 
 ### File Structure
@@ -524,12 +525,4 @@ nsubs = 2
 	- cis_portal.sh # entrance for cis-eqtl analysis
 	- network_portal.sh # entrance for network analysis 
 	- netvis_portal.sh #entrance for network visualization
-	- main.sh # main entrance 
-	
-config.ini
-# data folder save all the relavant data and intermediate data
-- data/
-	- cis-eQTL/
-	- network/
-	- netvis/
 ```
