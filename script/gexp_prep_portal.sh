@@ -44,8 +44,8 @@ echo "gexp.file: "$gexpfile
 echo "pamp.file: "$pmapfile
 echo -e "\n"
 
-touch $SIGNET_TMP_ROOT/tmpt
-touch $SIGNET_RESULT_ROOT/rest
-touch $SIGNET_DATA_ROOT/gexp-prep
+mkdir -p $SIGNET_TMP_ROOT/tmpt
+mkdir -p $SIGNET_RESULT_ROOT/rest
+mkdir -p $SIGNET_DATA_ROOT/gexp-prep
 
 $SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep.sh $gexpfile $pmapfile && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA"

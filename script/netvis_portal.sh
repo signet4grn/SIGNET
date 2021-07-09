@@ -2,7 +2,7 @@
 
 cmdprefix="$SIGNET_ROOT/signet -s --"
 freq=$(${cmdprefix}freq);
-nsubs=$(${cmdprefix}nsubs)
+ntop=$(${cmdprefix}ntop)
 
 ARGS=`getopt -a -o r:,h -l nsub:,n:,freq:,f:,h:,help -- "$@"`
 
@@ -12,7 +12,7 @@ function usage() {
         echo -e '\n'
 	echo 'Description:'
         echo '  --freq FREQENCY              bootstrap frequecy for the visualization'
-	echo '  --nsubs N_SUBS               number of sub-networks'
+	echo '  --ntop N_TOP                 number of sub-networks'
 	echo '  --help                       usage'
 	exit
 }
@@ -29,9 +29,9 @@ case "$1" in
 		${cmdprefix}freq $freq
                 shift
 		;;
-	--nsubs | --n)
-		nsubs=$2
-                ${cmdprefix}nsubs $nsubs
+	--ntop | --n)
+		ntop=$2
+                ${cmdprefix}ntop $ntop
 		shift
 		;;
 	--h | --help)
@@ -46,8 +46,8 @@ case "$1" in
 shift
 done 
 
-touch $SIGNET_TMP_ROOT/tmpv
-touch $SIGNET_RESULT_ROOT/resv
-touch $SIGNET_DATA_ROOT/netvis
+mkdir -p $SIGNET_TMP_ROOT/tmpv
+mkdir -p $SIGNET_RESULT_ROOT/resv
+mkdir -p $SIGNET_DATA_ROOT/netvis
 
-$SIGNET_SCRIPT_ROOT/netvis.sh $freq $nsubs
+$SIGNET_SCRIPT_ROOT/netvis.sh $freq $ntop

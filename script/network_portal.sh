@@ -73,8 +73,8 @@ case "$1" in
 shift
 done 
 
-touch $SIGNET_TMP_ROOT/tmpn
-touch $SIGNET_RESULT_ROOT/resn
-touch $SIGNET_DATA_ROOT/network
+mkdir -p $SIGNET_TMP_ROOT/tmpn
+mkdir -p $SIGNET_RESULT_ROOT/resn
+mkdir -p $SIGNET_DATA_ROOT/network
 
 $SIGNET_SCRIPT_ROOT/network/network.sh $nboots $cor $queue $ncores $memory $walltime $loc

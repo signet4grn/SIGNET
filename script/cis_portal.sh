@@ -72,8 +72,8 @@ case "$1" in
 shift
 done 
 
-touch $SIGNET_TMP_ROOT/tmpc
-touch $SIGNET_RESULT_ROOT/resc
-touch $SIGNET_DATA_ROOT/cis-eQTL
+mkdir -p $SIGNET_TMP_ROOT/tmpc
+mkdir -p $SIGNET_RESULT_ROOT/resc
+mkdir -p $SIGNET_DATA_ROOT/cis-eQTL
 
 $SIGNET_SCRIPT_ROOT/cis-eQTL/cis-eQTL.sh $gene_pos $gexp $snps_maf $snps_map $alpha_cis $upstream $downstream $nperms
