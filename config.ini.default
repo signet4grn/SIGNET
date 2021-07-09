@@ -1,0 +1,52 @@
+# basic settings
+[basic]
+nchr = 22
+ncore_local = 20
+
+[geno]
+ped.file = ./data/geno-prep/test.ped
+map.file = ./data/geno-prep/test.map
+gmap = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+ref = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
+
+[gexp]
+gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
+pmap.file = ./data/gexp-prep/gencode.v22.gene.gtf
+
+[match]
+cli.file = ./data/clinical.tsv
+
+[plink]
+mind = 0.1
+geno = 0.1
+hwe = 0.0001
+
+[ciseqtl]
+#snps.map = ./data/cis-eQTL/snps.map
+#snps.maf = ./data/cis-eQTL/snps.maf
+#gexp.file = ./data/cis-eQTL/gexp_prostate
+#matched.geno = ./data/cis-eQTL/matched.Geno
+#gene.pos = ./data/cis-eQTL/prostate_gene_pos
+snps.map = ./res/resm/new.Geno.map
+snps.maf = ./res/resm/new.Geno.maf
+matched.gexp = ./res/resm/gexp_rmpc.data
+matched.geno = ./res/resm/geno.data
+gene.pos = ./res/rest/gene_pos
+alpha.cis = 0.05
+nperms = 100
+upstream = 100000
+downstream = 100000
+
+[network]
+cis.loc = ./data/resn
+ncis = 3
+cor = 0.9
+nboots = 10
+ncores = 128
+queue = standby
+memory = 256
+walltime = 4:00:00
+
+[netvis]
+freq = 0.8
+ntop = 2

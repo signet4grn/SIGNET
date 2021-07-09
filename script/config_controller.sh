@@ -25,7 +25,7 @@ set_param(){
     local args=$1;
      
     if [[ $args == "--d" ]];then
-    scp $SIGNET_DATA_ROOT/config.ini.default $SIGNET_ROOT/config.ini    
+    scp $SIGNET_ROOT/config.ini.default $SIGNET_ROOT/config.ini    
     echo "Set all the parameters to default"
     exit
     elif [[ $args == --* ]];then
