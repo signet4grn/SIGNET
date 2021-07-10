@@ -6,13 +6,14 @@
 First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path
 ```bash
 git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
-
+cd SIGNET
 export PATH=$PATH:/path/to/signet
 ```
 where */path/to/signet* should be replaced with your path to *SIGNET*.
 
 ## Requirement
-This package assumes you are using the **Slurm Workload Manager** for supercomputers in the network analysis stage.  
+1. This package runs on UNIX bash shell. Check your shell with "echo $SHELL" to make sure that you are running on UNIX bash shell.
+2. This package assumes you are using the **Slurm Workload Manager** for supercomputers in the network analysis stage.  
 
 
 **Caution**
