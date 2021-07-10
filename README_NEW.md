@@ -9,6 +9,7 @@ git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
 
 export PATH=$PATH:/path/to/signet
 ```
+where */path/to/signet* should be replaced with your path to *SIGNET*.
 
 ## Requirement
 This package assumes you are using the **Slurm Workload Manager** for supercomputers in the network analysis stage.  
