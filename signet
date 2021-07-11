@@ -11,6 +11,10 @@ done
 #Set directories
 cd $(dirname $0)
 
+mkdir -p data
+mkdir -p tmp
+mkdir -p res
+
 SIGNET_ROOT=$(/bin/pwd)
 SIGNET_DATA_ROOT="$SIGNET_ROOT/data"
 SIGNET_TMP_ROOT="$SIGNET_ROOT/tmp"
