@@ -1,8 +1,10 @@
-.libPaths(c("/depot/bigcare/data/2020/Rlibs","~/R/x86_64-pc-linux-gnu-library/3.6",.libPaths()))
+suppressMessages(library(igraph))
+suppressMessages(library(dnet))
+suppressMessages(library(visNetwork))
 
-library(igraph)
-library(dnet)
-library(visNetwork)
+args <- commandArgs(TRUE)
+eval(parse(text=args))
+
 get_net <- function(edgelist, high_freq=F, largest=F, top=NULL, search=NULL, name=NULL, string=F, string_n=NULL, interactive=F, compare=F){
   ##If high_freq=T, it will return the network induced by the node with largest frequency
   ##If largest=T, it will return the largest component with plot
@@ -183,10 +185,7 @@ close_dev <- function(){
   }
 }
 
-setwd('../../data/netvis/')
-args = commandArgs(T)
-freq = args[1]
-ncount = args[2]
+setwd(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resv"))
 edgelist <- read.table(paste0('edgelist_',freq), header=T)
-get_net(edgelist, name=paste0("freq_",freq), top=ncount)
+get_net(edgelist, name=paste0("freq_",freq), top=ntop)
 

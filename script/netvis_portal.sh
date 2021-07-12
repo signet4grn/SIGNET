@@ -4,7 +4,7 @@ cmdprefix="$SIGNET_ROOT/signet -s --"
 freq=$(${cmdprefix}freq);
 ntop=$(${cmdprefix}ntop)
 
-ARGS=`getopt -a -o r:,h -l nsub:,n:,freq:,f:,h:,help -- "$@"`
+ARGS=`getopt -a -o r:,h -l ntop:,n:,freq:,f:,h:,help -- "$@"`
 
 function usage() {
 	echo 'Usage:'
@@ -50,4 +50,4 @@ mkdir -p $SIGNET_TMP_ROOT/tmpv
 mkdir -p $SIGNET_RESULT_ROOT/resv
 mkdir -p $SIGNET_DATA_ROOT/netvis
 
-$SIGNET_SCRIPT_ROOT/netvis.sh $freq $ntop
+$SIGNET_SCRIPT_ROOT/netvis/netvis.sh $freq $ntop

@@ -1,14 +1,14 @@
 #!/bin/bash
 freq=$1
-ncount=$2
-ninfo=$3
+ntop=$2
 
+cisloc=$(signet -s --cis.loc)
+scp $cisloc/net.gene* $SIGNET_TMP_ROOT/tmpv
 
-Rscript extract.edges.R $freq
-Rscript get_net.R $freq $ncount
-python run_vis.py $freq $ncount $ninfo
-python combine_net.py $freq $ncount
+cd $SIGNET_RESULT_ROOT/resn
 
-
-
-xdg-open ../../data/netvis/net.html
+echo -e "Extracting edges...\n"
+Rscript $SIGNET_SCRIPT_ROOT/netvis/extract.edges.R "freq='$freq'"
+Rscript $SIGNET_SCRIPT_ROOT/netvis/get_net.R "freq='$freq'" "ntop='$ntop'"
+echo -e "Genes for top "$ntop" networks has been returned to the folder"
+echo -e "You can check the result for validation\n"
