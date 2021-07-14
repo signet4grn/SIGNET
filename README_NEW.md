@@ -3,7 +3,7 @@
 # Documentation for SIGNET streamline project
 
 ## Getting started 
-First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path
+First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path.
 ```bash
 git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
 cd SIGNET
@@ -17,17 +17,23 @@ where */path/to/signet* should be replaced with your path to *SIGNET*.
 3. This pacakge assumes you have singularity installed it you would like to use the container image that described in the 
 
 ## Container image
-1. The container image **signet.sif** which comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly with. You could pull the image from Sylabs Cloud Library and rename it as "signet.sif" by:
+1. The Singularity Image Format file **signet.sif** comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly in. You could first pull the image from Sylabs Cloud Library and rename it as "signet.sif", after which you could append the path of package to singularity so it could execute *SIGNET* smoothly.
 ```bash
 singularity pull signet.sif library://geomeday/default/signet:v0.0.1
+export SINGULARITYENV_APPEND_PATH="/path/to/signet"
 ```
-2. You could use the image by attaching a prefix ahead of the original command you want to execute, which described in details below.
+2. You could use the image by attaching a prefix ahead of the original commands you want to execute, which are described in details in sections below.
 ```bash
 singularity exec signet.sif [Command]
 
 e.g. 
-singularity exec signet.sif ./signet -s 
+singularity exec signet.sif signet -s 
 ```
+Or you could first go into the container by  
+```bash 
+singularity shell signet.sif
+```
+and then execute all the commands as usual
 
 **Caution**
 ```bash
