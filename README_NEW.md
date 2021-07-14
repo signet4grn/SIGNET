@@ -15,6 +15,11 @@ where */path/to/signet* should be replaced with your path to *SIGNET*.
 1. This package runs on UNIX bash shell. Check your shell with "echo $SHELL" to make sure that you are running on UNIX bash shell.
 2. This package assumes you are using the **Slurm Workload Manager** for supercomputers in the network analysis stage.  
 
+## Container image
+1. The container image **signet.sif** which comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly with. You could pull the image from Sylabs Cloud Library by:
+```bash
+singularity pull library://geomeday/default/signet:v0.0.1
+```
 
 **Caution**
 ```bash
