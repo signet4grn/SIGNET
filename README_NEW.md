@@ -26,7 +26,7 @@ singularity pull signet.sif library://geomeday/default/signet:v0.0.1
 singularity exec signet.sif [Command]
 
 e.g. 
-singularity exec signet.sif signet -s 
+singularity exec signet.sif ./signet -s 
 ```
 
 **Caution**
