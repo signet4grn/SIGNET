@@ -22,6 +22,8 @@ where */path/to/signet* should be replaced with your path to *SIGNET*.
 singularity pull signet.sif library://geomeday/default/signet:v0.0.1
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
 ```
+where */path/to/signet* should be replaced with your path to *SIGNET*.
+
 2. You could use the image by attaching a prefix ahead of the original commands you want to execute, which are described in details in sections below.
 ```bash
 singularity exec signet.sif [Command]
