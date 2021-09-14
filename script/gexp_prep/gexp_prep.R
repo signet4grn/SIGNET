@@ -39,6 +39,10 @@ gidx <- (rowSums(counts(dds))>(ncol(mcounts)/5))
 dds <- dds[gidx,]
 geneinfo <- geneinfo[gidx,]
 
+jpeg(file="maplot")
+plotMA(dds)
+dev.off()
+
 ge_mad=apply(counts(dds),1,mad)
 ##remove genes showing no variability
 no_v=which(ge_mad>0)

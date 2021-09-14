@@ -72,6 +72,6 @@ done
 echo 0 > empty
 
 ## employ parallel computing for imputation 
-time ParaFly -c impute_params.txt -CPU $ncore 
+time ParaFly -c impute_params.txt -CPU $ncores 
 
 
