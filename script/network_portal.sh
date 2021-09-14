@@ -34,6 +34,7 @@ do
 case "$1" in
 	--loc)
                 loc=$2
+		loc=$(readlink -f $loc)
                 ${cmdprefix}cis.loc $loc
                 shift
               ;;

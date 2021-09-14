@@ -23,10 +23,12 @@ do
 case "$1" in
 	--g|--gexp)
 		gexpfile=$2
+		gexpfile=$(readlink -f $gexpfile)
 		$SIGNET_ROOT/signet -s --gexp.file $gexpfile
 		shift;;
         --p|--pmap) 
 		pmapfile=$2
+		pmapfile=$(readlink -f $pmapfile)
 		$SIGNET_ROOT/signet -s --pmap.file $pmapfile
 		shift;;
         -h|--help)

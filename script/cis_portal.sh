@@ -41,6 +41,7 @@ case "$1" in
               ;;
 	--map)
 		snps_map=$2
+		snps_map=$(readlink -f $snps_map)
 		${cmdprefix}snps_map $snps_map
 		shift;;
 	--maf)

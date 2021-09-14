@@ -13,7 +13,7 @@ usage() {
     echo "  --nchr                        set the chromosome number"
     echo "  --r | --ref                   set the reference file for imputation"
     echo "  --gmap                        set the genomic map file"
-    echo "  --ncore                       set the number of cores"
+    echo "  --ncores                      set the number of cores"
     exit -1
 }
 
@@ -37,10 +37,12 @@ do
 case "$1" in
 	--p|--ped)
 		pedfile=$2
+		pedfile=$(readlink -f $pedfile)
 		$SIGNET_ROOT/signet -s --ped.file $pedfile
 		shift;;
         --m|--map) 
 		mapfile=$2
+		mapfile=$(readlink -f $mapfile)
 		$SIGNET_ROOT/signet -s --map.file $mapfile
 		shift;;
         --mind)
@@ -61,11 +63,13 @@ case "$1" in
                 shift;;
         --r|--ref)
                 ref=$2
+		ref=$(readlink -f $ref)
                 $SIGNET_ROOT/signet -s --ref $ref
                 shift;;
 	--gmap)
 		gmap=$2 
-                $SIGNET_ROOT/signet -s --gmap $gmap
+		gmap=$(readlink -f $gmap)
+		$SIGNET_ROOT/signet -s --gmap $gmap
 		shift;;
 	--ncore) 
 		ncore=$2
