@@ -47,8 +47,8 @@ All the result for each step will return to the corresponding folders in the res
 This streamline project provide users easy linux user interface for constructing whole-genome gene regulatory networks using transciptomic data (frome RNA sequence) and genotypic data. 
 
 Procedures of constructing gene regulatory networks can be split into five main steps:
-1. genenotype preprocess
-2. gene expression preprocess
+1. gene expression preprocess
+2. genenotype preprocess
 3. cis-eQTL analysis
 4. network analysis
 5. network visualization
