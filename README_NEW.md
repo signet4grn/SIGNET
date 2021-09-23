@@ -351,7 +351,7 @@ signet -g [OPTION VAL] ...
 ```bash
 # Set the cohort
 signet -s --cohort GTEx
-## Display the help page 
+
 
 # Modify the paramter
 signet -g --vcf /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf \
