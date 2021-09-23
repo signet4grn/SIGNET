@@ -341,6 +341,7 @@ signet -g [OPTION VAL] ...
 #### Description
 
 ```
+ --vcf0                        set the VCF file for genotype data before phasing   
  --vcf                         set the VCF file for genotype data, the genotype data is from GTEx after phasing using SHAPEIT
  --read                        set the read file for gene expression read count data in gct format
  --anno                        set the annotation file that contains the sample information
