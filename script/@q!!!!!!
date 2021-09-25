@@ -1,19 +1,11 @@
 #!/bin/bash
-options=""
-for((i=1;i<=$#;i++)); do
-    j=${!i}
-    options="${options} $j "
-done
-
-cohort=$($SIGNET_ROOT/signet -s --cohort | sed -r '/^\s*$/d')
-
-if [[ $cohort == "GTEx" ]];then
-echo -e "Preprocessing data for GTEx cohort\n"
-$SIGNET_SCRIPT_ROOT/geno_prep_portal_gtex.sh ${options}
-exit 1
+if [[ $($SIGNET_ROOT/signet -s --cohort) == "GTEx" ]];then
+echo "Preprocessing data for GTEx cohort\n"
+./geno_prep_portal_gtex.sh
+exit -1
 fi
 
-echo -e "Preprocessing data for TCGA cohort\n"
+echo "Preprocessing data for TCGA cohort\n"
 
 usage() {
     echo "Usage:"
@@ -106,7 +98,6 @@ echo "map.file: "$mapfile
 echo -e "\n"
 
 mkdir -p $SIGNET_TMP_ROOT/tmpg
-mkdir -p $SIGNET_TMP_ROOT/tmpg/impute
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
 

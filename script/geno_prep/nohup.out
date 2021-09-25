@@ -1,0 +1,87 @@
+
+Preprocessing data for GTEx cohort
+
+
+Modification applied to vcf0
+
+
+Modification applied to vcf.file
+
+
+Modification applied to read.file
+
+
+Modification applied to anno
+
+
+Modification applied to tissue
+
+vcf.file: /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf
+
+
+Preprocessing using Plink
+
+Extracting genotype data
+
+PLINK v1.90b6.4 64-bit (7 Aug 2018)            www.cog-genomics.org/plink/1.9/
+(C) 2005-2018 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to Geno_GTEx_Lung.log.
+Options in effect:
+  --double-id
+  --freq
+  --make-bed
+  --missing
+  --out Geno_GTEx_Lung
+  --recode
+  --vcf GTEx_snp.vcf
+
+515910 MB RAM detected; reserving 257955 MB for main workspace.
+Error: Failed to open GTEx_snp.vcf.
+PLINK v1.90b6.4 64-bit (7 Aug 2018)            www.cog-genomics.org/plink/1.9/
+(C) 2005-2018 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Note: --recodeA flag deprecated.  Use 'recode A ...'.
+Logging to GTEx_Lung.log.
+Options in effect:
+  --bfile Geno_GTEx_Lung
+  --mac 5
+  --out GTEx_Lung
+  --recode A
+
+515910 MB RAM detected; reserving 257955 MB for main workspace.
+Error: Failed to open Geno_GTEx_Lung.bed.
+PLINK v1.90b6.4 64-bit (7 Aug 2018)            www.cog-genomics.org/plink/1.9/
+(C) 2005-2018 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to GTEx_Lung.log.
+Options in effect:
+  --bfile Geno_GTEx_Lung
+  --mac 5
+  --out GTEx_Lung
+  --recode
+
+515910 MB RAM detected; reserving 257955 MB for main workspace.
+Error: Failed to open Geno_GTEx_Lung.bed.
+PLINK v1.90b6.4 64-bit (7 Aug 2018)            www.cog-genomics.org/plink/1.9/
+(C) 2005-2018 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to GTEx_Lung.log.
+Options in effect:
+  --file GTEx_Lung
+  --freq
+  --out GTEx_Lung
+
+515910 MB RAM detected; reserving 257955 MB for main workspace.
+Error: Failed to open GTEx_Lung.map.
+tail: cannot open 'GTEx_Lung.raw' for reading: No such file or directory
+/work/jiang_bio/SIGNET/script/geno_prep/plink_gtex.sh: line 15: /resg/clean_Genotype_repNA.data: No such file or directory
+Plink preprocessing finished
+
+Genotype Preprocessing Finished
+
+[1] 838
+[E::bgzf_uncompress] Inflate operation failed: progress temporarily not possible, or in() / out() returned an error
+tbx_index_build failed: GTEx_snp.vcf.gz
+[W::hts_idx_load3] The index file is older than the data file: GTEx_snp.vcf.gz.tbi
+[W::bgzf_read_block] EOF marker is absent. The input is probably truncated
+
+gzip: GTEx_snp.vcf.gz: unexpected end of file
+Genotype extacted
+

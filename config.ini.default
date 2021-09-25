@@ -2,12 +2,21 @@
 [basic]
 nchr = 22
 ncore_local = 20
+cohort = GTEx
 
 [geno]
+(TCGA)
 ped.file = ./data/geno-prep/test.ped
 map.file = ./data/geno-prep/test.map
 gmap = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ref = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
+
+(GTEx)
+vcf0 = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx.vcf
+vcf.file = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf
+read.file = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct
+anno = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+tissue = Lung
 
 [gexp]
 gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
