@@ -49,7 +49,7 @@ no_v=which(ge_mad>0)
 dds=dds[no_v,]
 geneinfo <- geneinfo[no_v,]
 
-vsd <- vst(dds, nsub=min(1000, dds),blind=FALSE)
+vsd <- vst(dds, nsub=min(1000, nrow(dds)),blind=FALSE)
 
 
 ge <- t(assay(vsd))  # Normalized gene expression
