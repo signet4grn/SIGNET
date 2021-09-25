@@ -47,8 +47,8 @@ All the result for each step will return to the corresponding folders in the res
 This streamline project provide users easy linux user interface for constructing whole-genome gene regulatory networks using transciptomic data (frome RNA sequence) and genotypic data. 
 
 Procedures of constructing gene regulatory networks can be split into five main steps:
-1. genenotype preprocess
-2. gene expression preprocess
+1. gene expression preprocess
+2. genenotype preprocess
 3. cis-eQTL analysis
 4. network analysis
 5. network visualization
@@ -282,6 +282,8 @@ signet -t --g ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv --p ./data/gexp-prep/g
 
 ### geno-prep
 
+(TCGA)
+
 `geno-prep` command provide the user the interface of preprocessing genotype data. We will do quality control, after which we will use IMPUTE2 for imputation. 
 
 `geno-prep` receive the `map` file and `ped` file as input:
@@ -320,6 +322,46 @@ signet -g --help
 # Modify the paramter
 signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map --ref /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr --gmap /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ```
+
+(GTEx)
+`geno-prep` command provide the user the interface of preprocessing genotype data. We will first extract the genotype data that has corresponding samples from gene expression data for a particular tissue. 
+
+`geno-prep` receive the 'vcf' file as input:
+- `data.vcf`: includes SNP location information in vcf format
+
+Output of `geno-prep` will be saved under `/res/resg`:
+
+
+#### Usage
+
+```bash
+signet -g [OPTION VAL] ...
+```
+
+#### Description
+
+```
+ --vcf0                        set the VCF file for genotype data before phasing   
+ --vcf                         set the VCF file for genotype data, the genotype data is from GTEx after phasing using SHAPEIT
+ --read                        set the read file for gene expression read count data in gct format
+ --anno                        set the annotation file that contains the sample information
+ --tissue                      set the tissue type
+```
+
+#### Example
+```bash
+# Set the cohort
+signet -s --cohort GTEx
+
+
+# Modify the paramter
+signet -g --vcf0 /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx.vcf \
+          --vcf /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf \
+          --read /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct \
+	  --anno /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
+	  --tissue Lung
+```
+
 
 
 ### match
@@ -549,3 +591,6 @@ ntop = 2
 	- network_portal.sh # entrance for network analysis 
 	- netvis_portal.sh #entrance for network visualization
 ```
+
+## Issues
+1. signet.sif EIG-master directory
