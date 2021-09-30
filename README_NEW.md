@@ -198,6 +198,8 @@ for network visualization.
 
 ## Command Guide
 
+*Please note that you have to run genotype preprocessing before gene expression preprocessing if you are using the GTEx cohort*
+
 ### Settings
 
 Settings command is used for look up and modify parameter in the configuration file config.ini. You don't have to modify the parameters at the very beginning, as you will have options to change your input parameters in each step. 
