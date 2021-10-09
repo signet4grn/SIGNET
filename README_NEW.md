@@ -198,6 +198,8 @@ for network visualization.
 
 ## Command Guide
 
+*Please note that you have to run genotype preprocessing before gene expression preprocessing if you are using the GTEx cohort*
+
 ### Settings
 
 Settings command is used for look up and modify parameter in the configuration file config.ini. You don't have to modify the parameters at the very beginning, as you will have options to change your input parameters in each step. 
@@ -252,6 +254,7 @@ echo: Please check the file name
 
 
 ### Transcript-prep 
+(TCGA)
 
 This command will take the matrix of log2(x+1) transcriptome count data and preprocess it. Each row represent the data for each gene, each column represeing the data for each sample, while the first row is the sample name, and the first column is the gene name.
 
@@ -263,8 +266,8 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
 
 #### Description
 ```bash
-    --g | --gexp, set gene expression file
-    --p | --pmap, set the genecode gtf file
+--g | --gexp, set gene expression file
+--p | --pmap, set the genecode gtf file
 ```
 
 
@@ -275,9 +278,43 @@ signet -t --help
 ## Display the help page 
 
 # Modify the paramter
-signet -t --g ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv --p ./data/gexp-prep/gencode.v22.gene.gtf
-## The preprocessed gene expresion result with correpsonding position file will be stored in /res/resg/
+signet -t --g ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
+          --p ./data/gexp-prep/gencode.v22.gene.gtf
+	  
+## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
 ```
+
+(GTEx)
+
+#### Usage
+```bash
+signet -t [--r READS_FILE] [--tpm TPM_FILE]
+```
+
+
+#### Description
+```bash
+ --r | --reads                   set the GTEx gene reads file in gct format
+ --t | --tpm                     set the gene tpm file
+ --g | --gtf                     set the genecode gtf file
+```
+
+
+#### Example
+```bash
+# List the paramter
+signet -t --help
+## Display the help page 
+
+# Modify the paramter
+signet -t --reads /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct \
+          --tpm /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_tpm.gct \
+          --gtf ./data/gexp-prep/gencode.v26.GRCh38.genes.gtf
+	  
+## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
+```
+
+
 
 
 ### geno-prep
@@ -320,7 +357,10 @@ signet -g --help
 ## Display the help page 
 
 # Modify the paramter
-signet -g --ped ./data/geno-prep/test.ped --map ./data/geno-prep/test.map --ref /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr --gmap /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+signet -g --ped ./data/geno-prep/test.ped \
+          --map ./data/geno-prep/test.map \
+	  --ref /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr \
+	  --gmap /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ```
 
 (GTEx)
