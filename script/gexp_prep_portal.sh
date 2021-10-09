@@ -1,4 +1,17 @@
 #!/bin/bash
+options=""
+for((i=1;i<=$#;i++)); do
+    j=${!i}
+    options="${options} $j "
+done
+
+cohort=$($SIGNET_ROOT/signet -s --cohort | sed -r '/^\s*$/d')
+
+if [[ $cohort == "GTEx" ]];then
+echo -e "Preprocessing data for GTEx cohort\n"
+$SIGNET_SCRIPT_ROOT/gexp_prep_portal_gtex.sh ${options}
+exit 1
+fi
 
 usage() {
     echo "Usage:"

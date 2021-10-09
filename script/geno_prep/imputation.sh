@@ -51,6 +51,11 @@ done
 [ -e impute_params.txt ] && rm impute_params.txt
 rm -f impute_params.txt.completed
 
+
+##make a dummy file to exclude untyped SNP
+echo 0 > empty
+
+
 ## begin to impute 
 for i in `seq 1 ${nchr}`
 do 
@@ -68,10 +73,5 @@ do
   echo 'impute2 -pgs_miss -g '$i'.gen -g_ref '$ref''$i'.gen -m '$gmap''$i'.map -include_snps empty -int '$LEFTOVER' '$END' -Ne 20000 -o impute/impute_chr'$i'chunk'$CHUNK >> impute_params.txt
 done
 
-##make a dummy file to exclude untyped SNP
-echo 0 > empty
-
 ## employ parallel computing for imputation 
-time ParaFly -c impute_params.txt -CPU $ncores 
-
-
+time ParaFly -c impute_params.txt -CPU $ncores

@@ -12,6 +12,6 @@ plink --file GTEx_$tissue --freq --out GTEx_$tissue
 
 ##replace NA with 0
 tail -n+2 GTEx_$tissue.raw |cut -d " " -f 7- > clean_Genotype.data
-sed -e 's/NA/0/g' clean_Genotype.data > $SIGNET_RES_ROOT/resg/clean_Genotype_repNA.data
+sed -e 's/NA/0/g' clean_Genotype.data > $SIGNET_RESULT_ROOT/resg/clean_Genotype_repNA.data
 
 echo -e "Plink preprocessing finished\n"

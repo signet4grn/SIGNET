@@ -19,8 +19,14 @@ anno = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_
 tissue = Lung
 
 [gexp]
+(TCGA)
 gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
 pmap.file = ./data/gexp-prep/gencode.v22.gene.gtf
+
+(GTEx)
+reads.file = sdfs
+tpm.file = sfd
+gtf.file = sdfsd
 
 [match]
 cli.file = ./data/clinical.tsv
