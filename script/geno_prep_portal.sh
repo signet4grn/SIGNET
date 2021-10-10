@@ -106,7 +106,7 @@ echo "map.file: "$mapfile
 echo -e "\n"
 
 mkdir -p $SIGNET_TMP_ROOT/tmpg
-rm -r $SIGNET_TMP_ROOT/tmpg/impute
+rm -rf $SIGNET_TMP_ROOT/tmpg/impute
 mkdir $SIGNET_TMP_ROOT/tmpg/impute
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
