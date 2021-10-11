@@ -421,7 +421,8 @@ signet -m [--c CLINIVAL_FILE]
 
 #### Description
 ```
---c | clinical                   set the clinical file for your cohort
+--c | clinical                   set the clinical file from GDC reporistory for your cohort
+
 ```
 
 
