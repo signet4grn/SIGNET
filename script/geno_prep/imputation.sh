@@ -73,6 +73,5 @@ do
   echo 'impute2 -pgs_miss -g '$i'.gen -g_ref '$ref''$i'.gen -m '$gmap''$i'.map -include_snps empty -int '$LEFTOVER' '$END' -Ne 20000 -o impute/impute_chr'$i'chunk'$CHUNK >> impute_params.txt
 done
 
-exit
 ## employ parallel computing for imputation 
 time ParaFly -c impute_params.txt -CPU $ncores
