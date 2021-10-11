@@ -347,6 +347,7 @@ signet -g [OPTION VAL] ...
  --nchr                        set the chromosome number
  --r | --ref                   set the reference file for imputation
  --gmap                        set the genomic map file
+ --i | --int                   set the interval length for impute2
  --ncores                      set the number of cores
 ```
 
