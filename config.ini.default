@@ -10,6 +10,7 @@ ped.file = ./data/geno-prep/test.ped
 map.file = ./data/geno-prep/test.map
 gmap = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ref = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
+int = 5000000
 
 (GTEx)
 vcf0 = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx.vcf

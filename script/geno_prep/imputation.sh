@@ -2,6 +2,7 @@ nchr=$1
 ref=$2
 gmap=$3
 ncores=$4
+int=$5
 ped=$SIGNET_TMP_ROOT/tmpg/clean_Genotype.ped
 map=$SIGNET_TMP_ROOT/tmpg/clean_Genotype.map
 
@@ -55,23 +56,23 @@ rm -f impute_params.txt.completed
 ##make a dummy file to exclude untyped SNP
 echo 0 > empty
 
-
 ## begin to impute 
 for i in `seq 1 ${nchr}`
 do 
   START=$(head -n 1 'clean_Genotype_chr'$i'.map' | cut -f 4)
   END=$(tail -n 1 'clean_Genotype_chr'$i'.map' | cut -f 4)
-  NUMJOBS=$(( (END - START) / 5000000))
+  NUMJOBS=$(( (END - START) / int))
   for j in $( seq 1 $NUMJOBS )
   do
-     A=`expr $j \* 5000000 - 4999999 + $START - 1`
-     B=`expr $j \* 5000000 + $START - 1`
+     A=`expr $j \* $int - $int + $START`
+     B=`expr $j \* $int + $START - 1`
      echo 'impute2 -pgs_miss -g '$i'.gen -g_ref '$ref''$i'.gen -m '$gmap''$i'.map -include_snps empty -int '$A' '$B' -Ne 20000 -o impute/impute_chr'$i'chunk'$j >> impute_params.txt
   done
-  LEFTOVER=$(( (5000000*NUMJOBS) + $START))
+  LEFTOVER=$(( (int*NUMJOBS) + START))
   CHUNK=$((NUMJOBS+1))
   echo 'impute2 -pgs_miss -g '$i'.gen -g_ref '$ref''$i'.gen -m '$gmap''$i'.map -include_snps empty -int '$LEFTOVER' '$END' -Ne 20000 -o impute/impute_chr'$i'chunk'$CHUNK >> impute_params.txt
 done
 
+exit
 ## employ parallel computing for imputation 
 time ParaFly -c impute_params.txt -CPU $ncores

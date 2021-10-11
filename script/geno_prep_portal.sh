@@ -28,6 +28,7 @@ usage() {
     echo "  --nchr                        set the chromosome number"
     echo "  --r | --ref                   set the reference file for imputation"
     echo "  --gmap                        set the genomic map file"
+    echo "  --i | --int                   set the interval length for impute2"
     echo "  --ncores                      set the number of cores"
     exit -1
 }
@@ -41,9 +42,10 @@ hwe=$($SIGNET_ROOT/signet -s --hwe)
 nchr=$($SIGNET_ROOT/signet -s --nchr)
 ref=$($SIGNET_ROOT/signet -s --ref)
 gmap=$($SIGNET_ROOT/signet -s --gmap)
+int=$($SIGNET_ROOT/signet -s --int)
 ncore=$($SIGNET_ROOT/signet -s --ncore_local)
 
-ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,gmap:,ncore:,h:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,gmap:,i:,int:,ncore:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -86,6 +88,10 @@ case "$1" in
 		gmap=$(readlink -f $gmap)
 		$SIGNET_ROOT/signet -s --gmap $gmap
 		shift;;
+        --int)
+                int=$2
+                $SIGNET_ROOT/signet -s --int $int
+                shift;;
 	--ncore) 
 		ncore=$2
 		$SINGNET_ROOT/signet -s --ncore $ncore
@@ -111,4 +117,4 @@ mkdir $SIGNET_TMP_ROOT/tmpg/impute
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
 
-$SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh $pedfile $mapfile $mind $geno $hwe $nchr $ref $gmap $ncore  && echo "Genotype Preprocessing Finished"
+$SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh $pedfile $mapfile $mind $geno $hwe $nchr $ref $gmap $ncore $int  && echo "Genotype Preprocessing Finished"
