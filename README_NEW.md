@@ -327,8 +327,6 @@ signet -t --reads /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_re
 - `data.map`: includes SNP location information with four columns,i.e.,[chromosomeSNP_name genetic_distance locus] for each of p SNPs.
 - `data.ped`: includes pedgree information, i.e.,[family_IDindividual_IDmother_IDfather_ID gender phenotype] in the ﬁrst six columns, followed by 2p columns with two columns for each of p SNPs
 
-Output of `geno-prep` will be saved under `/res/resg`:
-
 
 #### Usage
 
@@ -340,6 +338,7 @@ signet -g [OPTION VAL] ...
 
 ```
  --p | --ped                   set ped file
+                               
  --m | --map                   set map file
  --mind                        set the missing per individual cutoff
  --geno                        set the missing per markder cutoff
@@ -364,6 +363,13 @@ signet -g --ped ./data/geno-prep/test.ped \
 	  --gmap /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ```
 
+#### Result
+Output of `geno-prep` will be saved under `/res/resg`:
+```bash
+Geno: Genotype data with each row denoting the SNP data for each individual.
+Genotype.sampleID: Sample ID for each individual, which uses the reading barcode.
+```
+
 (GTEx)
 `geno-prep` command provide the user the interface of preprocessing genotype data. We will first extract the genotype data that has corresponding samples from gene expression data for a particular tissue. 
 
@@ -371,6 +377,7 @@ signet -g --ped ./data/geno-prep/test.ped \
 - `data.vcf`: includes SNP location information in vcf format
 
 Output of `geno-prep` will be saved under `/res/resg`:
+
 
 
 #### Usage
@@ -402,6 +409,9 @@ signet -g --vcf0 /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx
 	  --anno /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
 	  --tissue Lung
 ```
+
+
+
 
 
 
