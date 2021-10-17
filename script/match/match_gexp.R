@@ -37,7 +37,9 @@ dup$type=sapply(strsplit(dup$V1.x,split = "-"),`[`,4)
 dup=dup[dup$type!="NT" & dup$type != "11A" & dup$type != "11B",]
 #length(unique(dup$patient))
 remove=dup$m_id
+if(sum(remove)>0){
 merged=merged[-remove,]
+}
 
 #note: some patients have gene expression data for multiple tumor sites.
 #LUAD: one patient has data for multiple tumors. Data is 80% correlated. just remove one.
