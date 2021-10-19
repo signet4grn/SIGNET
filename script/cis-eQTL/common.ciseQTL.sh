@@ -5,7 +5,7 @@ cd $SIGNET_TMP_ROOT/tmpc
 
 echo -e "Cis-eQTL Analyis for common variants [alpha:"$alpha"]......\n"
 
-#Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/common.ciseQTL.r 
+Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/common.ciseQTL.r 
 
 echo -e "\nSummarizing the result for common variants \n"
 
