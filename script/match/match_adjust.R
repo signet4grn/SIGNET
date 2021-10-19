@@ -58,7 +58,7 @@ vst_gexp <- vst_gexp[, -rmidx]
 # merged$age_at_diagnosis[is.na(merged$age_at_diagnosis)]=mean(merged$age_at_diagnosis[!is.na(merged$age_at_diagnosis)])
 # merged$age_at_diagnosis=as.integer(merged$age_at_diagnosis)
 idx=which(merged$race!="american indian or alaska native")
-merged=merged[merged$race!="american indian or alaska native"]
+merged=merged[merged$race!="american indian or alaska native", ]
 merged$race[merged$race=="not reported"]="white"
 vst_gexp=vst_gexp[,idx]
 
