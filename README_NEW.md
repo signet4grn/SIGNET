@@ -647,3 +647,5 @@ ntop = 2
 ## Issues
 1. signet.sif EIG-master directory
 2. signet.sif impute2 directory
+3. signet.sif awk awk: program limit exceeded: eval stack size=1024
+
