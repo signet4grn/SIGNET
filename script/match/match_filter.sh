@@ -23,7 +23,7 @@ do
   echo "Rscript $SIGNET_SCRIPT_ROOT/match/genosum_chr$i.R" >> qsub.sh
 done
 
-time ParaFly -c qsub.sh -CPU $ncore
+time ParaFly -c qsub.sh -CPU $ncore &&
 
 find . -name "matched.Geno.ma_chr*"|sort -V|xargs paste -d' ' >matched.Geno.ma
 
