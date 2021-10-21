@@ -13,7 +13,7 @@ do
   scp impute/clean_Genotype_chr$i.map matched.Geno_chr$i.map
 done
 
-[ -e qsub.sh ] && rm qsub.sh
+rm -f qsub.sh
 
 rm -f qsub.sh.completed
 
