@@ -88,7 +88,11 @@ for( i in 1:p)
   #tmp_int <- qnorm(R/(n+1))
   tmpfit <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
   #tmpfit$coefficients[2:11]
+  if(npc==0){
+  tmpfit_pca <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
+  }else{
   tmpfit_pca <- lm(tmp_int ~  as.matrix(merged[, 1:npc]) + factor(merged$race) + factor(merged$gender))
+  }
 
   gexp_int[i, ] <- resid(tmpfit)
   gexp_int_pca[i, ] <- resid(tmpfit_pca)
