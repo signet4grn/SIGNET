@@ -111,5 +111,6 @@ geno <- fread(paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resm/new.Geno"))
 if(length(rmidx)>0){
 geno <- geno[-rmidx, ]
 }
+geno <- geno[idx, ]
 fwrite(geno,file=paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resm/geno.data")),quote=F,sep= " ",col.names = F, row.names = F)
 
