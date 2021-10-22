@@ -1,5 +1,3 @@
-module load r/4.0.0
-
 nboots=$1
 cor=$2
 queue=$3
