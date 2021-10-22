@@ -490,6 +490,8 @@ signet -c [OPTION VAL] ...
 
 `network` receive the input from the previous step:
 
+**All of the following files has to be put under the directory /data/network
+
 * `net.Gexp.data`: output from `cis-eqtl`, is the expression data for genes with cis-eQTL:  
 * `all.eQTL.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL:  
 * `all.sig.pValue_0.05`: output from `cis-eqtl`,includes the $p$-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
