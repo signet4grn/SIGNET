@@ -121,9 +121,11 @@ write.table(consy_id,file='consy_id',row.names=F,col.names=F,quote=F,sep=" ")
 
 
 ##Remove constant columns (here we only have to remove those in X)
+if(length(cons_id)>0){
 a <- a[, -cons_id]
 c <- b[, cons_id]
 b <- cbind(b[, -cons_id], c)
+}
 
 fwrite(a, file='netx',row.names=F,col.names=F,quote=F,sep=" ")
 fwrite(b, file='nety',row.names=F,col.names=F,quote=F,sep=" ")
