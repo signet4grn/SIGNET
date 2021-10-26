@@ -132,8 +132,10 @@ fwrite(b, file='nety',row.names=F,col.names=F,quote=F,sep=" ")
 
 genepos <- read.table(paste0(Sys.getenv("SIGNET_ROOT"), "/data/network/net.genepos"))
 genename <- read.table(paste0(Sys.getenv("SIGNET_ROOT"), "/data/network/net.genename"))
+if(length(cons_id)>0){
 genepos <- rbind(genepos[-cons_id, ], genepos[cons_id, ])
 genename <- rbind(genename[-cons_id, ,drop=F], genename[cons_id, ,drop=F])
+}
 
 back <- fread("netx_back")
 uniqy_idx <- as.matrix(1:dim(a)[2])
