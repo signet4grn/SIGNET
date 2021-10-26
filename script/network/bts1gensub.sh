@@ -98,6 +98,10 @@ if [ ! -d "output" ]; then
 mkdir output 
 fi
 
+## ensure first and subsequent result will not overlap
+rm -f ypre*
+rm -f output/ypre*
+
 #summarize the result
 for i in $( seq 0 $nboots )
 do
