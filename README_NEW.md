@@ -650,4 +650,11 @@ ntop = 2
 1. signet.sif EIG-master directory
 2. signet.sif impute2 directory
 3. signet.sif awk awk: program limit exceeded: eval stack size=1024
-
+4. matrixcalc R packages
+5. 
+suppressMessages(library(igraph))
+suppressMessages(library(dnet))
+suppressMessages(library(visNetwork))
+suppressMessages(library(STRINGdb))
+suppressMessages(library(TFutils))
+suppressMessages(library(shiny))
