@@ -9,7 +9,7 @@ queue=$5
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
 
 Rscript $SIGNET_SCRIPT_ROOT/network/bstest1.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
-rm ypre1_1-10
+rm -f ypre1_1-10
 
 cd $SIGNET_TMP_ROOT/tmpn/stage1
 ##create the jobs for stage1  
