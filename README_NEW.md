@@ -55,17 +55,6 @@ Procedures of constructing gene regulatory networks can be split into five main 
 
 To use this streamline tool, user need first to prepare the genetype data in xxx format and gene expression data in xxx format.  Then set the configuration file properly, and run each step command seperately.
 
-**Comments**
-
-We have to think about how to organize the data, especially intermediate results and final results in general.
-
-**1.** Setting (or configuration) files should be put in the current directory;
-
-**2.** Intermediate results may be put in different subdirectory of current directory? Like in `./tmp/` (or inside it to have `./tmpt/` for transcriptomic preprocessing; `./tmpg/` for genotpic preprocessing; `./tmpc/` for cis-eQTL mapping; './tmpn/' for network construction)? 
-
-**3.** Final results may be put in current directory or a subdirectory? Like in `./res/` (or inside it to have `./rest/` for transcriptomic preprocessing; `./resg/` for genotpic preprocessing; `./resc/` for cis-eQTL mapping; './resn/' for network construction)?
-
-
 ## Quit Start
 
 #### 1. Prepare the DataSet
@@ -78,19 +67,12 @@ We highly recommand you to prepare the gene expression data and genotype data fi
 
 Here we set the number of chromosome to 22
 
-```bash
-tspls config -m nchr 22
-```
-
-**Comments**
-
-**1.** I would like to change the whole package name of tspls to `signet` (for **Statistical Inference on Gene (or Global) Networks**, or even simpler with `sign`?), so in the following I will always use `signet` in my comments;
-
-**2.** What about use `-[character]` for each function? So we may replace `config` with `-s` (for settings). For example, we can use
+**1.** 
 ```bash
 signet -s --nchr 22
 ```
-to set the #chromosome to 22. Otherwise, if we want to check the #chromosome, we can use
+
+We can use the command to check below to check chromosome number
 ```bash
 signet -s --nchr
 ```
@@ -107,94 +89,50 @@ or
 signet -s --nchar --d
 ```
 
-**3.** We also need a parameter to record the number of cohorts (or groups) so we can later on incoporate the codes of ReDNet and NANOVA into this package:
-```bash
-signet -s --ngrp 1
-```
-If `ngrp` is set to be larger than 1, we have to decide how to manage the transcriptomic files and genotype files. For example, if we want to use one file for each group, we need a separate file to map files for different groups?
-
-
-
 #### 3. Genotype Preprocess
 
-```bash
-tspls geno-preprocess 
-```
-
-**Comments**
-
-I would suggest to take
+For preprocessing genotype data
 ```bash
 signet -g
 ```
-for preprocessing genotype data
+
 
 
 #### 4. Genexpression Preprocess
 
-```bash
-tspls genexp-preprocess
-```
 
-**Comments**
-
-I would suggest to take
+For preprocessing transcriptomic (gene expression) data
 ```bash
 signet -t
 ```
-for preprocessing transcriptomic (gene expression) data
-
 
 
 #### 5. cis-eQTL Analysis
 
-```bash
-tspls cis-eQTL 
-```
-
-**Comments**
+For cis-eQTL analysis
 
 I would suggest to take
 ```bash
 signet -c
 ```
-for cis-eQTL analysis
+
 
 
 
 #### 6. Network Analysis
 
-```bash
-tspls network --nboots 10
-```
-
-**Comments**
-
+For network construction.
 I would suggest to take
 ```bash
 signet -n --nboots 10
 ```
-for network construction. Is it necessary to separate the two stages of the network construction (like `-n1` and `-n2`)? Of cource, it will be better if we can take it in one step.
 
 
 #### 7. Network Visualization
-Based on the coefficient matrix we got in the network analysis part, we will visualize our constructed gene regulatory networks.
-
-```bash
-tspls netvis --freq 0.8 --ncount 2
-```
-
-**Comments**
-
-**1.** I would suggest to take
+For network visualization.
 ```bash
 signet -v --freq 0.8 --ntop 2
 ```
-for network visualization.
-
-**2.** We should unify the way to set up options (or configurations). Previously, we simply use, for example, `nchar`, to list/set up its value. Should we remove the double dashes here (`--`) or include the double dashes also for configurations? Is `ncount 2` for the top 2 networks? If so, I'd rather use `ntop 2`?
-
-
 
 ## Command Guide
 
