@@ -18,6 +18,8 @@ cd $SIGNET_TMP_ROOT/tmpn/stage2
 echo "#!/bin/sh" > qsub2.sh
 chmod +x qsub2.sh
 
+#clean previous results
+rm -f ypre*
 rm -f params.txt
 rm -f sub*.sh
 rm -f qsub2.sh

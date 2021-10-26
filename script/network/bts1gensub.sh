@@ -16,6 +16,8 @@ cd $SIGNET_TMP_ROOT/tmpn/stage1
 echo "#!/bin/sh" > qsub1.sh
 chmod +x qsub1.sh
 
+## remove ypre in the current folder
+rm -f ypre*
 rm -f params.txt
 rm -f sub*.sh
 rm -f qsub1.sh
@@ -98,9 +100,6 @@ if [ ! -d "output" ]; then
 mkdir output 
 fi
 
-## ensure first and subsequent result will not overlap
-rm -f ypre*
-rm -f output/ypre*
 
 #summarize the result
 for i in $( seq 0 $nboots )
