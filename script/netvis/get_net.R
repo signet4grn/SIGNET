@@ -194,7 +194,7 @@ get_net <- function(edgelist, high_freq=F, largest=F, top=NULL, search=NULL, sco
               if(interactive==F){
                 visNet(g_top[[i]])
               }else{
-                visSave(vis_g_top[[i]], paste("top", i, "_", name, ".html", sep=""))
+                visSave(vis_g_top[[i]], paste("top", i, "_", name, ".html", sep=""), selfcontained=F)
               }
               
               
