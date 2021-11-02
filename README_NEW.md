@@ -19,7 +19,7 @@ where */path/to/signet* should be replaced with your path to *SIGNET*.
 ## Container image
 1. The Singularity Image Format file **signet.sif** comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly in. You could first pull the image from Sylabs Cloud Library and rename it as "signet.sif", after which you could append the path of package to singularity so it could execute *SIGNET* smoothly.
 ```bash
-singularity pull signet.sif library://geomeday/default/signet:v0.0.1
+singularity pull library://geomeday/default/signet0.0.3.sif:sha256.5755e6db49819dc638f5bad88b77bc386da9117cc93e38d88c09a8213a4c0275
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
 ```
 where */path/to/signet* should be replaced with your path to *SIGNET*.
