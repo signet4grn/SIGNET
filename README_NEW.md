@@ -19,7 +19,7 @@ where */path/to/signet* should be replaced with your path to *SIGNET*.
 ## Container image
 1. The Singularity Image Format file **signet.sif** comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly in. You could first pull the image from Sylabs Cloud Library and rename it as "signet.sif", after which you could append the path of package to singularity so it could execute *SIGNET* smoothly.
 ```bash
-singularity pull library://geomeday/default/signet0.0.3.sif:sha256.5755e6db49819dc638f5bad88b77bc386da9117cc93e38d88c09a8213a4c0275
+singularity pull signet.sif library://geomeday/default/signet:v0.0.1
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
 ```
 where */path/to/signet* should be replaced with your path to *SIGNET*.
@@ -584,15 +584,3 @@ ntop = 2
 	- netvis_portal.sh #entrance for network visualization
 ```
 
-## Issues
-1. signet.sif EIG-master directory
-2. signet.sif impute2 directory
-3. signet.sif awk awk: program limit exceeded: eval stack size=1024
-4. matrixcalc R packages
-5. 
-suppressMessages(library(igraph))
-suppressMessages(library(dnet))
-suppressMessages(library(visNetwork))
-suppressMessages(library(STRINGdb))
-suppressMessages(library(TFutils))
-suppressMessages(library(shiny))
