@@ -34,6 +34,54 @@ export SIGNET_TMP_ROOT=$SIGNET_TMP_ROOT
 export SIGNET_RESULT_ROOT=$SIGNET_RESULT_ROOT
 export SIGNET_SCRIPT_ROOT=$SIGNET_SCRIPT_ROOT
 
+file_prefix(){
+for f in * 
+do
+mv -- "$f" "$1_$f"
+done
+}
+
+file_check(){
+outfile=$(readlink -f $1)
+
+if [[ -z $outfile ]]; then
+echo "The prefix can't be blank"
+exit -1
+fi
+
+qyn=0 
+
+while [[ qyn -eq 0 ]]; do
+
+qyn=1
+
+if compgen -G "$outfile"_"*" >> /dev/null; then
+read -p "There exists files with prefix "$1" already, overwriting them? Enter Y to continue, N to exit. [Y/N]: "  yn
+
+case $yn in
+Y|Yes|y|yes ) rm "$outfile"_*;;
+N|No|n|no ) exit -1;;
+* ) qyn=0
+    echo -n "Please choose between Y or N: "
+    read yn;;
+esac
+fi
+
+done
+}
+
+file_trans(){
+
+default_file=$1
+
+out_file=$2
+
+for f in $1_*
+do 
+mv "$f" "$2_${f#$1_}"
+done
+
+}
 
 geno_prep(){
 	$SIGNET_SCRIPT_ROOT/geno_prep_portal.sh ${options};
