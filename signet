@@ -35,10 +35,7 @@ export SIGNET_RESULT_ROOT=$SIGNET_RESULT_ROOT
 export SIGNET_SCRIPT_ROOT=$SIGNET_SCRIPT_ROOT
 
 file_prefix(){
-for f in * 
-do
-mv -- "$f" "$1_$f"
-done
+for f in * ;do mv -- "$f" "$1_$f"; done
 }
 
 file_check(){
@@ -73,13 +70,9 @@ done
 file_trans(){
 
 default_file=$1
-
 out_file=$2
 
-for f in $1_*
-do 
-mv "$f" "$2_${f#$1_}"
-done
+for f in $1_*; do mv "$f" "$2_${f#$1_}"; done
 
 }
 
