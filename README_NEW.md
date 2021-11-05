@@ -16,6 +16,7 @@ where */path/to/signet* should be replaced with your path to *SIGNET*.
 2. This package assumes you are using the **Slurm Workload Manager** for supercomputers in the network analysis stage.  
 3. This pacakge assumes you have singularity installed if you would like to use the container image that described below. If you are using the linux system, you could install singularity following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps. If you are a windows/mac user, you could find the installation guide in https://sylabs.io/guides/3.8/admin-guide/installation.html. You could also choose to skip the container, and instead install all the packages required mannually. 
 
+
 ## Container image
 1. The Singularity Image Format file **signet.sif** comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly in. You could first pull the image from Sylabs Cloud Library and rename it as "signet.sif", after which you could append the path of package to singularity so it could execute *SIGNET* smoothly.
 ```bash
@@ -35,11 +36,11 @@ Or you could first go into the container by
 ```bash 
 singularity shell signet.sif
 ```
-and then execute all the commands as usual
+and then execute all the commands as usual.
 
 **Caution**
 ```bash
-All the result for each step will return to the corresponding folders in the res_root directory in the configuration file config.ini, by default, the /res directory where the package is installed. You should change the res_root directory in the config.ini file if you want to start a new analysis.
+All the intermediate result for each step will by default return to the corresponding folders in the tmporary directory starting with 'tmp' and all the final result will return to the result folders starting with 'res'.  You could also change them in the configuration file named config.ini, or use signet -s described below. 
 ```
 
 ## Introduction
