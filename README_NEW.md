@@ -40,7 +40,7 @@ and then execute all the commands as usual.
 
 **Caution**
 ```bash
-All the intermediate result for each step will by default return to the corresponding folders in the tmporary directory starting with 'tmp' and all the final result will return to the result folders starting with 'res'.  You could also change them in the configuration file named config.ini, or use signet -s described below. Please be careful if you are using the relative path instead of the absolute path. The config.ini will record the path relative to the directory you execute the specific procedure. 
+All the intermediate result for each step will by default return to the corresponding folders in the tmporary directory starting with 'tmp' and all the final result will return to the result folders starting with 'res'.  You could also change them in the configuration file named config.ini, or use signet -s described below. Please be careful if you are using the relative path instead of the absolute path. The config.ini will record the path relative to the directory you execute the specific procedure. If you are going to specify the directory of the output files, please make sure the temparory files and the result files are in different folders. An error message will be sent if you specified them as the same. 
 ```
 
 ## Introduction
