@@ -38,21 +38,21 @@ singularity shell signet.sif
 ```
 and then execute all the commands as usual.
 
-**Caution**
-```bash
-All the intermediate result for each step will by default return to the corresponding folders in the tmporary directory starting with 'tmp' and all the final result will return to the result folders starting with 'res'.  You could also change them in the configuration file named config.ini, or use signet -s described below. Please be careful if you are using the relative path instead of the absolute path. The config.ini will record the path relative to the directory you execute the specific procedure. 
-```
+**Caution**  
+All the intermediate result for each step will by default return to the corresponding folders in the tmporary directory starting with 'tmp' and all the final result will return to the result folders starting with 'res'.  You could also change them in the configuration file named config.ini, or use signet -s described below. Please be careful if you are using the relative path instead of the absolute path. The config.ini will record the path relative to the folder the **signet is in**. If you are going to specify the directory of the output files, please make sure the temparory files and the result files are in different folders. An error message will be sent if you specified them as the same. 
+
 
 ## Introduction
 
 This streamline project provide users easy linux user interface for constructing whole-genome gene regulatory networks using transciptomic data (frome RNA sequence) and genotypic data. 
 
-Procedures of constructing gene regulatory networks can be split into five main steps:
+Procedures of constructing gene regulatory networks can be split into six main steps:
 1. gene expression preprocess
 2. genenotype preprocess
-3. cis-eQTL analysis
-4. network analysis
-5. network visualization
+3. adjust for covariates 
+4. cis-eQTL analysis
+5. network analysis
+6. network visualization
 
 To use this streamline tool, user need first to prepare the genetype data in xxx format and gene expression data in xxx format.  Then set the configuration file properly, and run each step command seperately.
 
