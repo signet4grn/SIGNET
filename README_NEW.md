@@ -354,17 +354,17 @@ signet -g --vcf0 /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx
 
 
 
-### match
-`match` command provide users the interface of matching genotype and gene expression file and the calculation for maf
+### Adju
+`adj` command provide users the interface of matching genotype and gene expression file and the calculation for maf
 
-`match` read the output from `geno-prep` and `gexp-prep`
+`adj` read the output from `geno-prep` and `gexp-prep`
 
-output of `match` will be saved under `/res/resm`:
+output of `adj` will be saved under `/res/resa`:
 
 
 #### usage
 ```bash
-signet -m [--c CLINIVAL_FILE]
+signet -a [--c CLINIVAL_FILE]
 ```
 
 
@@ -377,7 +377,7 @@ signet -m [--c CLINIVAL_FILE]
 
 #### Example
 ```bash
-signet -m --c ./data/clinical.tsv
+signet -a --c ./data/clinical.tsv
 ```
 
 
