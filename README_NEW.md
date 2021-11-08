@@ -46,12 +46,13 @@ All the intermediate result for each step will by default return to the correspo
 
 This streamline project provide users easy linux user interface for constructing whole-genome gene regulatory networks using transciptomic data (frome RNA sequence) and genotypic data. 
 
-Procedures of constructing gene regulatory networks can be split into five main steps:
+Procedures of constructing gene regulatory networks can be split into six main steps:
 1. gene expression preprocess
 2. genenotype preprocess
-3. cis-eQTL analysis
-4. network analysis
-5. network visualization
+3. adjust for covariates 
+4. cis-eQTL analysis
+5. network analysis
+6. network visualization
 
 To use this streamline tool, user need first to prepare the genetype data in xxx format and gene expression data in xxx format.  Then set the configuration file properly, and run each step command seperately.
 
