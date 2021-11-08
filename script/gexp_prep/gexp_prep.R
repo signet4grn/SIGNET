@@ -10,7 +10,7 @@ mcounts=fread(file)
 ##remove last 5 rows
 mcounts=head(mcounts, -5)
 
-cat(paste0("Preprocessing file", file, "\n"))
+cat(paste0("Preprocessing file: ", file, "\n"))
 
 
 geneinfo=mcounts[,1]

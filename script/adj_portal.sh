@@ -2,7 +2,7 @@
 
 usage() {
     echo "Usage:"
-    echo "  signet -m [--c CLINICAL_FILE]" 
+    echo "  signet -a [--c CLINICAL_FILE]" 
     echo -e "\n"
     echo "Description:"
     echo " --c | clinical                   set the clinical file for your cohort"
@@ -32,8 +32,8 @@ esac
 shift
 done
 
-mkdir -p $SIGNET_TMP_ROOT/tmpm
-mkdir -p $SIGNET_RESULT_ROOT/resm
-mkdir -p $SIGNET_DATA_ROOT/match
+mkdir -p $SIGNET_TMP_ROOT/tmpa
+mkdir -p $SIGNET_RESULT_ROOT/resa
+mkdir -p $SIGNET_DATA_ROOT/adj
 
-$SIGNET_SCRIPT_ROOT/match/match.sh $clifile  && echo -e "Gene Expression and Genotype matching Finished\n"
+$SIGNET_SCRIPT_ROOT/adj/adj.sh $clifile  && echo -e "Gene Expression and Genotype matching Finished\n"

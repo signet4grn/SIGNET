@@ -1,7 +1,7 @@
 ### common.ciseQTL.R
 ### Calculate p-values of all common cis-eQTL
 #
-y=read.table(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), '/resm/gexp_rmpc.data'))
+y=read.table(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), '/resa/gexp_rmpc.data'))
 x=read.table('common.Geno.data')
 y=as.matrix(y)
 x=as.matrix(x)

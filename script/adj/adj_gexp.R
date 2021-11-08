@@ -51,4 +51,4 @@ write.table(merged$V1.x,paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpg/geno_id"),q
 
 #reorder gene expression.
 gexp <- gexp[merged$gexp_idx, ] 
-fwrite(gexp,paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resm/matched.gexp"), row.names = F, col.names = F, quote=F, sep = " ")
+fwrite(gexp,paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resa/matched.gexp"), row.names = F, col.names = F, quote=F, sep = " ")

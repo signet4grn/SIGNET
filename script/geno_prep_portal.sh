@@ -30,6 +30,8 @@ usage() {
     echo "  --gmap                        set the genomic map file"
     echo "  --i | --int                   set the interval length for impute2"
     echo "  --ncores                      set the number of cores"
+    echo "  --tmpg                        set the temporary file directory"
+    echo "  --resg                        set the result file directory"
     exit -1
 }
 
@@ -44,8 +46,11 @@ ref=$($SIGNET_ROOT/signet -s --ref)
 gmap=$($SIGNET_ROOT/signet -s --gmap)
 int=$($SIGNET_ROOT/signet -s --int)
 ncore=$($SIGNET_ROOT/signet -s --ncore_local)
+cwd=$(pwd)
+tmpg=$($SIGNET_ROOT/signet -s --tmpg.tcga)
+resg=$($SIGNET_ROOT/signet -s --resg.tcga)
 
-ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,gmap:,i:,int:,ncore:,h:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,gmap:,i:,int:,ncore:,h:,tmpg:,resg:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -96,6 +101,14 @@ case "$1" in
 		ncore=$2
 		$SINGNET_ROOT/signet -s --ncore $ncore
 		shift;;
+        --tmpg)
+                tmpg=$2
+                $SIGNET_ROOT/signet -s --tmpg.tcga $tmpg
+                shift;;
+        --resg)
+                resg=$2
+                $SIGNET_ROOT/signet -s --resg.tcga $resg
+                shift;;
 	-h|--help)
 	        usage
 	        exit;;	
@@ -106,15 +119,30 @@ esac
 shift
 done
 
+file_compare $tmpg $resg
+
+## Do a file check
+file_check $tmpg
+file_check $resg
 
 echo "ped.file: "$pedfile
 echo "map.file: "$mapfile
 echo -e "\n"
 
 mkdir -p $SIGNET_TMP_ROOT/tmpg
-rm -rf $SIGNET_TMP_ROOT/tmpg/impute
+#rm -rf $SIGNET_TMP_ROOT/tmpg/impute
 mkdir $SIGNET_TMP_ROOT/tmpg/impute
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
 
 $SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh $pedfile $mapfile $mind $geno $hwe $nchr $ref $gmap $ncore $int  && echo "Genotype Preprocessing Finished"
+
+cd $SIGNET_TMP_ROOT/tmpg
+file_prefix signet
+cd $cwd
+file_trans $SIGNET_TMP_ROOT/tmpg/signet $tmpg
+
+cd $SIGNET_RESULT_ROOT/resg
+file_prefix signet
+cd $cwd
+file_trans $SIGNET_RESULT_ROOT/resg/signet $resg

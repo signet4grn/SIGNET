@@ -19,32 +19,32 @@ rm -f qsub.sh.completed
 
 for i in `seq 1 ${nchr}`
 do
-  perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/match/genosum.R > $SIGNET_SCRIPT_ROOT/match/genosum_chr$i.R
-  echo "Rscript $SIGNET_SCRIPT_ROOT/match/genosum_chr$i.R" >> qsub.sh
+  perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/adj/genosum.R > $SIGNET_SCRIPT_ROOT/adj/genosum_chr$i.R
+  echo "Rscript $SIGNET_SCRIPT_ROOT/adj/genosum_chr$i.R" >> qsub.sh
 done
 
 time ParaFly -c qsub.sh -CPU $ncore &&
 
 find . -name "matched.Geno.ma_chr*"|sort -V|xargs paste -d' ' >matched.Geno.ma
 
-Rscript $SIGNET_SCRIPT_ROOT/match/filterma5.R
+Rscript $SIGNET_SCRIPT_ROOT/adj/filterma5.R
 
 cat $(find ./ -name 'matched.Geno_chr*.map' | sort -V) > matched_Genotype.map
-Rscript $SIGNET_SCRIPT_ROOT/match/snps5.R
+Rscript $SIGNET_SCRIPT_ROOT/adj/snps5.R
 
 sed -i '1s/,$//;1s/^/{print /;1s/$/}/' new.Geno.idx
 
-$SIGNET_SCRIPT_ROOT/match/extractsnp.pl snps5.idx  matched.Geno.data > $SIGNET_RESULT_ROOT/resm/new.Geno
+$SIGNET_SCRIPT_ROOT/adj/extractsnp.pl snps5.idx  matched.Geno.data > $SIGNET_RESULT_ROOT/resa/new.Geno
 
 [ -e sz ] && rm sz
 ## Summarize minor allele frequency for SNPs in new.Geno output to new.Geno.maf
-echo $(wc -l < $SIGNET_RESULT_ROOT/resm/new.Geno) >> sz
+echo $(wc -l < $SIGNET_RESULT_ROOT/resa/new.Geno) >> sz
 
-Rscript $SIGNET_SCRIPT_ROOT/match/masummary.R
+Rscript $SIGNET_SCRIPT_ROOT/adj/masummary.R
 
 echo -e "\n"
 ## Seperate the map files and generate indices for different variants categories 
-Rscript $SIGNET_SCRIPT_ROOT/match/grpsnps.R
+Rscript $SIGNET_SCRIPT_ROOT/adj/grpsnps.R
 
 ### Genotype data
 

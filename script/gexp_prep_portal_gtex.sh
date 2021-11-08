@@ -7,6 +7,8 @@ usage() {
     echo " --r | --reads                   set the GTEx gene reads file in gct format"
     echo " --t | --tpm                     set the gene tpm file"
     echo " --g | --gtf                     set the genecode gtf file"
+    echo " --tmpt                          set the temporary file directory"
+    echo " --rest                          set the result file directory"
     exit -1
 }
 
@@ -15,8 +17,11 @@ reads=$($SIGNET_ROOT/signet -s --reads.file)
 tpm=$($SIGNET_ROOT/signet -s --tpm.file)
 gtf=$($SIGNET_ROOT/signet -s --gtf.file | sed -r '/^\s*$/d')
 
+cwd=$(pwd)
+tmpt=$($SIGNET_ROOT/signet -s --tmpt.gtex)
+rest=$($SIGNET_ROOT/signet -s --rest.gtex)
 
-ARGS=`getopt -a -o a:r -l r:,reads:,t:,tpm:,g:,gtf:,h:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l r:,reads:,t:,tpm:,g:,gtf:,h:,tmpt:,rest:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -38,7 +43,15 @@ case "$1" in
                 gtf=$(readlink -f $gtf)
 		$SIGNET_ROOT/signet -s --gtf.file $gtf
                 shift;;
-        -h|--help)
+        --tmpt)
+                tmpt=$2
+                $SIGNET_ROOT/signet -s --tmpt.gtex $tmpt
+                shift;;
+        --rest)
+                rest=$2
+                $SIGNET_ROOT/signet -s --rest.gtex $rest
+                shift;;
+	-h|--help)
 		usage
 		exit;;
 	--)
@@ -48,6 +61,11 @@ esac
 shift
 done
 
+file_compare $tmpt $rest
+
+## Do a file check
+file_check $tmpt
+file_check $rest
 
 echo "reads.file: "$reads
 echo "tpm.file: "$tpm
@@ -59,3 +77,13 @@ mkdir -p $SIGNET_DATA_ROOT/gexp-prep
 
 
 $SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep_gtex.sh $reads $tpm $gtf && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA"
+
+cd $SIGNET_TMP_ROOT/tmpt
+file_prefix signet
+cd $cwd
+file_trans $SIGNET_TMP_ROOT/tmpt/signet $tmpt
+
+cd $SIGNET_RESULT_ROOT/rest
+file_prefix signet
+cd $cwd
+file_trans $SIGNET_RESULT_ROOT/rest/signet $rest

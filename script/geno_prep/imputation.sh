@@ -49,8 +49,8 @@ do
 plink --silent --file 'clean_Genotype_chr'$i --recode oxford --out $i
 done
 
-[ -e impute_params.txt ] && rm impute_params.txt
-rm -f impute_params.txt.completed
+##[ -e impute_params.txt ] && rm impute_params.txt
+##rm -f impute_params.txt.completed
 
 
 ##make a dummy file to exclude untyped SNP
