@@ -25,8 +25,8 @@ function usage() {
 	echo '  --downstram DOWN_STREAM	downstream region to flank the genetic region'
 	echo '  --map MAP_FILE		snps map file path'
 	echo '  --maf MAF_FILE		snps maf file path'
-        echo "  --tmpc                        set the temporary file directory"
-        echo "  --resc                        set the result file directory"
+        echo '  --tmpc                        set the temporary file directory'
+        echo '  --resc                        set the result file directory'
 	echo '  --help | -h			user guide'
 }
 
