@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cmdprefix="$SIGNET_ROOT/signet -s --"
-freq=$(${cmdprefix}freq);
+freq=$(${cmdprefix}freq)
 ntop=$(${cmdprefix}ntop)
 tmpv=$(${cmdprefix}tmpv)
 resv=$(${cmdprefix}resv)
