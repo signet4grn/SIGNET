@@ -42,7 +42,7 @@ fi
 DIR1=$(readlink -f $DIR1)
 
 ##Check whether it's in the subdirectory 
-if [[ $DIR1 == $2* ]];then
+if [[ $DIR1 == $2* && $DIR1 != $2 ]];then
 echo "The temporary files or result files can't be put in the subdirectories of default directories"
 exit -1
 fi
