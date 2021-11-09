@@ -35,7 +35,7 @@ if [[ "$1" == *\/* ]];then DIR1=${1%/*};else DIR1=$(pwd); fi
 if [[ -z $DIR1 ]]; then DIR1=$(pwd); fi
 
 if [[ ! -d $DIR1 ]]; then 
-echo "The directory doesn't exist"
+echo "The directory $DIR1 doesn't exist"
 exit -1 
 fi
 
