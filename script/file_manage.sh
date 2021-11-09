@@ -3,16 +3,15 @@
 
 #Check whether they are in the same directory 
 file_compare(){
-
 fil1=$1
 file2=$2
 
-if [[ "$file1" == *\/* ]];then DIR1=${file1%/*};else DIR1=$0; fi
-if [[ "$file2" == *\/* ]];then DIR2=${file2%/*};else DIR2=$0; fi
+if [[ "$file1" == *\/* ]];then DIR1=${file1%/*};else DIR1=$(pwd); fi
+if [[ "$file2" == *\/* ]];then DIR2=${file2%/*};else DIR2=$(pwd); fi
 
-##Handle the case 
-if [[ -z $DIR1 ]]; then DIR1=$0; fi
-if [[ -z $DIR2 ]]; then DIR2=$0; fi
+##Handle the case when it's empty
+if [[ -z $DIR1 ]]; then DIR1=$(pwd); fi
+if [[ -z $DIR2 ]]; then DIR2=$(pwd); fi
 
 if [[ $DIR1 -ef $DIR2 ]];then
 echo "Please make sure that the temporary files and the result
@@ -29,11 +28,20 @@ for f in * ;do mv -- "$f" "$1_$f"; done
 
 ##This function takes the user defined output, and check whether it exists. 
 file_check(){
-outfile=$(readlink -f $1)
 
-if [[ -z $outfile ]]; then
-echo "The folder doesn't exists or the prefix is blank"
-exit -1
+##Check whether it's in the subdirectory 
+
+if [[ "$1" == *\/* ]];then DIR1=${$1%/*};else DIR1=$(pwd); fi
+
+##Handle the case when it's empty
+if [[ -z $DIR1 ]]; then DIR1=$(pwd); fi
+
+echo $DIR1
+echo $2
+
+if [[ $DIR1 == $2* ]];then
+echo "The temporary files or result files can't be put in the subdirectories of default directories"
+
 fi
 
 qyn=0
@@ -42,11 +50,11 @@ while [[ qyn -eq 0 ]]; do
 
 qyn=1
 
-if compgen -G "$outfile"_"*" >> /dev/null; then
+if compgen -G "$1"_"*" >> /dev/null; then
 read -p "There exists files with prefix "$1" already, overwriting them? Enter Y to continue, N to exit. [Y/N]: "  yn
 
 case $yn in
-Y|Yes|y|yes ) rm -rf "$outfile"_*;;
+Y|Yes|y|yes ) rm -rf "$1"_*;;
 N|No|n|no ) exit -1;;
 * ) qyn=0
     echo -n "Please choose between Y or N: "
@@ -56,6 +64,7 @@ fi
 
 done
 }
+
 
 ## Transfer file from the default directory to out directory
 file_trans(){
