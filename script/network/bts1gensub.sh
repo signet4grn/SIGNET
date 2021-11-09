@@ -17,11 +17,11 @@ echo "#!/bin/sh" > qsub1.sh
 chmod +x qsub1.sh
 
 ## remove ypre in the current folder
-rm -f ypre*
-rm -f params.txt
-rm -f sub*.sh
-rm -f qsub1.sh
-rm -f bs*
+#rm -f ypre*
+#rm -f params.txt
+#rm -f sub*.sh
+#rm -f qsub1.sh
+#rm -f bs*
 
 echo -e "\nCreating jobs for Stage 1...\n" 
 

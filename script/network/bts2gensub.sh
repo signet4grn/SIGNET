@@ -18,12 +18,12 @@ cd $SIGNET_TMP_ROOT/tmpn/stage2
 echo "#!/bin/sh" > qsub2.sh
 chmod +x qsub2.sh
 
-rm -f params.txt
-rm -f sub*.sh
-rm -f qsub2.sh
-rm -f bs*
-rm -f Adj*
-rm -f Coef*
+#rm -f params.txt
+#rm -f sub*.sh
+#rm -f qsub2.sh
+#rm -f bs*
+#rm -f Adj*
+#rm -f Coef*
 
 echo -e "\nCreating jobs for Stage 2...\n" 
 
