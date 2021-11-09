@@ -14,8 +14,7 @@ if [[ -z $DIR1 ]]; then DIR1=$(pwd); fi
 if [[ -z $DIR2 ]]; then DIR2=$(pwd); fi
 
 if [[ $DIR1 -ef $DIR2 ]];then
-echo "Please make sure that the temporary files and the result
-files are in different folders"
+echo "Please make sure that the temporary files and the result files are in different folders"
 exit -1 
 fi
 
@@ -26,22 +25,24 @@ file_prefix(){
 for f in * ;do mv -- "$f" "$1_$f"; done
 }
 
-##This function takes the user defined output, and check whether it exists. 
+#This function takes the user defined output and default path,  check whether it exists, prevent to be the subdirectory of the default path.
 file_check(){
+##Check if the directory exists
 
-##Check whether it's in the subdirectory 
-
-if [[ "$1" == *\/* ]];then DIR1=${$1%/*};else DIR1=$(pwd); fi
+if [[ "$1" == *\/* ]];then DIR1=${1%/*};else DIR1=$(pwd); fi
 
 ##Handle the case when it's empty
 if [[ -z $DIR1 ]]; then DIR1=$(pwd); fi
 
-echo $DIR1
-echo $2
+if [[ ! -d $DIR1]]; then 
+echo "The directory doesn't exist"
+exit -1 
+fi
 
+##Check whether it's in the subdirectory 
 if [[ $DIR1 == $2* ]];then
 echo "The temporary files or result files can't be put in the subdirectories of default directories"
-
+exit -1
 fi
 
 qyn=0
