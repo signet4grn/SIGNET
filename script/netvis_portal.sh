@@ -61,8 +61,8 @@ done
 file_compare $tmpv $resv
 
 ## Do a file check
-file_check $tmpv
-file_check $resv
+file_check $tmpv $SIGNET_TMP_ROOT/tmpv
+file_check $resv $SIGNET_RESULT_ROOT/resv
 
 mkdir -p $SIGNET_TMP_ROOT/tmpv
 mkdir -p $SIGNET_RESULT_ROOT/resv

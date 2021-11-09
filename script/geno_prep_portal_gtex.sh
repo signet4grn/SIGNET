@@ -77,8 +77,8 @@ done
 file_compare $tmpg $resg
 
 ## Do a file check
-file_check $tmpg
-file_check $resg
+file_check $tmpg $SIGNET_TMP_ROOT/tmpg
+file_check $resg $SIGNET_RESULT_ROOT/resg
 
 echo "vcf.file: "$vcf
 echo -e "\n"

@@ -89,8 +89,8 @@ done
 file_compare $tmpc $resc
 
 ## Do a file check
-file_check $tmpc
-file_check $resc
+file_check $tmpc $SIGNET_TMP_ROOT/tmpc
+file_check $resc $SIGNET_RESULT_ROOT/resc
 
 mkdir -p $SIGNET_TMP_ROOT/tmpc
 mkdir -p $SIGNET_RESULT_ROOT/resc

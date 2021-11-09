@@ -48,8 +48,8 @@ done
 file_compare $tmpa $resa
 
 ## Do a file check
-file_check $tmpa
-file_check $resa
+file_check $tmpa $SIGNET_TMP_ROOT/tmpa
+file_check $resa $SIGNET_RESULT_ROOT/resa
 
 mkdir -p $SIGNET_TMP_ROOT/tmpa
 mkdir -p $SIGNET_RESULT_ROOT/resa

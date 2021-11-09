@@ -64,8 +64,8 @@ done
 file_compare $tmpt $rest
 
 ## Do a file check
-file_check $tmpt
-file_check $rest
+file_check $tmpt $SIGNET_TMP_ROOT/tmpt
+file_check $rest $SIGNET_RESULT_ROOT/rest
 
 echo "reads.file: "$reads
 echo "tpm.file: "$tpm

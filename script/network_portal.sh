@@ -90,8 +90,8 @@ done
 file_compare $tmpn $resn
 
 ## Do a file check
-file_check $tmpn
-file_check $resn
+file_check $tmpn $SIGNET_TMP_ROOT/tmpn
+file_check $resn $SIGNET_RESULT_ROOT/resn
 
 mkdir -p $SIGNET_TMP_ROOT/tmpn
 mkdir -p $SIGNET_RESULT_ROOT/resn
