@@ -16,7 +16,7 @@ echo -e "Cis-eQTL Analyis for low variants [alpha:"$alpha",nperms:"$nperms"]....
 
 perl -pe "s/nperms/$nperms/g" $SIGNET_SCRIPT_ROOT/cis-eQTL/low.ciseQTL.r > $SIGNET_SCRIPT_ROOT/cis-eQTL/low.ciseQTL_2.r
 
-rm -f low.qsub.sh*
+#rm -f low.qsub.sh*
 
 echo -e "Parallel computing using" $ncore "cores \n" 
 
@@ -37,9 +37,9 @@ time ParaFly -c low.qsub.sh -CPU $ncore
 wait 
 
 ## Combine data  
-rm -f low.ciseQTL.weight0
-rm -f low.ciseQTL.weight
-rm -f low.theoP
+#rm -f low.ciseQTL.weight0
+#rm -f low.ciseQTL.weight
+#rm -f low.theoP
 
 cat $(find ./ -name 'low.ciseQTL.weight*' | sort -V) > low.ciseQTL.weight0
 paste low.cispair.idx low.ciseQTL.weight0 > low.ciseQTL.weight

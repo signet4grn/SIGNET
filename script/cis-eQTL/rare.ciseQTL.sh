@@ -16,7 +16,7 @@ echo -e "Cis-eQTL Analyis for rare variants [alpha:"$alpha",nperms:"$nperms"]...
 
 perl -pe "s/nperms/$nperms/g" $SIGNET_SCRIPT_ROOT/cis-eQTL/rare.ciseQTL.r > $SIGNET_SCRIPT_ROOT/cis-eQTL/rare.ciseQTL_2.r
 
-rm -f rare.qsub.sh*
+#rm -f rare.qsub.sh*
 
 echo -e "Parallel computing using" $ncore "cores \n" 
 
@@ -37,9 +37,9 @@ time ParaFly -c rare.qsub.sh -CPU $ncore
 wait 
 
 ## Combine data  
-rm -f rare.ciseQTL.weight0
-rm -f rare.ciseQTL.weight
-rm -f rare.theoP
+#rm -f rare.ciseQTL.weight0
+#rm -f rare.ciseQTL.weight
+#rm -f rare.theoP
 
 cat $(find ./ -name 'rare.ciseQTL.weight*' | sort -V) > rare.ciseQTL.weight0
 paste rare.cispair.idx rare.ciseQTL.weight0 > rare.ciseQTL.weight

@@ -11,8 +11,8 @@ uncor_r=$(${cmdprefix}uncor.r)
 nperms=$(${cmdprefix}nperms)
 upstream=$(${cmdprefix}upstream)
 downstream=$(${cmdprefix}downstream)
-
-ARGS=`getopt -a -o a:r -l alpha:,map:,maf:,gexp:,geno:,ncis:,nperms:,upstream:,downstream:,help -- "$@"`
+tmpc=$(${cmdprefix}tmpc)
+resc=$(${cmdprefix}resc)
 
 function usage() {
 	echo 'Usage:'
@@ -25,9 +25,14 @@ function usage() {
 	echo '  --downstram DOWN_STREAM	downstream region to flank the genetic region'
 	echo '  --map MAP_FILE		snps map file path'
 	echo '  --maf MAF_FILE		snps maf file path'
+        echo "  --tmpc                        set the temporary file directory"
+        echo "  --resc                        set the result file directory"
 	echo '  --help | -h			user guide'
 }
+
 [ $? -ne 0 ] && usage
+
+ARGS=`getopt -a -o a:r -l alpha:,map:,maf:,gexp:,geno:,ncis:,nperms:,upstream:,downstream:,tmpc:,resc:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -61,6 +66,14 @@ case "$1" in
 		nperms=$2
 		${cmdprefix}nperms $nperms
 		shift;;
+	--tmpc)
+                tmpc=$2
+                $SIGNET_ROOT/signet -s --tmpc $tmpc
+                shift;;
+        --resc)
+                resc=$2
+                $SIGNET_ROOT/signet -s --resc $resc
+                shift;;
 	-h|--help)
 		usage
 		exit
@@ -73,8 +86,24 @@ case "$1" in
 shift
 done 
 
+file_compare $tmpc $resc
+
+## Do a file check
+file_check $tmpc
+file_check $resc
+
 mkdir -p $SIGNET_TMP_ROOT/tmpc
 mkdir -p $SIGNET_RESULT_ROOT/resc
 mkdir -p $SIGNET_DATA_ROOT/cis-eQTL
 
 $SIGNET_SCRIPT_ROOT/cis-eQTL/cis-eQTL.sh $gene_pos $gexp $snps_maf $snps_map $alpha_cis $upstream $downstream $nperms
+
+cd $SIGNET_TMP_ROOT/tmpc
+file_prefix signet
+cd $cwd
+file_trans $SIGNET_TMP_ROOT/tmpc/signet $tmpc
+
+cd $SIGNET_RESULT_ROOT/resc
+file_prefix signet
+cd $cwd
+file_trans $SIGNET_RESULT_ROOT/resc/signet $resc
