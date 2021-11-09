@@ -39,6 +39,8 @@ rest.gtex = res/rest/signet
 
 [adj]
 cli.file = ./data/clinical.tsv
+tmpa = tmp/tmpa/signet
+resa = res/resa/signet
 
 [plink]
 mind = 0.1
@@ -60,6 +62,8 @@ alpha.cis = 0.05
 nperms = 100
 upstream = 100000
 downstream = 100000
+tmpc = tmp/tmpc/signet
+resc = res/resc/signet
 
 [network]
 cis.loc = ./data/resn
@@ -70,7 +74,11 @@ ncores = 128
 queue = standby
 memory = 256
 walltime = 4:00:00
+tmpn = tmp/tmpn/signet
+resn = res/resn/signet
 
 [netvis]
 freq = 0.8
 ntop = 2
+tmpv = tmp/tmpv/signet
+resv = res/resv/signet
