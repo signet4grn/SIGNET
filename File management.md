@@ -17,13 +17,13 @@ gexp
 
 Result files
 
-gene_name            File with name for all the genes
+gene_name             File with name for all the genes
 
-gene_pos               File with the physical location for all the genes
+gene_pos              File with the physical location for all the genes
 
 gene_gexp             File with the gene expression after preprocessing
 
-gexpID                    File with the ID for genes left after preprocessing
+gexpID                File with the ID for genes left after preprocessing
 
 Genotype 
 
