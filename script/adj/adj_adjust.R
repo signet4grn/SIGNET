@@ -89,7 +89,7 @@ for( i in 1:p)
   tmpfit <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
   #tmpfit$coefficients[2:11]
   if(npc==0){
-  tmpfit_pca <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
+  tmpfit <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
   }else{
   tmpfit_pca <- lm(tmp_int ~  as.matrix(merged[, 1:npc]) + factor(merged$race) + factor(merged$gender))
   }
