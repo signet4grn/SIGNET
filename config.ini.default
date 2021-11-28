@@ -11,7 +11,6 @@ map.file = ./data/geno-prep/test.map
 gmap = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ref = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
 int = 5000000
-tmpg.tcga = tmp/tmpg/signet
 resg.tcga = res/resg/signet
 
 (GTEx)
@@ -20,26 +19,22 @@ vcf.file = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/G
 read.file = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct
 anno = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
 tissue = Lung
-tmpg.gtex = tmp/tmpg/signet
 resg.gtex = res/resg/signet
 
 [gexp]
 (TCGA)
 gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
 pmap.file = ./data/gexp-prep/gencode.v22.gene.gtf
-tmpt.tcga = tmp/tmpt/signet
 rest.tcga = res/rest/signet
 
 (GTEx)
 reads.file = sdfs
 tpm.file = sfd
 gtf.file = sdfsd
-tmpt.gtex = tmp/tmpt/signet
 rest.gtex = res/rest/signet
 
 [adj]
 cli.file = ./data/clinical.tsv
-tmpa = tmp/tmpa/signet
 resa = res/resa/signet
 
 [plink]
@@ -62,7 +57,6 @@ alpha.cis = 0.05
 nperms = 100
 upstream = 100000
 downstream = 100000
-tmpc = tmp/tmpc/signet
 resc = res/resc/signet
 
 [network]
@@ -74,11 +68,9 @@ ncores = 128
 queue = standby
 memory = 256
 walltime = 4:00:00
-tmpn = tmp/tmpn/signet
 resn = res/resn/signet
 
 [netvis]
 freq = 0.8
 ntop = 2
-tmpv = tmp/tmpv/signet
 resv = res/resv/signet
