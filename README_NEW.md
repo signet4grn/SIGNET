@@ -119,11 +119,9 @@ signet -c
 
 
 
-
 #### 6. Network Analysis
 
 For network construction.
-I would suggest to take
 ```bash
 signet -n --nboots 10
 ```
@@ -199,14 +197,15 @@ This command will take the matrix of log2(x+1) transcriptome count data and prep
 
 #### Usage
 ```bash
-signet -t [--g GEXP_FILE] [--p MAP_FILE]
+signet -t [--g GEXP_FILE] [--p MAP_FILE] [--r RES_FILE]
 ```
 
 
 #### Description
 ```bash
---g | --gexp, set gene expression file
---p | --pmap, set the genecode gtf file
+ --g | --gexp                   set gene expression file
+ --p | --pmap                   set the genecode gtf file
+ --r | --rest                   set the result name
 ```
 
 
