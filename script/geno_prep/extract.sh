@@ -1,11 +1,6 @@
 ## This sciprt will apply plink commands to the files
-vcf0=$1
-vcf=$2
-gexpread=$3
-anno=$4
-tissue=$5
 
-cd $SIGNET_TMP_ROOT/tmpg
+cd $tmpg
 
 echo -e "Extracting genotype data\n"
 

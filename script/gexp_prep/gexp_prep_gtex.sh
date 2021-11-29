@@ -1,6 +1,3 @@
-reads=$1
-tpm=$2
-gtf=$3
 tissue=$($SIGNET_ROOT/signet -s --tissue | sed -r '/^\s*$/d')
 anno=$($SIGNET_ROOT/signet -s --anno | sed -r '/^\s*$/d')
 

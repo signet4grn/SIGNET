@@ -15,13 +15,12 @@ usage() {
     exit -1
 }
 
-
+cwd=$(pwd)
 vcf0=$($SIGNET_ROOT/signet -s --vcf0)
 vcf=$($SIGNET_ROOT/signet -s --vcf.file)
 gexpread=$($SIGNET_ROOT/signet -s --read.file)
 anno=$($SIGNET_ROOT/signet -s --anno)
 tissue=$($SIGNET_ROOT/signet -s --tissue)
-cwd=$(pwd)
 tmpg=$($SIGNET_ROOT/signet -s --tmpg.gtex)
 resg=$($SIGNET_ROOT/signet -s --resg.gtex)
 
@@ -63,6 +62,7 @@ case "$1" in
         --resg)
                 resg=$2
                 $SIGNET_ROOT/signet -s --resg.gtex $resg
+	        shift;;
 	-h|--help)
 	        usage
 	        exit;;	
@@ -73,29 +73,15 @@ esac
 shift
 done
 
-
-file_compare $tmpg $resg
-
-## Do a file check
-file_check $tmpg $SIGNET_TMP_ROOT/tmpg
-file_check $resg $SIGNET_RESULT_ROOT/resg
+var="vcf0 vcf gexpread anno tissue tmpg resg"
+for i in $var
+do
+export "${i}"
+ #test
+        sh -c "${i}"
+done 
 
 echo "vcf.file: "$vcf
 echo -e "\n"
 
-mkdir -p $SIGNET_TMP_ROOT/tmpg
-mkdir -p $SIGNET_RESULT_ROOT/resg
-mkdir -p $SIGNET_DATA_ROOT/geno-prep
-
-$SIGGNET_SCRIPT_ROOT/geno_prep/geno_prep_gtex.sh $vcf0 $vcf $gexpread $anno $tissue  && echo "Genotype Preprocessing Finished"
-
-cd $SIGNET_TMP_ROOT/tmpg
-file_prefix signet
-cd $cwd
-file_trans $SIGNET_TMP_ROOT/tmpg/signet $tmpg
-
-cd $SIGNET_RESULT_ROOT/resg
-file_prefix signet
-cd $cwd
-file_trans $SIGNET_RESULT_ROOT/resg/signet $resg
-
+$SIGNET_SCRIPT_ROOT/geno_prep/geno_prep_gtex.sh && echo "Genotype Preprocessing Finished"

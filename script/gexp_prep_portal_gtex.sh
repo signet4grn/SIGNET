@@ -12,12 +12,11 @@ usage() {
     exit -1
 }
 
+cwd=$(pwd)
 
 reads=$($SIGNET_ROOT/signet -s --reads.file)
 tpm=$($SIGNET_ROOT/signet -s --tpm.file)
 gtf=$($SIGNET_ROOT/signet -s --gtf.file | sed -r '/^\s*$/d')
-
-cwd=$(pwd)
 tmpt=$($SIGNET_ROOT/signet -s --tmpt.gtex)
 rest=$($SIGNET_ROOT/signet -s --rest.gtex)
 
@@ -61,29 +60,17 @@ esac
 shift
 done
 
-file_compare $tmpt $rest
-
-## Do a file check
-file_check $tmpt $SIGNET_TMP_ROOT/tmpt
-file_check $rest $SIGNET_RESULT_ROOT/rest
+for i in $reads $tpm $gtf $tmpt $rest
+do
+export i 
+done
 
 echo "reads.file: "$reads
 echo "tpm.file: "$tpm
 echo -e "\n"
 
-mkdir -p $SIGNET_TMP_ROOT/tmpt
-mkdir -p $SIGNET_RESULT_ROOT/rest
-mkdir -p $SIGNET_DATA_ROOT/gexp-prep
+mkdir -p $tmpt
+mkdir -p $rest
+mkdir -p $SIGNET_DATA_ROOT/gexp-prep  
 
-
-$SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep_gtex.sh $reads $tpm $gtf && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA"
-
-cd $SIGNET_TMP_ROOT/tmpt
-file_prefix signet
-cd $cwd
-file_trans $SIGNET_TMP_ROOT/tmpt/signet $tmpt
-
-cd $SIGNET_RESULT_ROOT/rest
-file_prefix signet
-cd $cwd
-file_trans $SIGNET_RESULT_ROOT/rest/signet $rest
+$SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep_gtex.sh  && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA"
