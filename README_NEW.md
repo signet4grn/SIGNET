@@ -203,9 +203,9 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE] [--r RES_FILE]
 
 #### Description
 ```bash
---g | --gexp, set gene expression file
---p | --pmap, set the genecode gtf file
---r | --rest, set the result name
+ --g | --gexp                   set gene expression file
+ --p | --pmap                   set the genecode gtf file
+ --r | --rest                   set the result name
 ```
 
 
