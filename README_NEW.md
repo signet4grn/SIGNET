@@ -298,7 +298,7 @@ signet -g --help
 signet -g --ped ./data/geno-prep/test.ped \
           --map ./data/geno-prep/test.map \
 	  --ref /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr \
-	  --gmap neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+	  --gmap /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ```
 
 #### Result
