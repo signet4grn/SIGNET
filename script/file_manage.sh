@@ -28,18 +28,25 @@ mkdir $file
 }
 
 # Input a directory with prefix, check whether it exists
+
 dir_check(){
 ##Check if the directory exists
 
-if [[ "$1" == *\/* ]];then DIR1=${1%/*};else DIR1=$(pwd); fi
+if [[ "$1" == *\/* ]];then DIR=${1%/*};else DIR=$(pwd); fi
 
 ##Handle the case when it's empty
-if [[ -z $DIR1 ]]; then DIR1=$(pwd); fi
+if [[ -z $DIR ]]; then DIR=$(pwd); fi
 
-if [[ ! -d $DIR1 ]]; then
-echo "The directory $DIR1 doesn't exist, note that prefix applies"
+FILE=${1#$DIR/}
+
+if [[ ! -d $DIR ]]; then
+echo "The directory $DIR doesn't exist, note that prefix applies"
 exit -1
 fi
+
+FDIR=$(readlink -f $DIR)
+
+echo ${FDIR}/${FILE}
 
 }
 
