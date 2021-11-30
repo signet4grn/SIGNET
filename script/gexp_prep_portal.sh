@@ -67,7 +67,7 @@ echo "pamp.file: "$pmapfile
 echo -e "\n"
 
 file_purge $SIGNET_TMP_ROOT/tmpt
-dir_check $rest
+rest=$(dir_check $rest)
 mkdir -p $SIGNET_RESULT_ROOT/rest
 mkdir -p $SIGNET_DATA_ROOT/gexp-prep
 

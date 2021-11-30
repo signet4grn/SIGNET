@@ -32,7 +32,7 @@ gpos=gpos[has.annot,]
 gexp.filtered=gexp.filtered[,has.annot]
 
 
-write.table(gexpID, paste0(Sys.getenv("SIGNET_ROOT"), "/",Sys.getenv("rest"), "_gexpID"), quote = F,row.names = F,col.names = F,sep= " ")
-write.table(gpos, paste0(Sys.getenv("SIGNET_ROOT"), "/",Sys.getenv("rest"), "_gene_pos"), quote = F,row.names = F,col.names = F,sep= " ")
-write.table(gpos[, 1], paste0(Sys.getenv("SIGNET_ROOT"), "/", Sys.getenv("rest"), "_gene_name"), quote = F,row.names = F,col.names = F,sep= " ")
-write.table(gexp.filtered, paste0(Sys.getenv("SIGNET_ROOT"), "/",Sys.getenv("rest"), "_gexp"),quote = F,row.names = F,col.names = F,sep= " ")
+write.table(gexpID, paste0(Sys.getenv("rest"), "_gexpID"), quote = F,row.names = F,col.names = F,sep= " ")
+write.table(gpos, paste0(Sys.getenv("rest"), "_gene_pos"), quote = F,row.names = F,col.names = F,sep= " ")
+write.table(gpos[, 1], paste0(Sys.getenv("rest"), "_gene_name"), quote = F,row.names = F,col.names = F,sep= " ")
+write.table(gexp.filtered, paste0(Sys.getenv("rest"), "_gexp"),quote = F,row.names = F,col.names = F,sep= " ")
