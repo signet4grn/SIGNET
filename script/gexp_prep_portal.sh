@@ -21,7 +21,7 @@ usage() {
     echo "Description:"
     echo " --g | --gexp                   set gene expression file"
     echo " --p | --pmap                   set the genecode gtf file "
-    echo " --rest                   set the result name"
+    echo " --rest                         set the result name"
     exit -1
 }
 
