@@ -1,4 +1,3 @@
-nchr=$1
 cd $SIGNET_TMP_ROOT/tmpg/impute
 
 echo -e 'Combining imputated results \n'
@@ -40,7 +39,7 @@ done
 paste -d' ' $(find ./ -name "clean_Genotype_chr*.data" | sort -V) > imputed_Genotype.data
 ### Sample ID i
 
-awk '{print $2}' ../clean_Genotype.data > $SIGNET_RESULT_ROOT/resg/Genotype.sampleID
+awk '{print $2}' ../clean_Genotype.data > ${resg}_Genotype.sampleID
 ### Combine sample ID with genotype data
 
-scp imputed_Genotype.data $SIGNET_RESULT_ROOT/resg/Geno
+scp imputed_Genotype.data ${resg}_Geno

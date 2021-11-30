@@ -1,8 +1,3 @@
-nchr=$1
-ref=$2
-gmap=$3
-ncores=$4
-int=$5
 ped=$SIGNET_TMP_ROOT/tmpg/clean_Genotype.ped
 map=$SIGNET_TMP_ROOT/tmpg/clean_Genotype.map
 
