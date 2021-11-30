@@ -16,12 +16,12 @@ fi
 
 usage() {
     echo "Usage:"
-    echo "  signet -t [--g GEXP_FILE] [--p MAP_FILE] [--r RES_FILE]" 
+    echo "  signet -t [--g GEXP_FILE] [--p MAP_FILE] " 
     echo -e "\n"
     echo "Description:"
     echo " --g | --gexp                   set gene expression file"
     echo " --p | --pmap                   set the genecode gtf file "
-    echo " --r | --rest                   set the result name"
+    echo " --rest                   set the result name"
     exit -1
 }
 
@@ -30,7 +30,7 @@ gexpfile=$($SIGNET_ROOT/signet -s --gexp.file)
 pmapfile=$($SIGNET_ROOT/signet -s --pmap.file)
 rest=$($SIGNET_ROOT/signet -s --rest.tcga | sed -r '/^\s*$/d')
 
-ARGS=`getopt -a -o a:r -l g:,gexp:,p:,pmap:,h:,tmpt:,r:,rest:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l g:,gexp:,p:,pmap:,h:,tmpt:,rest:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -47,7 +47,7 @@ case "$1" in
 		pmapfile=$(readlink -f $pmapfile)
 		$SIGNET_ROOT/signet -s --pmap.file $pmapfile
 		shift;;
-        --r|--rest)
+        --rest)
                 rest=$2
 		$SIGNET_ROOT/signet -s --rest.tcga $rest
                 shift;;
