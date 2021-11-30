@@ -297,8 +297,8 @@ signet -g --help
 # Modify the paramter
 signet -g --ped ./data/geno-prep/test.ped \
           --map ./data/geno-prep/test.map \
-	  --ref /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr \
-	  --gmap /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+	  --ref /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr \
+	  --gmap /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ```
 
 #### Result
@@ -341,10 +341,10 @@ signet -s --cohort GTEx
 
 
 # Modify the paramter
-signet -g --vcf0 /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx.vcf \
-          --vcf /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf \
-          --read /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct \
-	  --anno /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
+signet -g --vcf0 /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx.vcf \
+          --vcf /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf \
+          --read /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct \
+	  --anno /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
 	  --tissue Lung
 ```
 
@@ -524,8 +524,8 @@ ncore_local = 20
 [geno]
 ped.file = ./data/geno-prep/test.ped
 map.file = ./data/geno-prep/test.map
-gmap = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
-ref = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
+gmap = /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+ref = /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
 
 [gexp]
 gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
