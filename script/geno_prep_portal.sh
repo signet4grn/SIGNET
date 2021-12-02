@@ -120,7 +120,7 @@ echo -e "\n"
 
 file_purge $SIGNET_TMP_ROOT/tmpg
 mkdir $SIGNET_TMP_ROOT/tmpg/impute
-dir_check $resg
+resg=$(dir_check $resg)
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
 
