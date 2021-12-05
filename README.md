@@ -353,7 +353,7 @@ signet -g --vcf0 /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype/Gen
 
 
 
-### Adju
+### Adj
 `adj` command provide users the interface of matching genotype and gene expression file and the calculation for maf
 
 `adj` read the output from `geno-prep` and `gexp-prep`
