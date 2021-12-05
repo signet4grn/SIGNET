@@ -34,11 +34,11 @@ Rscript $SIGNET_SCRIPT_ROOT/adj/snps5.R
 
 sed -i '1s/,$//;1s/^/{print /;1s/$/}/' new.Geno.idx
 
-$SIGNET_SCRIPT_ROOT/adj/extractsnp.pl snps5.idx  matched.Geno.data > $SIGNET_RESULT_ROOT/resa/new.Geno
+$SIGNET_SCRIPT_ROOT/adj/extractsnp.pl snps5.idx  matched.Geno.data > ${resa}_new.Geno
 
 [ -e sz ] && rm sz
 ## Summarize minor allele frequency for SNPs in new.Geno output to new.Geno.maf
-echo $(wc -l < $SIGNET_RESULT_ROOT/resa/new.Geno) >> sz
+echo $(wc -l < ${resa}_new.Geno) >> sz
 
 Rscript $SIGNET_SCRIPT_ROOT/adj/masummary.R
 

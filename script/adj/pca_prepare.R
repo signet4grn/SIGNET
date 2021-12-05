@@ -1,6 +1,6 @@
 setwd(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpa"))
 library(data.table)
-geno=fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resa/new.Geno"))
+geno=fread(paste0(Sys.getenv("resa"), "_new.Geno"))
 geno=t(geno)
 write.table(geno,"new.Geno.eigenstratgeno",quote=F,col.names=F,row.names=F,sep="")
 

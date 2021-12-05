@@ -46,7 +46,7 @@ ggplot(aes(x=V2,y=V3,color=race),data=merged)+geom_point()
 #merged$gender
 
 #
-vst_gexp <- as.matrix(fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resa/matched.gexp"))) # gene by sample
+vst_gexp <- as.matrix(fread(paste0(Sys.getenv("resa"), "_matched.gexp"))) # gene by sample
 vst_gexp<-t(vst_gexp)
 ##remove the genes whose genotyoe data is considered outliers.
 if(length(rmidx)>0){
@@ -89,7 +89,7 @@ for( i in 1:p)
   tmpfit <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
   #tmpfit$coefficients[2:11]
   if(npc==0){
-  tmpfit <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
+  tmpfit_pca <- lm(tmp_int ~  factor(merged$race) + factor(merged$gender))
   }else{
   tmpfit_pca <- lm(tmp_int ~  as.matrix(merged[, 1:npc]) + factor(merged$race) + factor(merged$gender))
   }
@@ -105,12 +105,12 @@ cat("\n")
 gexp_int <- t(gexp_int)
 gexp_int_pca <- t(gexp_int_pca)
 # output results
-write.table(gexp_int,file=paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resa/gexp.data")),quote=F,row.names=F,col.names=F)
-write.table(gexp_int_pca,file=paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resa/gexp_rmpc.data")),quote=F,row.names=F,col.names=F)
-geno <- fread(paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resa/new.Geno")))
+write.table(gexp_int,file=paste0(paste0(Sys.getenv("resa"), "_gexp.data")),quote=F,row.names=F,col.names=F)
+write.table(gexp_int_pca,file=paste0(paste0(Sys.getenv("resa"), "_gexp_rmpc.data")),quote=F,row.names=F,col.names=F)
+geno <- fread(paste0(paste0(Sys.getenv("resa"), "_new.Geno")))
 if(length(rmidx)>0){
 geno <- geno[-rmidx, ]
 }
 geno <- geno[idx, ]
-fwrite(geno,file=paste0(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resa/geno.data")),quote=F,sep= " ",col.names = F, row.names = F)
+fwrite(geno,file=paste0(paste0(Sys.getenv("resa"), "_geno.data")),quote=F,sep= " ",col.names = F, row.names = F)
 

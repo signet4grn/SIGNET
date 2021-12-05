@@ -1,9 +1,9 @@
 library(data.table)
-geno_id=fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resg/Genotype.sampleID"), header=F)
+geno_id=fread(paste0(Sys.getenv("resg"), "_Genotype.sampleID"), header=F)
 geno_id$geno_idx=1:dim(geno_id)[1]
 
-gexp=fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/rest/gexp"))
-gexp_id=fread(paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/rest/gexpID"), header=F)
+gexp=fread(paste0(Sys.getenv("rest"), "_gexp"))
+gexp_id=fread(paste0(Sys.getenv("rest"), "_gexpID"), header=F)
 gexp_id$gexp_idx=1:dim(gexp_id)[1]
 
 #xxxx-xx-PPPP corresponds to a unique patient.
@@ -51,4 +51,4 @@ write.table(merged$V1.x,paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpg/geno_id"),q
 
 #reorder gene expression.
 gexp <- gexp[merged$gexp_idx, ] 
-fwrite(gexp,paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resa/matched.gexp"), row.names = F, col.names = F, quote=F, sep = " ")
+fwrite(gexp,paste0(Sys.getenv("resa"), "_matched.gexp"), row.names = F, col.names = F, quote=F, sep = " ")
