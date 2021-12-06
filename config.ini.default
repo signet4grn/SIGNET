@@ -46,6 +46,7 @@ hwe = 0.0001
 snps.map = ./res/resa/signet_new.Geno.map
 snps.maf = ./res/resa/signet_new.Geno.maf
 matched.gexp = ./res/resa/signet_gexp_rmpc.data
+matched.gexp.withpc = ./res/resa/signet_gexp.data
 matched.geno = ./res/resa/signet_geno.data
 gene.pos = ./res/rest/signet_gene_pos
 alpha.cis = 0.05
