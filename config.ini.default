@@ -43,10 +43,10 @@ geno = 0.1
 hwe = 0.0001
 
 [ciseqtl]
-snps.map = ./res/resm/new.Geno.map
-snps.maf = ./res/resm/new.Geno.maf
-matched.gexp = ./res/resm/gexp_rmpc.data
-matched.geno = ./res/resm/geno.data
+snps.map = ./res/resa/signet_new.Geno.map
+snps.maf = ./res/resa/signet_new.Geno.maf
+matched.gexp = ./res/resa/gexp_rmpc.data
+matched.geno = ./res/resa/geno.data
 gene.pos = ./res/rest/gene_pos
 alpha.cis = 0.05
 nperms = 100
