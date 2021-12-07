@@ -26,8 +26,8 @@ usage() {
 }
 
 
-gexpfile=$($SIGNET_ROOT/signet -s --gexp.file)
-pmapfile=$($SIGNET_ROOT/signet -s --pmap.file)
+gexpfile=$($SIGNET_ROOT/signet -s --gexp.file|xargs readlink -f)
+pmapfile=$($SIGNET_ROOT/signet -s --pmap.file|xargs readlink -f)
 rest=$($SIGNET_ROOT/signet -s --rest.tcga | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l g:,gexp:,p:,pmap:,h:,rest:,help -- "$@"`

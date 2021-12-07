@@ -7,7 +7,7 @@ eval(parse(text=args))
 
 x <- fread("rare.Geno.data")
 x <- as.matrix(x)
-sigw <- read.table(paste(Sys.getenv("SIGNET_RESULT_ROOT"), "/resc/rare.sig.weight_",alpha,sep=""))
+sigw <- read.table(paste(Sys.getenv("resc"), "_rare.sig.weight_",alpha,sep=""))
 names(sigw) <- c("y","x","cx","w")
 
 n <- nrow(x)
@@ -20,4 +20,4 @@ for (i in 1:lyx){
   eQTL[,i] <- as.matrix(x[,sigw$x[widx]]) %*% sigw$w[widx]
 }
 
-write.table(eQTL,paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resc/rare.eQTL.data"),row.names=F,col.names=F,quote=F,sep=" ")
+write.table(eQTL,paste0(Sys.getenv("resc"), "_rare.eQTL.data"),row.names=F,col.names=F,quote=F,sep=" ")

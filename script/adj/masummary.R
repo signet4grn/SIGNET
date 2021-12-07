@@ -11,5 +11,5 @@ sum(maf5<0.01) #maf<0.01
 sum(maf5>=0.01&maf5<0.05) #0.01=<maf<0.05
 sum(maf5>=0.05) #maf>=0.05
 
-fwrite(maf5, paste0(Sys.getenv("SIGNET_TMP_ROOT"),"/tmpg/new.Geno.maf"), sep=" ", quote=F, row.names=F, col.names=F)
+fwrite(maf5, paste0(Sys.getenv("resa"),"_new.Geno.maf"), sep=" ", quote=F, row.names=F, col.names=F)
 

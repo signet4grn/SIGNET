@@ -31,4 +31,4 @@ luy=length(uniqy) # number of genes that have at least one unique cis-eQTL
 
 ## p-value for genes that have at least one unique cis-eQTL
 uniqsigp=sigp[sigp$y%in%uniqy,]
-write.table(uniqsigp,paste(Sys.getenv("SIGNET_RESULT_ROOT"), "/resc/common.sig.pValue_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
+write.table(uniqsigp,paste(Sys.getenv("resc"), "_common.sig.pValue_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")

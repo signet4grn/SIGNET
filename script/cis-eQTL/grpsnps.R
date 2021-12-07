@@ -3,9 +3,9 @@
 ###     Rare variants: MAF<0.01
 ###     Low frequency variants: MAF>=0.01 & MAF<0.05
 ###     Common variants: MAF>=0.05
-map=read.table("new.Geno.map")
+map=read.table(Sys.getenv("snps_map"))
 map=as.matrix(map)
-maf=read.table("new.Geno.maf")
+maf=read.table(Sys.getenv("snps_maf"))
 maf=as.matrix(maf)
 
 rareidx=which(maf<0.01)

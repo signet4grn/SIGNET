@@ -35,8 +35,8 @@ usage() {
 }
 
 
-pedfile=$($SIGNET_ROOT/signet -s --ped.file)
-mapfile=$($SIGNET_ROOT/signet -s --map.file)
+pedfile=$($SIGNET_ROOT/signet -s --ped.file | sed -r '/^\s*$/d'|xargs readlink -f)
+mapfile=$($SIGNET_ROOT/signet -s --map.file | sed -r '/^\s*$/d'|xargs readlink -f)
 mind=$($SIGNET_ROOT/signet -s --mind)
 geno=$($SIGNET_ROOT/signet -s --geno)
 hwe=$($SIGNET_ROOT/signet -s --hwe)
@@ -84,7 +84,7 @@ case "$1" in
         --r|--ref)
                 ref=$2
 		ref=$(readlink -f $ref)
-                $SIGNET_ROOT/signet -s --ref $ref
+		$SIGNET_ROOT/signet -s --ref $ref
                 shift;;
 	--gmap)
 		gmap=$2 

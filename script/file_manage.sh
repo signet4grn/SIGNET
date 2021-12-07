@@ -25,6 +25,7 @@ done
 
 mkdir $file
 
+echo -e "\n"
 }
 
 # Input a directory with prefix, check whether it exists

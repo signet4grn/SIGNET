@@ -13,5 +13,3 @@ echo "The number of pc used will be $pc"
 echo -e "\n"
 
 Rscript $SIGNET_SCRIPT_ROOT/adj/adj_adjust.R "clifile='$clifile'" "npc='$pc'" 
-scp $SIGNET_TMP_ROOT/tmpg/new.Geno.map ${resa}_new.Geno.map
-scp $SIGNET_TMP_ROOT/tmpg/new.Geno.maf ${resa}_new.Geno.maf

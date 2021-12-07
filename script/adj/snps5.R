@@ -7,7 +7,7 @@ idx5=read.table("snps5.idx")
 idx5=as.matrix(idx5)
 
 map5=map[idx5,]
-write.table(map5,"new.Geno.map",row.names=F,col.names=F,quote=F,sep=" ")
+write.table(map5,paste0(Sys.getenv("resa"), "_new.Geno.map"),row.names=F,col.names=F,quote=F,sep=" ")
 
 dataidx5=c(1,idx5+1)
 write.table(paste0("$", dataidx5), "new.Geno.idx", row.names=F, col.names=F, quote=F, eol=",")

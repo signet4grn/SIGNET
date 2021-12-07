@@ -1,14 +1,12 @@
 #!/bin/bash
-alpha=$1
-nperms=$2
 ncore=$($SIGNET_ROOT/signet -s --ncore_local)
 
 cd $SIGNET_TMP_ROOT/tmpc
 
 if [ ! -s low.cispair.idx ]
 then 
-touch $SIGNET_RESULT_ROOT/resc/low.sig.pValue_$alpha
-touch $SIGNET_RESULT_ROOT/resc/low.eQTL.data
+touch ${resc}_low.sig.pValue_$alpha
+touch ${resc}_low.eQTL.data
 echo -e "No analysis will be conducted for low variants since there are no cis-pairs detected\n"; exit
 fi
 
@@ -53,6 +51,6 @@ Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/low.eQTLdata.r "alpha='$alpha'"
 
 wait
 
-nsig=$(awk '{print $2}' $SIGNET_RESULT_ROOT/resc/low.sig.pValue_${alpha} |sort | uniq |wc -l)
-ngene=$(awk '{print $1}' $SIGNET_RESULT_ROOT/resc/low.sig.pValue_${alpha} | sort | uniq | wc -l)
+nsig=$(awk '{print $2}' ${resc}_low.sig.pValue_${alpha} |sort | uniq |wc -l)
+ngene=$(awk '{print $1}' ${resc}_low.sig.pValue_${alpha} | sort | uniq | wc -l)
 echo -e "----" $nsig "significant low variants enriched regions found for "$ngene" genes\n" 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cmdprefix="$SIGNET_ROOT/signet -s --"
-loc=$(${cmdprefix}cis.loc);
+loc=$(${cmdprefix}cis.loc | sed -r '/^\s*$/d'|xargs readlink -f);
 cor=$(${cmdprefix}cor);
 nboots=$(${cmdprefix}nboots);
 ncores=$(${cmdprefix}ncores);

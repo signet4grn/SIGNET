@@ -27,5 +27,5 @@ lx=nrow(unique(sex[,2:3]))
 
 ### save p-values and weights for significant collapsed cis-eQTL
 sigp$cx <- 1:lyx
-write.table(sigp,paste(Sys.getenv("SIGNET_RESULT_ROOT"),"/resc/rare.sig.pValue_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
-write.table(sigw,paste(Sys.getenv("SIGNET_RESULT_ROOT"),"/resc/rare.sig.weight_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
+write.table(sigp,paste(Sys.getenv("resc"),"_rare.sig.pValue_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
+write.table(sigw,paste(Sys.getenv("resc"),"_rare.sig.weight_",alpha,sep=""),row.names=F,col.names=F,quote=F,sep=" ")
