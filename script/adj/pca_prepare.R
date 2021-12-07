@@ -4,7 +4,7 @@ geno=fread(paste0(Sys.getenv("resa"), "_new.Geno"))
 geno=t(geno)
 write.table(geno,"new.Geno.eigenstratgeno",quote=F,col.names=F,row.names=F,sep="")
 
-map=fread(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpg/new.Geno.map"))
+map=fread(paste0(Sys.getenv("reas"), "_new.Geno.map"))
 map=map[,c(2,1,3,4)]
 map$V2=seq(1,nrow(map))
 write.table(map,"new.Geno.snp",quote=F,col.names=F,row.names=F,sep=" ")
