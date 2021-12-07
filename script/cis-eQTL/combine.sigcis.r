@@ -43,7 +43,7 @@ netdata=cbind(data[,uniqy],data[,-uniqy])
 write.table(netdata,paste0(Sys.getenv("resc"), "_net.Gexp.data"),row.names=F,col.names=F,quote=F,sep=" ")
 
 ### gene name and gene position
-pos=fread(paste0(Sys.getenv("gene_pos"))
+pos=fread(Sys.getenv("gene_pos"))
 pos=as.matrix(pos)
 name <- pos[, 1]
 uniqy=unique(all[,1])
