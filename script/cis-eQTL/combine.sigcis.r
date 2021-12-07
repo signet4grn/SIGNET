@@ -36,7 +36,7 @@ all=rbind(common,low,rare)
 
 
 ### obtain expression data for genes with eQTL
-data=fread(Sys.getenv("gexp_withpc")
+data=fread(Sys.getenv("gexp_withpc"))
 data=as.matrix(data)
 uniqy=unique(all[,1])
 netdata=cbind(data[,uniqy],data[,-uniqy])
