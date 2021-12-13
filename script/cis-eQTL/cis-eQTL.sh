@@ -23,7 +23,7 @@ echo -e "\nCis-eQTL analysis completed!\n"
 echo -e "Please copy the following files into research cluster for computing:\n"
 
 echo -e "1. all.sig.pValue_$alpha\n"
-echo -e "2. net.Gexp.data\n"
+echo -e "2. net.gexp.data\n"
 echo -e "3. all.eQTL.data\n"
 echo -e "4. net.genepos\n"
 echo -e "5. net.genename\n"

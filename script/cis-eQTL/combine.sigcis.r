@@ -40,7 +40,7 @@ data=fread(Sys.getenv("gexp_withpc"))
 data=as.matrix(data)
 uniqy=unique(all[,1])
 netdata=cbind(data[,uniqy],data[,-uniqy])
-write.table(netdata,paste0(Sys.getenv("resc"), "_net.Gexp.data"),row.names=F,col.names=F,quote=F,sep=" ")
+write.table(netdata,paste0(Sys.getenv("resc"), "_net.gexp.data"),row.names=F,col.names=F,quote=F,sep=" ")
 
 ### gene name and gene position
 pos=fread(Sys.getenv("gene_pos"))
@@ -56,7 +56,7 @@ write.table(netpos,paste0(Sys.getenv("resc"), "_net.genepos"),row.names=F,col.na
 write.table(netname, paste0(Sys.getenv("resc"), "_net.genename"),row.names=F,col.names=F,quote=F,sep=",")
 write.table(cisname, paste0(Sys.getenv("resc"), "_cis.name"),row.names=F,col.names=F,quote=F,sep=",")
 
-### index of gene in net.Gexp.data
+### index of gene in net.gexp.data
 ly=nrow(all)
 newy=matrix(0,ly,1)
 for (i in 1:ly){

@@ -22,7 +22,7 @@ data=as.matrix(data)
 uniqy=unique(all[,1])
 
 ############################################################
-### index of gene in net.Gexp.data
+### index of gene in net.gexp.data
 
 ly=nrow(all)
 newy=matrix(0,ly,1)

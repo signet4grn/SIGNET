@@ -19,7 +19,7 @@ function usage() {
 	echo -e '\n'
 	echo 'Description:'
 	echo '  --gexp                        gene expression file after matching with genotype data'
-        echo "  --gexp.withpc                 gene expression file without adjusting for pc. after matching with genotype data"
+        echo "  --gexp.withpc                 gene expression file without adjusting for pc, after matching with genotype data"
 	echo '  --geno                        genotype file after matching with gene expression data'
     	echo '  --map MAP_FILE                snps map file path'
         echo '  --maf MAF_FILE                snps maf file path'
