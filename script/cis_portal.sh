@@ -7,7 +7,7 @@ gexp=$(${cmdprefix}matched.gexp | sed -r '/^\s*$/d'| xargs readlink -f)
 gexp_withpc=$(${cmdprefix}matched.gexp.withpc | sed -r '/^\s*$/d'| xargs readlink -f)
 geno=$(${cmdprefix}matched.geno | sed -r '/^\s*$/d'| xargs readlink -f)
 gene_pos=$(${cmdprefix}gene.pos | sed -r '/^\s*$/d'| xargs readlink -f)
-alpha=$(${cmdprefix}alpha.cis)
+alpha=$(${cmdprefix}alpha.cis | sed -r '/^\s*$/d')
 nperms=$(${cmdprefix}nperms)
 upstream=$(${cmdprefix}upstream)
 downstream=$(${cmdprefix}downstream)
@@ -114,7 +114,6 @@ for i in $var
 do
 export "${i}"
 done
-
 
 $SIGNET_SCRIPT_ROOT/cis-eQTL/cis-eQTL.sh
 
