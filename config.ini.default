@@ -57,7 +57,7 @@ resc = res/resc/signet
 
 [network]
 net.gexp.data = ./data/network/signet_net.gexp.data
-net.geno.data = ./data/network/signet_all.eQTL.data
+net.geno.data  = ./data/network/signet_all.eQTL.data
 sig.pair = ./data/network/all.sig.pValue_0.05
 net.genename = ./data/network/signet_net.genename
 net.genepos = ./data/network/signet_net.genepos
