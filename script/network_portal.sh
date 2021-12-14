@@ -1,49 +1,79 @@
 #!/bin/bash
 
 cmdprefix="$SIGNET_ROOT/signet -s --"
-loc=$(${cmdprefix}cis.loc | sed -r '/^\s*$/d'|xargs readlink -f);
-cor=$(${cmdprefix}cor);
-nboots=$(${cmdprefix}nboots);
-ncores=$(${cmdprefix}ncores);
-queue=$(${cmdprefix}queue);
-memory=$(${cmdprefix}memory);
+net_gexp=$(${cmdprefix}net.gexp.data | sed -r '/^\s*$/d' | xargs readlink -f)
+net_geno=$(${cmdprefix}net.geno.data | sed -r '/^\s*$/d' | xargs readlink -f)
+sig_pair=$(${cmdprefix}sig.pair | sed -r '/^\s*$/d' | xargs readlink -f)
+net_genename=$(${cmdprefix}net.genename | sed -r '/^\s*$/d'| xargs readlink -f)
+net_genepos=$(${cmdprefix}net.genepos | sed -r '/^\s*$/d'| xargs readlink -f)
+ncis=$(${cmdprefix}ncis)
+cor=$(${cmdprefix}cor)
+nboots=$(${cmdprefix}nboots)
+ncores=$(${cmdprefix}ncores | sed -r '/^\s*$/d')
+queue=$(${cmdprefix}queue)
+memory=$(${cmdprefix}memory)
 walltime=$(${cmdprefix}walltime)
-cwd=$(pwd)
-tmpn=$($SIGNET_ROOT/signet -s --tmpn)
-resn=$($SIGNET_ROOT/signet -s --resn)
+resn=$($SIGNET_ROOT/signet -s --resn  | sed -r '/^\s*$/d')
 
-ARGS=`getopt -a -o r: -l loc:,l:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,tmpn:,resn:,h:,help -- "$@"`
 
 function usage() {
 	echo 'Usage:'
-	echo '  signet -s [OPTION VAL] ...'
+	echo '  signet -n [OPTION VAL] ...'
 	echo -e "\n"
 	echo 'Description:'
-	echo '  --loc CIS.LOC                 location of the result after the cis-eQTL analysis'
-	echo '  --cor MAX_COR 		maximum corr. coeff. b/w cis-eQTL of same gene'
-        echo '  --ncores N_CORE		number of cores in each node'
-	echo '  --memory MEMEORY	        memory in each node in GB'
+	echo '  --net.gexp.data               gene expression data for network analysis'
+	echo '  --net.geno.data               marker data for network analysis'
+        echo '  --sig.pair	       i        significant index pairs for gene expression and markers'
+	echo '  --net.genename                gene name files for gene expression data'
+        echo '  --net.genepos                 gene position files for gene expression data'
+        echo '  --ncis                        maximum number of biomarkers for each gene'
+        echo '  --cor                         maximum correlation between biomarkers'
+        echo '  --memory MEMEORY	        memory in each node in GB'd
 	echo '  --queue QUEUE                 queue name'
         echo '  --walltime WALLTIME		maximum walltime of the server in seconds'
 	echo '  --nboots NBOOTS               number of bootstraps datasets'                   
-        echo "  --tmpn                        set the temporary file directory"
         echo "  --resn                        set the result file directory"
 	exit -1 
 }
 [ $? -ne 0 ] && usage
+
+ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,resn:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
 while true
 do
 case "$1" in
-	--loc)
-                loc=$2
-		loc=$(readlink -f $loc)
-                ${cmdprefix}cis.loc $loc
-                shift
-              ;;
-	--cor | --r)
+        --net.gexp.data)
+                net_gexp=$2
+                net_gexp=$(readlink -f $net_gexp)
+                ${cmdprefix}net.gexp.data $net_gexp
+                shift;;
+        --net.geno.data)
+                net_geno=$2
+                net_geno=$(readlink -f $net_geno)
+                ${cmdprefix}net.geno.data $net_geno
+                shift;;
+        --sig.pair)
+                sig_pair=$2
+                sig_pair=$(readlink -f $sig_pair)
+                ${cmdprefix}sig.pair $sig_pair
+                shift;;
+        --net.genepos)
+                net_genepos=$2
+                net_genepos=$(readlink -f $net_genepos)
+                ${cmdprefix}net.genepos $net_genepos
+                shift;;
+        --net.genename)
+                net_genename=$2
+                net_genename=$(readlink -f $net_genename)
+                ${cmdprefix}net.genename $net_genename
+                shift;;
+        --ncis)
+                ncis=$2
+                ${cmdprefix}ncis $ncis
+                shift;;
+        --cor | --r)
 		cor=$2
 		${cmdprefix}cor $cor
                 shift;;
@@ -67,10 +97,6 @@ case "$1" in
 		walltime=$2
 		${cmdprefix}walltime $walltime
                 shift;;
-	--tmpn)
-                tmpn=$2
-                $SIGNET_ROOT/signet -s --tmpn $tmpn
-                shift;;
         --resn)
                 resn=$2
                 $SIGNET_ROOT/signet -s --resn $resn
@@ -87,24 +113,16 @@ case "$1" in
 shift
 done 
 
-file_compare $tmpn $resn
-
-## Do a file check
-file_check $tmpn $SIGNET_TMP_ROOT/tmpn
-file_check $resn $SIGNET_RESULT_ROOT/resn
-
-mkdir -p $SIGNET_TMP_ROOT/tmpn
+file_purge $SIGNET_TMP_ROOT/tmpn
+resn=$(dir_check $resn)
 mkdir -p $SIGNET_RESULT_ROOT/resn
 mkdir -p $SIGNET_DATA_ROOT/network
 
-$SIGNET_SCRIPT_ROOT/network/network.sh $nboots $cor $queue $ncores $memory $walltime $loc
+var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime resn"
+for i in $var
+do
+export "${i}"
+done
 
-cd $SIGNET_TMP_ROOT/tmpn
-file_prefix signet
-cd $cwd
-file_trans $SIGNET_TMP_ROOT/tmpn/signet $tmpn
+$SIGNET_SCRIPT_ROOT/network/network.sh
 
-cd $SIGNET_RESULT_ROOT/resn
-file_prefix signet
-cd $cwd
-file_trans $SIGNET_RESULT_ROOT/resn/signet $resn

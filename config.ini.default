@@ -56,7 +56,11 @@ downstream = 100000
 resc = res/resc/signet
 
 [network]
-cis.loc = ./data/resn
+net.gexp.data = ./data/network/signet_net.gexp.data
+net.geno.data  = ./data/network/signet_all.eQTL.data
+sig.pair = ./data/network/all.sig.pValue_0.05
+net.genename = ./data/network/signet_net.genename
+net.genepos = ./data/network/signet_net.genepos
 ncis = 3
 cor = 0.9
 nboots = 10

@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH -A queue
+#SBATCH -n ncores
+#SBATCH -N 1
+#SBATCH -t walltime
+
+cd $SLURM_SUBMIT_DIR
+unset DISPLAY
+
+module load r/4.0.0
+
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export OMP_NUM_THREADS=1

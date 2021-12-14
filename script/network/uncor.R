@@ -4,10 +4,9 @@ eval(parse(text=args))
 library(data.table)
 ### input files
 ##change
-y <- as.matrix(fread("net.gexp.data"))
-x=fread("all.eQTL.data"); #genotype data
-sig <- list.files(pattern="all.sig.pValue_")
-res <- read.table(sig) 
+y <- as.matrix(fread(Sys.getenv("net_gexp")))
+x <- fread(Sys.getenv("net_geno")); #genotype data
+res <- read.table(Sys.getenv("sig_pair")) 
 y=as.matrix(y);
 x=as.matrix(x);
 res=as.matrix(res);

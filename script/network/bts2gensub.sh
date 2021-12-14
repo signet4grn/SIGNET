@@ -1,11 +1,5 @@
-#!/bin/sh
-nboots=$1
-memory=$2
-walltime=$3
-ncores=$4
-queue=$5
+#!/bin/bash
 
-#testing runtime and memeory
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
 
 Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
@@ -15,7 +9,7 @@ rm -f Coef*
 
 cd $SIGNET_TMP_ROOT/tmpn/stage2
 ##create the jobs for stage1  
-echo "#!/bin/sh" > qsub2.sh
+echo "#!/bin/bash" > qsub2.sh
 chmod +x qsub2.sh
 
 #rm -f params.txt
