@@ -34,7 +34,7 @@ function usage() {
 
 [ $? -ne 0 ] && usage
 
-ARGS=`getopt -a -o a:r -l alpha:,map:,maf:,gexp:,gexp.withpc:,geno:,nperms:,upstream:,downstream:,resc:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l a:,alpha:,map:,maf:,gexp:,gexp.withpc:,geno:,gene_pos:,nperms:,upstream:,downstream:,resc:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
