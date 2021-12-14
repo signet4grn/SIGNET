@@ -1,9 +1,4 @@
-#!/bin/sh
-nboots=$1
-memory=$2
-walltime=$3
-ncores=$4
-queue=$5
+#!/bin/bash
 
 #testing runtime and memeory
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
@@ -13,7 +8,7 @@ rm -f ypre1_1-10
 
 cd $SIGNET_TMP_ROOT/tmpn/stage1
 ##create the jobs for stage1  
-echo "#!/bin/sh" > qsub1.sh
+echo "#!/bin/bash" > qsub1.sh
 chmod +x qsub1.sh
 
 ## remove ypre in the current folder
@@ -94,7 +89,7 @@ echo -e "Please wait for Stage 1 to complete...\n"
 time sh qsub1.sh
 wait
 
-echo -e "\nStage 1 finished!!! Summarizing the results...\n"
+echo -e "Stage 1 finished!!! Summarizing the results...\n"
 
 if [ ! -d "output" ]; then 
 mkdir output 

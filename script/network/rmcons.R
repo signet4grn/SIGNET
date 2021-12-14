@@ -51,7 +51,7 @@ for (i in 1: length(uniqy_idx)) {
    # coeff=fit$coefficients
    # ypre[,i]=scale(ncx,center=T,scale=F)%*%coeff+mean(b[,i]) 
    ypre[,i]=ncx
-   print(i)
+ ##  print(i)
    cis_idx <- NULL
  } 
   if (ncolx >1) {
@@ -59,7 +59,7 @@ for (i in 1: length(uniqy_idx)) {
  lambda[i]=lambdaseq[which.min(fit1$GCV)]
  coeff=fit1$coef[,which.min(fit1$GCV)]
  ypre[,i]=scale(scale(ncx,center=T,scale=fit1$scales)%*%coeff+mean(b[,i]))
- print(i)
+## print(i)
  cis_idx <- NULL
  }} 
 
@@ -79,7 +79,7 @@ for(i in 0:nboots){
   #   sx[[j]] <- x[(sum(n[1:(j-1)])+1):sum(n[1:j]), ]
   # }
   for(k in 1:length(n)){
-    cons_id <- c(cons_id, which_are_constant(sx[[k]]))
+    cons_id <- c(cons_id, which_are_constant(sx[[k]], verbose=F))
   }
   print(i)
   print(cons_id)
@@ -105,9 +105,8 @@ for(i in 0:nboots){
   #   sy[[j]] <- y[(sum(n[1:(j-1)])+1):sum(n[1:j]), ]
   # }
   for(k in 1:length(n)){
-    consy_id <- c(consy_id, which_are_constant(sy[[k]]))
+    consy_id <- c(consy_id, which_are_constant(sy[[k]], verbose=F))
   }
-  print(i)
 }
 
 if(sum(consy_id)==0){
@@ -130,8 +129,8 @@ b <- cbind(b[, -cons_id], c)
 fwrite(a, file='netx',row.names=F,col.names=F,quote=F,sep=" ")
 fwrite(b, file='nety',row.names=F,col.names=F,quote=F,sep=" ")
 
-genepos <- read.table(paste0(Sys.getenv("SIGNET_ROOT"), "/data/network/net.genepos"))
-genename <- read.table(paste0(Sys.getenv("SIGNET_ROOT"), "/data/network/net.genename"))
+genepos <- read.table(Sys.getenv("net_genepos"))
+genename <- read.table(Sys.getenv("net_genename"))
 if(length(cons_id)>0){
 genepos <- rbind(genepos[-cons_id, ], genepos[cons_id, ])
 genename <- rbind(genename[-cons_id, ,drop=F], genename[cons_id, ,drop=F])

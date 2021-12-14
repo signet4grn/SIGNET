@@ -14,5 +14,5 @@ for (i in 1:N) {
     Afreq=Afreq+as.matrix(A[[i]]/N)
     print(i)
 }
-fwrite(Afreq, paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resn/Afreq"), row.names=F,col.names=F)
+fwrite(Afreq, paste0(Sys.getenv("resn"), "_Afreq"), row.names=F,col.names=F)
 

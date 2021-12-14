@@ -1,12 +1,12 @@
 #!/bin/bash
 
 cmdprefix="$SIGNET_ROOT/signet -s --"
-snps_map=$(${cmdprefix}snps.map | sed -r '/^\s*$/d'|xargs readlink -f)
-snps_maf=$(${cmdprefix}snps.maf | sed -r '/^\s*$/d'|xargs readlink -f)
-gexp=$(${cmdprefix}matched.gexp | sed -r '/^\s*$/d'|xargs readlink -f)
-gexp_withpc=$(${cmdprefix}matched.gexp.withpc | sed -r '/^\s*$/d'|xargs readlink -f)
-geno=$(${cmdprefix}matched.geno | sed -r '/^\s*$/d'|xargs readlink -f)
-gene_pos=$(${cmdprefix}gene.pos | sed -r '/^\s*$/d'|xargs readlink -f)
+snps_map=$(${cmdprefix}snps.map | sed -r '/^\s*$/d'| xargs readlink -f)
+snps_maf=$(${cmdprefix}snps.maf | sed -r '/^\s*$/d'| xargs readlink -f)
+gexp=$(${cmdprefix}matched.gexp | sed -r '/^\s*$/d'| xargs readlink -f)
+gexp_withpc=$(${cmdprefix}matched.gexp.withpc | sed -r '/^\s*$/d'| xargs readlink -f)
+geno=$(${cmdprefix}matched.geno | sed -r '/^\s*$/d'| xargs readlink -f)
+gene_pos=$(${cmdprefix}gene.pos | sed -r '/^\s*$/d'| xargs readlink -f)
 alpha=$(${cmdprefix}alpha.cis)
 nperms=$(${cmdprefix}nperms)
 upstream=$(${cmdprefix}upstream)
