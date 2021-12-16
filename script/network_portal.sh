@@ -28,11 +28,11 @@ function usage() {
         echo '  --net.genepos                 gene position files for gene expression data'
         echo '  --ncis                        maximum number of biomarkers for each gene'
         echo '  --cor                         maximum correlation between biomarkers'
+        echo '  --nboots NBOOTS               number of bootstraps datasets'
         echo '  --memory MEMEORY	        memory in each node in GB'd
 	echo '  --queue QUEUE                 queue name'
         echo '  --ncores                      number of scores for each node'
         echo '  --walltime WALLTIME		maximum walltime of the server in seconds'
-	echo '  --nboots NBOOTS               number of bootstraps datasets'                   
         echo "  --resn                        set the result file directory"
 	exit -1 
 }
