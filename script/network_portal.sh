@@ -8,11 +8,11 @@ net_genename=$(${cmdprefix}net.genename | sed -r '/^\s*$/d'| xargs readlink -f)
 net_genepos=$(${cmdprefix}net.genepos | sed -r '/^\s*$/d'| xargs readlink -f)
 ncis=$(${cmdprefix}ncis)
 cor=$(${cmdprefix}cor)
-nboots=$(${cmdprefix}nboots)
+nboots=$(${cmdprefix}nboots | sed -r '/^\s*$/d')
 ncores=$(${cmdprefix}ncores | sed -r '/^\s*$/d')
-queue=$(${cmdprefix}queue)
-memory=$(${cmdprefix}memory)
-walltime=$(${cmdprefix}walltime)
+queue=$(${cmdprefix}queue | sed -r '/^\s*$/d')
+memory=$(${cmdprefix}memory | sed -r '/^\s*$/d')
+walltime=$(${cmdprefix}walltime | sed -r '/^\s*$/d')
 resn=$($SIGNET_ROOT/signet -s --resn  | sed -r '/^\s*$/d')
 
 
@@ -23,13 +23,14 @@ function usage() {
 	echo 'Description:'
 	echo '  --net.gexp.data               gene expression data for network analysis'
 	echo '  --net.geno.data               marker data for network analysis'
-        echo '  --sig.pair	       i        significant index pairs for gene expression and markers'
+        echo '  --sig.pair        	        significant index pairs for gene expression and markers'
 	echo '  --net.genename                gene name files for gene expression data'
         echo '  --net.genepos                 gene position files for gene expression data'
         echo '  --ncis                        maximum number of biomarkers for each gene'
         echo '  --cor                         maximum correlation between biomarkers'
         echo '  --memory MEMEORY	        memory in each node in GB'd
 	echo '  --queue QUEUE                 queue name'
+        echo '  --ncores                      number of scores for each node'
         echo '  --walltime WALLTIME		maximum walltime of the server in seconds'
 	echo '  --nboots NBOOTS               number of bootstraps datasets'                   
         echo "  --resn                        set the result file directory"

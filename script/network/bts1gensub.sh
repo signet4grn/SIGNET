@@ -81,7 +81,7 @@ echo 'wait' >> sub$CHUNK.sh
 echo "sbatch -W sub$CHUNK.sh" >> qsub1.sh
 fi
 
-tmpqueue=($(qlist|grep $queue))
+tmpqueue=($(slist|grep $queue))
 echo -e "\nThere are in total" ${tmpqueue[1]} "cores available\n"
 echo -e "There are "${tmpqueue[2]}" jobs in queue and "${tmpqueue[3]}" jobs are running\n"
 echo -e "Please wait for Stage 1 to complete...\n"
