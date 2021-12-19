@@ -3,7 +3,8 @@
 #testing runtime and memeory
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
 
-Rscript $SIGNET_SCRIPT_ROOT/network/bstest1.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
+singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest1.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
+
 rm -f ypre1_1-10
 
 cd $SIGNET_TMP_ROOT/tmpn/stage1
@@ -32,14 +33,14 @@ do
 A=`expr $j \* $gene_trunk1 - $(( gene_trunk1 - 1))`
 B=`expr $j \* $gene_trunk1`
 perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$A'/e; s/YYlastYY/'$B'/e' < $SIGNET_SCRIPT_ROOT/network/bts1template.r > bs$i'_'$A'-'$B'.r'
-echo 'nohup Rscript bs'$i'_'$A-$B'.r &' >> params.txt
+echo 'singularity exec '$sif' Rscript bs'$i'_'$A-$B'.r' >> params.txt
 done
 
 LEFTOVER=$(( (gene_trunk1 * NUMJOBS) + 1))
 if [ $LEFTOVER -le $NGENES ];then
 CHUNK=$((NUMJOBS+1))
 perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$LEFTOVER'/e; s/YYlastYY/'$NGENES'/e' < $SIGNET_SCRIPT_ROOT/network/bts1template.r > bs$i'_'$LEFTOVER'-'$NGENES'.r'
-echo 'nohup Rscript bs'$i'_'$LEFTOVER'-'$NGENES'.r &' >> params.txt
+echo 'singularity exec '$sif' Rscript bs'$i'_'$LEFTOVER'-'$NGENES'.r' >> params.txt
 fi
 done
 
@@ -55,9 +56,7 @@ do
     A=`expr $i \* $ncores - $((ncores - 1))`
     B=`expr $i \* $ncores`
     awk "NR >= $A && NR <= $B {print}" < params.txt > params$i.txt
-    awk {print} $SIGNET_SCRIPT_ROOT/network/template.sub >> sub$i.sh
-    awk {print} params$i.txt >> sub$i.sh
-    echo 'wait' >> sub$i.sh
+    perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
     echo "sbatch -W sub$i.sh" >> qsub1.sh
 done
 else
@@ -66,18 +65,14 @@ do
     A=`expr $i \* $ncores - $((ncores - 1))`
     B=`expr $i \* $ncores`
     awk "NR >= $A && NR <= $B {print}" < params.txt > params$i.txt      
-    awk {print} $SIGNET_SCRIPT_ROOT/network/template.sub >> sub$i.sh
-    awk {print} params$i.txt >> sub$i.sh
-    echo 'wait' >> sub$i.sh
+    perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
     echo "sbatch -W sub$i.sh" >> qsub1.sh
 done
 
 LEFTOVER=$(( ($ncores * NSUB) + 1))
 CHUNK=$(( NSUB +1 ))
 awk "NR >= $LEFTOVER && NR <= $NJOBS {print}" < params.txt > params$CHUNK.txt      
-awk {print} $SIGNET_SCRIPT_ROOT/network/template.sub >> sub$CHUNK.sh
-awk {print} params$CHUNK.txt >> sub$CHUNK.sh
-echo 'wait' >> sub$CHUNK.sh
+perl -pe 's/XXX/'$CHUNK'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$CHUNK.sh
 echo "sbatch -W sub$CHUNK.sh" >> qsub1.sh
 fi
 
@@ -88,6 +83,18 @@ echo -e "Please wait for Stage 1 to complete...\n"
 
 time sh qsub1.sh
 wait
+
+echo -e "Checking the number of files\n"
+
+nresult=$(find ypre* | wc -l )
+
+if [ $nresult -eq $NJOBS ]
+then
+echo -e "All the jobs are finished !!\n"
+else
+echo -e "Please notice that some of the jobs are unfinished. Program will stop and please try to find the problem. \n"
+exit
+fi
 
 echo -e "Stage 1 finished!!! Summarizing the results...\n"
 

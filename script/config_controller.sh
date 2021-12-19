@@ -12,8 +12,8 @@ usage() {
 get_param (){
         local args=$1	
 	local param=${args/--/}
-	local val=$(sed -nr '/^'${param}'[ ]*= /{ s/.*=[ ]*//; p; q;};' "$SIGNET_ROOT/config.ini")
-
+	local val=$(sed -nr '/^'${param}'[ ]*= /{ s/.*=[ ]*//; p; q;};' "$SIGNET_ROOT/config.ini") 
+ 
 	if [[ -z $val ]];then	
         echo "Please check the file name";else
     	echo $val;

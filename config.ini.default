@@ -69,6 +69,7 @@ queue = standby
 memory = 256
 walltime = 4:00:00
 resn = res/resn/signet
+sif = signet0.0.3.sif_sha256.5755e6db49819dc638f5bad88b77bc386da9117cc93e38d88c09a8213a4c0275.sif
 
 [netvis]
 freq = 0.8

@@ -2,7 +2,7 @@
 
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
 
-Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
+singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
 rm -f Adj*
 rm -f Coef*
 
@@ -34,14 +34,14 @@ do
 A=`expr $j \* $gene_trunk2 - $(( gene_trunk2 - 1))`
 B=`expr $j \* $gene_trunk2`
 perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$A'/e; s/YYlastYY/'$B'/e' < $SIGNET_SCRIPT_ROOT/network/bts2template.r > bs$i'_'$A'-'$B'.r'
-echo 'nohup Rscript bs'$i'_'$A-$B'.r &' >> params.txt
+echo 'singularity exec '$sif' Rscript bs'$i'_'$A-$B'.r' >> params.txt
 done
 
 LEFTOVER=$(( (gene_trunk2 * NUMJOBS) + 1))
 if [ $LEFTOVER -le $NGENES ];then
 CHUNK=$((NUMJOBS+1))
 perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$LEFTOVER'/e; s/YYlastYY/'$NGENES'/e' < $SIGNET_SCRIPT_ROOT/network/bts2template.r > bs$i'_'$LEFTOVER'-'$NGENES'.r'
-echo 'nohup Rscript bs'$i'_'$LEFTOVER'-'$NGENES'.r &' >> params.txt
+echo ' singularity exec '$sif' Rscript bs'$i'_'$LEFTOVER'-'$NGENES'.r' >> params.txt
 fi
 done
 
@@ -57,9 +57,7 @@ do
     A=`expr $i \* $ncores - $((ncores - 1))`
     B=`expr $i \* $ncores`
     awk "NR >= $A && NR <= $B {print}" < params.txt > params$i.txt
-    awk {print} $SIGNET_SCRIPT_ROOT/network/template.sub >> sub$i.sh
-    awk {print} params$i.txt >> sub$i.sh
-    echo 'wait' >> sub$i.sh
+    perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
     echo "sbatch -W sub$i.sh" >> qsub2.sh
 done
 else
@@ -68,18 +66,14 @@ do
     A=`expr $i \* $ncores - $((ncores - 1))`
     B=`expr $i \* $ncores`
     awk "NR >= $A && NR <= $B {print}" < params.txt > params$i.txt      
-    awk {print} $SIGNET_SCRIPT_ROOT/network/template.sub >> sub$i.sh
-    awk {print} params$i.txt >> sub$i.sh
-    echo 'wait' >> sub$i.sh
+    perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
     echo "sbatch -W sub$i.sh" >> qsub2.sh
 done
 
 LEFTOVER=$(( ($ncores * NSUB) + 1))
 CHUNK=$(( NSUB +1 ))
 awk "NR >= $LEFTOVER && NR <= $NJOBS {print}" < params.txt > params$CHUNK.txt      
-awk {print} $SIGNET_SCRIPT_ROOT/network/template.sub >> sub$CHUNK.sh
-awk {print} params$CHUNK.txt >> sub$CHUNK.sh
-echo 'wait' >> sub$CHUNK.sh
+perl -pe 's/XXX/'$CHUNK'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$CHUNK.sh
 echo "sbatch -W sub$CHUNK.sh" >> qsub2.sh
 fi
 
@@ -95,7 +89,7 @@ echo -e "Checking the number of files\n"
 
 nresult=$(find Adj* | wc -l )
 
-if [ $nresult==$NJOBS ]
+if [ $nresult -eq $NJOBS ]
 then
 echo -e "All the jobs are finished !!\n"
 else 

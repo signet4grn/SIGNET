@@ -14,11 +14,12 @@ queue=$(${cmdprefix}queue | sed -r '/^\s*$/d')
 memory=$(${cmdprefix}memory | sed -r '/^\s*$/d')
 walltime=$(${cmdprefix}walltime | sed -r '/^\s*$/d')
 resn=$($SIGNET_ROOT/signet -s --resn  | sed -r '/^\s*$/d')
-
+sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
 
 function usage() {
 	echo 'Usage:'
-	echo '  signet -n [OPTION VAL] ...'
+        echo -e 'Please make sure that you are using the SLURM system and R and Parafly could be loaded  using module load R and module load utilities ParaFly\n'
+        echo '  signet -n [OPTION VAL] ...'
 	echo -e "\n"
 	echo 'Description:'
 	echo '  --net.gexp.data               gene expression data for network analysis'
@@ -29,16 +30,17 @@ function usage() {
         echo '  --ncis                        maximum number of biomarkers for each gene'
         echo '  --cor                         maximum correlation between biomarkers'
         echo '  --nboots NBOOTS               number of bootstraps datasets'
-        echo '  --memory MEMEORY	        memory in each node in GB'd
+        echo '  --memory MEMEORY	        memory in each node in GB'
 	echo '  --queue QUEUE                 queue name'
         echo '  --ncores                      number of scores for each node'
         echo '  --walltime WALLTIME		maximum walltime of the server in seconds'
         echo "  --resn                        set the result file directory"
-	exit -1 
+	echo "  --sif                         specify he container"
+        exit -1 
 }
 [ $? -ne 0 ] && usage
 
-ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,resn:,h:,help -- "$@"`
+ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,resn:,sif:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -102,6 +104,10 @@ case "$1" in
                 resn=$2
                 $SIGNET_ROOT/signet -s --resn $resn
                 shift;;
+        --sif)
+                sif=$2
+                $SIGNET_ROOT/signet -s --suf $sif
+                shift;;
 	--h|--help)
 		usage
 		exit
@@ -113,13 +119,13 @@ case "$1" in
       esac
 shift
 done 
-
+   
 file_purge $SIGNET_TMP_ROOT/tmpn
 resn=$(dir_check $resn)
 mkdir -p $SIGNET_RESULT_ROOT/resn
 mkdir -p $SIGNET_DATA_ROOT/network
 
-var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime resn"
+var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime resn sif"
 for i in $var
 do
 export "${i}"
