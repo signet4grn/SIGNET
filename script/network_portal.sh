@@ -18,8 +18,8 @@ sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
 
 function usage() {
 	echo 'Usage:'
-        echo -e 'Please make sure that you are using the SLURM system and R and Parafly could be loaded  using module load R and module load utilities ParaFly\n'
-        echo '  signet -n [OPTION VAL] ...'
+        echo -e 'Please make sure that you are using the SLURM system, with R version and Parafly being loaded using module load r/4.0.0 and module load utilities ParaFly, respectively\n'
+	echo '  signet -n [OPTION VAL] ...'
 	echo -e "\n"
 	echo 'Description:'
 	echo '  --net.gexp.data               gene expression data for network analysis'
@@ -130,6 +130,8 @@ for i in $var
 do
 export "${i}"
 done
+
+module load r/4.0.0
 
 $SIGNET_SCRIPT_ROOT/network/network.sh
 
