@@ -3,6 +3,8 @@ library(data.table)
 args <- commandArgs(TRUE)
 eval(parse(text=args))
 
+eps <- .Machine$double.eps
+
 ########################################################
 ### edge list with gene symbol
 Afreq=as.matrix(fread("Afreq"))
@@ -13,7 +15,7 @@ genePOS=as.matrix(genePOS)
 Coeff=as.matrix(fread(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpn/stage2/output/CoeffMat0")))
 
 #for (thre in threlist){
-  A=(Afreq>=freq)
+  A=(Afreq > (freq-eps) )
     
   edgeidx=which(A!=0,arr.ind=T)
   target=genePOS[edgeidx[,1],]
