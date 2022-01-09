@@ -17,7 +17,7 @@ do
     plink --silent --data 'imputed_chr'$i --recode --out 'clean_Genotype_chr'$i
 done
 
-for i in `seq 1 22`
+for i in `seq 1 ${nchr}`
 do
 echo -n "$i "
 n=`wc -l clean_Genotype_chr$i.map | awk '{print $1}'`
