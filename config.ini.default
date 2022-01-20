@@ -73,5 +73,7 @@ sif = signet0.0.3.sif_sha256.5755e6db49819dc638f5bad88b77bc386da9117cc93e38d88c0
 
 [netvis]
 freq = 0.8
-ntop = 2
+ntop = 3
+coef = tmpn/stage2/output/CoeffMat0 
+vis.genepos = tmp/tmpn/net.genepos
 resv = res/resv/signet
