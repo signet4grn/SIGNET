@@ -69,12 +69,12 @@ queue = standby
 memory = 256
 walltime = 4:00:00
 resn = res/resn/signet
-sif = signet0.0.3.sif_sha256.5755e6db49819dc638f5bad88b77bc386da9117cc93e38d88c09a8213a4c0275.sif
+sif = signet0.0.4.sif
 
 [netvis]
 Afreq = res/resn/signet_Afreq
 freq = 0.8
 ntop = 3
-coef = tmpn/stage2/output/CoeffMat0 
+coef = tmp/tmpn/stage2/output/CoeffMat0 
 vis.genepos = tmp/tmpn/net.genepos
 resv = res/resv/signet
