@@ -49,7 +49,7 @@ done
 NJOBS=$(wc -l < params.txt)
 NSUB=$(( NJOBS / $ncores ))
 
-if [ $NSUB==0 ]
+if [[ $NSUB -eq 0 ]]
 then
 NSUB=1
 for i in $( seq 1 $NSUB )
@@ -69,6 +69,7 @@ do
     perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
     echo "sbatch -W sub$i.sh" >> qsub2.sh
 done
+
 
 LEFTOVER=$(( ($ncores * NSUB) + 1))
 CHUNK=$(( NSUB +1 ))

@@ -7,12 +7,12 @@ eps <- .Machine$double.eps
 
 ########################################################
 ### edge list with gene symbol
-Afreq=as.matrix(fread("Afreq"))
+Afreq=as.matrix(Sys.getenv("Afreq"))
 #threlist=c(0.8,0.9,0.95)
-genePOS <- read.table(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpv/net.genepos"))
+genePOS <- read.table(Sys.getenv("genepos"))
 genePOS=as.matrix(genePOS)
 
-Coeff=as.matrix(fread(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpn/stage2/output/CoeffMat0")))
+Coeff=as.matrix(fread(Sys.getenv("coef")))
 
 #for (thre in threlist){
   A=(Afreq > (freq-eps) )
@@ -26,5 +26,5 @@ Coeff=as.matrix(fread(paste0(Sys.getenv("SIGNET_TMP_ROOT"), "/tmpn/stage2/output
 
   edgelist_genesymbol=cbind(source,target,edgefreq,edgecoeff) #Col 1-4 is source, Col 5-8 is target, Col 9 is frequency
 
-  write.table(edgelist_genesymbol,paste0(Sys.getenv("SIGNET_RESULT_ROOT"), "/resv/edgelist_",freq),row.names=F,col.names=c("source_gene_symbol","source_chr","source_start","source_end","target_gene_symbol","target_chr","target_start","target_end","frequency","coefficient"),quote=F,sep=" ")
+  write.table(edgelist_genesymbol,paste0(Sys.getenv("resv"), "_edgelist_",freq),row.names=F,col.names=c("source_gene_symbol","source_chr","source_start","source_end","target_gene_symbol","target_chr","target_start","target_end","frequency","coefficient"),quote=F,sep=" ")
 #}

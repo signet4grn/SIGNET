@@ -48,7 +48,7 @@ done
 NJOBS=$(wc -l < params.txt)
 NSUB=$(( NJOBS / $ncores ))
 
-if [ $NSUB==0 ]
+if [[ $NSUB -eq 0 ]]
 then
 NSUB=1
 for i in $( seq 1 $NSUB )
