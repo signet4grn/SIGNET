@@ -14,12 +14,16 @@ suppressMessages(library(DT))
 suppressMessages(library(circlize))
 
 project_path = paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/netvis")
+freq <- as.numeric(Sys.getenv("freq"))
 
 #input 
-name <- paste0("freq", Sys.getenv("freq"))
+name <- paste0("freq", freq)
 ntop <- as.numeric(Sys.getenv("ntop"))
 
-edgelist <- read.table(paste0(Sys.getenv("resv"), "_edgelist_", Sys.getenv(freq)), sep=",", header=T)
+edgelist <- read.table(paste0(Sys.getenv("resv"), "_edgelist_", freq), sep=",", header=T)
+# remove "chr"
+edgelist$'source_chr' <- substring(edgelist$'source_chr', 4)
+edgelist$'target_chr' <- substring(edgelist$'target_chr', 4)
 
 bs_ring <- edgelist[, c("source_gene_symbol", "target_gene_symbol")]
 bs_ring <- as.matrix(bs_ring)
@@ -62,7 +66,6 @@ bs_ring_string <- bs_ring_string[complete.cases(bs_ring_string), ]
 
 
 bs_ppi <- apply(bs_ring_string, 1, string_db$get_interactions)
-cat("The above error could be ignored\n")
 if(!exists("bs_ppi")) bs_ppi <- apply(bs_ring_string, 1, string_db$get_interactions)
 
 bs_ppi <- do.call(rbind, bs_ppi)
@@ -72,11 +75,11 @@ unique_bs_ppi_oriname[, 1] <- string_proteins[match(unique_bs_ppi[, 1], string_p
 unique_bs_ppi_oriname[, 2] <- string_proteins[match(unique_bs_ppi[, 2], string_proteins[, "protein_external_id"]), "preferred_name"]
 ppi_sort <- unique_bs_ppi_oriname[order(unique_bs_ppi_oriname$combined_score, decreasing = T), ]
 names(ppi_sort) <- c("Protein 1", "Protein 2", "Combined Score")
+ppi_sort <- as.data.frame(ppi_sort)
 
 # write the names for all the nodes
-filename <- paste(name,"_name.txt", sep="")
+filename <- paste(Sys.getenv("resv"), name, "_name.txt", sep="")
 write.table(nodes_bs, filename, row.names = F, col.names = F, quote = F)
-
 
 ##construct components
 g_bs <- dNetInduce(net_bs, nodes_query = nodes_bs, knn=1, largest.comp = F)
@@ -103,6 +106,7 @@ for(i in 1:length(unodes)){
   comp_len <- c(comp_len, length(E(g_bs_sub[[i]])))
 }
 
+
 ## Summary statistics for the whole network
 net_number <- length(unique(comp))
 vertex_number  <- length(V(g_bs))
@@ -114,7 +118,5 @@ source(paste0(project_path, "/ui.R"))
 source(paste0(project_path, "/circular.R"))
 source(paste0(project_path, "/server.R"))
 
-shinyApp(ui = ui, server = server)
-
-
+shinyApp(ui = ui, server = server, options=list(launch.browser=T))
 

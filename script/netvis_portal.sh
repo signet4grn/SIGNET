@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cmdprefix="$SIGNET_ROOT/signet -s --"
-Afreq=$(${cmdprefix}Afreq)
+Afreq=$(${cmdprefix}Afreq | sed -r '/^\s*$/d' | xargs readlink -f )
 freq=$(${cmdprefix}freq)
 ntop=$(${cmdprefix}ntop)
 coef=$(${cmdprefix}coef | sed -r '/^\s*$/d' | xargs readlink -f )
@@ -10,7 +10,7 @@ resv=$(${cmdprefix}resv | sed -r '/^\s*$/d')
 
 function usage() {
         echo -e 'Pre-requisite: \n'
-        echo -e 'You should first SSH -XY to a server with DISPLAY if you would like to use the singularity container \n'
+        echo -e 'You should first SSH -XY to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser \n'
 	echo 'Usage:'
 	echo 'signet -v  [OPTION VAL] ...'
         echo -e '\n'
@@ -83,5 +83,6 @@ for i in $var
 do
 export "${i}"
 done
+
 
 $SIGNET_SCRIPT_ROOT/netvis/netvis.sh

@@ -1,4 +1,8 @@
+cat("loading result for sub-networks ...\n")
+
 vis_g_top <- g_top <- g_top_int <- g_top_e <- nodes <- edges <- enrichment <- NULL
+
+if(ntop > length(comp_len)) stop(paste0("Please make ntop less than ", length(comp_len))) 
 
 top_idx <- order(comp_len, decreasing = T)[1:ntop]
 
@@ -8,7 +12,7 @@ cat("Trying hard to summarize the results, this process could take a while if yo
 
 for(i in 1:ntop){
 cat(paste0("Generating results for network ", i, "\n"))
-filename <- paste0("top", i ,"_", name, "_name.txt")
+filename <- paste0(Sys.getenv("resv"), "_top", i ,"_", name, "_name.txt")
 write.table(name_bs_sub[[top_idx[i]]], filename, row.names = F, col.names = F, quote = F)
 g_top[[i]] <- dNetInduce(net_bs, nodes_query = name_bs_sub[[top_idx[i]]], knn=0)
 g_top_int[[i]] <- toVisNetworkData(g_top[[i]])
@@ -57,7 +61,9 @@ mapped_id <- mapped$STRING_id
 
 ##STRING enrichment 
 # p_ppi <- string_db$get_ppi_enrichment(mapped_id)$enrichment
-enrich <- string_db$get_enrichment(mapped_id)
+## An error would occur where too many genes are consulted at the same time
+tryCatch(enrich <- string_db$get_enrichment(mapped_id), error = function(e) print("You may have too many input genes"))
+
 
 ##sort by p value 
 nrow_max_enrich <- 15
@@ -90,8 +96,10 @@ enrichment[[i]]$description <- factor(enrichment[[i]]$description, levels = uniq
 # save html version
 vis_g_top[[i]] <- visNetwork(nodes[[i]], edges[[i]], width="100%", height="1000px") %>%
   visOptions(selectedBy = list(variable = "enrichment", multiple=T),
-             highlightNearest = list(enabled = T, degree = 2, hover = T))
-visSave(vis_g_top[[i]], paste("top", i, "_", name, ".html", sep=""), selfcontained=F)
+             highlightNearest = list(enabled = T, degree = 2, hover = T)) %>%
+  visLayout(randomSeed=1) %>%
+  visEdges(arrows = 'to')
+visSave(vis_g_top[[i]], paste(Sys.getenv("resv"), "_top", i, "_", name, ".html", sep=""), selfcontained=F) 
 
 ## end information 
 }

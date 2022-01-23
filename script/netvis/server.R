@@ -11,9 +11,9 @@ server <- function(input, output) {
   ))
   
   ## PPi score summary
-  output$ppi <- renderDT(
+  output$ppi <- renderDT({
     datatable(ppi_sort, options(list(pageLength=20)))
-  )
+  })
   
 
   ## Network summary
@@ -25,7 +25,8 @@ server <- function(input, output) {
   #                           #shape=rep("circle", 3)
   #                           )
   edge_legend <- data.frame(label=c("up regulation", "up regulation", "down regulation", "down regulation"),
-                            arrows.to.type=c("arrow", "arrow", "circle", "circle"),
+                            arrows=list(to=list(enabled=T, type=c("arrow", "arrow", "circle", "circle"))),
+                            #arrows.to.type=c("arrow", "arrow", "circle", "circle"),
                             color=c("#2B7CE9", "#FFA500", "#2B7CE9", "#FFA500"))
   
   output$network <- renderVisNetwork({
@@ -37,7 +38,9 @@ server <- function(input, output) {
                  highlightNearest = list(enabled = T, degree = 2, hover = T)) %>%
     #  visGroups(groupname="non-TF", color="#97C2FC") %>%
     #  visGroups(groupname="TF", color="#FFFF00") %>%
-       visLegend(addEdges=edge_legend, addNodes=NULL, main="Legend", useGroups=T)
+       visEdges(arrows = 'to') %>% 
+       visLegend(addEdges=edge_legend, addNodes=NULL, main="Legend", useGroups=T) %>%
+       visLayout(randomSeed=1)
     
     vis_g_top
     
@@ -130,7 +133,9 @@ server <- function(input, output) {
     validate(need(try(input$net_num2>=1 && input$net_num2<=ntop), paste0("Please input a range from ", 1, " to ", ntop)))
     ##Circular plot  
     ##initialize, be careful about the genome build  
-    circos.initializeWithIdeogram(species = "hg38", chromosome.index = paste0("chr", 1:22))
+    ##only autochromosome
+    #circos.initializeWithIdeogram(species = "hg38", chromosome.index = paste0("chr", 1:22))
+    circos.initializeWithIdeogram(species = "hg38", chromosome.index = paste0("chr", c(1:22, "X", "Y")))
     circos.genomicTrack(dout[[input$net_num2]], track.height=0.1, 
                         panel.fun = function(region, value, ...) {
                           circos.genomicPoints(region, value, col = 1, pch=20, cex=0.5)
@@ -153,6 +158,4 @@ server <- function(input, output) {
   )
   
 }
-
-
 

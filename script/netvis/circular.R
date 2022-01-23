@@ -1,5 +1,6 @@
 # The function takes info information and output 
 # din, dout, source_bed, target_bed
+cat("loading result for circular plot ...\n")
 
 info <- din <- dout <- source_bed <- target_bed <- NULL
   
