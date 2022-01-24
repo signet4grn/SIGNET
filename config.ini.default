@@ -73,7 +73,7 @@ sif = signet0.0.4.sif
 
 [netvis]
 Afreq = res/resn/signet_Afreq
-freq = 0.8
+freq = 1
 ntop = 3
 coef = tmp/tmpn/stage2/output/CoeffMat0 
 vis.genepos = tmp/tmpn/net.genepos
