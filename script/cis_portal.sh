@@ -28,7 +28,7 @@ function usage() {
 	echo '  --nperms N_PERMS		numer of permutations'
 	echo '  --upstream UP_STREAM		upstream region to flank the genetic region '
 	echo '  --downstram DOWN_STREAM	downstream region to flank the genetic region'
-        echo '  --resc                        set the result file directory'
+        echo '  --resc                        result prefix'
 	echo '  --help | -h			user guide'
 }
 

@@ -34,8 +34,8 @@ function usage() {
 	echo '  --queue QUEUE                 queue name'
         echo '  --ncores                      number of scores for each node'
         echo '  --walltime WALLTIME		maximum walltime of the server in seconds'
-        echo "  --resn                        set the result file directory"
-	echo "  --sif                         specify he container"
+        echo "  --resn                        result prefix"
+	echo "  --sif                         singularity container"
         exit -1 
 }
 [ $? -ne 0 ] && usage

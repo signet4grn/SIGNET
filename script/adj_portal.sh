@@ -20,8 +20,8 @@ usage() {
     echo "  signet -a [--c CLINICAL_FILE]" 
     echo -e "\n"
     echo "Description:"
-    echo " --c | clinical                   set the clinical file for your cohort"
-    echo " --resa                           set the result file directory"  
+    echo " --c | clinical                   clinical file for your cohort"
+    echo " --resa                           result prefix"  
     exit -1
 }
 

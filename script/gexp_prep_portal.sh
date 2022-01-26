@@ -19,9 +19,9 @@ usage() {
     echo "  signet -t [--g GEXP_FILE] [--p MAP_FILE] " 
     echo -e "\n"
     echo "Description:"
-    echo " --g | --gexp                   set gene expression file"
-    echo " --p | --pmap                   set the genecode gtf file "
-    echo " --rest                         set the result name"
+    echo " --g | --gexp                   gene expression file"
+    echo " --p | --pmap                   genecode gtf file "
+    echo " --rest                         result prefix"
     exit -1
 }
 
