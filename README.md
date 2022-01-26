@@ -20,7 +20,7 @@ where */path/to/signet* should be replaced with your path to *SIGNET*.
 ## Container image
 1. The Singularity Image Format file **signet.sif** comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly in. You could first pull the image from Sylabs Cloud Library and rename it as "signet.sif", after which you could append the path of package to singularity so it could execute *SIGNET* smoothly.
 ```bash
-singularity pull signet.sif library://geomeday/default/signet:v0.0.1
+singularity pull signet.sif library://geomeday/default/signet:0.0.4.sif
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
 ```
 where */path/to/signet* should be replaced with your path to *SIGNET*.
@@ -32,29 +32,29 @@ singularity exec signet.sif [Command]
 e.g. 
 singularity exec signet.sif signet -s 
 ```
-Or you could first go into the container by  
+Or you could first shell into the container by  
 ```bash 
 singularity shell signet.sif
 ```
 and then execute all the commands as usual.
 
 **Caution**  
-All the intermediate result for each step will by default return to the corresponding folders in the tmporary directory starting with 'tmp' and all the final result will return to the result folders starting with 'res'.  You could also change them in the configuration file named config.ini, or use signet -s described below. Please be careful if you are using the relative path instead of the absolute path. The config.ini will record the path relative to the folder the **signet is in**. If you are going to specify the directory of the output files, please make sure the temparory files and the result files are in different folders. An error message will be sent if you specified them as the same. In addition, the temporary files or result files can't be put in the subdirectories of default directories.
+All the intermediate result for each step will by default return to the corresponding folders in the tmporary directory starting with 'tmp' and all the final result will return to the result folders starting with 'res'.  You could also change the path of result files in the configuration file named config.ini, or use signet -s described below. Please be careful if you are using the relative path instead of the absolute path. The config.ini will record the path relative to the folder the **signet is installed**, in order to reach file mangement consistency. It's highly recommended to run command where signet is installed.  In each of the process, you could specify the result path, and you will be asked to whether purge the tmporary files, if you already have those. It's also suggested you keep a copy of the temporary files for each analysis, in case you need them in later steps.
 
 
 ## Introduction
 
-This streamline project provide users easy linux user interface for constructing whole-genome gene regulatory networks using transciptomic data (frome RNA sequence) and genotypic data. 
+This streamline project provide users easy linux user interface for constructing whole-genome gene regulatory networks using transciptomic data (from RNA sequence) and genotypic data. 
 
 Procedures of constructing gene regulatory networks can be split into six main steps:
-1. gene expression preprocess
-2. genenotype preprocess
+1. genotype preprocess
+2. gene expression preprocess
 3. adjust for covariates 
 4. cis-eQTL analysis
 5. network analysis
 6. network visualization
 
-To use this streamline tool, user need first to prepare the genetype data in xxx format and gene expression data in xxx format.  Then set the configuration file properly, and run each step command seperately.
+To use this streamline tool, user need first to prepare the genetype data in vcf format. Then set the configuration file properly, and run each step command seperately.
 
 ## Quit Start
 
@@ -66,7 +66,7 @@ We highly recommand you to prepare the gene expression data and genotype data fi
 
 #### 2. Set configuration 
 
-Here we set the number of chromosome to 22
+Here we set the number of chromosomes to 22
 
 **1.** 
 ```bash
@@ -81,7 +81,7 @@ That is, when no value is provided, we will display the value of the specified p
 ```bash
 signet -s
 ```
-to display the values of all parameters. We may also provide a way to reset the value of one parameter or all parameters to default values? Like the following?
+to display the values of all parameters. We may also provide a way to reset the value of one parameter or all parameters to default values.
 ```bash
 signet -s --d
 ```
@@ -123,14 +123,14 @@ signet -c
 
 For network construction.
 ```bash
-signet -n --nboots 10
+signet -n 
 ```
 
 
 #### 7. Network Visualization
 For network visualization.
 ```bash
-signet -v --freq 0.8 --ntop 2
+signet -v 
 ```
 
 ## Command Guide
@@ -197,15 +197,15 @@ This command will take the matrix of log2(x+1) transcriptome count data and prep
 
 #### Usage
 ```bash
-signet -t [--g GEXP_FILE] [--p MAP_FILE] [--r RES_FILE]
+signet -t [--g GEXP_FILE] [--p MAP_FILE]
 ```
 
 
 #### Description
 ```bash
- --g | --gexp                   set gene expression file
- --p | --pmap                   set the genecode gtf file
- --r | --rest                   set the result name
+ --g | --gexp                   gene expression file
+ --p | --pmap                   genecode gtf file
+ --r | --rest                   result prefix
 ```
 
 
@@ -274,18 +274,18 @@ signet -g [OPTION VAL] ...
 
 #### Description
 
-```
- --p | --ped                   set ped file
-                               
- --m | --map                   set map file
- --mind                        set the missing per individual cutoff
- --geno                        set the missing per markder cutoff
- --hwe                         set Hardy-Weinberg equilibrium cutoff
- --nchr                        set the chromosome number
- --r | --ref                   set the reference file for imputation
- --gmap                        set the genomic map file
- --i | --int                   set the interval length for impute2
- --ncores                      set the number of cores
+```                           
+  --p | --ped                   ped file
+  --m | --map                   map file
+  --mind                        missing rate per individual cutoff
+  --geno                        missing rate per markder cutoff
+  --hwe                         Hardy-Weinberg equilibrium cutoff
+  --nchr                        chromosome number
+  --r | --ref                   reference file for imputation
+  --gmap                        genomic map file
+  --i | --int                   interval length for impute2
+  --ncores                      number of cores
+  --resg                        result prefix
 ```
 
 #### Example
@@ -297,8 +297,8 @@ signet -g --help
 # Modify the paramter
 signet -g --ped ./data/geno-prep/test.ped \
           --map ./data/geno-prep/test.map \
-	  --ref /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr \
-	  --gmap /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+	      --ref /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr \
+	      --gmap /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
 ```
 
 #### Result
@@ -369,8 +369,8 @@ signet -a [--c CLINIVAL_FILE]
 
 #### Description
 ```
---c | clinical                   set the clinical file from GDC reporistory for your cohort
-
+ --c | clinical                   clinical file for your cohort
+ --resa                           result prefix
 ```
 
 
@@ -408,13 +408,17 @@ signet -c [OPTION VAL] ...
 
 #### Options
 ```
-  --alpha | -a			significant level for cis-eQTL
-  --nperms N_PERMS		numer of permutations
-  --upstream UP_STREAM		upstream region to flank the genetic region
-  --downstram DOWN_STREAM	downstream region to flank the genetic region
-  --map MAP_FILE		snps map file path
-  --maf MAF_FILE		snps maf file path
-  --help | -h			user guide
+  --gexp                        gene expression file after matching with genotype data
+  --gexp.withpc                 gene expression file without adjusting for pc, after matching with genotype data
+  --geno                        genotype file after matching with gene expression data
+  --map MAP_FILE                snps map file path
+  --maf MAF_FILE                snps maf file path
+  --gene_pos                    gene position file
+  --alpha | -a			        significance level for cis-eQTL
+  --nperms N_PERMS	         	numer of permutations
+  --upstream UP_STREAM		    upstream region to flank the genetic region
+  --downstram DOWN_STREAM	    downstream region to flank the genetic region
+  --resc                        result prefix
 ```
 
 #### Example
@@ -447,13 +451,20 @@ signet -n [OPTION VAL] ...
 #### description
 
 ```
-  --loc CIS.LOC                 location of the result after the cis-eQTL analysis
-  --cor MAX_COR 		maximum corr. coeff. b/w cis-eQTL of same gene
-  --ncores N_CORE		number of cores in each node
-  --memory MEMEORY	        memory in each node in GB
-  --queue QUEUE                 queue name
-  --walltime WALLTIME		maximum walltime of the server in seconds
+  --net.gexp.data               gene expression data for network analysis
+  --net.geno.data               marker data for network analysis
+  --sig.pair        	        significant index pairs for gene expression and markers
+  --net.genename                gene name files for gene expression data
+  --net.genepos                 gene position files for gene expression data
+  --ncis                        maximum number of biomarkers for each gene
+  --cor                         maximum correlation between biomarkers
   --nboots NBOOTS               number of bootstraps datasets
+  --memory MEMEORY	            memory in each node in GB
+  --queue QUEUE                 queue name
+  --ncores                      number of scores for each node
+  --walltime WALLTIME	     	maximum walltime of the server in seconds
+  --resn                        result prefix
+  --sif                         singularity container
 ```
 
 #### example
@@ -489,10 +500,17 @@ signet -v [OPTION VAL] ...
 #### description
 
 ```
-  --freq FREQENCY	 	bootstrap frequecy for the visualization
-  --ncount NET_COUNT		number of sub-networks
-  --ninfo NODE_INFO_FILE        node information file
-  --h | --help                  usage
+  --Afreq EDGE_FREQ            matrix of edge frequencies from bootstrap results
+  --freq FREQENCY              bootstrap frequecy for the visualization
+  --ntop N_TOP                 number of top sub-networks to visualize
+  --coef COEF                  coefficient of estimation for the original dataset
+  --vis.genepos                gene position file
+  --resv                       result prefix
+```
+
+#### example
+```
+signet -v 
 ```
 
 
@@ -508,31 +526,53 @@ signet -v [OPTION VAL] ...
     + `jpt.map` includes SNP location information with four columns, i.e., [chromosome SNP_name genetic_distance locus] for each of $p$ SNPs.
 
 
-### config File
+### Configuration File
 
-config.ini file  is under the main folder and saving the costomized parameters for the four stages of tspls process. Settings in config.ini are orgnized by different sections. 
+config.ini file is under the main folder and saving the costomized parameters for all of the stages of signet process. Settings in config.ini are orgnized by different sections. 
 
 Users can change the tspls process by modifying the paramter settings in the configuration file.
 
 
 ```bash
 # basic settings
+# basic settings
 [basic]
 nchr = 22
 ncore_local = 20
+cohort = TCGA
 
 [geno]
+(TCGA)
 ped.file = ./data/geno-prep/test.ped
 map.file = ./data/geno-prep/test.map
-gmap = /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
-ref = /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
+gmap = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+ref = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr
+int = 5000000
+resg.tcga = res/resg/signet
+
+(GTEx)
+vcf0 = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx.vcf
+vcf.file = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf
+read.file = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct
+anno = /work/jiang_bio/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+tissue = Lung
+resg.gtex = res/resg/signet
 
 [gexp]
+(TCGA)
 gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
 pmap.file = ./data/gexp-prep/gencode.v22.gene.gtf
+rest.tcga = res/rest/signet
 
-[match]
+(GTEx)
+reads.file = sdfs
+tpm.file = sfd
+gtf.file = sdfsd
+rest.gtex = res/rest/signet
+
+[adj]
 cli.file = ./data/clinical.tsv
+resa = res/resa/signet
 
 [plink]
 mind = 0.1
@@ -540,23 +580,24 @@ geno = 0.1
 hwe = 0.0001
 
 [ciseqtl]
-#snps.map = ./data/cis-eQTL/snps.map
-#snps.maf = ./data/cis-eQTL/snps.maf
-#gexp.file = ./data/cis-eQTL/gexp_prostate
-#matched.geno = ./data/cis-eQTL/matched.Geno
-#gene.pos = ./data/cis-eQTL/prostate_gene_pos
-snps.map = ./res/resm/new.Geno.map
-snps.maf = ./res/resm/new.Geno.maf
-matched.gexp = ./res/resm/gexp_rmpc.data
-matched.geno = ./res/resm/geno.data
-gene.pos = ./res/rest/gene_pos
+snps.map = ./res/resa/signet_new.Geno.map
+snps.maf = ./res/resa/signet_new.Geno.maf
+matched.gexp = ./res/resa/signet_gexp_rmpc.data
+matched.gexp.withpc = ./res/resa/signet_gexp.data
+matched.geno = ./res/resa/signet_geno.data
+gene.pos = ./res/rest/signet_gene_pos
 alpha.cis = 0.05
 nperms = 100
 upstream = 100000
 downstream = 100000
+resc = res/resc/signet
 
 [network]
-cis.loc = ./data/resn
+net.gexp.data = ./data/network/signet_net.gexp.data
+net.geno.data  = ./data/network/signet_all.eQTL.data
+sig.pair = ./data/network/all.sig.pValue_0.05
+net.genename = ./data/network/signet_net.genename
+net.genepos = ./data/network/signet_net.genepos
 ncis = 3
 cor = 0.9
 nboots = 10
@@ -564,23 +605,29 @@ ncores = 128
 queue = standby
 memory = 256
 walltime = 4:00:00
+resn = res/resn/signet
+sif = signet0.0.4.sif
 
 [netvis]
-freq = 0.8
-ntop = 2
+Afreq = res/resn/signet_Afreq
+freq = 1
+ntop = 3
+coef = tmp/tmpn/stage2/output/CoeffMat0
+vis.genepos = tmp/tmpn/net.genepos
+resv = res/resv/signet
 ```
 
 ### File Structure
 
-
 ```bash
 # script folder save all the code
 - script/
+    - gexp_prep
+    - geno_prep
+    - adj
 	- cis-eQTL/
 	- network/ 
 	- netvis/
-	- cis_portal.sh # entrance for cis-eqtl analysis
-	- network_portal.sh # entrance for network analysis 
-	- netvis_portal.sh #entrance for network visualization
 ```
+
 
