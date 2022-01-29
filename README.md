@@ -505,6 +505,8 @@ signet -v [OPTION VAL] ...
   --ntop N_TOP                 number of top sub-networks to visualize
   --coef COEF                  coefficient of estimation for the original dataset
   --vis.genepos                gene position file
+  --id                         NCBI taxonomy id, e.g. 9606 for Homo sapiens, 10090 for Mus musculus
+  --assembly                   genome assembly, e.g. hg38 for Homo sapiens, mm10 for Mus musculus
   --resv                       result prefix
 ```
 
@@ -614,6 +616,8 @@ freq = 1
 ntop = 3
 coef = tmp/tmpn/stage2/output/CoeffMat0
 vis.genepos = tmp/tmpn/net.genepos
+id = 9606
+assembly = hg38
 resv = res/resv/signet
 ```
 
