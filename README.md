@@ -503,7 +503,7 @@ signet -v [OPTION VAL] ...
   --vis.genepos                gene position file
   --id                         NCBI taxonomy id, e.g. 9606 for Homo sapiens, 10090 for Mus musculus
   --assembly                   genome assembly, e.g. hg38 for Homo sapiens, mm10 for Mus musculus
-   --tf                        transcirption factor file, you dont have to specify any file if its for human
+  --tf                        transcirption factor file, you dont have to specify any file if its for human
   --resv                       result prefix
 ```
 
