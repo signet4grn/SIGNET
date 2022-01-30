@@ -1,5 +1,6 @@
 
 
+
 # Documentation for SIGNET streamline project
 
 ## Getting started 
@@ -502,6 +503,7 @@ signet -v [OPTION VAL] ...
   --vis.genepos                gene position file
   --id                         NCBI taxonomy id, e.g. 9606 for Homo sapiens, 10090 for Mus musculus
   --assembly                   genome assembly, e.g. hg38 for Homo sapiens, mm10 for Mus musculus
+   --tf                        transcirption factor file, you dont have to specify any file if its for human
   --resv                       result prefix
 ```
 
@@ -522,6 +524,16 @@ signet -v
     + `jpt.ped` includes pedgree information, i.e., [family_ID individual_ID mother_ID father_ID gender phenotype] in the first six columns, followed by $2p$ columns with two columns for each of $p$ SNPs.
     + `jpt.map` includes SNP location information with four columns, i.e., [chromosome SNP_name genetic_distance locus] for each of $p$ SNPs.
 
+* Visualization data:
+   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1*p2 (p1>=p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+  + `freq`: The bootstrap frequency cutoff. A number in [0, 1].
+  + `ntop`: The number of top subnetworks to visualize. An integer number.
+  + `coef`: Includes the estimation of coefficients from the original data. It's a p1*p2 (p1>=p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+  + `vis.genepos`: Includes the position of genes to be visualized. It's a p1*4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
+  + `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
+  + `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
+  + `tf`: Includes the names of genes that are transcription factors. Should be a p1*1 matrix. Only need to be specified if the study is not for homo sapiens.
+
 
 ### Configuration File
 
@@ -531,7 +543,6 @@ Users can change the tspls process by modifying the paramter settings in the con
 
 
 ```bash
-# basic settings
 # basic settings
 [basic]
 nchr = 22
@@ -613,6 +624,7 @@ coef = tmp/tmpn/stage2/output/CoeffMat0
 vis.genepos = tmp/tmpn/net.genepos
 id = 9606
 assembly = hg38
+tf = human_tf
 resv = res/resv/signet
 ```
 
@@ -628,5 +640,6 @@ resv = res/resv/signet
 	- network/ 
 	- netvis/
 ```
+
 
 
