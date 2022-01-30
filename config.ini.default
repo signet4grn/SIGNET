@@ -78,5 +78,6 @@ ntop = 3
 coef = tmp/tmpn/stage2/output/CoeffMat0 
 vis.genepos = tmp/tmpn/net.genepos
 id = 9606
+tf = human_tf
 assembly = hg38
 resv = res/resv/signet
