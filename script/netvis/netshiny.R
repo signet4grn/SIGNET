@@ -66,9 +66,9 @@ bs_ring_string <- bs_ring_string[complete.cases(bs_ring_string), ]
 
 bs_ppi <- apply(bs_ring_string, 1, string_db$get_interactions)
 if(!exists("bs_ppi")) bs_ppi <- apply(bs_ring_string, 1, string_db$get_interactions)
-if(nrow(bs_ppi)==0) stop("No gene found in the database\n")
 
 bs_ppi <- do.call(rbind, bs_ppi)
+if(nrow(bs_ppi)==0) stop("No gene found in the database\n")
 unique_bs_ppi <- unique(bs_ppi)
 unique_bs_ppi_oriname <- unique_bs_ppi
 unique_bs_ppi_oriname[, 1] <- string_proteins[match(unique_bs_ppi[, 1], string_proteins[, "protein_external_id"]), "preferred_name"]
