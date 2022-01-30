@@ -6,6 +6,9 @@ freq=$(${cmdprefix}freq)
 ntop=$(${cmdprefix}ntop)
 coef=$(${cmdprefix}coef | sed -r '/^\s*$/d' | xargs readlink -f )
 genepos=$(${cmdprefix}vis.genepos | sed -r '/^\s*$/d' | xargs readlink -f )
+id=$(${cmdprefix}id | sed -r '/^\s*$/d')
+assembly=$(${cmdprefix}assembly | sed -r '/^\s*$/d')
+tf=$(${cmdprefix}tf | sed -r '/^\s*$/d' | xargs readlink -f )
 resv=$(${cmdprefix}resv | sed -r '/^\s*$/d')
 
 function usage() {
@@ -20,6 +23,9 @@ function usage() {
 	echo '  --ntop N_TOP                 number of top sub-networks to visualize'
         echo '  --coef COEF                  coefficient of estimation for the original dataset'
         echo '  --vis.genepos                gene position file'
+        echo '  --id                         NCBI taxonomy id, e.g. 9606 for Homo sapiens, 10090 for Mus musculus'
+        echo '  --assembly                   genome assembly, e.g. hg38 for Homo sapiens, mm10 for Mus musculus'
+        echo '  --tf                         transcirption factor file, you don't have to specify any file if it's for human'
         echo '  --resv                       result prefix'
 	echo '  --help                       usage'
 	exit -1
@@ -27,7 +33,7 @@ function usage() {
 
 [ $? -ne 0 ] && usage
 
-ARGS=`getopt -a -o r:,h -l ntop:,n:,coef:,c:,g:,vis.genepos:,Afreq:,freq:,f:,resv:,h:,help -- "$@"`
+ARGS=`getopt -a -o r:,h -l ntop:,n:,coef:,c:,g:,vis.genepos:,Afreq:,freq:,f:,id:,assembly:,tf:,resv:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -57,6 +63,18 @@ case "$1" in
                 genepos=$2
                 ${cmdprefix}vis.genepos $genepos
                 shift;;
+        --id)
+                id=$2
+                ${cmdprefix}id $id
+                shift;;
+        --assembly)
+                assembly=$2
+                ${cmdprefix}assembly $assembly
+                shift;;
+        --tf)
+                tf=$2
+                ${cmdprefix}tf $tf
+                shift;;
         --resv)
                 resv=$2
                 ${cmdprefix}resv $resv
@@ -78,7 +96,7 @@ resv=$(dir_check $resv)
 mkdir -p $SIGNET_RESULT_ROOT/resv
 mkdir -p $SIGNET_DATA_ROOT/netvis
 
-var="Afreq freq ntop coef genepos resv"
+var="Afreq freq ntop coef genepos id assembly tf resv"
 for i in $var
 do
 export "${i}"
