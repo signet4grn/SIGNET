@@ -415,10 +415,10 @@ signet -c [OPTION VAL] ...
   --map MAP_FILE                snps map file path
   --maf MAF_FILE                snps maf file path
   --gene_pos                    gene position file
-  --alpha | -a			        significance level for cis-eQTL
-  --nperms N_PERMS	         	numer of permutations
-  --upstream UP_STREAM		    upstream region to flank the genetic region
-  --downstram DOWN_STREAM	    downstream region to flank the genetic region
+  --alpha | -a			significance level for cis-eQTL
+  --nperms N_PERMS	        numer of permutations
+  --upstream UP_STREAM		upstream region to flank the genetic region
+  --downstram DOWN_STREAM	downstream region to flank the genetic region
   --resc                        result prefix
 ```
 
@@ -460,7 +460,7 @@ signet -n [OPTION VAL] ...
   --ncis                        maximum number of biomarkers for each gene
   --cor                         maximum correlation between biomarkers
   --nboots NBOOTS               number of bootstraps datasets
-  --memory MEMEORY	            memory in each node in GB
+  --memory MEMEORY	        memory in each node in GB
   --queue QUEUE                 queue name
   --ncores                      number of scores for each node
   --walltime WALLTIME	     	maximum walltime of the server in seconds
@@ -532,7 +532,7 @@ signet -v
   + `vis.genepos`: Includes the position of genes to be visualized. It's a p1*4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
   + `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
   + `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
-  + `tf`: Includes the names of genes that are transcription factors. Should be a p1*1 matrix. Only need to be specified if the study is not for homo sapiens.
+  + `tf`: Includes the names of genes that are transcription factors. Should be a p1*1 matrix. Only need to be specified if the study is **not** for homo sapiens.
 
 
 ### Configuration File
