@@ -66,14 +66,14 @@ We highly recommand you to prepare the gene expression data and genotype data fi
 
 #### 2. Set configuration 
 
-Here we set the number of chromosomes to 22
+Here we set the number of autosomes to 22, so the chromosomes we study are 1-22.
 
 **1.** 
 ```bash
 signet -s --nchr 22
 ```
 
-We can use the command to check below to check chromosome number
+We can use the command to check below to check autosome number
 ```bash
 signet -s --nchr
 ```
