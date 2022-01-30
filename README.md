@@ -478,12 +478,7 @@ signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
 
-`netvis` will automatically read the output from `network` step:
-* `adjacency_matrix`: the adjancency matrix for the estimated regulatory effects;
-* `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
-
-In addition, we also need user to provide node information file to identify transcription factor for visualization.
-
+You should first SSH -XY to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
 
 #### usage
 ```
