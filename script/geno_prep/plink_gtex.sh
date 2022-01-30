@@ -3,7 +3,7 @@ tissue=$1
 
 cd $SIGNET_TMP_ROOT/tmpg
 
-echo -e "Preprocessing using Plink\n"
+echo -e "Preprocessing using Plink ...\n"
 
 plink --vcf GTEx_snp.vcf --double-id --make-bed --missing --freq --recode --out Geno_GTEx_$tissue
 plink --bfile Geno_GTEx_$tissue --recodeA --mac 5 --out GTEx_$tissue
