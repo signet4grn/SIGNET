@@ -135,7 +135,9 @@ server <- function(input, output) {
     ##initialize, be careful about the genome build  
     ##only autochromosome
     #circos.initializeWithIdeogram(species = "hg38", chromosome.index = paste0("chr", 1:22))
-    circos.initializeWithIdeogram(species = "hg38", chromosome.index = paste0("chr", c(1:22, "X", "Y")))
+    # adapt to sex chromosomes 
+    tryCatch(circos.initializeWithIdeogram(species = Sys.getenv("assembly"), chromosome.index = paste0("chr", c(1:Sys.getenv("nchr"), "X", "Y"))),
+             error = function(e) circos.initializeWithIdeogram(species = Sys.getenv("assembly"), chromosome.index = paste0("chr", 1:Sys.getenv("nchr")))) 
     circos.genomicTrack(dout[[input$net_num2]], track.height=0.1, 
                         panel.fun = function(region, value, ...) {
                           circos.genomicPoints(region, value, col = 1, pch=20, cex=0.5)

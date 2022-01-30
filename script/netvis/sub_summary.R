@@ -7,7 +7,11 @@ if(ntop > length(comp_len)) stop(paste0("Please make ntop less than ", length(co
 top_idx <- order(comp_len, decreasing = T)[1:ntop]
 
 ## Transcription factor
+if(Sys.getenv("id"))==9606){
 tf <- unique(TFutils::cisbpTFcat_2.0$TF_Name)
+}else{
+tf <- read.table(Sys.getenv("tf"))
+}
 cat("Trying hard to summarize the results, this process could take a while if you have many subnetworks ... \n")
 
 for(i in 1:ntop){

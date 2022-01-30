@@ -31,7 +31,7 @@ bs_ring <- as.matrix(bs_ring)
 ## Take the coefficient as the weight for edges 
 ## E(net_bs)$coef to check coefficients
 ## Incorporate STRINGdb
-string_db <- STRINGdb$new(version="11", species=9606, input_directory="")
+string_db <- STRINGdb$new(version="11", species=as.numeric(Sys.getenv("id")), input_directory="")
 #string_db_graph <- string_db$get_graph()
 #string_score <- E(string_db_graph)$combined_score
 string_proteins <- string_db$get_proteins()
@@ -64,9 +64,9 @@ bs_ring_string[, 1] <- string_proteins[match(bs_ring[, 1], string_proteins[, "pr
 bs_ring_string[, 2] <- string_proteins[match(bs_ring[, 2], string_proteins[, "preferred_name"]), "protein_external_id"]  
 bs_ring_string <- bs_ring_string[complete.cases(bs_ring_string), ]
 
-
 bs_ppi <- apply(bs_ring_string, 1, string_db$get_interactions)
 if(!exists("bs_ppi")) bs_ppi <- apply(bs_ring_string, 1, string_db$get_interactions)
+if(nrow(bs_ppi)==0) stop("No gene found in the database\n")
 
 bs_ppi <- do.call(rbind, bs_ppi)
 unique_bs_ppi <- unique(bs_ppi)
