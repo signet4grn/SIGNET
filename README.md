@@ -1,6 +1,7 @@
 
 
 
+
 # Documentation for SIGNET streamline project
 
 ## Getting started 
@@ -69,7 +70,6 @@ We highly recommand you to prepare the gene expression data and genotype data fi
 
 Here we set the number of autosomes to 22, so the chromosomes we study are 1-22.
 
-**1.** 
 ```bash
 signet -s --nchr 22
 ```
@@ -98,9 +98,7 @@ For preprocessing genotype data
 signet -g
 ```
 
-
-
-#### 4. Genexpression Preprocess
+#### 4. Gene Expression Preprocess
 
 
 For preprocessing transcriptomic (gene expression) data
@@ -194,7 +192,10 @@ echo: Please check the file name
 ### Transcript-prep 
 (TCGA)
 
-This command will take the matrix of log2(x+1) transcriptome count data and preprocess it. Each row represent the data for each gene, each column represeing the data for each sample, while the first row is the sample name, and the first column is the gene name.
+This command will take the matrix of $log2(x+1)$ transcriptome count data and preprocess it. 
+
+* `gexp`: include the $log2(x+1)$ count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. 
+* `pmap`: genecode v22 gtf file.  
 
 #### Usage
 ```bash
@@ -262,10 +263,16 @@ signet -t --reads /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_re
 
 `geno-prep` command provide the user the interface of preprocessing genotype data. We will do quality control, after which we will use IMPUTE2 for imputation. 
 
-`geno-prep` receive the `map` file and `ped` file as input:
-- `data.map`: includes SNP location information with four columns,i.e.,[chromosomeSNP_name genetic_distance locus] for each of p SNPs.
-- `data.ped`: includes pedgree information, i.e.,[family_IDindividual_IDmother_IDfather_ID gender phenotype] in the ﬁrst six columns, followed by 2p columns with two columns for each of p SNPs
 
+- `ped`: includes pedgree information, i.e.,[family_IDindividual_IDmother_IDfather_ID gender phenotype] in the ﬁrst six columns, followed by 2$p$ columns with two columns for each of p SNPs
+- `map`: includes SNP location information with four columns,i.e.,[chromosomeSNP_name genetic_distance locus] for each of p SNPs.
+- `mind`: missing rate cutoff for individuals. It's a value in [0, 1].
+- `geno`: missing rate cutoff for SNPs. It's a value in [0, 1].
+- `hwe`: Hardy-Weinberg equilibrium cutoff. It's a value in (0, 1].
+- `ref`: Reference file for imputation. It could be downloaded from http://mathgen.stats.ox.ac.uk/impute/impute_v2.html. 
+- `gmap`: Genomic map file for imputation. It could be downloaded from It could be downloaded from http://mathgen.stats.ox.ac.uk/impute/impute_v2.html. 
+- `int`: interval length for imputation. Should be a positive number.
+- `ncores`: Number of cores in the current server. It's an integer larger than 1.
 
 #### Usage
 
@@ -279,9 +286,8 @@ signet -g [OPTION VAL] ...
   --p | --ped                   ped file
   --m | --map                   map file
   --mind                        missing rate per individual cutoff
-  --geno                        missing rate per markder cutoff
+  --geno                        missing rate per marker cutoff
   --hwe                         Hardy-Weinberg equilibrium cutoff
-  --nchr                        chromosome number
   --r | --ref                   reference file for imputation
   --gmap                        genomic map file
   --i | --int                   interval length for impute2
@@ -361,6 +367,7 @@ signet -g --vcf0 /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype/Gen
 
 output of `adj` will be saved under `/res/resa`:
 
+- `c`:  clinical file from TCGA project. Should contain at least a column of submitter id.
 
 #### usage
 ```bash
@@ -380,16 +387,21 @@ signet -a [--c CLINIVAL_FILE]
 signet -a --c ./data/clinical.tsv
 ```
 
-
+  
 ### cis-eqtl
 
-`cis-eqtl` command provide the basic tool for cis-eQTL analysis.  `cis-eqtl` command receive the input file from the previous preprocess step. We will automatically use the result from the previous steps:
-- `snps.map` : snp map data
-- `snps.maf` : snp maf data from previous step
-- `gexp.file` : gene expression file
-- `matched.geno` : matched genotype file from previous step
-- `gene.pos` : gene position file
+`cis-eqtl` command provide the basic tool for cis-eQTL analysis.  `cis-eqtl` command receive the input file from the previous preprocess step.
 
+- `gexp ` :  includes preprocessed gene expression infoamtion after matching with genotype data.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
+- `gexp.withpc` :  includes preprocessed gene expression infoamtion after matching with genotype data, without adjusting for PC as covariate.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
+- `snps.map` : includes snp position. It's a matrix in .map file format.
+- `snps.maf` : includes snp minor allele frequency data from previous step. It's a $q\times1$ matrix where $q$ is the number of snps after preprocessing.
+- `matched.geno` :  includes snp minor allele count data from previous step. It's a matrix of values 0, 1, 2, with  each row encodes information for a sample, and columns encodes information for a SNP.
+- `gene.pos` : includes gene position information. Where the first column is the gene name, second column is the chromosome index, e.g. "chr1", the third and fourth columns are for the start and the end positions, respectively. Please note that they are ranged in the order of the genes in the gexp and gexp.withpc file. 
+- `alpha.cis` : significance level for selecting cis-eQTLs. Should be a value in (0, 1). 
+- `nperms`: number of permutations. 
+- `upstream`: upstream region to flank the genetic region
+- `downstream`: downstream region to flank the genetic region
 
 The results of `cis-eqtl` are output in to the following files, and they are all saved under  `res/resc/cis-eQTL`:
 
@@ -431,16 +443,25 @@ signet -c [OPTION VAL] ...
 
 `network` command provide the tools for constructing a gene regulatory network (GRN) following the two-stage penalized least squares (2SPLS) approach proposed by [D. Zhang, M. Zhang, Ren, and Chen](https://arxiv.org/abs/1511.00370).
 
-`network` receive the input from the previous step:
+`network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
-**All of the following files has to be put under the directory /data/network
 
-* `net.Gexp.data`: output from `cis-eqtl`, is the expression data for genes with cis-eQTL:  
-* `all.eQTL.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL:  
-* `all.sig.pValue_0.05`: output from `cis-eqtl`,includes the $p$-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
- 
+* `net.gexp.data`: output from `cis-eqtl`, includes the expression data for genes with cis-eQTL.  It's a $n\times p$ matrix, with each row encodes the gene expression data for each sample. 
+* `net.geno.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL. It's a $n\times p$ matrix, with each row encodes the genotype data for each sample. 
+* `sig.pair`: output from `cis-eqtl`, includes the $p$-value of each pair of gene and its marginally significant ($p$-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
+ ....The third column is the p value for each pair. 
+* `net.genename`:  includes information of gene name. It's a  $p\times 1$ vector.
+* `net.genepos`:  includes information of gene position. It's a  $p\times 4$ matrix, with first column to be gene names, second columns chromosome index, e.g, "chr1", third and fourth columns are the start and end position of genes in the chromosome, respectly. 
+* `ncis`:  maximum number of biomarkers associated with each gene. An integer.
+* `cor`: maximum correlation between biomarkers. A value in [-1, 1].
+* `nboots`: number of bootstraps in calculation. An integer. 
+* `queue`: queue name in the cluster. A string.
+* `ncores`: number of cores for each node.   
+* `memory`: memory of each node, in GB.
+* `walltime`: maximum wall time for cluster.
+* `sif`:  A singularity container, in .sif format.
+
 The final output files of `network` will be saved under `/res/network/resn`:
-* `adjacency_matrix`: the adjancency matrix for the estimated regulatory effects;
 * `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
 
 #### usage
@@ -450,7 +471,6 @@ signet -n [OPTION VAL] ...
 
 
 #### description
-
 ```
   --net.gexp.data               gene expression data for network analysis
   --net.geno.data               marker data for network analysis
@@ -478,6 +498,17 @@ signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 ### netvis
 
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
+
+   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a $p_1\times p_2$ $(p_1\geq p_2)$ **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+  + `freq`: The bootstrap frequency cutoff. A number in [0, 1].
+  + `ntop`: The number of top subnetworks to visualize. An integer number.
+  + `coef`: Includes the estimation of coefficients from the original data. It's a $p_1\times p_2$ $(p_1\geq p_2)$ file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+  + `vis.genepos`: Includes the position of genes to be visualized. It's a $p_1\times 4$ matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
+  + `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
+  + `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
+  + `tf`: Includes the names of genes that are transcription factors. Should be a $p_1\times 1$ matrix. Only need to be specified if the study is **not** for homo sapiens.
+
+
 
 You should first SSH -XY to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
 
@@ -514,25 +545,6 @@ signet -v
 
 
 ## Appendix
-
-### Data Format
-* Gene Expression Data (`GeneExpression/jpt.ge` \& `GeneExpression/jpt.gpos`):
-    + `jpt.ge` includes the sample IDs in the first column, and the rest is an $n\times p$ matrix with $p$ genes for each of $n$ individuals;
-    + `jpt.gpos` is a gene annotation file, including four columns with the first one for *Gene Symbol*, the second one for *Chromosome No.*, the third for *Start Position*, and the last for *End Position*.
-
-* Genotype Data (`Genotype/jpt.map` \& `Genotype/jpt.ped`):
-    + `jpt.ped` includes pedgree information, i.e., [family_ID individual_ID mother_ID father_ID gender phenotype] in the first six columns, followed by $2p$ columns with two columns for each of $p$ SNPs.
-    + `jpt.map` includes SNP location information with four columns, i.e., [chromosome SNP_name genetic_distance locus] for each of $p$ SNPs.
-
-* Visualization data:
-   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1*p2 (p1>=p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
-  + `freq`: The bootstrap frequency cutoff. A number in [0, 1].
-  + `ntop`: The number of top subnetworks to visualize. An integer number.
-  + `coef`: Includes the estimation of coefficients from the original data. It's a p1*p2 (p1>=p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
-  + `vis.genepos`: Includes the position of genes to be visualized. It's a p1*4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
-  + `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
-  + `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
-  + `tf`: Includes the names of genes that are transcription factors. Should be a p1*1 matrix. Only need to be specified if the study is **not** for homo sapiens.
 
 
 ### Configuration File
