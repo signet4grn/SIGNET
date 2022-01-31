@@ -395,7 +395,7 @@ signet -a --c ./data/clinical.tsv
 - `gexp ` :  includes preprocessed gene expression infoamtion after matching with genotype data.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
 - `gexp.withpc` :  includes preprocessed gene expression infoamtion after matching with genotype data, without adjusting for PC as covariate.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
 - `snps.map` : includes snp position. It's a matrix in .map file format.
-- `snps.maf` : includes snp minor allele frequency data from previous step. It's a q \times 1 matrix where qFR is the number of snps after preprocessing.
+- `snps.maf` : includes snp minor allele frequency data from previous step. It's a q * 1 matrix where qFR is the number of snps after preprocessing.
 - `matched.geno` :  includes snp minor allele count data from previous step. It's a matrix of values 0, 1, 2, with  each row encodes information for a sample, and columns encodes information for a SNP.
 - `gene.pos` : includes gene position information. Where the first column is the gene name, second column is the chromosome index, e.g. "chr1", the third and fourth columns are for the start and the end positions, respectively. Please note that they are ranged in the order of the genes in the gexp and gexp.withpc file. 
 - `alpha.cis` : significance level for selecting cis-eQTLs. Should be a value in (0, 1). 
@@ -446,12 +446,12 @@ signet -c [OPTION VAL] ...
 `network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
 
-* `net.gexp.data`: output from `cis-eqtl`, includes the expression data for genes with cis-eQTL.  It's a n \times p matrix, with each row encodes the gene expression data for each sample. 
-* `net.geno.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL. It's a n \times p matrix, with each row encodes the genotype data for each sample. 
+* `net.gexp.data`: output from `cis-eqtl`, includes the expression data for genes with cis-eQTL.  It's a n * p matrix, with each row encodes the gene expression data for each sample. 
+* `net.geno.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL. It's a n * p matrix, with each row encodes the genotype data for each sample. 
 * `sig.pair`: output from `cis-eqtl`, includes the p-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
  ....The third column is the p value for each pair. 
-* `net.genename`:  includes information of gene name. It's a  p \times 1 vector.
-* `net.genepos`:  includes information of gene position. It's a  p \times 4 matrix, with first column to be gene names, second columns chromosome index, e.g, "chr1", third and fourth columns are the start and end position of genes in the chromosome, respectly. 
+* `net.genename`:  includes information of gene name. It's a  p * 1 vector.
+* `net.genepos`:  includes information of gene position. It's a  p * 4 matrix, with first column to be gene names, second columns chromosome index, e.g, "chr1", third and fourth columns are the start and end position of genes in the chromosome, respectly. 
 * `ncis`:  maximum number of biomarkers associated with each gene. An integer.
 * `cor`: maximum correlation between biomarkers. A value in [-1, 1].
 * `nboots`: number of bootstraps in calculation. An integer. 
