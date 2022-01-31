@@ -502,7 +502,7 @@ signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
    + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
   + `freq`: The bootstrap frequency cutoff. A number in [0, 1].
   + `ntop`: The number of top subnetworks to visualize. An integer number.
-  + `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+  + `coef`: Includes the estimation of coefficients from the original data. It's a $`p_1 \times p_2 (p_1 \geq p_2)`$ file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
   + `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
   + `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
   + `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
