@@ -395,7 +395,7 @@ signet -a --c ./data/clinical.tsv
 - `gexp ` :  includes preprocessed gene expression infoamtion after matching with genotype data.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
 - `gexp.withpc` :  includes preprocessed gene expression infoamtion after matching with genotype data, without adjusting for PC as covariate.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
 - `snps.map` : includes snp position. It's a matrix in .map file format.
-- `snps.maf` : includes snp minor allele frequency data from previous step. It's a q * 1 matrix where qFR is the number of snps after preprocessing.
+- `snps.maf` : includes snp minor allele frequency data from previous step. It's a q * 1 matrix where q is the number of snps after preprocessing.
 - `matched.geno` :  includes snp minor allele count data from previous step. It's a matrix of values 0, 1, 2, with  each row encodes information for a sample, and columns encodes information for a SNP.
 - `gene.pos` : includes gene position information. Where the first column is the gene name, second column is the chromosome index, e.g. "chr1", the third and fourth columns are for the start and the end positions, respectively. Please note that they are ranged in the order of the genes in the gexp and gexp.withpc file. 
 - `alpha.cis` : significance level for selecting cis-eQTLs. Should be a value in (0, 1). 
@@ -499,14 +499,14 @@ signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
 
-   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p_1 \times p_2 (p_1\geq p_2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
   + `freq`: The bootstrap frequency cutoff. A number in [0, 1].
   + `ntop`: The number of top subnetworks to visualize. An integer number.
-  + `coef`: Includes the estimation of coefficients from the original data. It's a p_1 \times p_2 (p_1\geq p_2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
-  + `vis.genepos`: Includes the position of genes to be visualized. It's a p_1 \times 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
+  + `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+  + `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
   + `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
   + `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
-  + `tf`: Includes the names of genes that are transcription factors. Should be a p_1 \times 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
+  + `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
 
 
 
