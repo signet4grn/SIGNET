@@ -192,9 +192,9 @@ echo: Please check the file name
 ### Transcript-prep 
 (TCGA)
 
-This command will take the matrix of $log2(x+1)$ transcriptome count data and preprocess it. 
+This command will take the matrix of log2(x+1) transcriptome count data and preprocess it. 
 
-* `gexp`: include the $log2(x+1)$ count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. 
+* `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. 
 * `pmap`: genecode v22 gtf file.  
 
 #### Usage
@@ -264,7 +264,7 @@ signet -t --reads /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_re
 `geno-prep` command provide the user the interface of preprocessing genotype data. We will do quality control, after which we will use IMPUTE2 for imputation. 
 
 
-- `ped`: includes pedgree information, i.e.,[family_IDindividual_IDmother_IDfather_ID gender phenotype] in the ﬁrst six columns, followed by 2$p$ columns with two columns for each of p SNPs
+- `ped`: includes pedgree information, i.e.,[family_IDindividual_IDmother_IDfather_ID gender phenotype] in the ﬁrst six columns, followed by 2p columns with two columns for each of p SNPs
 - `map`: includes SNP location information with four columns,i.e.,[chromosomeSNP_name genetic_distance locus] for each of p SNPs.
 - `mind`: missing rate cutoff for individuals. It's a value in [0, 1].
 - `geno`: missing rate cutoff for SNPs. It's a value in [0, 1].
@@ -395,7 +395,7 @@ signet -a --c ./data/clinical.tsv
 - `gexp ` :  includes preprocessed gene expression infoamtion after matching with genotype data.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
 - `gexp.withpc` :  includes preprocessed gene expression infoamtion after matching with genotype data, without adjusting for PC as covariate.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
 - `snps.map` : includes snp position. It's a matrix in .map file format.
-- `snps.maf` : includes snp minor allele frequency data from previous step. It's a $q\times1$ matrix where $q$ is the number of snps after preprocessing.
+- `snps.maf` : includes snp minor allele frequency data from previous step. It's a q \times 1 matrix where qFR is the number of snps after preprocessing.
 - `matched.geno` :  includes snp minor allele count data from previous step. It's a matrix of values 0, 1, 2, with  each row encodes information for a sample, and columns encodes information for a SNP.
 - `gene.pos` : includes gene position information. Where the first column is the gene name, second column is the chromosome index, e.g. "chr1", the third and fourth columns are for the start and the end positions, respectively. Please note that they are ranged in the order of the genes in the gexp and gexp.withpc file. 
 - `alpha.cis` : significance level for selecting cis-eQTLs. Should be a value in (0, 1). 
@@ -446,12 +446,12 @@ signet -c [OPTION VAL] ...
 `network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
 
-* `net.gexp.data`: output from `cis-eqtl`, includes the expression data for genes with cis-eQTL.  It's a $n\times p$ matrix, with each row encodes the gene expression data for each sample. 
-* `net.geno.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL. It's a $n\times p$ matrix, with each row encodes the genotype data for each sample. 
-* `sig.pair`: output from `cis-eqtl`, includes the $p$-value of each pair of gene and its marginally significant ($p$-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
+* `net.gexp.data`: output from `cis-eqtl`, includes the expression data for genes with cis-eQTL.  It's a n \times p matrix, with each row encodes the gene expression data for each sample. 
+* `net.geno.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL. It's a n \times p matrix, with each row encodes the genotype data for each sample. 
+* `sig.pair`: output from `cis-eqtl`, includes the p-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
  ....The third column is the p value for each pair. 
-* `net.genename`:  includes information of gene name. It's a  $p\times 1$ vector.
-* `net.genepos`:  includes information of gene position. It's a  $p\times 4$ matrix, with first column to be gene names, second columns chromosome index, e.g, "chr1", third and fourth columns are the start and end position of genes in the chromosome, respectly. 
+* `net.genename`:  includes information of gene name. It's a  p \times 1 vector.
+* `net.genepos`:  includes information of gene position. It's a  p \times 4 matrix, with first column to be gene names, second columns chromosome index, e.g, "chr1", third and fourth columns are the start and end position of genes in the chromosome, respectly. 
 * `ncis`:  maximum number of biomarkers associated with each gene. An integer.
 * `cor`: maximum correlation between biomarkers. A value in [-1, 1].
 * `nboots`: number of bootstraps in calculation. An integer. 
@@ -499,14 +499,14 @@ signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
 
-   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a $p_1\times p_2$ $(p_1\geq p_2)$ **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p_1 \times p_2 (p_1\geq p_2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
   + `freq`: The bootstrap frequency cutoff. A number in [0, 1].
   + `ntop`: The number of top subnetworks to visualize. An integer number.
-  + `coef`: Includes the estimation of coefficients from the original data. It's a $p_1\times p_2$ $(p_1\geq p_2)$ file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
-  + `vis.genepos`: Includes the position of genes to be visualized. It's a $p_1\times 4$ matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
+  + `coef`: Includes the estimation of coefficients from the original data. It's a p_1 \times p_2 (p_1\geq p_2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+  + `vis.genepos`: Includes the position of genes to be visualized. It's a p_1 \times 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
   + `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
   + `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
-  + `tf`: Includes the names of genes that are transcription factors. Should be a $p_1\times 1$ matrix. Only need to be specified if the study is **not** for homo sapiens.
+  + `tf`: Includes the names of genes that are transcription factors. Should be a p_1 \times 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
 
 
 
