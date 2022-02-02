@@ -49,6 +49,8 @@ resg=$($SIGNET_ROOT/signet -s --resg.tcga)
 
 ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,gmap:,i:,int:,ncores:,h:,resg:,help -- "$@"`
 
+echo $hwe 
+echo $nchr
 
 eval set -- "${ARGS}"
 

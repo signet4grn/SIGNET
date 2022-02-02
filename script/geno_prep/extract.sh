@@ -1,6 +1,6 @@
 ## This sciprt will apply plink commands to the files
 
-cd $tmpg
+cd $SIGNET_TMP_ROOT/tmpg
 
 echo -e "Extracting genotype data\n"
 

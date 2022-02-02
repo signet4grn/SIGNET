@@ -4,3 +4,7 @@ nohup.out
 ../nohup.out
 *nohup.out*
 ../tmp
+*.swp*
+@
+*nfs*
+*pycache*

@@ -5,13 +5,12 @@ usage() {
     echo "signet -g [OPTION VAL] ..."
     echo -e "\n"
     echo "Description:"
-    echo "  --vcf0                        set the VCF file before phasing"
-    echo "  --vcf                         set the VCF file for genotype data"
-    echo "  --read                        set the read file for gene expression data"
-    echo "  --anno                        set the annotation file"
-    echo "  --tissue                      set the tissue type"
-    echo "  --tmpg                        set the temporary file directory"
-    echo "  --resg                        set the result file directory"
+    echo "  --vcf0                        VCF file before phasing"
+    echo "  --vcf                         VCF file for genotype data after phasing"
+    echo "  --read                        read file for gene expression data"
+    echo "  --anno                        nnotation file"
+    echo "  --tissue                      tissue type"
+    echo "  --resg                        result prefix"
     exit -1
 }
 
@@ -21,10 +20,9 @@ vcf=$($SIGNET_ROOT/signet -s --vcf.file)
 gexpread=$($SIGNET_ROOT/signet -s --read.file)
 anno=$($SIGNET_ROOT/signet -s --anno)
 tissue=$($SIGNET_ROOT/signet -s --tissue)
-tmpg=$($SIGNET_ROOT/signet -s --tmpg.gtex)
 resg=$($SIGNET_ROOT/signet -s --resg.gtex)
 
-ARGS=`getopt -a -o a:r -l v:,vcf:,vcf0:,r:,read:,a:,anno:,t:,tissue:,h:,tmpg:,resg:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l v:,vcf:,vcf0:,r:,read:,a:,anno:,t:,tissue:,h:,resg:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -55,10 +53,6 @@ case "$1" in
                 tissue=$2
                 $SIGNET_ROOT/signet -s --tissue $tissue
                 shift;;
-	--tmpg)
-                tmpg=$2
-                $SIGNET_ROOT/signet -s --tmpg.gtex $tmpg
-                shift;;
         --resg)
                 resg=$2
                 $SIGNET_ROOT/signet -s --resg.gtex $resg
@@ -73,13 +67,16 @@ esac
 shift
 done
 
-var="vcf0 vcf gexpread anno tissue tmpg resg"
+file_purge $SIGNET_TMP_ROOT/tmpg
+resg=$(dir_check $resg)
+mkdir -p $SIGNET_RESULT_ROOT/resg
+mkdir -p $SIGNET_DATA_ROOT/geno-prep
+
+var="vcf0 vcf gexpread anno tissue resg"
 for i in $var
 do
 export "${i}"
- #test
-        sh -c "${i}"
-done 
+done
 
 echo "vcf.file: "$vcf
 echo -e "\n"
