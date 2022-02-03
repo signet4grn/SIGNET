@@ -4,7 +4,7 @@ ncore=$($SIGNET_ROOT/signet -s --ncore_local)
 
 cd $SIGNET_TMP_ROOT/tmpg
 
-echo -e "Splitting genotype data \n"
+echo -e "Splitting genotype data ... \n"
 $SIGNET_SCRIPT_ROOT/geno_prep/splitchr.pl matched.Geno.data impute/impute_Genotype.sizes $nchr 
 
 
@@ -40,4 +40,5 @@ $SIGNET_SCRIPT_ROOT/adj/extractsnp.pl snps5.idx  matched.Geno.data > ${resa}_new
 ## Summarize minor allele frequency for SNPs in new.Geno output to new.Geno.maf
 echo $(wc -l < ${resa}_new.Geno) >> sz
 
+echo -e "Summarizing minor allele frequencies ... \n"
 Rscript $SIGNET_SCRIPT_ROOT/adj/masummary.R
