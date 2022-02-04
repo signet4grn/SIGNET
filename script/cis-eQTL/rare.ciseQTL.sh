@@ -52,5 +52,5 @@ Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/rare.eQTLdata.r "alpha='$alpha'"
 wait
 
 nsig=$(awk '{print $2}' ${resc}_rare.sig.pValue_${alpha} |sort | uniq |wc -l)
-ngene=$(awk '{print $1}' ${res}_rare.sig.pValue_${alpha} | sort | uniq | wc -l)
+ngene=$(awk '{print $1}' ${resc}_rare.sig.pValue_${alpha} | sort | uniq | wc -l)
 echo "----" $nsig "significant rare variants enriched regions found for "$ngene" genes" 
