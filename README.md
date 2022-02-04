@@ -500,7 +500,7 @@ signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
 
-   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) matrix where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
   + `freq`: The bootstrap frequency cutoff. A number in [0, 1].
   + `ntop`: The number of top subnetworks to visualize. An integer number.
   + `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
