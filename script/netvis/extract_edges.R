@@ -4,7 +4,7 @@ eps <- .Machine$double.eps
 
 ########################################################
 ### edge list with gene symbol
-Afreq=as.matrix(read.table(Sys.getenv("Afreq"), sep=","))
+Afreq=as.matrix(read.csv(Sys.getenv("Afreq")))
 #threlist=c(0.8,0.9,0.95)
 genePOS <- read.table(Sys.getenv("genepos"))
 genePOS=as.matrix(genePOS)

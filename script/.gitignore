@@ -8,3 +8,5 @@ nohup.out
 @
 *nfs*
 *pycache*
+*.wap*
+*.swap*
