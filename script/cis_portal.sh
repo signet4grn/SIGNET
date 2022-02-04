@@ -9,8 +9,8 @@ geno=$(${cmdprefix}matched.geno | sed -r '/^\s*$/d'| xargs readlink -f)
 gene_pos=$(${cmdprefix}gene.pos | sed -r '/^\s*$/d'| xargs readlink -f)
 alpha=$(${cmdprefix}alpha.cis | sed -r '/^\s*$/d')
 nperms=$(${cmdprefix}nperms)
-upstream=$(${cmdprefix}upstream)
-downstream=$(${cmdprefix}downstream)
+upstream=$(${cmdprefix}upstream | sed -r '/^\s*$/d')
+downstream=$(${cmdprefix}downstream | sed -r '/^\s*$/d') 
 resc=$(${cmdprefix}resc | sed -r '/^\s*$/d')
 
 function usage() {
