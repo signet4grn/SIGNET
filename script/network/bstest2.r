@@ -181,7 +181,7 @@ cat(paste0("Please reset the ncores parameter to less than ", floor(memory/maxme
 }
 
 a <- chron(time=walltime, format=c(times="h:m:s"))
-gene_trunk <- floor(0.75*(3600*hours(a)+60*minutes(a)+seconds(a))/maxlap)
+gene_trunk <- floor(0.5*(3600*hours(a)+60*minutes(a)+seconds(a))/maxlap)
 cat(paste0("We will include ", gene_trunk, " genes in one script\n"))
 
 write.table(gene_trunk, file="gene_trunk_stage2", row.names=F, col.names=F, quote=F, sep=" ")
