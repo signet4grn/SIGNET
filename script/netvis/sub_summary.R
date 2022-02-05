@@ -87,7 +87,7 @@ node_enrich <- character(length=length(V(g_top[[i]])$name))
 for(j in 1:nrow(enrichment[[i]])){
   ##name list in i th category
   gene_enrich <- as.matrix(unlist(strsplit(enrichment[[i]][j, "inputGenes"], split=",")))
-  idx <- match(mapped[match(gene_enrich, mapped[, 2]), 1], toupper(V(g_top[[i]])$name))
+  idx <- match(toupper(mapped[match(gene_enrich, mapped[, 2]), 1]), toupper(V(g_top[[i]])$name))
   node_enrich[idx] <- paste(node_enrich[idx], enrichment[[i]][j, "description"], " (p val = ", enrichment[[i]][j, "p_value"],"),", sep="")
 }
 node_enrich <- gsub(",$", "", node_enrich)
