@@ -10,7 +10,7 @@ top_idx <- order(comp_len, decreasing = T)[1:ntop]
 if(Sys.getenv("id")==9606){
 tf <- unique(TFutils::cisbpTFcat_2.0$TF_Name)
 }else{
-tf <- read.table(Sys.getenv("tf"))
+tf <- as.matrix(read.table(Sys.getenv("tf")))
 }
 cat("Trying hard to summarize the results, this process could take a while if you have many subnetworks ... \n")
 
@@ -87,7 +87,7 @@ node_enrich <- character(length=length(V(g_top[[i]])$name))
 for(j in 1:nrow(enrichment[[i]])){
   ##name list in i th category
   gene_enrich <- as.matrix(unlist(strsplit(enrichment[[i]][j, "inputGenes"], split=",")))
-  idx <- match(mapped[match(gene_enrich, mapped[, 2]), 1], V(g_top[[i]])$name)
+  idx <- match(mapped[match(gene_enrich, mapped[, 2]), 1], toupper(V(g_top[[i]])$name))
   node_enrich[idx] <- paste(node_enrich[idx], enrichment[[i]][j, "description"], " (p val = ", enrichment[[i]][j, "p_value"],"),", sep="")
 }
 node_enrich <- gsub(",$", "", node_enrich)
