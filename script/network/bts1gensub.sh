@@ -57,7 +57,7 @@ do
     B=`expr $i \* $ncores`
     awk "NR >= $A && NR <= $B {print}" < params.txt > params$i.txt
     perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
-    echo "sbatch -W sub$i.sh" >> qsub1.sh
+    echo "sbatch -W sub$i.sh &" >> qsub1.sh
 done
 else
 for i in $( seq 1 $NSUB )
@@ -66,15 +66,17 @@ do
     B=`expr $i \* $ncores`
     awk "NR >= $A && NR <= $B {print}" < params.txt > params$i.txt      
     perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
-    echo "sbatch -W sub$i.sh" >> qsub1.sh
+    echo "sbatch -W sub$i.sh &" >> qsub1.sh
 done
 
 LEFTOVER=$(( ($ncores * NSUB) + 1))
 CHUNK=$(( NSUB +1 ))
 awk "NR >= $LEFTOVER && NR <= $NJOBS {print}" < params.txt > params$CHUNK.txt      
 perl -pe 's/XXX/'$CHUNK'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$CHUNK.sh
-echo "sbatch -W sub$CHUNK.sh" >> qsub1.sh
+echo "sbatch -W sub$CHUNK.sh &" >> qsub1.sh
 fi
+
+echo "wait" >> qsub1.sh
 
 tmpqueue=($(slist|grep $queue))
 echo -e "\nThere are in total" ${tmpqueue[1]} "cores available\n"
@@ -82,7 +84,6 @@ echo -e "There are "${tmpqueue[2]}" jobs in queue and "${tmpqueue[3]}" jobs are 
 echo -e "Please wait for Stage 1 to complete...\n"
 
 time sh qsub1.sh
-wait
 
 echo -e "Checking the number of files\n"
 
