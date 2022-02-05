@@ -10,6 +10,7 @@ id=$(${cmdprefix}id | sed -r '/^\s*$/d')
 assembly=$(${cmdprefix}assembly | sed -r '/^\s*$/d')
 tf=$(${cmdprefix}tf | sed -r '/^\s*$/d' | xargs readlink -f )
 resv=$(${cmdprefix}resv | sed -r '/^\s*$/d')
+nchr=$(${cmdprefix}nchr)
 
 function usage() {
         echo -e 'Pre-requisite: \n'
@@ -96,7 +97,7 @@ resv=$(dir_check $resv)
 mkdir -p $SIGNET_RESULT_ROOT/resv
 mkdir -p $SIGNET_DATA_ROOT/netvis
 
-var="Afreq freq ntop coef genepos id assembly tf resv"
+var="Afreq freq nchr ntop coef genepos id assembly tf resv"
 for i in $var
 do
 export "${i}"
