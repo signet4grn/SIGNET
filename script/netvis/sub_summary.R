@@ -66,7 +66,7 @@ mapped_id <- mapped$STRING_id
 ##STRING enrichment 
 # p_ppi <- string_db$get_ppi_enrichment(mapped_id)$enrichment
 ## An error would occur where too many genes are consulted at the same time
-tryCatch(enrich <- string_db$get_enrichment(mapped_id), error = function(e) print("You may have too many input genes"))
+tryCatch(enrich <- string_db$get_enrichment(mapped_id), error = function(e) cat("\nYou may have too many input genes"))
 
 
 ##sort by p value 
