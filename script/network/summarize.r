@@ -6,14 +6,13 @@ library(data.table)
 Afiles=list.files(pattern='AdjMat')
 ##remove original
 Afiles <- Afiles[-1]
-A=lapply(Afiles,fread)
-N=length(A)
-N
+N <- length(Afiles)
 
 Afreq <- 0
 
 for (i in 1:N) {
-    Afreq=Afreq+as.matrix(A[[i]]/N)
+    A <- fread(Afiles[i])
+    Afreq=Afreq+as.matrix(A/N)
     print(i)
 }
 fwrite(Afreq, paste0(Sys.getenv("resn"), "_Afreq"), row.names=F,col.names=F)
