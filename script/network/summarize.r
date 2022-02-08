@@ -14,6 +14,7 @@ for (i in 1:N) {
     A <- fread(Afiles[i])
     Afreq=Afreq+as.matrix(A/N)
     print(i)
+    gc()
 }
 fwrite(Afreq, paste0(Sys.getenv("resn"), "_Afreq"), row.names=F,col.names=F)
 
