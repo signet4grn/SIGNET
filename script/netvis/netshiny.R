@@ -31,7 +31,7 @@ bs_ring <- as.matrix(bs_ring)
 ## Take the coefficient as the weight for edges 
 ## E(net_bs)$coef to check coefficients
 ## Incorporate STRINGdb
-string_db <- STRINGdb$new(version="11", species=as.numeric(Sys.getenv("id")), input_directory="")
+string_db <- STRINGdb$new(version="11.5", species=as.numeric(Sys.getenv("id")), input_directory="")
 #string_db_graph <- string_db$get_graph()
 #string_score <- E(string_db_graph)$combined_score
 string_proteins <- string_db$get_proteins()

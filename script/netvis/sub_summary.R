@@ -49,8 +49,7 @@ net_undir <- as.undirected(net_simp, mode="collapse", edge.attr.comb=list(weight
 c <- cluster_fast_greedy(net_undir, weights=E(net_undir)$weight)
 nodes[[i]]$modularity <- as.character(membership(c))
 
-# ##STRING PPI 
-mapped <- string_db$map(data.frame(gene=V(g_top[[i]])$name), "gene", removeUnmappedRows = T)
+mapped <- string_db$map( data.frame(gene=V(g_top[[i]])$name), "gene", removeUnmappedRows=T )
 mapped_id <- mapped$STRING_id
 # ## map edge to string id 
 # string_e <- g_top_e[[i]]
