@@ -1,19 +1,4 @@
 #!/bin/bash
-options=""
-for((i=1;i<=$#;i++)); do
-    j=${!i}
-    options="${options} $j "
-done
-
-cohort=$($SIGNET_ROOT/signet -s --cohort | sed -r '/^\s*$/d')
-
-if [[ $cohort == "GTEx" ]];then
-echo -e "Preprocessing data for GTEx cohort\n"
-$SIGNET_SCRIPT_ROOT/adj_portal_gtex.sh ${options}
-exit 1
-fi
-
-
 usage() {
     echo "Usage:"
     echo "  signet -a [--c CLINICAL_FILE]" 
@@ -25,9 +10,9 @@ usage() {
 }
 
 clifile=$($SIGNET_ROOT/signet -s --cli.file | sed -r '/^\s*$/d')
-resa=$($SIGNET_ROOT/signet -s --resa.tcga | sed -r '/^\s*$/d')
-resg=$($SIGNET_ROOT/signet -s --resg.tcga | sed -r '/^\s*$/d')
-rest=$($SIGNET_ROOT/signet -s --rest.tcga | sed -r '/^\s*$/d')
+resa=$($SIGNET_ROOT/signet -s --resa.gtex | sed -r '/^\s*$/d')
+resg=$($SIGNET_ROOT/signet -s --resg.gtex | sed -r '/^\s*$/d')
+rest=$($SIGNET_ROOT/signet -s --rest.gtex | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l h:,c:,clinical:,resa:,help -- "$@"`
 
@@ -42,7 +27,7 @@ case "$1" in
 		shift;;
         --resa)
                 resa=$2
-                $SIGNET_ROOT/signet -s --resa.tcga $resa
+                $SIGNET_ROOT/signet -s --resa.gtex $resa
                 shift;;
         -h|--help)
                 usage
@@ -65,5 +50,5 @@ do
 export "${i}"
 done
 
-$SIGNET_SCRIPT_ROOT/adj/adj.sh && echo -e "Gene Expression and Genotype matching Finished\n" 
+$SIGNET_SCRIPT_ROOT/adj/adj_gtex.sh && echo -e "Gene Expression and Genotype matching Finished\n" 
 
