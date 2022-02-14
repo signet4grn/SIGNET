@@ -34,8 +34,12 @@ gtf.file = sdfsd
 rest.gtex = res/rest/signet
 
 [adj]
+(TCGA)
 cli.file = ./data/clinical.tsv
-resa = res/resa/signet
+resa.tcga = res/resa/signet
+
+(GTEX)
+resa.gtex = res/resa/signet
 
 [plink]
 mind = 0.1
