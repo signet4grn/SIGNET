@@ -1,21 +1,17 @@
+#!/bin/bash
+$SIGNET_SCRIPT_ROOT/adj/ld.sh &&
 
-##combine them 
-../codes/combine_covariates.py --genotype_pcs="pc_lung.txt" \
---add_covariates="explicit_cov_lung.txt"  \
-expression_normalized_withoutigt_GTEx_lung.PEER_covariates.txt \
-all_covs_withoutigt_lung_with_peer
+$SIGNET_SCRIPT_ROOT/adj/adj_pca_gtex.sh &&
 
-# prepare empty PEER covariates
-head -n1 expression_normalized_withoutigt_GTEx_lung.PEER_covariates.txt > \
-expression_normalized_withoutigt_lung.PEER_covariates_empty.txt
+echo -e "\n"
+echo -e "Please check the pca plots \n"
+##pc=3 by default
+pc=3
+read -p "Enter the number of PC's you want to use: " pc
+echo "The number of pc used will be $pc"
+echo -e "\n"
 
-# combine covariates with empty PEER covariates(PEER covariates no included!)
-../codes/combine_covariates.py --genotype_pcs="pc_lung.txt" \
---add_covariates="explicit_cov_lung.txt" \
-expression_normalized_withoutigt_lung.PEER_covariates_empty.txt \
-all_covs_withoutigt_lung_no_peer
-  
-## adjust expression by the covariates: top 2 pcs, without PEER factors, Sex, Platform, Protocol
-nohup ../codes/gexp_cov_adjust.py --expr expression_normalized_withoutigt_GTEx_lung.expression.bed.gz \
---covf all_covs_withoutigt_lung_no_peer.combined_covariates.txt \
---prefix expression_normalized_withoutigt_lung_adjusted_no_peer > log_lung_withoutigt_no_peer &
+cd $SIGNET_ROOT
+# Prepare and adjust for covariates
+Rscript $SIGNET_SCRIPT_ROOT/adj/pre_cov_gtex.R "npc='$pc'"
+$SIGNET_SCRIPT_ROOT/adj/adj_adjust_gtex.sh 

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# Author: Francois Aguet
 import numpy as np
 import pandas as pd
 import scipy.stats as stats

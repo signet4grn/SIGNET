@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# Author: Francois Aguet
 # Modified by Zhongli Jiang. Replaced inverse normalization with log2(x+1) transformation
 
 import numpy as np

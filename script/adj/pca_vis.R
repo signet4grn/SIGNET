@@ -1,4 +1,4 @@
-library(ggplot2)
+suppressMessages(library(ggplot2))
 evec <- read.table('Geno.pca.evec')
 evec[, 1] <- as.character(evec[, 1])
 evec <- as.matrix(evec[, 2:11])

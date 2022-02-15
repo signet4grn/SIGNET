@@ -20,7 +20,7 @@ $SIGNET_SCRIPT_ROOT/gexp_prep/eqtl_prepare_expression_igt2log.py $tpm \
         $gtf \
 	lookup_sample_subject_tissue.txt \
 	vcf_chr_list \
-        ${rest}_expression_normalized_igt2log_GTEx_lung \
+        ${rest}_expression_normalized_igt2log_GTEx_${tissue} \
 	--legacy_mode \
 	--sample_id_list sample_ids_tissue.txt
 

@@ -10,8 +10,6 @@ usage() {
 }
 
 pheno=$($SIGNET_ROOT/signet -s --pheno | sed -r '/^\s*$/d')
-tissue=$($SIGNET_ROOT/signet -s --tissue | sed -r '/^\s*$/d')
-anno=$($SIGNET_ROOT/signet -s --anno | sed -r '/^\s*$/d')
 resa=$($SIGNET_ROOT/signet -s --resa.gtex | sed -r '/^\s*$/d')
 resg=$($SIGNET_ROOT/signet -s --resg.gtex | sed -r '/^\s*$/d')
 rest=$($SIGNET_ROOT/signet -s --rest.gtex | sed -r '/^\s*$/d')
@@ -46,7 +44,7 @@ resa=$(dir_check $resa)
 mkdir -p $SIGNET_RESULT_ROOT/resa
 mkdir -p $SIGNET_DATA_ROOT/adj
 
-var="pheno tissue anno rest resa"
+var="pheno resa tissue"
 for i in $var
 do
 export "${i}"
