@@ -10,7 +10,9 @@ import os
 import feather
 
 import rnaseqnorm
+import warnings
 
+warnings.filterwarnings('ignore')
 
 def gtf_to_bed(annotation_gtf, feature='gene', exclude_chrs=[]):
     """
