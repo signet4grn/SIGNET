@@ -2,7 +2,7 @@
 
 cd $SIGNET_TMP_ROOT/tmpg
 
-echo -e "Extracting genotype data\n"
+echo -e "Extracting genotype data ...\n"
 
 bcftools query -l $vcf0 > GTEx.vcf_subject.txt
 

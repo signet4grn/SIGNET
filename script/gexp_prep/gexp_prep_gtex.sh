@@ -15,7 +15,7 @@ tabix -l $SIGNET_TMP_ROOT/tmpg/GTEx_snp.vcf.gz > vcf_chr_list
 
 echo -e "Begin normalizing \n"
 
-$SIGNET_SCRIPT_ROOT/gexp_prep/eqtl_prepare_expression_igt2log.py $tpm \
+python3 $SIGNET_SCRIPT_ROOT/gexp_prep/eqtl_prepare_expression_igt2log.py $tpm \
 	$reads \
         $gtf \
 	lookup_sample_subject_tissue.txt \
