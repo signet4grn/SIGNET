@@ -75,9 +75,9 @@ for(i in 1:ntop){
   nrow_max_enrich <- 30
   enrichment[[i]] <- enrich[order(enrich$p_value), ][1:min(nrow_max_enrich, nrow(enrich)), ]
   
-  if(!is.null(enrichment[[i]])){
+  if(!is.na(enrichment[[i]])){
   ## Change the first letter to uppercase 
-  enrichment[[i]]$description <- paste(toupper(substr(enrichment[[i]]$description, 1, 1)), substr(enrichment[[i]]$description, 2, nchar(enrichment[[i]]$description)), sep="")
+   enrichment[[i]]$description <- paste(toupper(substr(enrichment[[i]]$description, 1, 1)), substr(enrichment[[i]]$description, 2, nchar(enrichment[[i]]$description)), sep="")
   
   ## Replace ", and" with "; ", and ", " with "and". Otherwise, it would mix with the group seperator
   enrichment[[i]]$description <- gsub(", and", "; ", enrichment[[i]]$description)
