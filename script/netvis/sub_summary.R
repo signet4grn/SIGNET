@@ -38,6 +38,7 @@ for(i in 1:ntop){
     value = V(g_top[[i]])$degree,
     title = V(g_top[[i]])$annotation,
     group = ifelse(is.na(match(V(g_top[[i]])$name, tf)), "non-TF", "TF"),
+    font.size = rep(10, length(V(g_top[[i]]))),
     shape = "circle"
   )
   edges[[i]] <- data.frame(
@@ -75,7 +76,7 @@ for(i in 1:ntop){
   nrow_max_enrich <- 30
   enrichment[[i]] <- enrich[order(enrich$p_value), ][1:min(nrow_max_enrich, nrow(enrich)), ]
   
-  if(!is.na(enrichment[[i]])){
+  if(!is.na(enrichment[[i]][1, 1])){
   ## Change the first letter to uppercase 
    enrichment[[i]]$description <- paste(toupper(substr(enrichment[[i]]$description, 1, 1)), substr(enrichment[[i]]$description, 2, nchar(enrichment[[i]]$description)), sep="")
   
