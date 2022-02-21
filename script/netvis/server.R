@@ -26,7 +26,9 @@ server <- function(input, output) {
     nrow_max_nodes <- min(50, nrow(tn_frame))
     tn_frame_reduce <- tn_frame[1:nrow_max_nodes, ]
     tn_frame_reduce$gene_name <- factor(tn_frame_reduce$gene_name, levels = unique(tn_frame_reduce$gene_name)[order(tn_frame_reduce$degree)])
-    sub_net_num <- comp[match(tn_frame_reduce$gene_name, as.matrix(V(g_bs)$name))]
+    # name of gene in the order of comp
+    sub_idx <- comp[match(tn_frame_reduce$gene_name, as.matrix(V(g_bs)$name))]
+    sub_net_num <- match(sub_idx, idx_tot)
     note <- paste0("subnetwork number:", sub_net_num)
     # ggplot2 code
     # p <- ggplot(tn_frame_reduce, aes(x=gene_name, y=degree, fill=degree)) +
@@ -131,6 +133,15 @@ server <- function(input, output) {
     #req(1<=input$net_num1 && input$net_num1<=ntop)
     color_enrich <- heat.colors(nrow_max_enrich, alpha=0.4)
     validate(need(try(input$net_num1>=1 && input$net_num1<=ntop), paste0("Please input a range from ", 1, " to ", ntop)))
+    if(is.null(enrichment[[input$net_num1]])){
+      p <- plotly_empty() %>%
+        layout(title="No enrichment detected",
+               xaxis=list(showticklabels = FALSE,title=""),
+               yaxis=list(showticklabels = FALSE,title=""),
+               plot_bgcolor='rgb(239, 242, 247)',
+               paper_bgcolor='rgb(239, 242, 247)',
+               showlegend=F)
+    }else{
     enrich_gene_grp <- paste0("Related genes: ", enrichment[[input$net_num1]]$preferredNames)
     color_count <- nrow(enrichment[[input$net_num1]])
     p <- plot_ly(enrichment[[input$net_num1]], x=~description, y=~-log10(p_value),
@@ -144,7 +155,7 @@ server <- function(input, output) {
              plot_bgcolor='rgb(239, 242, 247)',
              paper_bgcolor='rgb(239, 242, 247)',
              showlegend=F)
-    
+    }
     p 
   }
   )

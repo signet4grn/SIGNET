@@ -4,7 +4,9 @@ vis_g_top <- g_top <- g_top_int <- g_top_e <- nodes <- edges <- enrichment <- NU
 
 if(ntop > length(comp_len)) stop(paste0("Please make ntop less than ", length(comp_len))) 
 
-top_idx <- order(comp_len, decreasing = T)[1:ntop]
+# record the position of the largest subnetworks, in the order of comp
+idx_tot <- order(comp_len, decreasing = T)
+top_idx <- idx_tot[1:ntop]
 
 ## Transcription factor
 if(Sys.getenv("id")==9606){
@@ -22,6 +24,7 @@ for(i in 1:ntop){
   g_top_int[[i]] <- toVisNetworkData(g_top[[i]])
   ## Construct edgelist
   g_top_e[[i]] <- as_edgelist(g_top[[i]])
+  
   
   ## Construct dot language 
   #dot[[i]] <- paste("dinetwork{", paste(paste(g_top_e[[i]][, 1], g_top_e[[i]][, 2], sep="->"), collapse="; "), "}")
@@ -72,6 +75,7 @@ for(i in 1:ntop){
   nrow_max_enrich <- 30
   enrichment[[i]] <- enrich[order(enrich$p_value), ][1:min(nrow_max_enrich, nrow(enrich)), ]
   
+  if(!is.null(enrichment[[i]])){
   ## Change the first letter to uppercase 
   enrichment[[i]]$description <- paste(toupper(substr(enrichment[[i]]$description, 1, 1)), substr(enrichment[[i]]$description, 2, nchar(enrichment[[i]]$description)), sep="")
   
@@ -95,6 +99,7 @@ for(i in 1:ntop){
   enrichment[[i]] <- as.data.frame(enrichment[[i]])
   enrichment[[i]]$description <- paste0(enrichment[[i]]$description, ", Term: ", enrichment[[i]]$term)
   enrichment[[i]]$description <- factor(enrichment[[i]]$description, levels = unique(enrichment[[i]]$description)[order(enrichment[[i]]$p_value)])
+  }
   
   # save html version
   vis_g_top[[i]] <- visNetwork(nodes[[i]], edges[[i]], width="100%", height="1000px") %>%
