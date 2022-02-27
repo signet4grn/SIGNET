@@ -37,9 +37,9 @@ for(i in 1:ntop){
     label = V(g_top[[i]])$name,
     value = V(g_top[[i]])$degree,
     title = V(g_top[[i]])$annotation,
-    group = ifelse(is.na(match(V(g_top[[i]])$name, tf)), "non-TF", "TF"),
-    font.size = rep(10, length(V(g_top[[i]]))),
-    shape = "circle"
+    group = ifelse(is.na(match(V(g_top[[i]])$name, tf)), "non-TF", "TF")
+    #font.size = rep(10, length(V(g_top[[i]]))),
+    #shape = "circle"
   )
   edges[[i]] <- data.frame(
     from = g_top_e[[i]][, 1],

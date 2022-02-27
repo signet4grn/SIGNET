@@ -81,6 +81,7 @@ server <- function(input, output) {
                  highlightNearest = list(enabled = T, degree = 2, hover = T)) %>%
       #  visGroups(groupname="non-TF", color="#97C2FC") %>%
       #  visGroups(groupname="TF", color="#FFFF00") %>%
+      #visNodes(value=nodes[[input$net_num1]]$value) %>%      
       visEdges(arrows = 'to') %>% 
       #visLegend(addEdges=edge_legend, addNodes=NULL, main="Legend", useGroups=T) %>% node legend
       visLegend(addEdges=edge_legend, addNodes=NULL, main="Edge Legend", useGroups=F, width=0.3) %>%
