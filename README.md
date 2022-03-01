@@ -1,8 +1,3 @@
-
-
-
-
-
 # Documentation for SIGNET streamline project
 
 ## Getting started 
@@ -1022,16 +1017,6 @@ signet -a --pheno \
 
 `cis-eqtl` command provide the basic tool for cis-eQTL analysis.  `cis-eqtl` command receive the input file from the previous preprocess step.
 
-- `gexp ` :  includes preprocessed gene expression infoamtion after matching with genotype data.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
-- `gexp.withpc` :  includes preprocessed gene expression infoamtion after matching with genotype data, without adjusting for PC as covariate.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
-- `snps.map` : includes snp position. It's a matrix in .map file format.
-- `snps.maf` : includes snp minor allele frequency data from previous step. It's a q * 1 matrix where q is the number of snps after preprocessing.
-- `matched.geno` :  includes snp minor allele count data from previous step. It's a matrix of values 0, 1, 2, with  each row encodes information for a sample, and columns encodes information for a SNP.
-- `gene.pos` : includes gene position information. Where the first column is the gene name, second column is the chromosome index, e.g. "chr1", the third and fourth columns are for the start and the end positions, respectively. Please note that they are ranged in the order of the genes in the gexp and gexp.withpc file. 
-- `alpha.cis` : significance level for selecting cis-eQTLs. Should be a value in (0, 1). 
-- `nperms`: number of permutations. 
-- `upstream`: upstream region to flank the genetic region
-- `downstream`: downstream region to flank the genetic region
 
 The results of `cis-eqtl` are output in to the following files, and they are all saved under  `res/resc/cis-eQTL`:
 
@@ -1043,13 +1028,13 @@ The results of `cis-eqtl` are output in to the following files, and they are all
 
 
 
-**2.** Usage
+#### Usage
 ```
 signet -c [OPTION VAL] ...
 ```
 
 
-#### Options
+#### Description
 ```
   --gexp                        gene expression file after matching with genotype data
   --gexp.withpc                 gene expression file without adjusting for pc, after matching with genotype data
@@ -1063,44 +1048,41 @@ signet -c [OPTION VAL] ...
   --downstram DOWN_STREAM	downstream region to flank the genetic region
   --resc                        result prefix
 ```
+- `gexp ` :  includes preprocessed gene expression infoamtion after matching with genotype data.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
+- `gexp.withpc` :  includes preprocessed gene expression infoamtion after matching with genotype data, without adjusting for PC as covariate.  It's a matrix where each row encodes information for a sample, and columns encodes information for a gene.
+- `snps.map` : includes snp position. It's a matrix in .map file format.
+- `snps.maf` : includes snp minor allele frequency data from previous step. It's a q * 1 matrix where q is the number of snps after preprocessing.
+- `matched.geno` :  includes snp minor allele count data from previous step. It's a matrix of values 0, 1, 2, with  each row encodes information for a sample, and columns encodes information for a SNP.
+- `gene.pos` : includes gene position information. Where the first column is the gene name, second column is the chromosome index, e.g. "chr1", the third and fourth columns are for the start and the end positions, respectively. Please note that they are ranged in the order of the genes in the gexp and gexp.withpc file. 
+- `alpha.cis` : significance level for selecting cis-eQTLs. Should be a value in (0, 1). 
+- `nperms`: number of permutations. 
+- `upstream`: upstream region to flank the genetic region
+- `downstream`: downstream region to flank the genetic region
 
 #### Example
 ```
  signet -c --upstream 100000 --downstream 100000 --nperms 100 --alpha 0.1
 ```
 
-### network
+### Network
 
 `network` command provide the tools for constructing a gene regulatory network (GRN) following the two-stage penalized least squares (2SPLS) approach proposed by [D. Zhang, M. Zhang, Ren, and Chen](https://arxiv.org/abs/1511.00370).
 
 `network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
 
-* `net.gexp.data`: output from `cis-eqtl`, includes the expression data for genes with cis-eQTL.  It's a n * p matrix, with each row encodes the gene expression data for each sample. 
-* `net.geno.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL. It's a n * p matrix, with each row encodes the genotype data for each sample. 
-* `sig.pair`: output from `cis-eqtl`, includes the p-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
- ....The third column is the p value for each pair. 
-* `net.genename`:  includes information of gene name. It's a  p * 1 vector.
-* `net.genepos`:  includes information of gene position. It's a  p * 4 matrix, with first column to be gene names, second columns chromosome index, e.g, "chr1", third and fourth columns are the start and end position of genes in the chromosome, respectly. 
-* `ncis`:  maximum number of biomarkers associated with each gene. An integer.
-* `cor`: maximum correlation between biomarkers. A value in [-1, 1].
-* `nboots`: number of bootstraps in calculation. An integer. 
-* `queue`: queue name in the cluster. A string.
-* `ncores`: number of cores for each node.   
-* `memory`: memory of each node, in GB.
-* `walltime`: maximum wall time for cluster.
-* `sif`:  A singularity container, in .sif format.
+
 
 The final output files of `network` will be saved under `/res/network/resn`:
 * `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
 
-#### usage
+#### Usage
 ```
 signet -n [OPTION VAL] ...
 ```
 
 
-#### description
+#### Description
 ```
   --net.gexp.data               gene expression data for network analysis
   --net.geno.data               marker data for network analysis
@@ -1117,19 +1099,39 @@ signet -n [OPTION VAL] ...
   --resn                        result prefix
   --sif                         singularity container
 ```
+* `net.gexp.data`: output from `cis-eqtl`, includes the expression data for genes with cis-eQTL.  It's a n * p matrix, with each row encodes the gene expression data for each sample. 
+* `net.geno.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL. It's a n * p matrix, with each row encodes the genotype data for each sample. 
+* `sig.pair`: output from `cis-eqtl`, includes the p-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
+ ....The third column is the p value for each pair. 
+* `net.genename`:  includes information of gene name. It's a  p * 1 vector.
+* `net.genepos`:  includes information of gene position. It's a  p * 4 matrix, with first column to be gene names, second columns chromosome index, e.g, "chr1", third and fourth columns are the start and end position of genes in the chromosome, respectly. 
+* `ncis`:  maximum number of biomarkers associated with each gene. An integer.
+* `cor`: maximum correlation between biomarkers. A value in [-1, 1].
+* `nboots`: number of bootstraps in calculation. An integer. 
+* `queue`: queue name in the cluster. A string.
+* `ncores`: number of cores for each node.   
+* `memory`: memory of each node, in GB.
+* `walltime`: maximum wall time for cluster.
+* `sif`:  A singularity container, in .sif format.
 
-#### example
+#### Example
 ```
 signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 ```
 
 
-
-### netvis
+### Netvis
 
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
 
-   + `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+ 
+You should first SSH -XY to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
+
+#### Usage
+```
+signet -v [OPTION VAL] ...
+```
++ `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
   + `freq`: The bootstrap frequency cutoff. A number in [0, 1].
   + `ntop`: The number of top subnetworks to visualize. An integer number.
   + `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs. Positive/Negative value will determine up/down regulation, with respectively. 
@@ -1139,22 +1141,7 @@ signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
   + `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
 
 
-
-You should first SSH -XY to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
-
-#### usage
-```
-netvis [OPTION VAL] ...
-```
-
-**Comments**
-Possible changes:
-```
-signet -v [OPTION VAL] ...
-```
-
-
-#### description
+#### Description
 
 ```
   --Afreq EDGE_FREQ            matrix of edge frequencies from bootstrap results
@@ -1168,7 +1155,7 @@ signet -v [OPTION VAL] ...
   --resv                       result prefix
 ```
 
-#### example
+#### Example
 ```
 signet -v 
 ```
@@ -1251,47 +1238,6 @@ resc = res/resc/signet
 [network]
 net.gexp.data = ./data/network/signet_net.gexp.data
 net.geno.data  = ./data/network/signet_all.eQTL.data
-sig.pair = ./data/network/all.sig.pValue_0.05
-net.genename = ./data/network/signet_net.genename
-net.genepos = ./data/network/signet_net.genepos
-ncis = 3
-cor = 0.9
-nboots = 10
-ncores = 128
-queue = standby
-memory = 256
-walltime = 4:00:00
-resn = res/resn/signet
-sif = signet0.0.4.sif
-
-[netvis]
-Afreq = res/resn/signet_Afreq
-freq = 1
-ntop = 3
-coef = tmp/tmpn/stage2/output/CoeffMat0
-vis.genepos = tmp/tmpn/net.genepos
-id = 9606
-assembly = hg38
-tf = human_tf
-resv = res/resv/signet
-```
-
-### File Structure
-
-```bash
-# script folder save all the code
-- script/
-    - gexp_prep
-    - geno_prep
-    - adj
-	- cis-eQTL/
-	- network/ 
-	- netvis/
-```
-
-
-
-a/network/signet_all.eQTL.data
 sig.pair = ./data/network/all.sig.pValue_0.05
 net.genename = ./data/network/signet_net.genename
 net.genepos = ./data/network/signet_net.genepos
