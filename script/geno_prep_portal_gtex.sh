@@ -8,7 +8,7 @@ usage() {
     echo "  --vcf0                        VCF file before phasing"
     echo "  --vcf                         VCF file for genotype data after phasing"
     echo "  --read                        read file for gene expression data"
-    echo "  --anno                        nnotation file"
+    echo "  --anno                        annotation file"
     echo "  --tissue                      tissue type"
     echo "  --resg                        result prefix"
     exit -1
