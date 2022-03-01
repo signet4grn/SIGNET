@@ -1,7 +1,7 @@
 #!/bin/bash
 usage() {
     echo "Usage:"
-    echo "signet -t [--r READS_FILE] [--tpm TPM_FILE]" 
+    echo "signet -t [--r READS_FILE] [--tpm TPM_FILE] [--gtf GTF_FILE]" 
     echo -e "\n"
     echo "Description:"
     echo " --r | --read                    gene reads file in gct format"
