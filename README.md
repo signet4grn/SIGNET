@@ -191,14 +191,13 @@ echo: Please check the file name
 
 This command will take the matrix of log2(x+1) transcriptome count data and preprocess it. 
 
-* `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. 
-* `pmap`: genecode v22 gtf file.  
 
 #### Usage
 ```bash
 signet -t [--g GEXP_FILE] [--p MAP_FILE]
 ```
-
+* `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. 
+* `pmap`: genecode v22 gtf file.  
 
 #### Description
 ```bash
