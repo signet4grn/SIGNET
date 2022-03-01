@@ -4,7 +4,7 @@ usage() {
     echo "  signet -t [--r READS_FILE] [--tpm TPM_FILE]" 
     echo -e "\n"
     echo "Description:"
-    echo " --r | --read                    gene reads file in gct format"
+    echo " --r | --read                      gene reads file in gct format"
     echo " --t | --tpm                     gene tpm file"
     echo " --g | --gtf                     genecode gtf file"
     echo " --rest                          result prefix"
@@ -12,10 +12,10 @@ usage() {
 }
 
 cwd=$(pwd)
-reads=$($SIGNET_ROOT/signet -s --reads.file)
-tpm=$($SIGNET_ROOT/signet -s --tpm.file)
-gtf=$($SIGNET_ROOT/signet -s --gtf.file | sed -r '/^\s*$/d')
-rest=$($SIGNET_ROOT/signet -s --rest.gtex)
+reads=$($SIGNET_ROOT/signet -s --reads.file | xargs readlink -f)
+tpm=$($SIGNET_ROOT/signet -s --tpm.file | xargs readlink -f )
+gtf=$($SIGNET_ROOT/signet -s --gtf.file | xargs readlink -f | sed -r '/^\s*$/d')
+rest=$($SIGNET_ROOT/signet -s --rest.gtex | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l r:,read:,t:,tpm:,g:,gtf:,h:,rest:,help -- "$@"`
 
