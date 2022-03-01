@@ -4,7 +4,7 @@ usage() {
     echo "  signet -t [--r READS_FILE] [--tpm TPM_FILE]" 
     echo -e "\n"
     echo "Description:"
-    echo " --r | --read                   gene reads file in gct format"
+    echo " --r | --read                    gene reads file in gct format"
     echo " --t | --tpm                     gene tpm file"
     echo " --g | --gtf                     genecode gtf file"
     echo " --rest                          result prefix"
