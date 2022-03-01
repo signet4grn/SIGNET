@@ -3,10 +3,10 @@
 cat("loading result for circular plot ...\n")
 
 info <- din <- dout <- source_bed <- target_bed <- NULL
-  
+
 for(i in 1:ntop){ 
   info[[i]] <- as.data.frame(get.edge.attribute(g_top[[i]]), check.names = F)  
-
+  
   ## The bed file for source and target genes in the order of edgelist
   source_bed[[i]] <- info[[i]][, c("source chr", "source start", "source end")]
   target_bed[[i]] <- info[[i]][, c("target chr", "target start", "target end")]
