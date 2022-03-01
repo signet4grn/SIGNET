@@ -189,7 +189,6 @@ echo: Please check the file name
 ```
 
 
-
 ### Transcript-prep 
 (TCGA)
 
@@ -235,11 +234,15 @@ signet -t [--r READS_FILE] [--tpm TPM_FILE]
 
 #### Description
 ```bash
- --r | --reads                   set the GTEx gene reads file in gct format
- --t | --tpm                     set the gene tpm file
- --g | --gtf                     set the genecode gtf file
+ --r | --read                    gene reads file in gct format
+ --t | --tpm                     gene tpm file
+ --g | --gtf                     genecode gtf file
+ --rest                          result prefix
 ```
 
+* `read`:  GTEx reads file in gct format.
+* `tpm`:  GTEx TPM file in gct format. 
+* `gtf`:  collapse gene code v26 gtf file. 
 
 #### Example
 ```bash
