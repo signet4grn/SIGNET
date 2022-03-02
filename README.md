@@ -6,7 +6,7 @@ First you should clone the directory to your path in server and add the path you
 ```bash
 git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
 cd SIGNET
-export PATH=$PATH:/path/to/signet
+export PATH=/path/to/signet:$PATH
 ```
 where */path/to/signet* should be replaced with your path to *SIGNET*.
 
