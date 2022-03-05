@@ -117,3 +117,4 @@ done
 
 $SIGNET_SCRIPT_ROOT/cis-eQTL/cis-eQTL.sh
 
+echo -e "Finish time: $(date)"

@@ -105,3 +105,5 @@ done
 
 
 $SIGNET_SCRIPT_ROOT/netvis/netvis.sh
+
+echo -e "Finish time: $(date)"

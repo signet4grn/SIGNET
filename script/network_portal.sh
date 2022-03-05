@@ -135,3 +135,4 @@ module load r/4.0.0
 
 $SIGNET_SCRIPT_ROOT/network/network.sh
 
+echo -e "Finish time: $(date)"

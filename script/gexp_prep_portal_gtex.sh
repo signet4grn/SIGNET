@@ -70,3 +70,5 @@ echo "tpm.file: "$tpm
 echo -e "\n"
 
 $SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep_gtex.sh  && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA"
+
+echo -e "Finish time: $(date)"

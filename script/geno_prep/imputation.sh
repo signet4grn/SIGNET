@@ -41,19 +41,25 @@ echo -e "Begin to impute the genotype data using impute2 \n"
 
 for i in `seq 1 ${nchr}`
 do
+if [ -s 'clean_Genotype_chr'$i'.map' ]
+then  
 plink --silent --file 'clean_Genotype_chr'$i --recode oxford --out $i
+fi
 done
+
 
 ##[ -e impute_params.txt ] && rm impute_params.txt
 ##rm -f impute_params.txt.completed
-
 
 ##make a dummy file to exclude untyped SNP
 echo 0 > empty
 
 ## begin to impute 
 for i in `seq 1 ${nchr}`
-do 
+do
+if [ -s 'clean_Genotype_chr'$i'.map' ] 
+then
+  echo -e "clen_Genotype_chr$i.map"
   START=$(head -n 1 'clean_Genotype_chr'$i'.map' | cut -f 4)
   END=$(tail -n 1 'clean_Genotype_chr'$i'.map' | cut -f 4)
   NUMJOBS=$(( (END - START) / int))
@@ -66,6 +72,7 @@ do
   LEFTOVER=$(( (int*NUMJOBS) + START))
   CHUNK=$((NUMJOBS+1))
   echo 'impute2 -pgs_miss -g '$i'.gen -g_ref '$ref''$i'.gen -m '$gmap''$i'.map -include_snps empty -int '$LEFTOVER' '$END' -Ne 20000 -o impute/impute_chr'$i'chunk'$CHUNK >> impute_params.txt
+fi
 done
 
 ## employ parallel computing for imputation 

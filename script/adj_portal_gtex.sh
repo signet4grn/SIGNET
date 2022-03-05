@@ -54,3 +54,4 @@ done
 
 $SIGNET_SCRIPT_ROOT/adj/adj_gtex.sh && echo -e "Gene Expression and Genotype matching Finished\n" 
 
+echo -e "Finish time: $(date)"

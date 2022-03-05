@@ -77,5 +77,6 @@ do
 export "${i}"
 done
 
-$SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep.sh && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA"
+$SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep.sh && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA\n"
 
+echo -e "Finish time: $(date)"
