@@ -10,7 +10,10 @@ $SIGNET_SCRIPT_ROOT/geno_prep/splitchr.pl matched.Geno.data impute/impute_Genoty
 
 for i in `seq 1 ${nchr}`
 do
+if [ -f impute/clean_Genotype_chr$i.map ]
+then
   scp impute/clean_Genotype_chr$i.map matched.Geno_chr$i.map
+fi
 done
 
 rm -f qsub.sh
@@ -19,8 +22,11 @@ rm -f qsub.sh.completed
 
 for i in `seq 1 ${nchr}`
 do
+if [ -f impute/clean_Genotype_chr$i.map ]
+then
   perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/adj/genosum.R > $SIGNET_SCRIPT_ROOT/adj/genosum_chr$i.R
   echo "Rscript $SIGNET_SCRIPT_ROOT/adj/genosum_chr$i.R" >> qsub.sh
+fi
 done
 
 time ParaFly -c qsub.sh -CPU $ncore &&

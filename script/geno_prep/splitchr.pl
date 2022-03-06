@@ -29,7 +29,7 @@ $endcol[0] = -1;
 foreach $i (1..$ARGV[2]) {
         $startcol[$i] = $endcol[$i-1] + 1;
         $endcol[$i] = $startcol[$i] + $size[$i] - 1;
-        print "$i, $startcol[$i], $endcol[$i]\n";
+        if($startcol[$i] < $endcol[$i]) {print "$i, $startcol[$i], $endcol[$i]\n";}
         $fname = $basefn . "_chr" . $i . ".data";
         open($fh[$i], ">$fname") || die "Cannot open $fname for writing\n";
 }
