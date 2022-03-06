@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH -A standby
-#SBATCH -n 128
+#SBATCH -A statdept
+#SBATCH -n 32
 #SBATCH -N 1
 #SBATCH -t 4:00:00
 
@@ -14,4 +14,4 @@ export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 
-ParaFly -c paramsXXX.txt -CPU 128 -failed_cmds rerunXXX.txt
+ParaFly -c paramsXXX.txt -CPU 32 -failed_cmds rerunXXX.txt

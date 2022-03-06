@@ -106,7 +106,7 @@ case "$1" in
                 shift;;
         --sif)
                 sif=$2
-                $SIGNET_ROOT/signet -s --suf $sif
+                $SIGNET_ROOT/signet -s --sif $sif
                 shift;;
 	--h|--help)
 		usage
