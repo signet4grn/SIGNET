@@ -106,6 +106,7 @@ case "$1" in
                 shift;;
         --sif)
                 sif=$2
+                sif=$(readlink -f $sif)
                 $SIGNET_ROOT/signet -s --sif $sif
                 shift;;
 	--h|--help)
@@ -124,6 +125,7 @@ file_purge $SIGNET_TMP_ROOT/tmpn
 resn=$(dir_check $resn)
 mkdir -p $SIGNET_RESULT_ROOT/resn
 mkdir -p $SIGNET_DATA_ROOT/network
+
 
 var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime resn sif"
 for i in $var
