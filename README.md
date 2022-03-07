@@ -196,8 +196,6 @@ This command will take the matrix of log2(x+1) transcriptome count data and prep
 ```bash
 signet -t [--g GEXP_FILE] [--p MAP_FILE]
 ```
-* `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. Note that the last 5 rows are not considered in the analysis.
-* `pmap`: genecode v22 gtf file.  
 
 #### Description
 ```bash
@@ -205,7 +203,15 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
  --p | --pmap                   genecode gtf file
  --r | --rest                   result prefix
 ```
+* `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. Note that the last 5 rows are not considered in the analysis.
+* `pmap`: genecode v22 gtf file.  
 
+#### Result
+Output of `gexp-prep` will be saved to `res/rest`. 
+`gexp`: gene expression data after pre-processing.
+`gene_name`: corresponding gene name.
+`gene_pos`: correspongding gene position.
+`gexpID`: correspdonding sample ID.
 
 #### Example
 ```bash
@@ -309,10 +315,9 @@ signet -g --ped ./data/geno-prep/test.ped \
 
 #### Result
 Output of `geno-prep` will be saved under `/res/resg`:
-```bash
-Geno: Genotype data with each row denoting the SNP data for each individual.
-Genotype.sampleID: Sample ID for each individual, which uses the reading barcode.
-```
+`Geno`: Genotype data with each row denoting the SNP data for each individual.
+`Genotype.sampleID`: Sample ID for each individual, which uses the reading barcode.
+
 
 (GTEx)
 `geno-prep` command provide the user the interface of preprocessing genotype data. We will first extract the genotype data that has corresponding samples from gene expression data for a particular tissue. 
@@ -364,7 +369,7 @@ signet -g --vcf0 /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype/Gen
 
 
 ### Adj
-`adj` command provide users the interface of matching genotype and gene expression file and the calculation for maf
+`adj` command provide users the interface of matching genotype and gene expression file and the calculation for minor allele frequency (MAF)
 `adj` read the output from `geno-prep` and `gexp-prep`
 output of `adj` will be saved under `/res/resa`:
 
@@ -467,8 +472,8 @@ signet -c [OPTION VAL] ...
 
 `network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
-
-
+**Caution**
+**Please don't use the singularity container** as it is integrated in the analysis. 
 
 The final output files of `network` will be saved under `/res/network/resn`:
 * `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
