@@ -107,9 +107,7 @@ signet -t
 
 #### 5. cis-eQTL Analysis
 
-For cis-eQTL analysis
-
-I would suggest to take
+For cis-eQTL analysis.
 ```bash
 signet -c
 ```
