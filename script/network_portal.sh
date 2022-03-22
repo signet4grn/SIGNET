@@ -18,7 +18,7 @@ sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
 
 function usage() {
 	echo 'Usage:'
-        echo -e 'Please make sure that you are using the SLURM system, with R version and Parafly being loaded using module load r/4.0.0 and module load utilities ParaFly, respectively. Please also don't run this step inside a container, as the singularity container is integrated as part of the procedure.\n'
+        echo -e "Please make sure that you are using the SLURM system, with R version and Parafly being loaded using module load r/4.0.0 and module load utilities ParaFly, respectively. Please also don't run this step inside a container, as the singularity container is integrated as part of the procedure.\n"
 	echo '  signet -n [OPTION VAL] ...'
 	echo -e "\n"
 	echo 'Description:'
@@ -122,10 +122,9 @@ shift
 done 
    
 file_purge $SIGNET_TMP_ROOT/tmpn
-resn=$(dir_check $resn)
 mkdir -p $SIGNET_RESULT_ROOT/resn
 mkdir -p $SIGNET_DATA_ROOT/network
-
+resn=$(dir_check $resn)
 
 var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime resn sif"
 for i in $var

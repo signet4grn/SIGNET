@@ -119,9 +119,9 @@ echo -e "\n"
 
 file_purge $SIGNET_TMP_ROOT/tmpg
 mkdir $SIGNET_TMP_ROOT/tmpg/impute
-resg=$(dir_check $resg)
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
+resg=$(dir_check $resg)
 
 var="pedfile mapfile mind geno hwe nchr ref gmap ncores int resg"
 for i in $var

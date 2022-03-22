@@ -93,9 +93,9 @@ shift
 done 
 
 file_purge $SIGNET_TMP_ROOT/tmpv
-resv=$(dir_check $resv)
 mkdir -p $SIGNET_RESULT_ROOT/resv
 mkdir -p $SIGNET_DATA_ROOT/netvis
+resv=$(dir_check $resv)
 
 var="Afreq freq nchr ntop coef genepos id assembly tf resv"
 for i in $var

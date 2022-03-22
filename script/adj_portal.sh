@@ -55,9 +55,9 @@ shift
 done
 
 file_purge $SIGNET_TMP_ROOT/tmpa
-resa=$(dir_check $resa)
 mkdir -p $SIGNET_RESULT_ROOT/resa
 mkdir -p $SIGNET_DATA_ROOT/adj
+resa=$(dir_check $resa)
 
 var="clifile rest resg resa"
 for i in $var

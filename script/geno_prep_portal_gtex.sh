@@ -68,9 +68,9 @@ shift
 done
 
 file_purge $SIGNET_TMP_ROOT/tmpg
-resg=$(dir_check $resg)
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
+resg=$(dir_check $resg)
 
 var="vcf0 vcf gexpread anno tissue resg"
 for i in $var

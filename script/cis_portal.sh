@@ -105,9 +105,9 @@ shift
 done 
 
 file_purge $SIGNET_TMP_ROOT/tmpc
-resc=$(dir_check $resc)
 mkdir -p $SIGNET_RESULT_ROOT/resc
 mkdir -p $SIGNET_DATA_ROOT/cis-eQTL
+resc=$(dir_check $resc)
 
 var="gexp gexp_withpc geno snps_maf snps_map gene_pos alpha upstream downstream nperms resc"
 for i in $var
