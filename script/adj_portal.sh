@@ -69,6 +69,13 @@ do
 export "${i}"
 done
 
+# check file existence
+input_file="clifile"
+for i in $input_file
+do
+file_check $(eval "$(echo "echo \$${var}")")
+done
+
 $SIGNET_SCRIPT_ROOT/adj/adj.sh && echo -e "Gene Expression and Genotype matching Finished\n" 
 
 echo -e "Finish time: $(date)"

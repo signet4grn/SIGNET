@@ -107,6 +107,13 @@ do
 export "${i}"
 done
 
+# check file existence
+input_file="Afreq genepos"
+for i in $input_file
+do
+file_check $(eval "$(echo "echo \$${var}")")
+done
+
 $SIGNET_SCRIPT_ROOT/netvis/netvis.sh
 
 echo -e "Finish time: $(date)"

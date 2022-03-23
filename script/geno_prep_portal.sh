@@ -123,15 +123,22 @@ mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
 resg=$(dir_check $resg)
 
+if [[ "$resg" == *"doesn't exist"* ]]; then
+exit -1
+fi
+
 var="pedfile mapfile mind geno hwe nchr ref gmap ncores int resg"
 for i in $var
 do
 export "${i}"
 done
 
-if [[ "$resg" == *"doesn't exist"* ]]; then
-exit -1
-fi
+# check file existence
+input_file="pedfile mapfile"
+for i in $input_file
+do
+file_check $(eval "$(echo "echo \$${var}")")
+done
 
 $SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh && echo "Genotype Preprocessing Finished"
 

@@ -60,6 +60,13 @@ do
 export "${i}"
 done
 
+# check file existence
+input_file="reads tpm gtf"
+for i in $input_file
+do
+file_check $(eval "$(echo "echo \$${var}")")
+done
+
 file_purge $SIGNET_TMP_ROOT/tmpt
 mkdir -p $SIGNET_RESULT_ROOT/rest
 mkdir -p $SIGNET_DATA_ROOT/gexp-prep
