@@ -72,6 +72,10 @@ mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
 resg=$(dir_check $resg)
 
+if [[ "$resg" == *"doesn't exist"* ]]; then
+exit -1
+fi
+
 var="vcf0 vcf gexpread anno tissue resg"
 for i in $var
 do

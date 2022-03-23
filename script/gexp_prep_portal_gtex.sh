@@ -65,6 +65,10 @@ mkdir -p $SIGNET_RESULT_ROOT/rest
 mkdir -p $SIGNET_DATA_ROOT/gexp-prep
 rest=$(dir_check $rest)
 
+if [[ "$rest" == *"doesn't exist"* ]]; then
+exit -1
+fi
+
 echo "reads.file: "$reads
 echo "tpm.file: "$tpm
 echo -e "\n"

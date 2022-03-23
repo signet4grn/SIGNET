@@ -43,12 +43,40 @@ FILE=${1#$DIR/}
 if [[ ! -d $DIR ]]; then
 echo "The directory $DIR doesn't exist, note that prefix applies"
 exit -1
-fi
-
+else
 FDIR=$(readlink -f $DIR)
-
 echo ${FDIR}/${FILE}
+fi
 
 }
 
-export -f file_purge dir_check
+# Input a file name, check whether it exists
+
+file_check(){
+
+## Check if the file exists or empty
+
+if [[ ! -f $1 ]]; then 
+echo "The file $1 doesn't exist"
+exit -1 
+elif [[ -z $1 ]]; then 
+echo "The file $1 exists but empty"
+exit -1 
+fi
+
+}
+
+# First value, followed by LB, UB, output name
+
+numeric_check(){
+
+## Check range
+
+if [[ $1 -lt $2 || $1 -gt $3 ]]; then
+echo "Value $4 out of Bound"
+exit -1 
+fi 
+
+}
+
+export -f file_purge dir_check file_check numeric_check

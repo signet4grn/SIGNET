@@ -59,6 +59,10 @@ mkdir -p $SIGNET_RESULT_ROOT/resa
 mkdir -p $SIGNET_DATA_ROOT/adj
 resa=$(dir_check $resa)
 
+if [[ "$resa" == *"doesn't exist"* ]]; then
+exit -1
+fi
+
 var="clifile rest resg resa"
 for i in $var
 do

@@ -97,12 +97,15 @@ mkdir -p $SIGNET_RESULT_ROOT/resv
 mkdir -p $SIGNET_DATA_ROOT/netvis
 resv=$(dir_check $resv)
 
+if [[ "$resv" == *"doesn't exist"* ]]; then
+exit -1
+fi
+
 var="Afreq freq nchr ntop coef genepos id assembly tf resv"
 for i in $var
 do
 export "${i}"
 done
-
 
 $SIGNET_SCRIPT_ROOT/netvis/netvis.sh
 

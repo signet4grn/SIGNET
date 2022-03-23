@@ -129,6 +129,10 @@ do
 export "${i}"
 done
 
+if [[ "$resg" == *"doesn't exist"* ]]; then
+exit -1
+fi
+
 $SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh && echo "Genotype Preprocessing Finished"
 
 echo -e "Finish time: $(date)"

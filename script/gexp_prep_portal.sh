@@ -70,12 +70,24 @@ file_purge $SIGNET_TMP_ROOT/tmpt
 mkdir -p $SIGNET_RESULT_ROOT/rest
 mkdir -p $SIGNET_DATA_ROOT/gexp-prep
 rest=$(dir_check $rest)
+echo $rest
+
+if [[ "$rest" == *"doesn't exist"* ]]; then
+exit -1 
+fi
 
 var="gexpfile pmapfile rest"
 for i in $var
 do
 export "${i}"
 done
+
+# check file existence
+input_file="gexpfile pmapfile"
+for i in $input_file
+do
+file_check $(eval "$(echo "echo \$${var}")")
+done 
 
 $SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep.sh && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA\n"
 

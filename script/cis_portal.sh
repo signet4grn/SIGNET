@@ -109,6 +109,10 @@ mkdir -p $SIGNET_RESULT_ROOT/resc
 mkdir -p $SIGNET_DATA_ROOT/cis-eQTL
 resc=$(dir_check $resc)
 
+if [[ "$resc" == *"doesn't exist"* ]]; then
+exit -1
+fi
+
 var="gexp gexp_withpc geno snps_maf snps_map gene_pos alpha upstream downstream nperms resc"
 for i in $var
 do

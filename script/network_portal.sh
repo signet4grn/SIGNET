@@ -126,6 +126,10 @@ mkdir -p $SIGNET_RESULT_ROOT/resn
 mkdir -p $SIGNET_DATA_ROOT/network
 resn=$(dir_check $resn)
 
+if [[ "$resn" == *"doesn't exist"* ]]; then
+exit -1
+fi
+
 var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime resn sif"
 for i in $var
 do
