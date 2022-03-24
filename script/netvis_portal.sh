@@ -111,7 +111,7 @@ done
 input_file="Afreq genepos"
 for i in $input_file
 do
-file_check $(eval "$(echo "echo \$${var}")")
+file_check $(eval "$(echo "echo \$${i}")")
 done
 
 $SIGNET_SCRIPT_ROOT/netvis/netvis.sh

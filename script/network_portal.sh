@@ -140,7 +140,7 @@ done
 input_file="net_gexp net_geno sig_pair net_genename net_genepos sif"
 for i in $input_file
 do
-file_check $(eval "$(echo "echo \$${var}")")
+file_check $(eval "$(echo "echo \$${i}")")
 done
 
 module load r/4.0.0

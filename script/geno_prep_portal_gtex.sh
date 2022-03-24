@@ -82,6 +82,13 @@ do
 export "${i}"
 done
 
+# check file existence
+input_file="vcf0 vcf gexpread anno"
+for i in $input_file
+do
+file_check $(eval "$(echo "echo \$${i}")")
+done
+
 echo "vcf.file: "$vcf
 echo -e "\n"
 

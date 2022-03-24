@@ -137,7 +137,7 @@ done
 input_file="pedfile mapfile"
 for i in $input_file
 do
-file_check $(eval "$(echo "echo \$${var}")")
+file_check $(eval "$(echo "echo \$${i}")")
 done
 
 $SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh && echo "Genotype Preprocessing Finished"

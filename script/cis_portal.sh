@@ -123,7 +123,7 @@ done
 input_file="gexp gexp_withpc geno snps_maf snps_map gene_pos"
 for i in $input_file
 do
-file_check $(eval "$(echo "echo \$${var}")")
+file_check $(eval "$(echo "echo \$${i}")")
 done
 
 $SIGNET_SCRIPT_ROOT/cis-eQTL/cis-eQTL.sh

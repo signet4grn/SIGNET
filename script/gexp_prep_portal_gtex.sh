@@ -64,7 +64,7 @@ done
 input_file="reads tpm gtf"
 for i in $input_file
 do
-file_check $(eval "$(echo "echo \$${var}")")
+file_check $(eval "$(echo "echo \$${i}")")
 done
 
 file_purge $SIGNET_TMP_ROOT/tmpt

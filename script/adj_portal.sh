@@ -73,7 +73,7 @@ done
 input_file="clifile"
 for i in $input_file
 do
-file_check $(eval "$(echo "echo \$${var}")")
+file_check $(eval "$(echo "echo \$${i}")")
 done
 
 $SIGNET_SCRIPT_ROOT/adj/adj.sh && echo -e "Gene Expression and Genotype matching Finished\n" 
