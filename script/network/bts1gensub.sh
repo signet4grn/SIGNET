@@ -94,7 +94,8 @@ then
 echo -e "All the jobs are finished !!\n"
 else
 echo -e "Please notice that some of the jobs are unfinished. Program will stop and please try to find the problem. \n"
-exit 1
+kill -10 $job_id
+exit -1
 fi
 
 echo -e "Stage 1 finished!!! Summarizing the results...\n"
