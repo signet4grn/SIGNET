@@ -83,7 +83,10 @@ echo -e "\nThere are in total" ${tmpqueue[1]} "cores available\n"
 echo -e "There are "${tmpqueue[2]}" jobs in queue and "${tmpqueue[3]}" jobs are running\n"
 echo -e "Please wait for Stage 1 to complete...\n"
 
-time sh qsub1.sh
+grep "^sbatch" qsub1.sh > job1_command
+echo -e "Submitting $(wc -l < job1_command) jobs ... \n"
+
+time sh qsub1.sh > submit1_log
 
 echo -e "Checking the number of files\n"
 
@@ -94,6 +97,7 @@ then
 echo -e "All the jobs are finished !!\n"
 else
 echo -e "Please notice that some of the jobs are unfinished. Program will stop and please try to find the problem. \n"
+grep -Eo '[0-9]+$' submit1_log | xargs scancel
 kill -10 $job_id
 exit -1
 fi
