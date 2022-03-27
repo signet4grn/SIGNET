@@ -25,6 +25,7 @@ resg.gtex = res/resg/signet
 (TCGA)
 gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
 pmap.file = ./data/gexp-prep/gencode.v22.gene.gtf
+restrict.tcga = no
 rest.tcga = res/rest/signet
 
 (GTEx)
