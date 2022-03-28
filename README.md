@@ -199,10 +199,12 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
 ```bash
  --g | --gexp                   gene expression file
  --p | --pmap                   genecode gtf file
+ --restrict                     restrict the chromosomes of study
  --r | --rest                   result prefix
 ```
 * `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. Note that the last 5 rows are not considered in the analysis.
 * `pmap`: genecode v22 gtf file.  
+*`restrict`: include the chromosome of interst. Could be dash separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a number, e.g. 1.
 
 #### Result
 Output of `gexp-prep` will be saved to `res/rest`. 
@@ -219,7 +221,8 @@ signet -t --help
 
 # Modify the paramter
 signet -t --g ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
-          --p ./data/gexp-prep/gencode.v22.gene.gtf
+          --p ./data/gexp-prep/gencode.v22.gene.gtf \
+	  --restrict 1
 	  
 ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
 ```
