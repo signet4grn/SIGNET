@@ -21,6 +21,7 @@ usage() {
     echo "Description:"
     echo " --g | --gexp                   gene expression file"
     echo " --p | --pmap                   genecode gtf file "
+    echo " --restrict                     restrict to the chromosome of interest"
     echo " --rest                         result prefix"
     exit -1
 }
@@ -28,9 +29,10 @@ usage() {
 
 gexpfile=$($SIGNET_ROOT/signet -s --gexp.file|xargs readlink -f)
 pmapfile=$($SIGNET_ROOT/signet -s --pmap.file|xargs readlink -f)
+restrict=$($SIGNET_ROOT/signet -s --restrict.tcga | sed -r '/^\s*$/d')
 rest=$($SIGNET_ROOT/signet -s --rest.tcga | sed -r '/^\s*$/d')
 
-ARGS=`getopt -a -o a:r -l g:,gexp:,p:,pmap:,h:,rest:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l g:,gexp:,p:,pmap:,h:,rest:,restrict:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -47,6 +49,10 @@ case "$1" in
 		pmapfile=$(readlink -f $pmapfile)
 		$SIGNET_ROOT/signet -s --pmap.file $pmapfile
 		shift;;
+        --restrict)
+                restrict=$2
+                $SIGNET_ROOT/signet -s --restrict.tcga $restrict
+                shift;;
         --rest)
                 rest=$2
 		$SIGNET_ROOT/signet -s --rest.tcga $rest
@@ -64,6 +70,7 @@ done
 echo -e "\n"
 echo "gexp.file: "$gexpfile
 echo "pamp.file: "$pmapfile
+echo "restrict on chromosome: "$restrict
 echo -e "\n"
 
 file_purge $SIGNET_TMP_ROOT/tmpt
@@ -76,7 +83,7 @@ if [[ "$rest" == *"doesn't exist"* ]]; then
 exit -1 
 fi
 
-var="gexpfile pmapfile rest"
+var="gexpfile pmapfile restrict rest"
 for i in $var
 do
 export "${i}"

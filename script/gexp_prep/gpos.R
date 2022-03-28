@@ -32,6 +32,16 @@ gpos=gpos[has.annot,]
 gexp.filtered=gexp.filtered[,has.annot]
 
 
+if(Sys.getenv("restrict")!="no"){
+source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/gexp_prep/restrict.R"))
+chr_ori <- substring(gpos[, 2], 4)
+chr_restrict <- restrict(Sys.getenv("restrict"))
+cat(paste0("The study will focus on genes on chromosomes ", toString(chr_restrict), "\n"))
+restrict_id <- which(as.matrix(chr_ori)%in%as.matrix(chr_restrict))
+gpos <- gpos[restrict_id, ]
+gexp.filtered <- gexp.filtered[, restrict_id] 
+}
+
 write.table(gexpID, paste0(Sys.getenv("rest"), "_gexpID"), quote = F,row.names = F,col.names = F,sep= " ")
 write.table(gpos, paste0(Sys.getenv("rest"), "_gene_pos"), quote = F,row.names = F,col.names = F,sep= " ")
 write.table(gpos[, 1], paste0(Sys.getenv("rest"), "_gene_name"), quote = F,row.names = F,col.names = F,sep= " ")
