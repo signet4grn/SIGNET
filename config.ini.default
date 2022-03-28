@@ -73,6 +73,7 @@ ncores = 128
 queue = standby
 memory = 256
 walltime = 4:00:00
+interactive = F
 resn = res/resn/signet
 sif = signet0.0.4.sif
 
