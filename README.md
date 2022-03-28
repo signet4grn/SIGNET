@@ -599,6 +599,7 @@ resg.gtex = res/resg/signet
 (TCGA)
 gexp.file = ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv
 pmap.file = ./data/gexp-prep/gencode.v22.gene.gtf
+restrict.tcga = no
 rest.tcga = res/rest/signet
 
 (GTEx)
@@ -648,6 +649,7 @@ ncores = 128
 queue = standby
 memory = 256
 walltime = 4:00:00
+interactive = F
 resn = res/resn/signet
 sif = signet0.0.4.sif
 
