@@ -84,7 +84,15 @@ echo -e "There are "${tmpqueue[2]}" jobs in queue and "${tmpqueue[3]}" jobs are 
 echo -e "Please wait for Stage 1 to complete...\n"
 
 grep "^sbatch" qsub1.sh > job1_command
+if [[ $interactive == "T" || $interactive == "True" || $interactive == "TRUE" ]];then
+sed -i 's/sbatch -W/srun -n1 bash/g;s/&//g' qsub1.sh
+sh qsub1.sh
+echo -e "Running $(wc -l < job1_command) jobs ... \n"
+else
 echo -e "Submitting $(wc -l < job1_command) jobs ... \n"
+fi
+
+grep -o "sub.*sh" qsub1.sh | xargs chmod +x 
 
 time sh qsub1.sh > submit1_log
 
