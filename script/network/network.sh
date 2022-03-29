@@ -28,5 +28,10 @@ $SIGNET_SCRIPT_ROOT/network/stage2.sh &&
 
 ##summarize the result
 
-Rscript $SIGNET_SCRIPT_ROOT/network/summarize.r
+Rscript $SIGNET_SCRIPT_ROOT/network/summarize.r &&
+
+#back up the results
+scp $SIGNET_TMP_ROOT/tmpn/stage2/output/CoeffMat0 ${resn}_CoeffMat0
+scp $SIGNET_TMP_ROOT/tmpn/net.genepos ${resn}_net.genepos 
+
 echo -e "\nNetwork analysis completed!!!\n"
