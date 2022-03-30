@@ -3,6 +3,7 @@
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
 
 singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
+
 rm -f Adj*
 rm -f Coef*
 
@@ -86,7 +87,12 @@ echo -e "There are "${tmpqueue[2]}" jobs in queue and "${tmpqueue[3]}" jobs are 
 echo -e "Please wait for Stage 2 to complete...\n"
 
 grep "^sbatch" qsub2.sh > job2_command
+if [[ $interactive == "T" || $interactive == "True" || $interactive == "TRUE" ]];then
+sed -i 's/sbatch -W/srun -n1 bash/g;s/&//g' qsub2.sh
+echo -e "Running $(wc -l < job2_command) jobs ... \n"
+else
 echo -e "Submitting $(wc -l < job2_command) jobs ... \n"
+fi
 
 time sh qsub2.sh > submit2_log
 

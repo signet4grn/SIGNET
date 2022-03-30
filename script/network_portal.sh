@@ -13,6 +13,8 @@ ncores=$(${cmdprefix}ncores | sed -r '/^\s*$/d')
 queue=$(${cmdprefix}queue | sed -r '/^\s*$/d')
 memory=$(${cmdprefix}memory | sed -r '/^\s*$/d')
 walltime=$(${cmdprefix}walltime | sed -r '/^\s*$/d')
+interactive=$(${cmdprefix}interactive | sed -r '/^\s*$/d')
+#filter=$(${cmdprefix}filter | sed -r '/^\s*$/d' | xargs readlink -f)
 resn=$($SIGNET_ROOT/signet -s --resn  | sed -r '/^\s*$/d')
 sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
 
@@ -34,13 +36,15 @@ function usage() {
 	echo '  --queue                       queue name'
         echo '  --ncores                      number of scores for each node'
         echo '  --walltime       		maximum walltime of the server in seconds'
+        echo "  --interactive                 T, F for interactive job scheduling or not"
+ #       echo "  --filter                      To focus on a list of genes"
         echo "  --resn                        result prefix"
 	echo "  --sif                         singularity container"
         exit -1 
 }
 [ $? -ne 0 ] && usage
 
-ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,resn:,sif:,h:,help -- "$@"`
+ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,interactive:,resn:,sif:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -100,6 +104,14 @@ case "$1" in
 		walltime=$2
 		${cmdprefix}walltime $walltime
                 shift;;
+        --interactive)
+                interactive=$2
+                ${cmdprefix}interactive $interactive
+                shift;;
+  #     --filter)
+  #             filter=$2
+  #             ${cmdprefix}filter $filter
+  #             shift;;
         --resn)
                 resn=$2
                 $SIGNET_ROOT/signet -s --resn $resn
@@ -130,7 +142,7 @@ if [[ "$resn" == *"doesn't exist"* ]]; then
 exit -1
 fi
 
-var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime resn sif"
+var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime interactive resn sif"
 for i in $var
 do
 export "${i}"

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# Author: Francois Aguet
 # Modified by Zhongli Jiang. Replaced inverse normalization with log2(x+1) transformation
 
 import numpy as np
@@ -134,7 +136,7 @@ def prepare_expression(counts_df, tpm_df, vcf_lookup_s, sample_frac_threshold=0.
         norm_df = np.log2(tmm_counts_df[mask] + 1)
     elif mode.lower()=='qn':
         qn_df = rnaseqnorm.normalize_quantiles(tpm_df.loc[mask])
-        norm_df = qn_df
+        norm_df = rnaseqnorm.inverse_normal_transform(qn_df)
     else:
         raise ValueError('Unsupported mode {}'.format(mode))
 
