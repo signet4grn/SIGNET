@@ -53,7 +53,7 @@ names(ppi_sort) <- c("Protein 1", "Protein 2", "Combined Score")
 ppi_sort <- as.data.frame(ppi_sort)
 
 # write the names for all the nodes
-filename <- paste(Sys.getenv("resv"), name, "_name.txt", sep="")
+filename <- paste(Sys.getenv("resv"), "_", name, "_name.txt", sep="")
 write.table(nodes_bs, filename, row.names = F, col.names = F, quote = F)
 
 ##construct components
