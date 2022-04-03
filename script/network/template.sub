@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -A pi4d
+#SBATCH -p debug
 #SBATCH -n 64
 #SBATCH -N 1
 #SBATCH -t 0:10:00

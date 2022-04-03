@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -A queue
+#SBATCH -p queue
 #SBATCH -n ncores
 #SBATCH -N 1
 #SBATCH -t walltime
