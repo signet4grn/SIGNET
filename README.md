@@ -220,8 +220,8 @@ signet -t --help
 ## Display the help page 
 
 # Modify the paramter
-signet -t --g ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
-          --p ./data/gexp-prep/gencode.v22.gene.gtf \
+signet -t --g data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
+          --p data/gexp-prep/gencode.v22.gene.gtf \
 	  --restrict 1
 	  
 ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
@@ -254,9 +254,9 @@ signet -t --help
 ## Display the help page 
 
 # Modify the paramter
-signet -t --reads /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct \
-          --tpm /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_tpm.gct \
-          --gtf ./data/gexp-prep/gencode.v26.GRCh38.genes.gtf
+signet -t --reads data/gexp/GTEx_gene_reads.gct \
+          --tpm data/gexp/GTEx_gene_tpm.gct \
+          --gtf data/gexp-prep/gencode.v26.GRCh38.genes.gtf
 	  
 ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
 ```
@@ -308,10 +308,10 @@ signet -g --help
 ## Display the help page 
 
 # Modify the paramter
-signet -g --ped ./data/geno-prep/test.ped \
-          --map ./data/geno-prep/test.map \
-	      --ref /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr \
-	      --gmap /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+signet -g --ped data/geno-prep/test.ped \
+          --map data/geno-prep/test.map \
+	  --ref data/ref_panel_38/chr \
+	  --gmap data/gmap/chr
 ```
 
 #### Result
@@ -357,10 +357,10 @@ signet -s --cohort GTEx
 
 
 # Modify the paramter
-signet -g --vcf0 /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx.vcf \
-          --vcf /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf \
-          --read /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct \
-	  --anno /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
+signet -g --vcf0 data/geno-prep/Geno_GTEx.vcf \
+          --vcf data/genotype_after_phasing/Geno_GTEx.vcf \
+          --read data/gexp/GTEx_gene_reads.gct \
+	  --anno data/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
 	  --tissue Lung
 ```
 
@@ -413,7 +413,7 @@ signet -a [--p PHENOTYPE_FILE]
 #### Example
 ```bash
 signet -a --pheno \
-/neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/pheno.txt 
+./data/pheno.txt 
 ```
   
 ### Cis-eqtl
@@ -519,7 +519,7 @@ signet -n [OPTION VAL] ...
 
 #### Example
 ```
-signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
+signet -n --nboots 100 --queue standby --walltime 4:00:00 --memory 256
 ```
 
 
