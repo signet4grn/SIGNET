@@ -534,15 +534,6 @@ You should first SSH -XY to a server with DISPLAY if you would like to use the s
 ```
 signet -v [OPTION VAL] ...
 ```
-- `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
- - `freq`: The bootstrap frequency cutoff. A number in [0, 1].
- - `ntop`: The number of top subnetworks to visualize. An integer number.
- - `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs. Positive/Negative value will determine up/down regulation, with respectively. 
- - `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
- - `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
- - `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
- - `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
-
 
 #### Description
 
@@ -557,6 +548,19 @@ signet -v [OPTION VAL] ...
   --tf                         transcirption factor file, you dont have to specify any file if its for human
   --resv                       result prefix
 ```
+- `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+ - `freq`: The bootstrap frequency cutoff. A number in [0, 1].
+ - `ntop`: The number of top subnetworks to visualize. An integer number.
+ - `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs. Positive/Negative value will determine up/down regulation, with respectively. 
+ - `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
+ - `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
+ - `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
+ - `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
+
+#### Result
+- `signet_edgelist*`: Edgelist file includes infromation for all regulation for given cutoff. Includes gene symbol, chromosme number, start and end posistion for both source and target gene, followed by bootstrap frequency and coefficient estimated from the original data. 
+- `signet_top*.html`: HTML file for largest sub-networks visualization.
+- `signet_top*.name.txt`: Gene name list fo largest sub-networks, given bootstrap cutoff.
 
 #### Example
 ```
@@ -582,7 +586,7 @@ Users can change the SIGNET process by modifying the paramter settings in the co
     - gexp_prep
     - geno_prep
     - adj
-	- cis-eQTL/
-	- network/ 
-	- netvis/
+    - cis-eQTL
+    - network 
+    - netvis
 ```
