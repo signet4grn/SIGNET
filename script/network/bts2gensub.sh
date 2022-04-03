@@ -2,7 +2,7 @@
 
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
 
-Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
+singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
 
 rm -f Adj*
 rm -f Coef*
