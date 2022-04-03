@@ -20,7 +20,7 @@ sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
 
 function usage() {
 	echo 'Usage:'
-        echo -e "Please make sure that you are using the SLURM system, with R version and Parafly being loaded using module load r/4.0.0 and module load utilities ParaFly, respectively. Please also don't run this step inside a container, as the singularity container is integrated as part of the procedure.\n"
+        echo -e "Please make sure that you are using the SLURM system. Please also don't run this step inside a container, as the singularity container is integrated as part of the procedure.\n"
 	echo '  signet -n [OPTION VAL] ...'
 	echo -e "\n"
 	echo 'Description:'
@@ -155,7 +155,6 @@ do
 file_check $(eval "$(echo "echo \$${i}")")
 done
 
-module load r/4.0.0
 
 $SIGNET_SCRIPT_ROOT/network/network.sh
 

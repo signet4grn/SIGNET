@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -A pi4d
-#SBATCH -n 128
+#SBATCH -n 64
 #SBATCH -N 1
 #SBATCH -t 0:10:00
 
@@ -11,4 +11,4 @@ export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 
-singularity exec $sif ParaFly -c paramsXXX.txt -CPU 128 -failed_cmds rerunXXX.txt
+singularity exec $sif ParaFly -c paramsXXX.txt -CPU 64 -failed_cmds rerunXXX.txt
