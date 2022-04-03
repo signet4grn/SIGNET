@@ -3,7 +3,7 @@
 #testing runtime and memeory
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
 
-singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest1.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
+Rscript $SIGNET_SCRIPT_ROOT/network/bstest1.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
 
 rm -f ypre1_1-10
 
@@ -33,14 +33,14 @@ do
 A=`expr $j \* $gene_trunk1 - $(( gene_trunk1 - 1))`
 B=`expr $j \* $gene_trunk1`
 perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$A'/e; s/YYlastYY/'$B'/e' < $SIGNET_SCRIPT_ROOT/network/bts1template.r > bs$i'_'$A'-'$B'.r'
-echo 'singularity exec '$sif' Rscript bs'$i'_'$A-$B'.r' >> params.txt
+echo 'Rscript bs'$i'_'$A-$B'.r' >> params.txt
 done
 
 LEFTOVER=$(( (gene_trunk1 * NUMJOBS) + 1))
 if [ $LEFTOVER -le $NGENES ];then
 CHUNK=$((NUMJOBS+1))
 perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$LEFTOVER'/e; s/YYlastYY/'$NGENES'/e' < $SIGNET_SCRIPT_ROOT/network/bts1template.r > bs$i'_'$LEFTOVER'-'$NGENES'.r'
-echo 'singularity exec '$sif' Rscript bs'$i'_'$LEFTOVER'-'$NGENES'.r' >> params.txt
+echo 'Rscript bs'$i'_'$LEFTOVER'-'$NGENES'.r' >> params.txt
 fi
 done
 

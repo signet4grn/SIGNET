@@ -7,11 +7,8 @@
 cd $SLURM_SUBMIT_DIR
 unset DISPLAY
 
-module load r/4.0.0
-module load utilities parafly
-
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 
-ParaFly -c paramsXXX.txt -CPU ncores -failed_cmds rerunXXX.txt
+singularity exec $sif ParaFly -c paramsXXX.txt -CPU ncores -failed_cmds rerunXXX.txt

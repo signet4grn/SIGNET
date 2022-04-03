@@ -1,17 +1,14 @@
 #!/bin/bash
 #SBATCH -A pi4d
-#SBATCH -n 30
+#SBATCH -n 128
 #SBATCH -N 1
 #SBATCH -t 0:10:00
 
 cd $SLURM_SUBMIT_DIR
 unset DISPLAY
 
-module load r/4.0.0
-module load utilities parafly
-
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 
-ParaFly -c paramsXXX.txt -CPU 30 -failed_cmds rerunXXX.txt
+singularity exec $sif ParaFly -c paramsXXX.txt -CPU 128 -failed_cmds rerunXXX.txt
