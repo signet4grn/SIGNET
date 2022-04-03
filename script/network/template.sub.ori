@@ -4,6 +4,7 @@
 #SBATCH -N 1
 #SBATCH -t walltime
 
+cd $SLURM_SUBMIT_DIR
 unset DISPLAY
 
 export OPENBLAS_NUM_THREADS=1
