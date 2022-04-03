@@ -14,6 +14,7 @@ singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/rmcons.R "nboots=$nboo
 
 ##create the template.sub file 
 sed "s/walltime/$walltime/g;s/ncores/$ncores/g;s/queue/$queue/g" $SIGNET_SCRIPT_ROOT/network/template.sub.ori > $SIGNET_SCRIPT_ROOT/network/template.sub
+sed -i "/SLURM_SUBMIT_DIR/d" $SIGNET_SCRIPT_ROOT/network/template.sub
 
 echo -e 'Stage 1 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory', queue:'$queue']......\n'
 
