@@ -33,4 +33,3 @@ source(paste0(project_path, "/circular.R"))      # summarize circular plot
 source(paste0(project_path, "/server.R"))
 
 shinyApp(ui = ui, server = server, options=list(launch.browser=T))
-
