@@ -533,7 +533,7 @@ signet -n --nboots 100 --queue standby --walltime 4:00:00 --memory 256
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
 
  
-You should first SSH -XY to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
+You should first ssh -Y $(hostname) to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
 
 #### Usage
 ```
