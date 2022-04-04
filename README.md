@@ -474,10 +474,8 @@ signet -c [OPTION VAL] ...
 `network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
 **Caution**
-**Please don't use the singularity container** as it is integrated in the analysis. 
+**Please don't directly use the singularity container to run this trunk** as it is integrated in the analysis. 
 
-The final output files of `network` will be saved under `/res/network/resn`:
-* `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
 
 #### Usage
 ```
@@ -516,6 +514,13 @@ signet -n [OPTION VAL] ...
 * `memory`: memory of each node, in GB.
 * `walltime`: maximum wall time for cluster.
 * `sif`:  A singularity container, in .sif format.
+
+
+#### Results
+- `signet_Afreq`: Ajacency matrix for final list of genes. A[i, j]=1 if gene i is regulated by gene j. 0 entry indicates no regulation. 
+- `signet_CoeffMat0`: Coefficient matrix of estimated regulatory effect on the original data set.
+- `signet_net.genepos`: Corresponding gene name, followed by chromsome location, start and end position. 
+
 
 #### Example
 ```
