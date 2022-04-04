@@ -587,7 +587,7 @@ Users can change the SIGNET process by modifying the paramter settings in the co
 
 ```bash
 # script folder save all the code
-- script/
+    - script/
     - gexp_prep
     - geno_prep
     - adj
