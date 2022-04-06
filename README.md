@@ -208,10 +208,10 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
 
 #### Result
 Output of `gexp-prep` will be saved to `res/rest`. 
-`gexp`: gene expression data after pre-processing.
-`gene_name`: corresponding gene name.
-`gene_pos`: correspongding gene position.
-`gexpID`: correspdonding sample ID.
+- `gexp`: gene expression data after pre-processing.
+- `gene_name`: corresponding gene name.
+- `gene_pos`: correspongding gene position.
+- `gexpID`: correspdonding sample ID.
 
 #### Example
 ```bash
@@ -316,8 +316,11 @@ signet -g --ped data/geno-prep/test.ped \
 
 #### Result
 Output of `geno-prep` will be saved under `/res/resg`:
-`Geno`: Genotype data with each row denoting the SNP data for each individual.
-`Genotype.sampleID`: Sample ID for each individual, which uses the reading barcode.
+- `Geno`: Genotype data with each row denoting the SNP data for each individual.
+- `Genotype.sampleID`: Sample ID for each individual, which uses the reading barcode.
+
+
+
 
 
 (GTEx)
@@ -462,7 +465,7 @@ signet -c [OPTION VAL] ...
 - `upstream`: upstream region to flank the genetic region
 - `downstream`: downstream region to flank the genetic region
 
-
+#### Results
 Output of `cie-eQTL` will be saved to `res/resc`:
 
 * `signet_net.Gexp.data`: is the expression data for gene expression, wo removing the PC by default.
