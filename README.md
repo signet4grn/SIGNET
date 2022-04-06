@@ -220,8 +220,8 @@ signet -t --help
 ## Display the help page 
 
 # Modify the paramter
-signet -t --g ./data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
-          --p ./data/gexp-prep/gencode.v22.gene.gtf \
+signet -t --g data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
+          --p data/gexp-prep/gencode.v22.gene.gtf \
 	  --restrict 1
 	  
 ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
@@ -254,9 +254,9 @@ signet -t --help
 ## Display the help page 
 
 # Modify the paramter
-signet -t --reads /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct \
-          --tpm /work/jiang_bio/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_tpm.gct \
-          --gtf ./data/gexp-prep/gencode.v26.GRCh38.genes.gtf
+signet -t --reads data/gexp/GTEx_gene_reads.gct \
+          --tpm data/gexp/GTEx_gene_tpm.gct \
+          --gtf data/gexp-prep/gencode.v26.GRCh38.genes.gtf
 	  
 ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
 ```
@@ -308,10 +308,10 @@ signet -g --help
 ## Display the help page 
 
 # Modify the paramter
-signet -g --ped ./data/geno-prep/test.ped \
-          --map ./data/geno-prep/test.map \
-	      --ref /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/ref_panel_38/chr \
-	      --gmap /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/impute_genotype_combined/chr
+signet -g --ped data/geno-prep/test.ped \
+          --map data/geno-prep/test.map \
+	  --ref data/ref_panel_38/chr \
+	  --gmap data/gmap/chr
 ```
 
 #### Result
@@ -357,10 +357,10 @@ signet -s --cohort GTEx
 
 
 # Modify the paramter
-signet -g --vcf0 /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype/Geno_GTEx.vcf \
-          --vcf /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/Geno_GTEx.vcf \
-          --read /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/gexp/GTEx_gene_reads.gct \
-	  --anno /neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
+signet -g --vcf0 data/geno-prep/Geno_GTEx.vcf \
+          --vcf data/genotype_after_phasing/Geno_GTEx.vcf \
+          --read data/gexp/GTEx_gene_reads.gct \
+	  --anno data/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
 	  --tissue Lung
 ```
 
@@ -413,7 +413,7 @@ signet -a [--p PHENOTYPE_FILE]
 #### Example
 ```bash
 signet -a --pheno \
-/neyman/work/jiang548/NetANOVA/real_data/GTEx_lung/genotype_after_phasing/pheno.txt 
+./data/pheno.txt 
 ```
   
 ### Cis-eqtl
@@ -474,10 +474,8 @@ signet -c [OPTION VAL] ...
 `network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
 **Caution**
-**Please don't use the singularity container** as it is integrated in the analysis. 
+**Please don't directly use the singularity container to run this trunk** as it is integrated in the analysis. 
 
-The final output files of `network` will be saved under `/res/network/resn`:
-* `coefficient_matrix`: the coefficient matrix for the estimated regulatory effects;
 
 #### Usage
 ```
@@ -517,9 +515,16 @@ signet -n [OPTION VAL] ...
 * `walltime`: maximum wall time for cluster.
 * `sif`:  A singularity container, in .sif format.
 
+
+#### Results
+- `signet_Afreq`: Ajacency matrix for final list of genes. A[i, j]=1 if gene i is regulated by gene j. 0 entry indicates no regulation. 
+- `signet_CoeffMat0`: Coefficient matrix of estimated regulatory effect on the original data set.
+- `signet_net.genepos`: Corresponding gene name, followed by chromsome location, start and end position. 
+
+
 #### Example
 ```
-signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
+signet -n --nboots 100 --queue standby --walltime 4:00:00 --memory 256
 ```
 
 
@@ -528,21 +533,12 @@ signet -n --nboots 10 --queue standby --walltime 4:00:00 --memory 256
 `netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
 
  
-You should first SSH -XY to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
+You should first ssh -Y $(hostname) to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
 
 #### Usage
 ```
 signet -v [OPTION VAL] ...
 ```
-- `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
- - `freq`: The bootstrap frequency cutoff. A number in [0, 1].
- - `ntop`: The number of top subnetworks to visualize. An integer number.
- - `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs. Positive/Negative value will determine up/down regulation, with respectively. 
- - `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
- - `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
- - `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
- - `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
-
 
 #### Description
 
@@ -557,6 +553,19 @@ signet -v [OPTION VAL] ...
   --tf                         transcirption factor file, you dont have to specify any file if its for human
   --resv                       result prefix
 ```
+- `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
+ - `freq`: The bootstrap frequency cutoff. A number in [0, 1].
+ - `ntop`: The number of top subnetworks to visualize. An integer number.
+ - `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs. Positive/Negative value will determine up/down regulation, with respectively. 
+ - `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
+ - `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
+ - `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
+ - `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
+
+#### Result
+- `signet_edgelist*`: Edgelist file includes infromation for all regulation for given cutoff. Includes gene symbol, chromosme number, start and end posistion for both source and target gene, followed by bootstrap frequency and coefficient estimated from the original data. 
+- `signet_top*.html`: HTML file for largest sub-networks visualization.
+- `signet_top*.name.txt`: Gene name list fo largest sub-networks, given bootstrap cutoff.
 
 #### Example
 ```
@@ -578,11 +587,11 @@ Users can change the SIGNET process by modifying the paramter settings in the co
 
 ```bash
 # script folder save all the code
-- script/
+    - script/
     - gexp_prep
     - geno_prep
     - adj
-	- cis-eQTL/
-	- network/ 
-	- netvis/
+    - cis-eQTL
+    - network 
+    - netvis
 ```
