@@ -393,6 +393,15 @@ signet -a [--c CLINIVAL_FILE]
 ```bash
 signet -a --c ./data/clinical.tsv
 ```
+Output of `adj` will be saved to `res/resa`:
+- `signet_geno.data`: 
+- `signet_gexp.data`:
+- `signet_gexp_rmpc.data`:
+- `signet_matched.gexp`:
+- `signet_new.Geno`:
+- `signet_new.Geno.maf`:
+- `signet_new.Geno.map`: 
+
 
 (GTEx)
 
@@ -419,15 +428,6 @@ signet -a --pheno \
 ### Cis-eqtl
 
 `cis-eqtl` command provide the basic tool for cis-eQTL analysis.  `cis-eqtl` command receive the input file from the previous preprocess step.
-
-
-The results of `cis-eqtl` are output in to the following files, and they are all saved under  `res/resc/cis-eQTL`:
-
-* `net.Gexp.data`: is the expression data for genes;
-* `net.genepos`: include the position for genes in `net.Gexp.data`;
-* `[common|low|rare|all].eQTL.data`: includes the genotype data for marginally significant [ common | low | rare | all ] cis-eQTL;
-* `[common|low|rare|all].sig.pValue_0.05`: includes the p-value of each pair of gene and its marginally significant [ common | low | rare | all ]  cis-eQTL, where Column 1 is Gene Index, Column is SNP Index in `common.eQTL.data`, and Column 3 is p-Value.
-* `[common|low|rare|all].sig.weight_0.05`: includes the weight of collapsed SNPs for marginally significant cis-eQTL. The first column is the gene index, the second column is the SNP index, the third column is the index of collapsed SNP group, and the fourth column is the weight of each SNP in its collapsed group (with value 1 or -1).
 
 
 
@@ -461,6 +461,16 @@ signet -c [OPTION VAL] ...
 - `nperms`: number of permutations. 
 - `upstream`: upstream region to flank the genetic region
 - `downstream`: downstream region to flank the genetic region
+
+
+Output of `cie-eQTL` will be saved to `res/resc`:
+
+* `net.Gexp.data`: is the expression data for genes;
+* `net.genepos`: include the position for genes in `net.Gexp.data`;
+* `[common|low|rare|all].eQTL.data`: includes the genotype data for marginally significant [ common | low | rare | all ] cis-eQTL;
+* `[common|low|rare|all].sig.pValue_0.05`: includes the p-value of each pair of gene and its marginally significant [ common | low | rare | all ]  cis-eQTL, where Column 1 is Gene Index, Column is SNP Index in `common.eQTL.data`, and Column 3 is p-Value.
+* `[common|low|rare|all].sig.weight_0.05`: includes the weight of collapsed SNPs for marginally significant cis-eQTL. The first column is the gene index, the second column is the SNP index, the third column is the index of collapsed SNP group, and the fourth column is the weight of each SNP in its collapsed group (with value 1 or -1).
+
 
 #### Example
 ```
