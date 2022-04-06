@@ -465,11 +465,12 @@ signet -c [OPTION VAL] ...
 
 Output of `cie-eQTL` will be saved to `res/resc`:
 
-* `net.Gexp.data`: is the expression data for genes;
-* `net.genepos`: include the position for genes in `net.Gexp.data`;
-* `[common|low|rare|all].eQTL.data`: includes the genotype data for marginally significant [ common | low | rare | all ] cis-eQTL;
-* `[common|low|rare|all].sig.pValue_0.05`: includes the p-value of each pair of gene and its marginally significant [ common | low | rare | all ]  cis-eQTL, where Column 1 is Gene Index, Column is SNP Index in `common.eQTL.data`, and Column 3 is p-Value.
-* `[common|low|rare|all].sig.weight_0.05`: includes the weight of collapsed SNPs for marginally significant cis-eQTL. The first column is the gene index, the second column is the SNP index, the third column is the index of collapsed SNP group, and the fourth column is the weight of each SNP in its collapsed group (with value 1 or -1).
+* `signet_net.Gexp.data`: is the expression data for gene expression, wo removing the PC by default.
+* `signet_net.genepos`: include the position for genes in `signet_net.Gexp.data`, has four columns: gene name, chromosome number, start and end position, respectively.
+* `signet_cis.name`: genes with cis-eQTLs.
+* `signet_[common|low|rare|all].eQTL.data`: includes the genotype data for marginally significant [ common | low | rare | all ] cis-eQTL;
+* `signet_[common|low|rare|all].sig.pValue_alpa`: includes the p-value of each pair of gene and its marginally significant [ common | low | rare | all ]  cis-eQTL, where Column 1 is Gene Index, Column is SNP Index in `common.eQTL.data`, and Column 3 is p-Value.
+* `signet_[common|low|rare|all].sig.weight_alpha`: includes the weight of collapsed SNPs for marginally significant cis-eQTL. The first column is the gene index, the second column is the SNP index, the third column is the index of collapsed SNP group, and the fourth column is the weight of each SNP in its collapsed group (with value 1 or -1).
 
 
 #### Example
