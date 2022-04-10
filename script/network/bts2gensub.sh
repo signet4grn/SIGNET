@@ -81,10 +81,12 @@ fi
 
 echo "wait" >> qsub2.sh
 
-tmpqueue=($(slist|grep $queue))
-echo -e "\nThere are in total" ${tmpqueue[1]} "cores available\n"
-echo -e "There are "${tmpqueue[2]}" jobs in queue and "${tmpqueue[3]}" jobs are running\n"
-echo -e "Please wait for Stage 2 to complete...\n"
+#tmpqueue=($(slist|grep $queue))
+#echo -e "\nThere are in total" ${tmpqueue[1]} "cores available\n"
+#echo -e "There are "${tmpqueue[2]}" jobs in queue and "${tmpqueue[3]}" jobs are running\n"
+#echo -e "Please wait for Stage 2 to complete...\n"
+
+sinfo -s
 
 grep "^sbatch" qsub2.sh > job2_command
 if [[ $interactive == "T" || $interactive == "True" || $interactive == "TRUE" ]];then
