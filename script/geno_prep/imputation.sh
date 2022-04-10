@@ -67,12 +67,17 @@ then
   do
      A=`expr $j \* $int - $int + $START`
      B=`expr $j \* $int + $START - 1`
+     awk ''$4'>='$A' && '$4'<='$B'{print}' clean_Genotype_chr$i.map > exist.txt
+     if [[ -s exist.txt ]]; then
      echo 'impute2 -pgs_miss -g '$i'.gen -g_ref '$ref''$i'.gen -m '$gmap''$i'.map -include_snps empty -int '$A' '$B' -Ne 20000 -o impute/impute_chr'$i'chunk'$j >> impute_params.txt
+     fi
   done
   LEFTOVER=$(( (int*NUMJOBS) + START))
   CHUNK=$((NUMJOBS+1))
+  awk ''$4'>='$LEFTOVER' && '$4'<='$END'{print}' clean_Genotype_chr$i.map > exist.txt
+  if [[ -s exist.txt ]]; then
   echo 'impute2 -pgs_miss -g '$i'.gen -g_ref '$ref''$i'.gen -m '$gmap''$i'.map -include_snps empty -int '$LEFTOVER' '$END' -Ne 20000 -o impute/impute_chr'$i'chunk'$CHUNK >> impute_params.txt
-fi
+  fi
 done
 
 ## employ parallel computing for imputation 
