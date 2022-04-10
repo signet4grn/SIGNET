@@ -6,7 +6,8 @@ forcerm=$2
 
 qyn=0
 
-if [[ $forcerm == "T*" || $forcerm == "t*" || $forcerm == "Y*" || $forcerm == "y*" ]];then
+if [[ $forcerm == T* || $forcerm == t* || $forcerm == Y* || $forcerm == y* ]]; then
+echo -e "Please not that the temporary file was force removed"
 qyn=1
 rm -rf $file
 fi
