@@ -46,6 +46,7 @@ gmap=$($SIGNET_ROOT/signet -s --gmap)
 int=$($SIGNET_ROOT/signet -s --int)
 ncores=$($SIGNET_ROOT/signet -s --ncore_local)
 resg=$($SIGNET_ROOT/signet -s --resg.tcga)
+forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,gmap:,i:,int:,ncores:,h:,resg:,help -- "$@"`
 
@@ -117,7 +118,7 @@ echo "ped.file: "$pedfile
 echo "map.file: "$mapfile
 echo -e "\n"
 
-file_purge $SIGNET_TMP_ROOT/tmpg
+file_purge $SIGNET_TMP_ROOT/tmpg $forcerm
 mkdir $SIGNET_TMP_ROOT/tmpg/impute
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep

@@ -17,6 +17,7 @@ interactive=$(${cmdprefix}interactive | sed -r '/^\s*$/d')
 #filter=$(${cmdprefix}filter | sed -r '/^\s*$/d' | xargs readlink -f)
 resn=$($SIGNET_ROOT/signet -s --resn  | sed -r '/^\s*$/d')
 sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
+forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 function usage() {
 	echo 'Usage:'
@@ -133,7 +134,7 @@ case "$1" in
 shift
 done 
    
-file_purge $SIGNET_TMP_ROOT/tmpn
+file_purge $SIGNET_TMP_ROOT/tmpn $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/resn
 mkdir -p $SIGNET_DATA_ROOT/network
 resn=$(dir_check $resn)

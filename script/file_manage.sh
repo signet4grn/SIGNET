@@ -2,8 +2,14 @@
 
 file_purge(){
 file=$1
+forcerm=$2
 
 qyn=0
+
+if [[ $forcerm == "T*" || $forcerm == "t*" || $forcerm == "Y*" || $forcerm == "y*" ]];then
+qyn=1
+rm -rf $file
+fi
 
 while [[ qyn -eq 0 ]]; do
 

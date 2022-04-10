@@ -16,6 +16,7 @@ reads=$($SIGNET_ROOT/signet -s --reads.file | xargs readlink -f)
 tpm=$($SIGNET_ROOT/signet -s --tpm.file | xargs readlink -f )
 gtf=$($SIGNET_ROOT/signet -s --gtf.file | xargs readlink -f | sed -r '/^\s*$/d')
 rest=$($SIGNET_ROOT/signet -s --rest.gtex | sed -r '/^\s*$/d')
+forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l r:,read:,t:,tpm:,g:,gtf:,h:,rest:,help -- "$@"`
 
@@ -67,7 +68,7 @@ do
 file_check $(eval "$(echo "echo \$${i}")")
 done
 
-file_purge $SIGNET_TMP_ROOT/tmpt
+file_purge $SIGNET_TMP_ROOT/tmpt $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/rest
 mkdir -p $SIGNET_DATA_ROOT/gexp-prep
 rest=$(dir_check $rest)

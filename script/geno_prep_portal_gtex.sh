@@ -21,6 +21,7 @@ gexpread=$($SIGNET_ROOT/signet -s --read.file)
 anno=$($SIGNET_ROOT/signet -s --anno)
 tissue=$($SIGNET_ROOT/signet -s --tissue)
 resg=$($SIGNET_ROOT/signet -s --resg.gtex)
+forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l v:,vcf:,vcf0:,r:,read:,a:,anno:,t:,tissue:,h:,resg:,help -- "$@"`
 
@@ -67,7 +68,7 @@ esac
 shift
 done
 
-file_purge $SIGNET_TMP_ROOT/tmpg
+file_purge $SIGNET_TMP_ROOT/tmpg $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/resg
 mkdir -p $SIGNET_DATA_ROOT/geno-prep
 resg=$(dir_check $resg)

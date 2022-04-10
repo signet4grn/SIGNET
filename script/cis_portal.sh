@@ -12,6 +12,7 @@ nperms=$(${cmdprefix}nperms | sed -r '/^\s*$/d')
 upstream=$(${cmdprefix}upstream | sed -r '/^\s*$/d')
 downstream=$(${cmdprefix}downstream | sed -r '/^\s*$/d') 
 resc=$(${cmdprefix}resc | sed -r '/^\s*$/d')
+forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 function usage() {
 	echo 'Usage:'
@@ -104,7 +105,7 @@ case "$1" in
 shift
 done 
 
-file_purge $SIGNET_TMP_ROOT/tmpc
+file_purge $SIGNET_TMP_ROOT/tmpc $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/resc
 mkdir -p $SIGNET_DATA_ROOT/cis-eQTL
 resc=$(dir_check $resc)

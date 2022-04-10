@@ -11,6 +11,7 @@ assembly=$(${cmdprefix}assembly | sed -r '/^\s*$/d')
 tf=$(${cmdprefix}tf | sed -r '/^\s*$/d' | xargs readlink -f )
 resv=$(${cmdprefix}resv | sed -r '/^\s*$/d')
 nchr=$(${cmdprefix}nchr)
+forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 function usage() {
         echo -e 'Pre-requisite: \n'
@@ -92,7 +93,7 @@ case "$1" in
 shift
 done 
 
-file_purge $SIGNET_TMP_ROOT/tmpv
+file_purge $SIGNET_TMP_ROOT/tmpv $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/resv
 mkdir -p $SIGNET_DATA_ROOT/netvis
 resv=$(dir_check $resv)

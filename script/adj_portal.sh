@@ -28,6 +28,7 @@ clifile=$($SIGNET_ROOT/signet -s --cli.file | sed -r '/^\s*$/d')
 resa=$($SIGNET_ROOT/signet -s --resa.tcga | sed -r '/^\s*$/d')
 resg=$($SIGNET_ROOT/signet -s --resg.tcga | sed -r '/^\s*$/d')
 rest=$($SIGNET_ROOT/signet -s --rest.tcga | sed -r '/^\s*$/d')
+forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l h:,c:,clinical:,resa:,help -- "$@"`
 
@@ -54,7 +55,7 @@ esac
 shift
 done
 
-file_purge $SIGNET_TMP_ROOT/tmpa
+file_purge $SIGNET_TMP_ROOT/tmpa $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/resa
 mkdir -p $SIGNET_DATA_ROOT/adj
 resa=$(dir_check $resa)

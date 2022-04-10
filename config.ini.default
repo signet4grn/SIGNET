@@ -3,7 +3,7 @@
 nchr = 22
 ncore_local = 20
 cohort = TCGA
-forcerm = T
+forcerm = F
 
 [geno]
 (TCGA)

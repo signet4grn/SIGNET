@@ -31,6 +31,7 @@ gexpfile=$($SIGNET_ROOT/signet -s --gexp.file|xargs readlink -f)
 pmapfile=$($SIGNET_ROOT/signet -s --pmap.file|xargs readlink -f)
 restrict=$($SIGNET_ROOT/signet -s --restrict.tcga | sed -r '/^\s*$/d')
 rest=$($SIGNET_ROOT/signet -s --rest.tcga | sed -r '/^\s*$/d')
+forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l g:,gexp:,p:,pmap:,h:,rest:,restrict:,help -- "$@"`
 
@@ -73,7 +74,7 @@ echo "pamp.file: "$pmapfile
 echo "restrict on chromosome: "$restrict
 echo -e "\n"
 
-file_purge $SIGNET_TMP_ROOT/tmpt
+file_purge $SIGNET_TMP_ROOT/tmpt $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/rest
 mkdir -p $SIGNET_DATA_ROOT/gexp-prep
 rest=$(dir_check $rest)
