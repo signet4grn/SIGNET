@@ -397,13 +397,12 @@ signet -a [--c CLINIVAL_FILE]
 signet -a --c ./data/clinical.tsv
 ```
 Output of `adj` will be saved to `res/resa`:
-- `signet_geno.data`: 
-- `signet_gexp.data`:
-- `signet_gexp_rmpc.data`:
-- `signet_matched.gexp`:
-- `signet_new.Geno`:
-- `signet_new.Geno.maf`:
-- `signet_new.Geno.map`: 
+- `signet_geno.data`: matched genotype data, with rows representing samples and columns representing SNPs.
+- `signet_gexp.data`: matched gene expression data, adjusted for covariates but don't include PCs, with rows representing samples and columns representing gene expressions.
+- `signet_gexp_rmpc.data`: matched gene expression data, adjusted for covariates including PCs, with rows representing samples and columns representing gene expressions.
+- `signet_matched.gexp`:  matched gene expression data, without ajusting for covariates, with rows representing samples and columns representing gene expressions.
+- `signet_new.Geno.maf`: MAF file for genotype data. 
+- `signet_new.Geno.map`: MAP file for genotype data.
 
 
 (GTEx)
