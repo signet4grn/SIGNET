@@ -86,7 +86,9 @@ echo "wait" >> qsub2.sh
 #echo -e "There are "${tmpqueue[2]}" jobs in queue and "${tmpqueue[3]}" jobs are running\n"
 #echo -e "Please wait for Stage 2 to complete...\n"
 
+echo -e "Below is the allocation for different queues\n"
 sinfo -s
+echo -e "\n"
 
 grep "^sbatch" qsub2.sh > job2_command
 if [[ $interactive == "T" || $interactive == "True" || $interactive == "TRUE" ]];then
