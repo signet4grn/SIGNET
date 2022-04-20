@@ -70,7 +70,7 @@ done
 
 echo -e "\n"
 echo "gexp.file: "$gexpfile
-echo "pamp.file: "$pmapfile
+echo "pmap.file: "$pmapfile
 echo "restrict on chromosome: "$restrict
 echo -e "\n"
 
