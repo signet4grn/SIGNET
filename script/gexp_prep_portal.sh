@@ -78,7 +78,6 @@ file_purge $SIGNET_TMP_ROOT/tmpt $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/rest
 mkdir -p $SIGNET_DATA_ROOT/gexp-prep
 rest=$(dir_check $rest)
-echo $rest
 
 if [[ "$rest" == *"doesn't exist"* ]]; then
 exit -1 
