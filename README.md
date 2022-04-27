@@ -442,13 +442,13 @@ signet -c [OPTION VAL] ...
 #### Description
 ```
   --gexp                        gene expression file after matching with genotype data
-  --gexp.withpc                 gene expression file without adjusting for pc, after matching with genotype data
+  --gexp.withpc                 gene expression file without adjusting for principal components, after matching with genotype data
   --geno                        genotype file after matching with gene expression data
   --map MAP_FILE                snps map file path
   --maf MAF_FILE                snps maf file path
   --gene_pos                    gene position file
   --alpha | -a			significance level for cis-eQTL
-  --nperms N_PERMS	        numer of permutations
+  --nperms N_PERMS	        number of permutations
   --upstream UP_STREAM		upstream region to flank the genetic region
   --downstram DOWN_STREAM	downstream region to flank the genetic region
   --resc                        result prefix
@@ -508,7 +508,7 @@ signet -n [OPTION VAL] ...
   --nboots NBOOTS               number of bootstraps datasets
   --memory MEMEORY	        memory in each node in GB
   --queue QUEUE                 queue name
-  --ncores                      number of scores for each node
+  --ncores                      number of cores for each node
   --walltime WALLTIME	     	maximum walltime of the server in seconds
   --resn                        result prefix
   --sif                         singularity container
@@ -570,7 +570,7 @@ signet -v [OPTION VAL] ...
  - `freq`: The bootstrap frequency cutoff. A number in [0, 1].
  - `ntop`: The number of top subnetworks to visualize. An integer number.
  - `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs. Positive/Negative value will determine up/down regulation, with respectively. 
- - `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the numer of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
+ - `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the number of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
  - `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
  - `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
  - `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
