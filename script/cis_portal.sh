@@ -20,13 +20,13 @@ function usage() {
 	echo -e '\n'
 	echo 'Description:'
 	echo '  --gexp                        gene expression file after matching with genotype data'
-        echo "  --gexp.withpc                 gene expression file without adjusting for pc, after matching with genotype data"
+        echo "  --gexp.withpc                 gene expression file without adjusting for principal components, after matching with genotype data"
 	echo '  --geno                        genotype file after matching with gene expression data'
     	echo '  --map                         snps map file path'
         echo '  --maf                         snps maf file path'
         echo '  --gene_pos                    gene position file'
 	echo '  --alpha | -a			significance level for cis-eQTL'
-	echo '  --nperms                 	numer of permutations'
+	echo '  --nperms                 	number of permutations'
 	echo '  --upstream               	upstream region to flank the genetic region '
 	echo '  --downstram                   downstream region to flank the genetic region'
         echo '  --resc                        result prefix'

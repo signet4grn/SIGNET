@@ -35,7 +35,7 @@ function usage() {
         echo '  --nboots                      number of bootstraps datasets'
         echo '  --memory                      memory in each node in GB'
 	echo '  --queue                       queue name'
-        echo '  --ncores                      number of scores for each node'
+        echo '  --ncores                      number of cores for each node'
         echo '  --walltime       		maximum walltime of the server in seconds'
         echo "  --interactive                 T, F for interactive job scheduling or not"
  #       echo "  --filter                      To focus on a list of genes"
