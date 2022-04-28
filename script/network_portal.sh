@@ -144,8 +144,6 @@ You could edit the path of the container using --sif argument."
 exit -1 
 fi
 
-exit -1 
-
 file_purge $SIGNET_TMP_ROOT/tmpn $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/resn
 mkdir -p $SIGNET_DATA_ROOT/network
