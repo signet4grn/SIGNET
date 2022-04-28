@@ -134,6 +134,18 @@ case "$1" in
 shift
 done 
    
+
+$SINGULARITY_COMMAND
+
+# check if in a singularity container
+if [[ $(which singularity) == "" ]];then
+echo -e "The container couldn't be found. \nPlease don't invoke a container mannually as it's integrated in the analysis.
+You could edit the path of the container using --sif argument."
+exit -1 
+fi
+
+exit -1 
+
 file_purge $SIGNET_TMP_ROOT/tmpn $forcerm
 mkdir -p $SIGNET_RESULT_ROOT/resn
 mkdir -p $SIGNET_DATA_ROOT/network
