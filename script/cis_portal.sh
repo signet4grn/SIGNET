@@ -70,7 +70,7 @@ case "$1" in
 	--gene_pos)
                 gene_pos=$2
                 gene_pos=$(readlink -f $gene_pos)
-                ${cmdprefix}gene.pos $gen_pos
+                ${cmdprefix}gene.pos $gene_pos
                 shift;;
 	-a|--alpha)
                 alpha=$2
