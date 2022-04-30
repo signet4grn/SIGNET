@@ -41,6 +41,7 @@ cli.file = ./data/clinical.tsv
 resa.tcga = res/resa/signet
 
 (GTEX)
+pheno = pheno.txt
 resa.gtex = res/resa/signet
 
 [plink]
