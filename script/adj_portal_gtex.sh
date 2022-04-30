@@ -11,10 +11,10 @@ usage() {
 
 pheno=$($SIGNET_ROOT/signet -s --pheno | sed -r '/^\s*$/d')
 tissue=$($SIGNET_ROOT/signet -s --tissue | sed -r '/^\s*$/d')
-anno=$($SIGNET_ROOT/signet -s --anno | sed -r '/^\s*$/d')
-resa=$($SIGNET_ROOT/signet -s --resa.gtex | sed -r '/^\s*$/d')
-resg=$($SIGNET_ROOT/signet -s --resg.gtex | sed -r '/^\s*$/d')
-rest=$($SIGNET_ROOT/signet -s --rest.gtex | sed -r '/^\s*$/d')
+anno=$($SIGNET_ROOT/signet -s --anno | sed -r '/^\s*$/d' | readlink -f )
+resa=$($SIGNET_ROOT/signet -s --resa.gtex | sed -r '/^\s*$/d' | readlink -f )
+resg=$($SIGNET_ROOT/signet -s --resg.gtex | sed -r '/^\s*$/d' | readlink -f)
+rest=$($SIGNET_ROOT/signet -s --rest.gtex | sed -r '/^\s*$/d' | readlink -f)
 forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 ARGS=`getopt -a -o a:r -l h:,pheno:,resa:,help -- "$@"`
