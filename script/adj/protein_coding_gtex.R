@@ -2,7 +2,8 @@
 ##Filter and order genes 
 library(data.table)
 library(rtracklayer)
-gtf <- rtracklayer::import(Sys.getenv(gtf))
+print(Sys.getenv("gtf"))
+gtf <- rtracklayer::import(Sys.getenv("gtf"))
 gtf <- as.data.frame(gtf)
 gtf[, 1] <- substring(gtf[, 1], 4)
 

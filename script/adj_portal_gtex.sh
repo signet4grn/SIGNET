@@ -10,7 +10,7 @@ usage() {
 }
 
 pheno=$($SIGNET_ROOT/signet -s --pheno | sed -r '/^\s*$/d' | xargs readlink -f)
-gtf=$($SIGNET_ROOT/signet -s --gtf | sed -r '/^\s*$/d' | xargs readlink -f)
+gtf=$($SIGNET_ROOT/signet -s --gtf.file | sed -r '/^\s*$/d' | xargs readlink -f)
 tissue=$($SIGNET_ROOT/signet -s --tissue | sed -r '/^\s*$/d')
 anno=$($SIGNET_ROOT/signet -s --anno | sed -r '/^\s*$/d' | xargs readlink -f)
 resa=$($SIGNET_ROOT/signet -s --resa.gtex | sed -r '/^\s*$/d' | xargs readlink -f)
@@ -58,6 +58,7 @@ for i in $var
 do
 export "${i}"
 done
+
 
 # check file existence
 input_file="pheno anno"
