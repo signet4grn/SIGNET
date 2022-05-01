@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -e "Splitting the snps by maf\n"
+echo -e "Splitting the SNPs by maf\n"
 
 $SIGNET_SCRIPT_ROOT/cis-eQTL/snpsplit.sh &&
 
