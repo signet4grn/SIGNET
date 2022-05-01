@@ -18,14 +18,14 @@ gtf_cut <- gtf[which(gtf$gene_id %in% as.matrix(POS[, 4])), ]
 idx_pc <- (gtf_cut[ ,12]=="protein_coding")&(gtf_cut[ ,7]=="gene")
 
 #ensembl id
-#POS <- unique(gtf_cut[idx_pc, c(10, 1, 2, 3)])
+POS_ensmbl <- unique(gtf_cut[idx_pc, c(10, 1, 2, 3)])
 #gene name
 POS <- unique(gtf_cut[idx_pc, c(13, 1, 2, 3)])
-names(POS) <- c("gene","chr","start","end")
+names(POS) <- names(POS_ensmbl) <-  c("gene","chr","start","end")
 ##16762 protein coding genes
 
-data <- data[, match(as.matrix(POS[, 1]), as.matrix(gexp1[, 4]))]
-data_rmpc <- data_rmpc[, match(as.matrix(POS[, 1]), as.matrix(gexp1[, 4]))]
+data <- data[, match(as.matrix(POS_ensmbl[, 1]), as.matrix(gexp1[, 4]))]
+data_rmpc <- data_rmpc[, match(as.matrix(POS_ensmbl[, 1]), as.matrix(gexp1[, 4]))]
 
 # remove genes whose size is greater than 2.3Mb
 distance=POS$end-POS$start
