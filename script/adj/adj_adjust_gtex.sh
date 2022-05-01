@@ -21,9 +21,10 @@ cd $SIGNET_ROOT
 ## adjust expression by the covariates: top  pcs, without PEER factors, Sex, Platform, Protocol
 $SIGNET_SCRIPT_ROOT/adj/gexp_cov_adjust.py --expr ${rest}_expression_normalized_igt2log_GTEx_${tissue}.expression.bed.gz \
 --covf $SIGNET_TMP_ROOT/tmpa/all_covs_withoutigt_${tissue}_no_peer.combined_covariates.txt \
---prefix ${resa}_rmpc > log_lung_withoutigt_no_peer
+--prefix tmp_rmpc > log_lung_withoutigt_no_peer_rmpc
 
 $SIGNET_SCRIPT_ROOT/adj/gexp_cov_adjust.py --expr ${rest}_expression_normalized_igt2log_GTEx_${tissue}.expression.bed.gz \
 --covf $SIGNET_TMP_ROOT/tmpa/all_covs_withoutigtpc_${tissue}_no_peer.combined_covariates.txt \
---prefix ${resa} > log_lung_withoutigt_no_peer
+--prefix tmp > log_lung_withoutigt_no_peer
 
+Rscript protein_coding_gtex.R
