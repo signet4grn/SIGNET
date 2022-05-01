@@ -18,7 +18,10 @@ names(POS) <-c("chr","start","end","gene")
 gtf_cut <- gtf[which(gtf$gene_id %in% as.matrix(POS[, 4])), ]
 idx_pc <- (gtf_cut[ ,12]=="protein_coding")&(gtf_cut[ ,7]=="gene")
 
-POS <- unique(gtf_cut[idx_pc, c(10, 1, 2, 3)])
+#ensembl id
+#POS <- unique(gtf_cut[idx_pc, c(10, 1, 2, 3)])
+#gene name
+POS <- unique(gtf_cut[idx_pc, c(13, 1, 2, 3)])
 names(POS) <- c("gene","chr","start","end")
 ##16762 protein coding genes
 
@@ -30,6 +33,7 @@ distance=POS$end-POS$start
 idx <- which(distance<=2.3e6)
 
 POS <- POS[idx,] #16761 genes left
+POS[, 2] <- paste0("chr", POS[, 2])
 data <- data[,idx]
 data_rmpc <- data_rmpc[, idx]
 
