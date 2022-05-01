@@ -1,8 +1,9 @@
 ### rare.ciseQTL.R
 ### Calculate p-values of rare-freq cis-eQTL via permutation
 #
-y=read.table(Sys.getenv("gexp"))
-x=read.table('rare.Geno.data')
+library(data.table)
+y=fread(Sys.getenv("gexp"))
+x=fread('rare.Geno.data')
 idx=read.table('rare.cispair.idx')
 y=as.matrix(y)
 x=as.matrix(x)

@@ -1,8 +1,9 @@
 ### common.ciseQTL.R
 ### Calculate p-values of all common cis-eQTL
 #
-y=read.table(Sys.getenv("gexp"))
-x=read.table('common.Geno.data')
+library(data.table)
+y=fread(Sys.getenv("gexp"))
+x=fread('common.Geno.data')
 y=as.matrix(y)
 x=as.matrix(x)
 y=scale(y)
