@@ -67,6 +67,6 @@ do
 file_check $(eval "$(echo "echo \$${i}")")
 done
 
-$SIGNET_SCRIPT_ROOT/adj/adj_gtex.sh && echo -e "Gene Expression and Genotype matching Finished\n" 
+$SIGNET_SCRIPT_ROOT/adj/adj_gtex.sh && echo -e "Adjusting for covariates finished\n" 
 
 echo -e "Finish time: $(date)"
