@@ -93,7 +93,7 @@ for (i in YYstartYY:YYendYY){
         }
     }    
 
-    if((i%%100)==0) print(i)
+    if((i%%10000)==0) print(i)
 }
 
 write.table(w,"low.ciseQTL.weightYYY",row.names=F,col.names=F,quote=F,sep=" ")
