@@ -134,7 +134,7 @@ signet -v
 
 ### Settings
 
-Settings command is used for look up and modify parameter in the configuration file config.ini. You don't have to modify the parameters at the very beginning, as you will have options to change your input parameters in each step. 
+`signet -s` command is used for look up and modify parameter in the configuration file config.ini. You don't have to modify the parameters at the very beginning, as you will have options to change your input parameters in each step. 
 
 [click here](#config-file) for detailed introduction for configuration file. 
 
@@ -187,7 +187,7 @@ echo: Please check the file name
 ### Transcript-prep 
 (TCGA)
 
-This command will take the matrix of log2(x+1) transcriptome count data and preprocess it. 
+`signet -t` command will take the matrix of log2(x+1) transcriptome count data and preprocess it. 
 
 
 #### Usage
@@ -268,7 +268,7 @@ signet -t --reads data/gexp/GTEx_gene_reads.gct \
 
 (TCGA)
 
-`geno-prep` command provide the user the interface of preprocessing genotype data. We will do quality control, after which we will use IMPUTE2 for imputation. 
+`signet -g` command provide the user the interface of preprocessing genotype data. We will do quality control, after which we will use IMPUTE2 for imputation. 
 
 #### Usage
 
@@ -324,7 +324,7 @@ Output of `geno-prep` will be saved under `/res/resg`:
 
 
 (GTEx)
-`geno-prep` command provide the user the interface of preprocessing genotype data. We will first extract the genotype data that has corresponding samples from gene expression data for a particular tissue. 
+`signet -g` command provide the user the interface of preprocessing genotype data. We will first extract the genotype data that has corresponding samples from gene expression data for a particular tissue. 
 
 
 
@@ -373,8 +373,8 @@ signet -g --vcf0 data/geno-prep/Geno_GTEx.vcf \
 
 
 ### Adj
-`adj` command provide users the interface of matching genotype and gene expression file and the calculation for minor allele frequency (MAF)
-`adj` read the output from `geno-prep` and `gexp-prep`
+`signet -a` command provide users the interface of matching genotype and gene expression file and the calculation for minor allele frequency (MAF)
+`signet -a` read the output from `geno-prep` and `gexp-prep`
 output of `adj` will be saved under `/res/resa`:
 
 (TCGA)
@@ -429,7 +429,7 @@ signet -a --pheno \
   
 ### Cis-eqtl
 
-`cis-eqtl` command provide the basic tool for cis-eQTL analysis.  `cis-eqtl` command receive the input file from the previous preprocess step.
+`signet -c` command provide the basic tool for cis-eQTL analysis.  `signet -c` command receive the input file from the previous preprocess step.
 
 
 
@@ -482,7 +482,7 @@ Output of `cie-eQTL` will be saved to `res/resc`:
 
 ### Network
 
-`network` command provide the tools for constructing a gene regulatory network (GRN) following the two-stage penalized least squares (2SPLS) approach proposed by [D. Zhang, M. Zhang, Ren, and Chen](https://arxiv.org/abs/1511.00370).
+`signet -n` command provide the tools for constructing a gene regulatory network (GRN) following the two-stage penalized least squares (2SPLS) approach proposed by [D. Zhang, M. Zhang, Ren, and Chen](https://arxiv.org/abs/1511.00370).
 
 `network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
@@ -543,7 +543,7 @@ signet -n --nboots 100 --queue standby --walltime 4:00:00 --memory 256
 
 ### Netvis
 
-`netvis` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
+`signet -v` provide tools to visualize our constructed gene regulatory networks. Users can choose the bootstrap frequency threshold  and number of subnetworks to visualize the network.
 
  
 You should first ssh -Y $(hostname) to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
