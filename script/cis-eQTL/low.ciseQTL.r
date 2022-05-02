@@ -1,6 +1,7 @@
 ### low.ciseQTL.R
 ### Calculate p-values of low-freq cis-eQTL via permutation
 #
+library(data.table)
 y=fread(Sys.getenv("gexp"))
 x=fread('low.Geno.data')
 idx=read.table('low.cispair.idx')
