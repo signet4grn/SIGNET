@@ -508,14 +508,14 @@ signet -n [OPTION VAL] ...
   --nboots NBOOTS               number of bootstraps datasets
   --memory MEMEORY	        memory in each node in GB
   --queue QUEUE                 queue name
-  --ncores                      number of cores for each node
+  --ncores                      number of cores to use for each node
   --walltime WALLTIME	     	maximum walltime of the server in seconds
   --resn                        result prefix
   --sif                         singularity container
 ```
-* `net.gexp.data`: output from `cis-eqtl`, includes the expression data for genes with cis-eQTL.  It's a n * p matrix, with each row encodes the gene expression data for each sample. 
-* `net.geno.data`: output from `cis-eqtl`, includes the genotype data for marginally significant  cis-eQTL. It's a n * p matrix, with each row encodes the genotype data for each sample. 
-* `sig.pair`: output from `cis-eqtl`, includes the p-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
+* `net.gexp.data`: output from `signet -c`, includes the expression data for genes with cis-eQTL.  It's a n * p matrix, with each row encodes the gene expression data for each sample. 
+* `net.geno.data`: output from `signet -c`, includes the genotype data for marginally significant  cis-eQTL. It's a n * p matrix, with each row encodes the genotype data for each sample. 
+* `sig.pair`: output from `signet -c`, includes the p-value of each pair of gene and its marginally significant (p-Value < 0.05) cis-eQTL, where Column 1 is Gene Index (in `net.Gexp.data`), Column is SNP Index (in `all.Geno.data`), and Column 3 is p-Value.
  ....The third column is the p value for each pair. 
 * `net.genename`:  includes information of gene name. It's a  p * 1 vector.
 * `net.genepos`:  includes information of gene position. It's a  p * 4 matrix, with first column to be gene names, second columns chromosome index, e.g, "chr1", third and fourth columns are the start and end position of genes in the chromosome, respectly. 
