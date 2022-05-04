@@ -86,4 +86,19 @@ fi
 
 }
 
-export -f file_purge dir_check file_check numeric_check
+# input: email, job name, status
+email_note(){
+email=$1
+job_name=$2
+status=$3
+
+if [[ $email != "*@*" ]]
+then
+  if [[ $(which mail) != "" ]]
+  then
+  echo -e "Your $job_name using SIGNET is $status \n" | mail -s "SIGNET NOTIFICATION" $email
+  fi
+fi
+}
+
+export -f file_purge dir_check file_check numeric_check email_note
