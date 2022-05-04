@@ -111,7 +111,7 @@ echo -e "All the jobs are finished !!\n"
 email_note $email "Stage 2" "Completed !!!"
 else 
 echo -e "Please notice that some of the jobs are unfinished. Program will stop and please try to find the problem. \n"
-email_note $email "Stage 2" "Stopped ..."
+email_note $email "Stage 2" "Failed ..."
 grep -Eo '[0-9]+$' submit2_log | xargs scancel
 kill -10 $job_id
 exit -1
