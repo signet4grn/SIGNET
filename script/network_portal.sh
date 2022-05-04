@@ -18,7 +18,7 @@ interactive=$(${cmdprefix}interactive | sed -r '/^\s*$/d')
 resn=$($SIGNET_ROOT/signet -s --resn  | sed -r '/^\s*$/d')
 sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
 forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
-eamil=$($SIGNET_ROOT/signet -s --email | sed -r '/^\s*$/d')
+email=$($SIGNET_ROOT/signet -s --email | sed -r '/^\s*$/d')
 
 function usage() {
 	echo 'Usage:'
@@ -126,7 +126,7 @@ case "$1" in
                 shift;;
 	--email)
 		email=$2
-		$SIGNET_ROOT/signet -s --email $email
+		sed -iE "s/email = /email = $email/g" $SIGNET_ROOT/config.ini 
 		shift;;
 	--h|--help)
 		usage
@@ -171,7 +171,6 @@ for i in $input_file
 do
 file_check $(eval "$(echo "echo \$${i}")")
 done
-
 
 $SIGNET_SCRIPT_ROOT/network/network.sh
 
