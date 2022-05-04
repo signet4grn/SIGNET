@@ -119,7 +119,7 @@ N_record=0
 while true
 do
 
-N_finished=$(cat $prefix[0-9]*.completed | wc  -l | tail -1)
+N_finished=$(cat $prefix[0-9]*.completed 2>/dev/null | wc  -l | tail -1)
 
 if [[ $N_finished -gt $N_record ]]; then
 for i in $(seq 1 $(($N_finished * $bar_len / $N)))
