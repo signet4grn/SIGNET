@@ -112,11 +112,13 @@ prefix=$4
 N=$5
 slurm=${6:-slurm}
 
+sleep 10
+
 time_lap=$(($1/$2))
 
 N_record=0
 
-printf "Waiting for job to complete ..."
+printf "Waiting for jobs to complete ..."
 
 while true
 do
