@@ -38,7 +38,7 @@ set_param(){
     if [[ -z $val ]]; then
     get_param $args; else
     local cmd=$(echo 's@^'${param}'[ ]*=.*@'${param} '=' ${val}'@')
-    sed -i "${cmd}" "$SIGNET_ROOT/config.ini"
+    sed -iE "${cmd}" "$SIGNET_ROOT/config.ini"
     echo  "Modification applied to ${param}"
     fi
 }
