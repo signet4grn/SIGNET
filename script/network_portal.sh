@@ -18,6 +18,7 @@ interactive=$(${cmdprefix}interactive | sed -r '/^\s*$/d')
 resn=$($SIGNET_ROOT/signet -s --resn  | sed -r '/^\s*$/d')
 sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
 forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
+eamil=$($SIGNET_ROOT/signet -s --email | sed -r '/^\s*$/d')
 
 function usage() {
 	echo 'Usage:'
@@ -41,11 +42,12 @@ function usage() {
  #       echo "  --filter                      To focus on a list of genes"
         echo "  --resn                        result prefix"
 	echo "  --sif                         singularity container"
+	echo "  --email                       send notification emails for both two stages if you have mail installed in Linux"
         exit -1 
 }
 [ $? -ne 0 ] && usage
 
-ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,interactive:,resn:,sif:,h:,help -- "$@"`
+ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,interactive:,resn:,sif:,email:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -122,6 +124,9 @@ case "$1" in
                 sif=$(readlink -f $sif)
                 $SIGNET_ROOT/signet -s --sif $sif
                 shift;;
+	--email)
+		email=$2
+		$SIGNET_ROOT/signet -s --email $email
 	--h|--help)
 		usage
 		exit
@@ -153,7 +158,7 @@ if [[ "$resn" == *"doesn't exist"* ]]; then
 exit -1
 fi
 
-var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime interactive resn sif"
+var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime interactive resn sif email"
 for i in $var
 do
 export "${i}"
