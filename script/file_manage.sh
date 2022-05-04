@@ -96,7 +96,7 @@ if [[ $email != "*@*" ]]
 then
   if [[ $(which mail) != "" ]]
   then
-  echo -e "Your $job_name using SIGNET is $status \n" | mail -s "SIGNET NOTIFICATION" $email
+  echo -e "Your $job_name using SIGNET is $status " | mail -s "SIGNET NOTIFICATION" $email 
   fi
 fi
 }
