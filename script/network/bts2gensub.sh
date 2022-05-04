@@ -80,6 +80,7 @@ echo "sbatch -W sub$CHUNK.sh &" >> qsub2.sh
 fi
 
 walltime_s=$(echo $walltime | awk -F: '{ print (3600 * $1) + (60 * $2) + $3 }')
+echo "progress_bar $walltime_s 100 40 params $NJOBS slurm &" >> qsub2.sh
 echo "wait" >> qsub2.sh
 
 #tmpqueue=($(slist|grep $queue))
@@ -96,7 +97,6 @@ if [[ $interactive == "T" || $interactive == "True" || $interactive == "TRUE" ]]
 sed -i 's/sbatch -W/srun -n1 bash/g;s/&/>\/dev\/null/g' qsub2.sh
 echo -e "Running $(wc -l < job2_command) jobs ... \n"
 else
-echo "progress_bar $walltime_s 100 40 params $NJOBS slurm &" >> qsub2.sh
 echo -e "Submitting $(wc -l < job2_command) jobs ... \n"
 fi
 
