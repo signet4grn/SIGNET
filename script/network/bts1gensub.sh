@@ -96,7 +96,7 @@ else
 echo -e "Submitting $(wc -l < job1_command) jobs ... \n"
 fi
 
-time sh qsub1.sh | tee submit1_log
+time sh qsub1.sh | tee submit1_log | grep "#" 
 
 echo -e "Checking the number of files\n"
 
