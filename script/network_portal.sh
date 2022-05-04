@@ -127,6 +127,7 @@ case "$1" in
 	--email)
 		email=$2
 		$SIGNET_ROOT/signet -s --email $email
+		shift;;
 	--h|--help)
 		usage
 		exit
