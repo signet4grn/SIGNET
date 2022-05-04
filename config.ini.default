@@ -79,6 +79,7 @@ interactive = F
 filter = no
 resn = res/resn/signet
 sif = signet0.0.5.sif
+email = F
 
 [netvis]
 Afreq = res/resn/signet_Afreq
