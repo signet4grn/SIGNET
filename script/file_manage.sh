@@ -129,6 +129,8 @@ done
 printf "  [$(($N_finished * 100 / $N)) %%]\r"
 fi
 
+sleep 1
+
 N_record=$N_finished
 
 if [[ $N_finished -ge $N ]]; then
