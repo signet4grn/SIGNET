@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #testing runtime and memeory
 echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
 
@@ -76,6 +75,8 @@ perl -pe 's/XXX/'$CHUNK'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$CHU
 echo "sbatch -W sub$CHUNK.sh &" >> qsub1.sh
 fi
 
+walltime_s=$(echo $walltime | awk -F: '{ print (3600 * $1) + (60 * $2) + $3 }')
+echo "progress_bar $walltime_s 100 40 params $NJOBS slurm" >> qsub1.sh
 echo "wait" >> qsub1.sh
 
 #tmpqueue=($(slist|grep $queue))
