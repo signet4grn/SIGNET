@@ -101,4 +101,48 @@ then
 fi
 }
 
-export -f file_purge dir_check file_check numeric_check email_note
+# To show the interactive progress bar
+# input: walltime, number of checks, bar_length, prefix for search, total number of files, prefix of slurm jobs
+
+progress_bar(){
+time=$1
+ncheck=$2
+bar_len=$3
+prefix=$4
+N=$5
+slurm=${6:slurm}
+
+time_lap=$(($1/$2))
+
+N_record=0
+
+while true
+do
+
+N_finished=$(cat $prefix[0-9]*.completed | wc  -l | tail -1)
+
+if [[ $N_finished -gt $N_record ]]; then
+for i in $(seq 1 $(($N_finished * $bar_len / $N)))
+do
+printf "#"
+done
+printf "  [$(($N_finished * 100 / $N)) %%]\r"
+fi
+
+N_record=$N_finished
+
+if [[ $N_finished -ge $N ]]; then
+break
+fi
+
+if [[ $(ls $slurm*.out 2>/dev/null | wc -l) -gt 0 && $(cat $slurm*.out |grep CANCEL|head -1) != "" ]];then
+break
+fi
+
+sleep $time_lap
+
+done
+
+}
+
+export -f file_purge dir_check file_check numeric_check email_note progress_bar
