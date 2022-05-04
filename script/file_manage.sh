@@ -108,13 +108,15 @@ progress_bar(){
 time=$1
 ncheck=$2
 bar_len=$3
-prefix=${4:-params}
+prefix=$4
 N=$5
 slurm=${6:-slurm}
 
 time_lap=$(($1/$2))
 
 N_record=0
+
+printf "Waiting for job to complete ..."
 
 while true
 do
@@ -127,6 +129,8 @@ do
 printf "#"
 done
 printf "  [$(($N_finished * 100 / $N)) %%]\r"
+elif [[ $N_record -eq 0 ]]; then
+printf "."
 fi
 
 sleep 1
