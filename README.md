@@ -512,6 +512,7 @@ signet -n [OPTION VAL] ...
   --walltime WALLTIME	     	maximum walltime of the server in seconds
   --resn                        result prefix
   --sif                         singularity container
+  --email                       send notification emails for both two stages if you have mail installed in Linux
 ```
 * `net.gexp.data`: output from `signet -c`, includes the expression data for genes with cis-eQTL.  It's a n * p matrix, with each row encodes the gene expression data for each sample. 
 * `net.geno.data`: output from `signet -c`, includes the genotype data for marginally significant  cis-eQTL. It's a n * p matrix, with each row encodes the genotype data for each sample. 
@@ -527,6 +528,7 @@ signet -n [OPTION VAL] ...
 * `memory`: memory of each node, in GB.
 * `walltime`: maximum wall time for cluster.
 * `sif`:  A singularity container, in .sif format.
+* `email`: The email you want to receive notification with. Default F, if no notification is preferred.
 
 
 #### Results
