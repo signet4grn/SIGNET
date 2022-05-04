@@ -126,7 +126,7 @@ case "$1" in
                 shift;;
 	--email)
 		email=$2
-		sed -iE "s/email = /email = $email/g" $SIGNET_ROOT/config.ini 
+		sed -iE "s/email.*/email = $email/g" $SIGNET_ROOT/config.ini 
 		shift;;
 	--h|--help)
 		usage
