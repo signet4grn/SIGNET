@@ -1,8 +1,9 @@
 ### common.ciseQTL.R
 ### Calculate p-values of all common cis-eQTL
 #
-y=read.table(Sys.getenv("gexp"))
-x=read.table('common.Geno.data')
+library(data.table)
+y=fread(Sys.getenv("gexp"))
+x=fread('common.Geno.data')
 y=as.matrix(y)
 x=as.matrix(x)
 y=scale(y)
@@ -18,7 +19,7 @@ for (i in 1:len){
     fit=lm(y[,idx[i,1]]~x[,idx[i,2]])
     p[i]=summary(fit)$coefficients[2,4]
   }
-  if( (i%%100)==0)  print(i)
+  if( (i%%10000)==0)  print(i)
 }
 
 p=cbind(idx,p) # Col 1 is index of gene, Col 2 is index of its cis-SNP, Col 3 is p-value

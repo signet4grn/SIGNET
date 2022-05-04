@@ -81,6 +81,7 @@ case "$operate" in
     -a|-adj)
 	adj;;
     *)
+	echo -e "WELCOME TO SIGNET !!! \n"
         echo -e "Usage params: -g|-t|-n|-c|-s|-v|-a"
         ;;
 esac        
