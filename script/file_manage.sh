@@ -124,6 +124,9 @@ do
 N_finished=$(cat $prefix[0-9]*.completed 2>/dev/null | wc  -l | tail -1)
 
 if [[ $N_finished -gt $N_record ]]; then
+  if [[ $N_record -eq 0 ]]; then
+  printf "\n"
+  fi
 for i in $(seq 1 $(($N_finished * $bar_len / $N)))
 do
 printf "#"
