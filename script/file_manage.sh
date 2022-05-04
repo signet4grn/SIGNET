@@ -108,7 +108,7 @@ progress_bar(){
 time=$1
 ncheck=$2
 bar_len=$3
-prefix=$4
+prefix=${4:-params}
 N=$5
 slurm=${6:-slurm}
 
