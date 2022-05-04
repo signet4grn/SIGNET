@@ -110,7 +110,7 @@ ncheck=$2
 bar_len=$3
 prefix=$4
 N=$5
-slurm=${6:slurm}
+slurm=${6:-slurm}
 
 time_lap=$(($1/$2))
 
