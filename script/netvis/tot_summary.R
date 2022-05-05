@@ -87,3 +87,4 @@ net_number <- length(unique(comp))
 vertex_number  <- length(V(g_bs))
 edge_number <- length(E(g_bs))
 
+gc()

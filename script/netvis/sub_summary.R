@@ -111,4 +111,6 @@ for(i in 1:ntop){
   visSave(vis_g_top[[i]], paste(Sys.getenv("resv"), "_top", i, "_", name, ".html", sep=""), selfcontained=F) 
   
   ## end information 
+  gc()
 }
+
