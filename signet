@@ -81,8 +81,12 @@ case "$operate" in
     -a|-adj)
 	adj;;
     *)
+	if [[ $(which cat) != 0 && -f $SIGNET_SCRIPT_ROOT/logo ]];then 
+	cat $SIGNET_SCRIPT_ROOT/logo
+        else
 	echo -e "WELCOME TO SIGNET !!! \n"
-        echo -e "Usage params: -g|-t|-n|-c|-s|-v|-a"
+        fi
+	echo -e "Usage params: -g|-t|-n|-c|-s|-v|-a"
         ;;
 esac        
 
