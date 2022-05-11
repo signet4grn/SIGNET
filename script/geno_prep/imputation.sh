@@ -84,7 +84,7 @@ done
 ## employ parallel computing for imputation 
 time ParaFly -c impute_params.txt -CPU $ncores
 if [[ $(wc -l < impute_params.txt) -ne $(wc -l < impute_params.txt.completed) ]];then
-echo -e "\nPlease note that some of the jobs are not finished !!! This could be a memeory allocation issue\n"
+echo -e "\nPlease note that some of the jobs are not finished !!! This could be a memeory allocation issue.\n"
 kill -10 $job_id
 fi
 
