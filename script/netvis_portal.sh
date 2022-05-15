@@ -44,7 +44,8 @@ do
 case "$1" in
         --Afreq)
                 Afreq=$2
-                ${cmdprefix}Afreq $Afreq
+		Afreq=$(readlink -f $Afreq)
+		${cmdprefix}Afreq $Afreq
                 shift
                 ;;
 	--freq | --f)
@@ -59,10 +60,12 @@ case "$1" in
 		;;
 	--coef | --c)
                 coef=$2
+		coef=$(readlink -f $coef)
                 ${cmdprefix}coef $coef
                 shift;;
         --vis.genepos | --g)
                 genepos=$2
+		genepos=$(readlink -f $genepos)
                 ${cmdprefix}vis.genepos $genepos
                 shift;;
         --id)
