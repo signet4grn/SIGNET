@@ -204,14 +204,14 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
 ```
 * `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. Note that the last 5 rows are not considered in the analysis since they contain ambigous gene information that is convention by UCSC..
 * `pmap`: genecode v22 gtf file.  
-*`restrict`: include the chromosome of interst. Could be dash separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a number, e.g. 1.
+* `restrict`: include the chromosome of interst. Could be dash separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a number, e.g. 1.
 
 #### Result
 Output of `gexp-prep` will be saved to `res/rest`. 
-- `gexp`: gene expression data after pre-processing.
-- `gene_name`: corresponding gene name.
-- `gene_pos`: correspongding gene position.
-- `gexpID`: correspdonding sample ID.
+- `signet_gexp`: gene expression data after pre-processing.
+- `signet_gene_name`: corresponding gene name.
+- `signet_gene_pos`: correspongding gene position.
+- `signet_gexpID`: correspdonding sample ID.
 
 #### Example
 ```bash
@@ -316,8 +316,8 @@ signet -g --ped data/geno-prep/test.ped \
 
 #### Result
 Output of `geno-prep` will be saved under `/res/resg`:
-- `Geno`: Genotype data with each row denoting the SNP data for each individual.
-- `Genotype.sampleID`: Sample ID for each individual, which uses the reading barcode.
+- `signet_Geno`: Genotype data with each row denoting the SNP data for each individual.
+- `signet_Genotype.sampleID`: Sample ID for each individual, which uses the reading barcode.
 
 
 
@@ -398,8 +398,8 @@ signet -a --c ./data/clinical.tsv
 ```
 Output of `adj` will be saved to `res/resa`:
 - `signet_geno.data`: matched genotype data, with rows representing samples and columns representing SNPs.
-- `signet_gexp.data`: matched gene expression data, adjusted for covariates but don't include PCs, with rows representing samples and columns representing gene expressions.
-- `signet_gexp_rmpc.data`: matched gene expression data, adjusted for covariates including PCs, with rows representing samples and columns representing gene expressions.
+- `signet_gexp.data`: matched gene expression datat o be used further for network analysis, adjusted for covariates but don't include PCs, with rows representing samples and columns representing gene expressions.
+- `signet_gexp_rmpc.data`: matched gene expression data to be used further for cis-eQTL analysis, adjusted for covariates including PCs, with rows representing samples and columns representing gene expressions.
 - `signet_matched.gexp`:  matched gene expression data, without ajusting for covariates, with rows representing samples and columns representing gene expressions.
 - `signet_new.Geno.maf`: MAF file for genotype data. 
 - `signet_new.Geno.map`: MAP file for genotype data.
@@ -569,13 +569,13 @@ signet -v [OPTION VAL] ...
   --resv                       result prefix
 ```
 - `Afreq`:  Includes the estimated bootstrap frequency for each directed edge. With (i, j)-th element encodes the frequency of i-th gene regulated by j-th gene.  It's a p1 * p2 (p1 >= p2) **comma seperated** file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs.   
- - `freq`: The bootstrap frequency cutoff. A number in [0, 1].
- - `ntop`: The number of top subnetworks to visualize. An integer number.
- - `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs. Positive/Negative value will determine up/down regulation, with respectively. 
- - `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the number of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
- - `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
- - `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
- - `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
+- `freq`: The bootstrap frequency cutoff. A number in [0, 1].
+- `ntop`: The number of top subnetworks to visualize. An integer number.
+- `coef`: Includes the estimation of coefficients from the original data. It's a p1 * p2 (p1 >= p2) file where p1 is the number of genes in study and p2 is the number of genes with cis-eQTLs. Positive/Negative value will determine up/down regulation, with respectively. 
+- `vis.genepos`: Includes the position of genes to be visualized. It's a p * 4 matrix where p1 is the number of genes in study, where the first column is the name of genes, second column is the chromosome index, e.g. "chr1",  the thrid and fourth column is the gene start and end position in the chromosome, respectively. 
+- `id`: NCBI taxonomy id number. e.g, 9606 for homo sapiens.
+- `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
+- `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
 
 #### Result
 - `signet_edgelist*`: Edgelist file includes infromation for all regulation for given cutoff. Includes gene symbol, chromosme number, start and end posistion for both source and target gene, followed by bootstrap frequency and coefficient estimated from the original data. 
