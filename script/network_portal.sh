@@ -42,7 +42,7 @@ function usage() {
  #       echo "  --filter                      To focus on a list of genes"
         echo "  --resn                        result prefix"
 	echo "  --sif                         singularity container"
-	echo "  --email                       send notification emails for both two stages if you have mail installed in Linux"
+	echo "  --email                       send notification emails for both two stages if you have mail installed in Linux, and interactive=F"
         exit -1 
 }
 [ $? -ne 0 ] && usage
