@@ -390,7 +390,7 @@ signet -a [--c CLINIVAL_FILE]
  --c | clinical                   clinical file for your cohort
  --resa                           result prefix
 ```
-- `c`:  clinical file from TCGA project. Should contain at least a column of submitter id.
+- `c`:  clinical file from TCGA project. Should contain at least columns of submitter id, gender and race.
 
 #### Example
 ```bash
