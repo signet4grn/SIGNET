@@ -202,7 +202,7 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
  --restrict                     restrict the chromosomes of study
  --r | --rest                   result prefix
 ```
-* `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. Note that the last 5 rows are not considered in the analysis.
+* `gexp`: include the log2(x+1) count data for genes. It's a matrix with first column to be the ENSEMBEL ID and the first row to be sample names.  In the rest of the data,  rows represent the data for gene, where columns encodes data for samples. Note that the last 5 rows are not considered in the analysis since they contain ambigous gene information that is convention by UCSC..
 * `pmap`: genecode v22 gtf file.  
 *`restrict`: include the chromosome of interst. Could be dash separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a number, e.g. 1.
 
@@ -296,7 +296,7 @@ signet -g [OPTION VAL] ...
 - `geno`: missing rate cutoff for SNPs. It's a value in [0, 1].
 - `hwe`: Hardy-Weinberg equilibrium cutoff. It's a value in (0, 1].
 - `ref`: Reference file for imputation. It could be downloaded from http://mathgen.stats.ox.ac.uk/impute/impute_v2.html. 
-- `gmap`: Genomic map file for imputation. It could be downloaded from It could be downloaded from http://mathgen.stats.ox.ac.uk/impute/impute_v2.html. 
+- `gmap`: Genomic map file for imputation. It could be downloaded from http://mathgen.stats.ox.ac.uk/impute/impute_v2.html. 
 - `int`: interval length for imputation. Should be a positive number.
 - `ncores`: Number of cores in the current server. It's an integer larger than 1.
 
