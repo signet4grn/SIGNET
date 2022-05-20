@@ -10,7 +10,7 @@ mcounts=fread(file)
 ##remove last 5 rows
 mcounts=head(mcounts, -5)
 
-cat(paste0("Preprocessing file: ", file, "\n"))
+cat(paste0("Preprocessing gene expression file: ", file, "\n"))
 
 
 geneinfo=mcounts[,1]
@@ -28,7 +28,7 @@ mcounts <- mcounts[, -lowcount.id]
 }
 
 cat(paste0("Removed ", length(lowcount.id), " samples with total counts < 2.5 M\n"))
-cat("Applying variance stabalizing transformation\n")
+cat("Applying variance stabalizing transformation...\n")
 
 sampleinfo <- matrix(factor(1),nrow=ncol(mcounts))
 rownames(sampleinfo) <- colnames(mcounts)
