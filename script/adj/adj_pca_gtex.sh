@@ -1,7 +1,7 @@
 # This script construct pc and provide plot 
 cd $SIGNET_TMP_ROOT/tmpa
 
-echo -e "Constructing PCs ...\n" 
+echo -e "Constructing PCs...\n" 
 
 enable -n eval
 
