@@ -9,15 +9,15 @@
 # 22 82139
 
 if (!($ARGV[0] =~ /.*\.data$/)) {
-        die "Filename must end in .data\n";
+        die "Error: File name must end with .data!\n";
         exit;
 }
 
 $basefn = $ARGV[0];
 $basefn =~ s/\.data$//;
 
-open(DATAFILE, $ARGV[0]) || die "Couldn't open $ARGV[0]\n";
-open(SIZES, $ARGV[1]) || die "Couldn't open $ARGV[1]\n";
+open(DATAFILE, $ARGV[0]) || die "Error: Cannot open $ARGV[0]\n";
+open(SIZES, $ARGV[1]) || die "Error: Cannot open $ARGV[1]\n";
 while(<SIZES>) {
         chomp;
         ($chr, $n) = split;
@@ -31,7 +31,7 @@ foreach $i (1..$ARGV[2]) {
         $endcol[$i] = $startcol[$i] + $size[$i] - 1;
         if($startcol[$i] < $endcol[$i]) {print "$i, $startcol[$i], $endcol[$i]\n";}
         $fname = $basefn . "_chr" . $i . ".data";
-        open($fh[$i], ">$fname") || die "Cannot open $fname for writing\n";
+        open($fh[$i], ">$fname") || die "Error: Cannot open $fname for writing!\n";
 }
 
 while(<DATAFILE>) {
