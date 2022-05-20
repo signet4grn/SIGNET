@@ -5,11 +5,11 @@ $SIGNET_SCRIPT_ROOT/adj/adj_filter.sh &&
 $SIGNET_SCRIPT_ROOT/adj/adj_pca.sh &&
 
 echo -e "\n"
-echo -e "Please check the pca plots \n"
+echo -e "You may want to check the PCA plots to determine the number of PCs for population stratification\n"
 ##pc=3 by default
 pc=3
-read -p "Enter the number of PC's you want to use: " pc
-echo "The number of pc used will be $pc"
+read -p "Enter the number of PCs for population structures: " pc
+echo "The number of PCs to be used is $pc"
 echo -e "\n"
 
 Rscript $SIGNET_SCRIPT_ROOT/adj/adj_adjust.R "clifile='$clifile'" "npc='$pc'" 
