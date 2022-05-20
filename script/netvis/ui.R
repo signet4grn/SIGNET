@@ -1,5 +1,5 @@
 ui <- dashboardPage(
-  dashboardHeader(title="Visualization of SIGNET results"),
+  dashboardHeader(title="Visualization of SIGNET Results"),
   
   dashboardSidebar(
     sidebarMenu(
@@ -26,7 +26,7 @@ ui <- dashboardPage(
                   fileInput("file1", "Choose a text file of gene list", accept = ".txt"),
                   actionButton("action1", "Clear gene list"),
                   hr(),
-                  radioButtons("radio1", "Choose a criteria for clustering",
+                  radioButtons("radio1", "Choose a criterion for clustering",
                                choices=list("Cluster by enrichment"="enrichment", 
                                             "Cluster by modularity"="modularity"),
                                selected="modularity"),
@@ -43,7 +43,7 @@ ui <- dashboardPage(
       
       ## Network Summary
       tabItem(tabName="net_summary",
-              h3(HTML(paste("</b>", "There are in total", "<b>", net_number, "</b>","subnetworks with", 
+              h3(HTML(paste("</b>", "There are a total of", "<b>", net_number, "</b>","subnetworks with", 
                             "<b>", vertex_number, "</b>","genes and",
                             "<b>", edge_number, "</b>","regulation effects in the network", sep=" "))),
               
