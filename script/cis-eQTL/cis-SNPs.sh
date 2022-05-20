@@ -1,5 +1,5 @@
 
-echo -e  "Generating cis pairs with upstream $upstream and downstream $downstream \n" 
+echo -e  "Generating cis pairs with upstream $upstream bp and downstream $downstream bp\n" 
 
 cd $SIGNET_TMP_ROOT/tmpc
 
