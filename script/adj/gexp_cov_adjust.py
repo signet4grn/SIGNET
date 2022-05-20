@@ -9,21 +9,21 @@ import statsmodels.api as sm
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='adjust the gene expression by the covariates file,'
-        'output Gexp.data:  sample * gene, pure matrix without any col or row names')
+        description='Adjust the gene expressions by covariates,'
+        'output Gexp.data as a #sample * #gene matrix without column or row names')
     # genepos:  Column 1 is chr#; Column 2 is start pos; Column 3 is end pos;
     parser.add_argument(
-        '--expr', help='the expression matrix for the first cohort, in *.bed.gz file format')
-    parser.add_argument('--covf',help='the covariates file, format: cov ID * sample, with header ID, sample1, sample2...')
+        '--expr', help='expression matrix for the first cohort in *.bed.gz file format')
+    parser.add_argument('--covf',help='covariates file in format: #covs * #samples with headers cov ID, sample1, sample2...')
     parser.add_argument(
-        '--prefix', help='the prefix for the output file 1,output *.gexp.data')
+        '--prefix', help='prefix for the output file *.gexp.data')
     args = parser.parse_args()
 
-    print('start to loading data')
-    print('the expression file is '+ args.expr)
-    print('the covariates file is '+ args.covf)
-    print('the output file is '+ args.prefix+'.gexp.data')
-    print('processing .........')
+    print('Loading data...')
+    print('  The expression file is '+ args.expr)
+    print('  The covariates file is '+ args.covf)
+    print('  The output file is '+ args.prefix+'.gexp.data')
+    print('Processing...')
     expr = pd.read_csv(args.expr, sep='\t', index_col=None)
     # set the index to the gene_id
     expr.index = expr.gene_id
@@ -43,7 +43,7 @@ if __name__ == '__main__':
         result = model.fit()
         exp_adjusted[:,i] = result.resid
         if(i % 5000 == 0):
-            print('processed %d markers' % i)
-    print('done!')
+            print('  %d markers processed' % i)
+    print('  Completed!')
     exp_adjusted = pd.DataFrame(exp_adjusted)
     exp_adjusted.to_csv(args.prefix + '.gexp.data',sep='\t', index=False,header=False)
