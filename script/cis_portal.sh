@@ -19,16 +19,16 @@ function usage() {
 	echo 'signet -c [OPTION VAL] ...'
 	echo -e '\n'
 	echo 'Description:'
-	echo '  --gexp                        gene expression file after matching with genotype data'
-        echo "  --gexp.withpc                 gene expression file without adjusting for principal components, after matching with genotype data"
-	echo '  --geno                        genotype file after matching with gene expression data'
+	echo '  --gexp                        file of gene expressions adjusted for all covariates, matched with genotype data'
+        echo "  --gexp.withpc                 file of gene expressions adjusted for all covariates other than top PCs, matched with genotype data"
+	echo '  --geno                        file of genotype data matched with gene expression data'
     	echo '  --map                         snps map file path'
         echo '  --maf                         snps maf file path'
         echo '  --gene_pos                    gene position file'
 	echo '  --alpha | -a			significance level for cis-eQTL'
 	echo '  --nperms                 	number of permutations'
-	echo '  --upstream               	upstream region to flank the genetic region '
-	echo '  --downstram                   downstream region to flank the genetic region'
+	echo '  --upstream               	number of base pairs upstream the genetic region'
+	echo '  --downstram                   number of base paris downstream the genetic region'
         echo '  --resc                        result prefix'
 	echo '  --help | -h			user guide'
 }
