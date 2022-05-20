@@ -25,4 +25,4 @@ python3 $SIGNET_SCRIPT_ROOT/gexp_prep/eqtl_prepare_expression_igt2log.py $tpm \
 	--sample_id_list sample_ids_tissue.txt
 
 
-echo -e "Normalizing gene expressions... Completed!\n"
+echo -e "Normalizing gene expressions... completed!\n"
