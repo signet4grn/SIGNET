@@ -78,7 +78,7 @@ gexp_int <- gexp_int_pca
 coeff_mat=matrix(0,p,5)
 
 
-print("Begin to adjust for covariates effect for race and gender")
+print("Adjusting for effects of covariates such as race and gender...")
 #merged$race[merged$race=="not reported"]="white"
 cat("\n")
 for( i in 1:p)
@@ -97,7 +97,7 @@ for( i in 1:p)
   gexp_int[i, ] <- resid(tmpfit)
   gexp_int_pca[i, ] <- resid(tmpfit_pca)
 
-  if(i%%1000==0) print(paste0(i, " genes finished"))
+  if(i%%1000==0) print(paste0(i, " genes completed!"))
 }
 
 cat("\n")
