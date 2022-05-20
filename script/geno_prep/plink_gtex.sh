@@ -2,7 +2,7 @@
 
 cd $SIGNET_TMP_ROOT/tmpg
 
-echo -e "Preprocessing using Plink ...\n"
+echo -e "Preprocessing genotype data with PLINK...\n"
 
 plink --vcf GTEx_snp.vcf --double-id --make-bed --missing --freq --recode --out Geno_GTEx_$tissue
 plink --bfile Geno_GTEx_$tissue --recodeA --mac 5 --out GTEx_$tissue
@@ -15,4 +15,4 @@ awk {'print $5'} GTEx_$tissue.frq | tail -n+2 > ${resg}_snps.maf
 tail -n+2 GTEx_$tissue.raw |cut -d " " -f 7- > clean_Genotype.data
 sed -e 's/NA/0/g' clean_Genotype.data > ${resg}_clean_Genotype_repNA.data
 
-echo -e "Plink preprocessing finished\n"
+echo -e "Preprocessing genotype data ... completed!\n"
