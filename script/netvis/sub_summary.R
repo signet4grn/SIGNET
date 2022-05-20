@@ -1,4 +1,4 @@
-cat("loading result for sub-networks ...\n")
+cat("Loading result for sub-networks...\n")
 
 vis_g_top <- g_top <- g_top_int <- g_top_e <- nodes <- edges <- enrichment <- NULL
 
@@ -14,7 +14,7 @@ if(Sys.getenv("id")==9606){
 }else{
   tf <- as.matrix(read.table(Sys.getenv("tf")))
 }
-cat("Trying hard to summarize the results, this process could take a while if you have many subnetworks ... \n")
+cat("Summarizing the results, it may take a while if you have many subnetworks...\n")
 
 for(i in 1:ntop){
   cat(paste0("Generating results for network ", i, "\n"))
