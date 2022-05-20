@@ -7,10 +7,10 @@ if [ ! -s rare.cispair.idx ]
 then
 touch ${resc}_rare.sig.pValue_$alpha
 touch ${resc}_rare.eQTL.data	
-echo -e "No analysis will be conducted for rare variants since there are no cis-pairs detected\n"; exit
+echo -e "There is no ultra-low-frequency variant...\n"; exit
 fi
 
-echo -e "Cis-eQTL Analyis for rare variants [alpha:"$alpha",nperms:"$nperms"]......\n"
+echo -e "Mapping cis-eQTL wiht ultra-low-frequency variants [alpha:"$alpha",nperms:"$nperms"]......\n"
 
 perl -pe "s/nperms/$nperms/g" $SIGNET_SCRIPT_ROOT/cis-eQTL/rare.ciseQTL.r > $SIGNET_SCRIPT_ROOT/cis-eQTL/rare.ciseQTL_2.r
 
@@ -44,7 +44,7 @@ paste rare.cispair.idx rare.ciseQTL.weight0 > rare.ciseQTL.weight
 #Col 1: index of gene, Col 2: index of SNP, Col 3: index of collapsed SNPs for a gene, Col 4: weight of collapsed SNPs for a gene
 cat $(find ./ -name 'rare.theoP*' | sort -V) > rare.theoP
 
-echo -e "\nSummarizing for rare variants \n"
+echo -e "\nSummarizing for ultra-low-frequency variants...\n"
 #Select significant pairs
 Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/sig.rarecis.r "alpha='$alpha'" &&
 Rscript $SIGNET_SCRIPT_ROOT/cis-eQTL/rare.eQTLdata.r "alpha='$alpha'" 
@@ -53,4 +53,4 @@ wait
 
 nsig=$(awk '{print $2}' ${resc}_rare.sig.pValue_${alpha} |sort | uniq |wc -l)
 ngene=$(awk '{print $1}' ${resc}_rare.sig.pValue_${alpha} | sort | uniq | wc -l)
-echo "----" $nsig "significant rare variants enriched regions found for "$ngene" genes" 
+echo "----" $nsig "significant ultra-low-frequency variants enriched regions found for "$ngene" genes" 
