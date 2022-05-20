@@ -9,7 +9,7 @@ import os
 parser = argparse.ArgumentParser(description='Combine covariates into a single matrix')
 parser.add_argument('expression_covariates', help='')
 parser.add_argument('prefix', help='')
-parser.add_argument('--genotype_pcs', default=None, help='Genotype PCs')
+parser.add_argument('--genotype_pcs', default=None, help='PCs of genetic variants')
 parser.add_argument('--add_covariates', default=[], nargs='+', help='Additional covariates')
 parser.add_argument('-o', '--output_dir', default='.', help='Output directory')
 args = parser.parse_args()
