@@ -7,7 +7,7 @@ forcerm=$2
 qyn=0
 
 if [[ $forcerm == T* || $forcerm == t* || $forcerm == Y* || $forcerm == y* ]]; then
-echo -e "Please note that the temporary file was force removed"
+echo -e "Please note that previously generated temporary files will be flushed..."
 qyn=1
 rm -rf $file
 fi
@@ -17,7 +17,7 @@ while [[ qyn -eq 0 ]]; do
 qyn=1
 
 if [[ -d $file ]]; then
-read -p "$file alreay exists, you could back them up or overwriting them. Overwriting them? Enter Y to overwrite, N to exit. [Y/N]: "  yn
+read -p "$file alreay exists! Do you want to verwrite them? Enter Y to overwrite, N to exit. [Y/N]: "  yn
 
 case $yn in
 Y|Yes|y|yes ) rm -rf $file;;
@@ -67,7 +67,7 @@ if [[ ! -f $1 ]]; then
 echo "The file $1 doesn't exist"
 exit -1 
 elif [[ -z $1 ]]; then 
-echo "The file $1 exists but empty"
+echo "The file $1 exists but is empty"
 exit -1 
 fi
 
