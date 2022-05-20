@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
+echo -e "Testing on the first bootstrap data with the first 10 genes...\n"
 
 singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
 
@@ -95,31 +95,31 @@ echo -e "\n"
 grep "^sbatch" qsub2.sh > job2_command
 if [[ $interactive == "T" || $interactive == "True" || $interactive == "TRUE" ]];then
 sed -i 's/sbatch -W/srun -n1 bash/g;s/&/>\/dev\/null/g' qsub2.sh
-echo -e "Running $(wc -l < job2_command) jobs ... \n"
+echo -e "Running $(wc -l < job2_command) jobs...\n"
 else
-echo -e "Submitting $(wc -l < job2_command) jobs ... \n"
+echo -e "Submitting $(wc -l < job2_command) jobs...\n"
 fi
 
 time sh qsub2.sh | tee submit2_log
 
-echo -e "Checking the number of files\n"
+echo -e "Checking the number of files...\n"
 
 
 nresult=$(find Adj* | wc -l )
 
 if [ $nresult -eq $NJOBS ]
 then
-echo -e "All the jobs are finished !!\n"
-email_note $email "Stage 2" "Completed !!!"
+echo -e "All the jobs are completed!\n"
+email_note $email "Stage 2" "Completed!"
 else 
-echo -e "Please notice that some of the jobs are unfinished. Program will stop and please try to find the problem. \n"
-email_note $email "Stage 2" "Failed ..."
+echo -e "Warning: Some jobs are incomplete! Please find the problem and retry...\n"
+email_note $email "Stage 2" "Failed..."
 grep -Eo '[0-9]+$' submit2_log | xargs scancel
 kill -10 $job_id
 exit -1
 fi 
 
-echo -e "\nStage 2 finished!!! Summarizing the results...\n"
+echo -e "\nStage 2 is completed! Summarizing the results...\n"
 
 ##Simmarize the result
 if [ ! -d "output" ];then
