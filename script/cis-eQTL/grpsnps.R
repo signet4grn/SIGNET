@@ -17,10 +17,10 @@ write.table(paste0("$", commonidx), "common.snps.idx", row.names=F, col.names=F,
 
 raremap=map[rareidx,]
 write.table(raremap,"rare.Geno.map",row.names=F,col.names=F,quote=F,sep=" ")
-print(paste0("There are ", nrow(raremap), " rare SNPs"))
+print(paste0("There are ", nrow(raremap), " ultra-low-frequency SNPs"))
 lowmap=map[lowidx,]
 write.table(lowmap,"low.Geno.map",row.names=F,col.names=F,quote=F,sep=" ")
-print(paste0("There are ", nrow(lowmap), " low SNPs"))
+print(paste0("There are ", nrow(lowmap), " low-frequency SNPs"))
 commonmap=map[commonidx,]
 write.table(commonmap,"common.Geno.map",row.names=F,col.names=F,quote=F,sep=" ")
 print(paste0("There are ", nrow(commonmap), " common SNPs"))
