@@ -25,6 +25,6 @@ for(freqi in freq){
   edge_count <- sum(freq_count)
   node <- which(freq_count!=0, arr.ind=T)
   node_count <- length(unique((c(node[, 1], node[, 2]))))  
-  cat(paste0("There are ", node_count, " genes and  ", edge_count, " connections in the network with bootstrap frequency at least ", freqi, "\n")) 
+  cat(paste0("There are ", node_count, " genes and  ", edge_count, " regulations in the GRN with bootstrap frequency at least ", freqi, "\n")) 
   gc()
 }
