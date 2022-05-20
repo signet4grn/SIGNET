@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # extractcols.pl file
 
-open(GENELIST, $ARGV[0]) || die "Couldn't open $ARGV[0]\n";
+open(GENELIST, $ARGV[0]) || die "Error: Cannot open $ARGV[0]\n";
 while(<GENELIST>) 
 {
 chomp;
@@ -10,7 +10,7 @@ push @genes, $int;
 }
 close(GENELIST);
 
-open(MAP, $ARGV[1]) || die "Couldn't open $ARGV[1]\n";
+open(MAP, $ARGV[1]) || die "Error: Cannot open $ARGV[1]\n";
 while(<MAP>) 
 {
 chomp;
