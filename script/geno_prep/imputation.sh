@@ -36,7 +36,7 @@ done
 
 ##begin to impute
 echo -e "\n"
-echo -e "Begin to impute the genotype data using impute2 \n"
+echo -e "Imputing the genotype data with IMPUTE2... \n"
 
 
 for i in `seq 1 ${nchr}`
@@ -84,7 +84,7 @@ done
 ## employ parallel computing for imputation 
 time ParaFly -c impute_params.txt -CPU $ncores
 if [[ $(wc -l < impute_params.txt) -ne $(wc -l < impute_params.txt.completed) ]];then
-echo -e "\nPlease note that some of the jobs are not finished !!! This could be a memeory allocation issue.\n"
+echo -e "\nWarning: Some of the jobs are imcomplete! There could be a memeory allocation issue.\n"
 kill -10 $job_id
 fi
 
