@@ -1,6 +1,6 @@
 cd $SIGNET_TMP_ROOT/tmpa
 
-echo -e 'LD pruning ... \n'
+echo -e 'Pruning genetic variants with PLINK...\n'
 
 enable -n eval
 
