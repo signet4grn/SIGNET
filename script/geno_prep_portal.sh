@@ -28,7 +28,7 @@ usage() {
     echo "  --nchr                        chromosome number"
     echo "  --r | --ref                   reference file for imputation"
     echo "  --gmap                        genomic map file"
-    echo "  --i | --int                   interval length for impute2"
+    echo "  --i | --int                   interval length for IMPUTE2"
     echo "  --ncores                      number of cores"
     echo "  --resg                        result prefix"
     exit -1
@@ -141,6 +141,6 @@ do
 file_check $(eval "$(echo "echo \$${i}")")
 done
 
-$SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh && echo "Genotype Preprocessing Finished"
+$SIGNET_SCRIPT_ROOT/geno_prep/geno_prep.sh && echo "Genotype preprocessing ... competed!"
 
 echo -e "Finish time: $(date)"
