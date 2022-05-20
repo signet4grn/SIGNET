@@ -7,7 +7,7 @@ server <- function(input, output) {
     title = "Important message",
     " Note that large networks may take a while to load.\n", 
     "All the plots could be zoomed to full screen mode by click when opened in browser.",
-    footer=modalButton("Start Exploring"),
+    footer=modalButton("Exploring..."),
     size="l"
   ))
   
@@ -29,7 +29,7 @@ server <- function(input, output) {
     # name of gene in the order of comp
     sub_idx <- comp[match(tn_frame_reduce$gene_name, as.matrix(V(g_bs)$name))]
     sub_net_num <- match(sub_idx, idx_tot)
-    note <- paste0("subnetwork number:", sub_net_num)
+    note <- paste0("Subnetwork number:", sub_net_num)
     # ggplot2 code
     # p <- ggplot(tn_frame_reduce, aes(x=gene_name, y=degree, fill=degree)) +
     #   geom_bar(stat="identity") +     
@@ -49,7 +49,7 @@ server <- function(input, output) {
                  type='bar') %>%
       layout(# title="Top nodes",
         xaxis=list(showticklabels = FALSE,title=""),
-        yaxis=list(title="gene name"),
+        yaxis=list(title="Gene name"),
         #plot_bgcolor='rgb(239, 242, 247)',
         #paper_bgcolor='rgb(239, 242, 247)',
         showlegend=F)
@@ -99,7 +99,7 @@ server <- function(input, output) {
     ext <- tools::file_ext(file$datapath)
     
     req(file)
-    validate(need(ext == "txt", "Please upload a txt file"))
+    validate(need(ext == "txt", "Please upload a .txt file"))
     
     gene_input <- as.matrix(read.table(file$datapath, header=F))
     visNetworkProxy("network") %>% 
@@ -150,7 +150,7 @@ server <- function(input, output) {
                  color=~description,
                  colors=color_enrich,
                  type='bar') %>%
-      layout(title="Enrichment by p value",
+      layout(title="Enrichment by p values",
              xaxis=list(showticklabels = FALSE,title=""),
              yaxis=list(title="-log p value"),
              plot_bgcolor='rgb(239, 242, 247)',
