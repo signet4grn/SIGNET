@@ -96,6 +96,6 @@ do
 file_check $(eval "$(echo "echo \$${i}")")
 done 
 
-$SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep.sh && echo -e "Gene Expression Preprocessing Finished\nPlease look at PCA\n"
+$SIGNET_SCRIPT_ROOT/gexp_prep/gexp_prep.sh && echo -e "Gene expression preprocessing ... completed!\nPlease check PCA\n"
 
 echo -e "Finish time: $(date)"
