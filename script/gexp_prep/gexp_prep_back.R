@@ -6,7 +6,7 @@ suppressPackageStartupMessages(library(data.table))
 
 mcounts=fread(file)
 
-cat(paste0("Preprocessing file", file, "\n"))
+cat(paste0("Preprocessing gene expression file:", file, "\n"))
 
 geneinfo=mcounts[,1]
 #fwrite(mcounts[,1],"gene_id")
@@ -23,7 +23,7 @@ mcounts <- mcounts[, -lowcount.id]
 }
 
 cat(paste0("Removed ", length(lowcount.id), " samples with total counts < 2.5 M\n"))
-cat("Applying variance stabalizing transformation\n")
+cat("Applying variance stabalizing transformation...\n")
 
 sampleinfo <- matrix(factor(1),nrow=ncol(mcounts))
 rownames(sampleinfo) <- colnames(mcounts)
