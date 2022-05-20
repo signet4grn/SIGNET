@@ -26,8 +26,8 @@ function usage() {
 	echo '  signet -n [OPTION VAL] ...'
 	echo -e "\n"
 	echo 'Description:'
-	echo '  --net.gexp.data               gene expression data for network analysis'
-	echo '  --net.geno.data               marker data for network analysis'
+	echo '  --net.gexp.data               gene expression data for GRN construction'
+	echo '  --net.geno.data               marker data for GRN construction'
         echo '  --sig.pair        	        significant index pairs for gene expression and markers'
 	echo '  --net.genename                gene name files for gene expression data'
         echo '  --net.genepos                 gene position files for gene expression data'
@@ -42,7 +42,7 @@ function usage() {
  #       echo "  --filter                      To focus on a list of genes"
         echo "  --resn                        result prefix"
 	echo "  --sif                         singularity container"
-	echo "  --email                       send notification emails for both two stages if you have mail installed in Linux, and interactive=F"
+	echo "  --email                       send notification emails after each stage is compeleted if you have mail installed in Linux, and interactive=F"
         exit -1 
 }
 [ $? -ne 0 ] && usage
@@ -145,7 +145,7 @@ $SINGULARITY_COMMAND
 
 # check if in a singularity container
 if [[ $(which singularity) == "" ]];then
-echo -e "The container couldn't be found. \nPlease don't invoke a container mannually as it's integrated in the analysis.
+echo -e "Cannot find the container. \nPlease don't invoke a container mannually as it's integrated in the analysis.
 You could edit the path of the container using --sif argument."
 exit -1 
 fi
