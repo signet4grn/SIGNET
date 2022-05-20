@@ -1,6 +1,6 @@
 cd $SIGNET_TMP_ROOT/tmpa
 
-echo -e "Constructing PCs ...\n" 
+echo -e "Constructing PCs...\n" 
 
 Rscript $SIGNET_SCRIPT_ROOT/adj/pca_prepare.R &&
 enable -n eval
