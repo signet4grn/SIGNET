@@ -1,7 +1,9 @@
 
-# Documentation for SIGNET streamline project
+# SIGNET User's Manual
+
 
 ## Getting started 
+
 First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path.
 ```bash
 git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
@@ -10,13 +12,16 @@ export PATH=/path/to/signet:$PATH
 ```
 where */path/to/signet* should be replaced with your path to *SIGNET*.
 
+
 ## Requirement
+
 1. This package runs on UNIX bash shell. Check your shell with "echo $SHELL" to make sure that you are running on UNIX bash shell.
 2. This package assumes you are using the **Slurm Workload Manager** for high performance computing (HPC) clusters in the network analysis stage.  
 3. This pacakge assumes you have singularity installed if you would like to use the container image that described below. If you are using the linux system, you could install singularity following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps. If you are a windows/mac user, you could find the installation guide in https://sylabs.io/guides/3.8/admin-guide/installation.html. You could also choose to skip the container, and instead install all the packages required mannually. 
 
 
 ## Container image
+
 1. The Singularity Image Format file **signet.sif** comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly in. You could first pull the image from our repository and rename it as "signet.sif", after which you could append the path of package to singularity so it could execute *SIGNET* smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **Everytime you start a new terminal**.
 ```bash
 singularity pull signet.sif library://geomeday/default/signet:0.0.4.sif
@@ -56,6 +61,7 @@ Procedures of constructing gene regulatory networks can be split into six main s
 
 To use this streamline tool, user need first to prepare the genetype data in vcf format. Then set the configuration file properly, and run each step command seperately.
 
+
 ## Quit Start
 
 #### 1. Prepare the DataSet
@@ -63,6 +69,7 @@ To use this streamline tool, user need first to prepare the genetype data in vcf
 We highly recommand you to prepare the gene expression data and genotype data first, and place them to a specific data folder, to organize each step as it may involve many files:
 
 [Click here](#data-format) for more detail about genotype and genexpression dataset
+
 
 #### 2. Set configuration 
 
@@ -89,6 +96,7 @@ or
 signet -s --nchar --d
 ```
 
+
 #### 3. Genotype Preprocess
 
 For preprocessing genotype data
@@ -96,8 +104,8 @@ For preprocessing genotype data
 signet -g
 ```
 
-#### 4. Gene Expression Preprocess
 
+#### 4. Gene Expression Preprocess
 
 For preprocessing transcriptomic (gene expression) data
 ```bash
@@ -128,9 +136,11 @@ For network visualization.
 signet -v 
 ```
 
+
 ## Command Guide
 
 *Please note that you have to run genotype preprocessing before gene expression preprocessing if you are using the GTEx cohort*
+
 
 ### Settings
 
@@ -138,13 +148,16 @@ signet -v
 
 [click here](#config-file) for detailed introduction for configuration file. 
 
+
 #### Usage
+
 ```bash
 signet -s [--PARAM] [PARAM VAL] 
 ```
 
 
 #### Description
+
 ```bash
     --PARAM                                      list the value of parameter PARAM
     --PARAM [PARAM VAL]      modify the value of parameter PARAM to be [PARAM VAL]
@@ -152,6 +165,7 @@ signet -s [--PARAM] [PARAM VAL]
 
 
 #### Example
+
 ```bash
 # list all the parameters
 signet -s 
@@ -174,6 +188,7 @@ signet -s --d
 ```
 
 #### Error input handling 
+
 ```bash
 # If you input wrong format such as "-nchr"
 signet -s -nchr
@@ -185,17 +200,21 @@ echo: Please check the file name
 
 
 ### Transcript-prep 
+
 (TCGA)
 
 `signet -t` command will take the matrix of log2(x+1) transcriptome count data and preprocess it. 
 
 
 #### Usage
+
 ```bash
 signet -t [--g GEXP_FILE] [--p MAP_FILE]
 ```
 
+
 #### Description
+
 ```bash
  --g | --gexp                   gene expression file
  --p | --pmap                   genecode gtf file
@@ -206,14 +225,18 @@ signet -t [--g GEXP_FILE] [--p MAP_FILE]
 * `pmap`: genecode v22 gtf file.  
 * `restrict`: include the chromosome of interst. Could be dash separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a number, e.g. 1.
 
+
 #### Result
+
 Output of `gexp-prep` will be saved to `res/rest`. 
 - `signet_gexp`: gene expression data after pre-processing.
 - `signet_gene_name`: corresponding gene name.
 - `signet_gene_pos`: correspongding gene position.
 - `signet_gexpID`: correspdonding sample ID.
 
+
 #### Example
+
 ```bash
 # List the paramter
 signet -t --help
@@ -229,13 +252,16 @@ signet -t --g data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
 
 (GTEx)
 
+
 #### Usage
+
 ```bash
 signet -t [--r READS_FILE] [--tpm TPM_FILE]
 ```
 
 
 #### Description
+
 ```bash
  --r | --read                    gene reads file in gct format
  --t | --tpm                     gene tpm file
@@ -248,6 +274,7 @@ signet -t [--r READS_FILE] [--tpm TPM_FILE]
 * `gtf`:  collapse gene code v26 gtf file. 
 
 #### Example
+
 ```bash
 # List the paramter
 signet -t --help
@@ -270,11 +297,13 @@ signet -t --reads data/gexp/GTEx_gene_reads.gct \
 
 `signet -g` command provide the user the interface of preprocessing genotype data. We will do quality control, after which we will use IMPUTE2 for imputation. 
 
+
 #### Usage
 
 ```bash
 signet -g [OPTION VAL] ...
 ```
+
 
 #### Description
 
@@ -302,6 +331,7 @@ signet -g [OPTION VAL] ...
 
 
 #### Example
+
 ```bash
 # List the paramter
 signet -g --help
@@ -315,6 +345,7 @@ signet -g --ped data/geno-prep/test.ped \
 ```
 
 #### Result
+
 Output of `geno-prep` will be saved under `/res/resg`:
 - `signet_Geno`: Genotype data with each row denoting the SNP data for each individual.
 - `signet_Genotype.sampleID`: Sample ID for each individual, which uses the reading barcode.
@@ -336,6 +367,7 @@ Output of `geno-prep` will be saved under `/res/resg`:
 ```bash
 signet -g [OPTION VAL] ...
 ```
+
 
 #### Description
 
@@ -373,6 +405,7 @@ signet -g --vcf0 data/geno-prep/Geno_GTEx.vcf \
 
 
 ### Adj
+
 `signet -a` command provide users the interface of matching genotype and gene expression file and the calculation for minor allele frequency (MAF)
 `signet -a` read the output from `geno-prep` and `gexp-prep`
 output of `adj` will be saved under `/res/resa`:
@@ -381,18 +414,25 @@ output of `adj` will be saved under `/res/resa`:
 
 - `c`:  clinical file from TCGA project. Should contain at least a column of submitter id.
 
+
 #### Usage
+
 ```bash
 signet -a [--c CLINIVAL_FILE]
 ```
+
+
 #### Description
+
 ```bash
  --c | clinical                   clinical file for your cohort
  --resa                           result prefix
 ```
 - `c`:  clinical file from TCGA project. Should contain at least columns of submitter id, gender and race.
 
+
 #### Example
+
 ```bash
 signet -a --c ./data/clinical.tsv
 ```
@@ -409,11 +449,14 @@ Output of `adj` will be saved to `res/resa`:
 
 
 #### Usage
+
 ```bash
 signet -a [--p PHENOTYPE_FILE]
 ```
 
+
 #### Description
+
 ```
  --pheno                          GTEx phenotype file
  --resa                           result prefix
@@ -422,11 +465,13 @@ signet -a [--p PHENOTYPE_FILE]
 
 
 #### Example
+
 ```bash
 signet -a --pheno \
 ./data/pheno.txt 
 ```
-  
+
+
 ### Cis-eqtl
 
 `signet -c` command provide the basic tool for cis-eQTL analysis.  `signet -c` command receive the input file from the previous preprocess step.
@@ -434,12 +479,14 @@ signet -a --pheno \
 
 
 #### Usage
+
 ```
 signet -c [OPTION VAL] ...
 ```
 
 
 #### Description
+
 ```
   --gexp                        gene expression file after matching with genotype data
   --gexp.withpc                 gene expression file without adjusting for principal components, after matching with genotype data
@@ -464,7 +511,9 @@ signet -c [OPTION VAL] ...
 - `upstream`: upstream region to flank the genetic region
 - `downstream`: downstream region to flank the genetic region
 
+
 #### Results
+
 Output of `cie-eQTL` will be saved to `res/resc`:
 
 * `signet_net.Gexp.data`: is the expression data for gene expression, wo removing the PC by default.
@@ -476,9 +525,11 @@ Output of `cie-eQTL` will be saved to `res/resc`:
 
 
 #### Example
+
 ```
  signet -c --upstream 100000 --downstream 100000 --nperms 100 --alpha 0.1
 ```
+
 
 ### Network
 
@@ -491,12 +542,14 @@ Output of `cie-eQTL` will be saved to `res/resc`:
 
 
 #### Usage
+
 ```
 signet -n [OPTION VAL] ...
 ```
 
 
 #### Description
+
 ```
   --net.gexp.data               gene expression data for network analysis
   --net.geno.data               marker data for network analysis
@@ -532,12 +585,14 @@ signet -n [OPTION VAL] ...
 
 
 #### Results
+
 - `signet_Afreq`: Ajacency matrix for final list of genes. A[i, j]=1 if gene i is regulated by gene j. 0 entry indicates no regulation. 
 - `signet_CoeffMat0`: Coefficient matrix of estimated regulatory effect on the original data set.
 - `signet_net.genepos`: Corresponding gene name, followed by chromsome location, start and end position. 
 
 
 #### Example
+
 ```
 signet -n --nboots 100 --queue standby --walltime 4:00:00 --memory 256
 ```
@@ -551,11 +606,14 @@ signet -n --nboots 100 --queue standby --walltime 4:00:00 --memory 256
 You should first ssh -Y $(hostname) to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser
 
 #### Usage
+
 ```
 signet -v [OPTION VAL] ...
 ```
 
+
 #### Description
+
 
 ```
   --Afreq EDGE_FREQ            matrix of edge frequencies from bootstrap results
@@ -577,12 +635,16 @@ signet -v [OPTION VAL] ...
 - `assembly`: Genome assembly. e.g, hg38 for homo sapiens.
 - `tf`: Includes the names of genes that are transcription factors. Should be a p1 * 1 matrix. Only need to be specified if the study is **not** for homo sapiens.
 
+
 #### Result
+
 - `signet_edgelist*`: Edgelist file includes infromation for all regulation for given cutoff. Includes gene symbol, chromosme number, start and end posistion for both source and target gene, followed by bootstrap frequency and coefficient estimated from the original data. 
 - `signet_top*.html`: HTML file for largest sub-networks visualization.
 - `signet_top*.name.txt`: Gene name list fo largest sub-networks, given bootstrap cutoff.
 
+
 #### Example
+
 ```
 signet -v 
 ```
