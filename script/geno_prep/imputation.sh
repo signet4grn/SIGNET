@@ -3,7 +3,7 @@ map=$SIGNET_TMP_ROOT/tmpg/clean_Genotype.map
 
 cd $SIGNET_TMP_ROOT/tmpg
 
-echo -e "Split the genotype data by chromosomes \n"
+echo -e "Split the genotype data by chromosomes... \n"
 
 # Split the .map file by chromosome
 for i in `seq 1 ${nchr}`
