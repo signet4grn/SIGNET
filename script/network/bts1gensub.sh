@@ -1,6 +1,6 @@
 #!/bin/bash
 #testing runtime and memeory
-echo -e "Begin testing on the first bootstrap data with the first 10 genes\n"
+echo -e "Testing on the first bootstrap data with the first 10 genes...\n"
 
 singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest1.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
 
@@ -98,23 +98,23 @@ fi
 
 time sh qsub1.sh | tee submit1_log 
 
-echo -e "Checking the number of files\n"
+echo -e "Checking the number of files...\n"
 
 nresult=$(find ypre* | wc -l )
 
 if [ $nresult -eq $NJOBS ]
 then
-echo -e "All the jobs are finished !!\n"
-email_note $email "Stage 1" "Completed !!!"
+echo -e "All the jobs are completed!\n"
+email_note $email "Stage 1" "Completed!"
 else
-echo -e "Please notice that some of the jobs are unfinished. Program will stop and please try to find the problem. \n"
-email_note $email "Stage 1" "Failed ..."
+echo -e "Warning: Some jobs are incomplete! Find the problem and retry...\n"
+email_note $email "Stage 1" "Failed..."
 grep -Eo '[0-9]+$' submit1_log | xargs scancel
 kill -10 $job_id
 exit -1
 fi
 
-echo -e "Stage 1 finished!!! Summarizing the results...\n"
+echo -e "Stage 1 is completed! Summarizing the results...\n"
 
 if [ ! -d "output" ]; then 
 mkdir output 
