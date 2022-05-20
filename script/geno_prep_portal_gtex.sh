@@ -93,6 +93,6 @@ done
 echo "vcf.file: "$vcf
 echo -e "\n"
 
-$SIGNET_SCRIPT_ROOT/geno_prep/geno_prep_gtex.sh && echo "Genotype Preprocessing Finished"
+$SIGNET_SCRIPT_ROOT/geno_prep/geno_prep_gtex.sh && echo "Genotype preprocessing ... completed!"
 
 echo -e "Finish time: $(date)"
