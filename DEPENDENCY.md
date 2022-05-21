@@ -1,4 +1,4 @@
-DEPENDENCIES
+# DEPENDENCIES
 
 ### Below is the list for softwares:
 PLINK, EIGENSTRAT, vim, git, tabix, bcftools, sed, gawk, perl, ParaFly
