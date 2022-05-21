@@ -39,9 +39,22 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-### We integrated and adapated the code under `script/cis-eQTL` from 
+
+
+
+### We integrated and modified the code under `script/cis-eQTL` from 
 
 http://www.biostat.umn.edu/~weip/prog/BasuPanGE11/aSumTest.r
+
+The code is under their license and restrictions. 
+
+
+### We integrated and modified the code under `script/network` from
+
+https://rdrr.io/cran/SIS/
+
+The code is under their license and restrictions. 
+
 
 
 
