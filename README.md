@@ -7,7 +7,7 @@ The core of current version of SIGNET is to use the two-stage least squares appr
 
 ## System Requirement 
 
-SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to make sure that you are running on UNIX bash shell. SIGNET uses the [**Slurm Workload Manager**](https://slurm.schedmd.com/) for high performance computing (HPC) clusters in its stage of constructing the gene regulatory network in parallel. **Zhongli: How to check whether the system uses SLURM?**
+SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to make sure that you are running on UNIX bash shell. SIGNET uses the [**Slurm Workload Manager**](https://slurm.schedmd.com/) for high performance computing (HPC) clusters in its stage of constructing the gene regulatory network in parallel. **Zhongli: How to check whether the system uses SLURM?**. Command `sinfo -V` could help check the version of SLURM 
 
 
 
