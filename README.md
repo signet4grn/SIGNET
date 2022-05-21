@@ -27,7 +27,7 @@ There are two ways to install the required packages for SIGNET: (1) Install Sing
 
 ### Required packages by SIGNET
 
-While you can install all of these packages in your sever, we would rather suggest you to install Singularity and use the Singularity container `signet.sif` coming with SIGNET. Here is a list of packages SIGNET runs on:
+While you can install all of these packages in your sever, we would rather suggest you to install Singularity and use the Singularity container `signet.sif` coming with SIGNET. A list of packages SIGNET are listed on DEPENDENCY.md:
 
 - PLINK 
 - IMPUTE2
