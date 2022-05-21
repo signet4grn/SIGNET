@@ -1,69 +1,109 @@
 
 # SIGNET User's Manual
 
-## Copyright of SIGNET
-
-The core of current version of SIGNET is to use the two-stage least squares approach proposed by [Chen et al. (2018)](https://www.jmlr.org/papers/volume19/16-225/16-225.pdf) to construct genome-wide gene regulatory networks. 
-
+## Reference to SIGNET
+5
+​
+6
+The core of current version of SIGNET is to use the two-stage penalized least squares (2SPLS) method proposed by [Chen et al. (2018)](https://www.jmlr.org/papers/volume19/16-225/16-225.pdf) to construct genome-wide gene regulatory networks (GW-GRNs). An application of 2SPLS to yeast data can be found in [Chen et al. (2019)](https://www.nature.com/articles/s41598-018-37667-4).
+7
+​
+8
+While current SIGNET constructs the GW-GRN with transcriptomic and genotype data collected from on population, we are developing SIGNET to simultaneiously construct and compare GW-GRNs for two or more populations for the purpose of (i) more powerful to establish comment reguations shared across different populations; (ii) more effectively identify population-specific (e.g., cancer-specific) gene regulations.
+9
+​
+10
+​
+11
 ## System Requirement 
-
-SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to make sure that you are running on UNIX bash shell. SIGNET uses the [**Slurm Workload Manager**](https://slurm.schedmd.com/) for high performance computing (HPC) clusters in its stage of constructing the gene regulatory network in parallel. **Zhongli: How to check whether the system uses SLURM?**. Command `sinfo -V` could help check the version of SLURM 
-
-
-
+12
+​
+13
+SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to make sure that you are running on UNIX bash shell. SIGNET uses the [**Slurm Workload Manager**](https://slurm.schedmd.com/overview.html) for high performance computing (HPC) clusters in its stage of constructing the gene regulatory network in parallel.
+14
+​
+15
+​
+16
 ## Quick Installation of SIGNET 
-
+17
+​
+18
 First you should clone the directory to the path in your server and add the path where you install the software to enable directly running the command without specifying a particular path.
+19
 ```bash
+20
 git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
+21
 cd SIGNET
+22
 export PATH=/path/to/signet:$PATH
+23
 ```
+24
 where `/path/to/signet` should be replaced with your path to **SIGNET**.
-
-
-## Installation of Required Packages
-
-There are two ways to install the required packages for SIGNET: (1) Install Singularity and copy the Singularity container file `signet.sif` to your server; (2) Install all the required packages to your sever by yourselves (not recommended).
-
-### Required packages by SIGNET
-
-While you can install all of these packages in your sever, we would rather suggest you to install Singularity and use the Singularity container `signet.sif` coming with SIGNET. A list of packages SIGNET are listed on DEPENDENCY.md:
-
-- PLINK 
-- IMPUTE2
-- R & its libararies.
-
-
-
-
-### Use Singularity container for required packages 
-
-If you are using the linux system, you could install singularity following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps. If you are a windows/mac user, you could find the installation guide in https://sylabs.io/guides/3.8/admin-guide/installation.html. You could also choose to skip the container, and instead install all the packages required mannually. 
-
-1. The Singularity Image Format file **signet.sif** comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly in. You could first pull the image from our repository and rename it as "signet.sif", after which you could append the path of package to singularity so it could execute *SIGNET* smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
+25
+​
+26
+### Installation of Required Packages
+27
+​
+28
+SIGNET runs dependent on several packages such as PLINK, IMPUTE2, and R (with its libraries). While you may install all of these packages by yourself, we also provide a Singularity container `signet.sif` which packs all the packages required by SIGNET. The Singularity container `signet.sif` provides an environment in which *SIGNET* can smoothly run, so you don't have to separately install any of the required packages for SIGNET.
+29
+​
+30
+Before having the Singularity container `signet.sif`, first you have to install **Singularity** following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps.
+31
+​
+32
+You can pull the image from **our repository (Zhongli: where is it?)** and rename it as `signet.sif`, after which you can append the path of package to singularity so it can execute SIGNET smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
+33
 ```bash
-singularity pull library://geomeday/signet/signet:0.05
+34
+singularity pull signet.sif library://geomeday/default/signet:0.0.4.sif
+35
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
+36
 export SINGULARITY_BIND="/path/to/bind"
+37
 ```
-where */path/to/signet* should be replaced with your path to *SIGNET*, and "/path/to/bind" should be replaced with the desired bath to bind.
-
-2. You could use the image by attaching a prefix ahead of the original commands you want to execute, which are described in details in sections below.
+38
+where `/path/to/signet` should be replaced with your path to SIGNET, and `/path/to/bind` should be replaced with the desired bath to bind.
+39
+​
+40
+You can use the image by attaching a prefix ahead of the original commands you want to execute, which are described in details in sections below.
+41
 ```bash
+42
 singularity exec signet.sif [Command]
-
+43
+​
+44
 e.g. 
+45
 singularity exec signet.sif signet -s 
+46
 ```
+47
 Or you could first shell into the container by  
+48
 ```bash 
+49
 singularity shell signet.sif
+50
 ```
+51
 and then execute all the commands as usual.
-
+52
+​
+53
 **Caution**  
+54
 All the intermediate result for each step will by default return to the corresponding folders in the tmporary directory starting with 'tmp' and all the final result will return to the result folders starting with 'res'.  You could also change the path of result files in the configuration file named config.ini, or use signet -s described below. Please be careful if you are using the relative path instead of the absolute path. The config.ini will record the path relative to the folder that **SIGNET is installed**, in order to reach file mangement consistency. It's highly recommended to run command where signet is installed.  In each of the process, you could specify the result path, and you will be asked to whether purge the tmporary files, if you already have those. It's also suggested you keep a copy of the temporary files for each analysis, in case you need them in later steps. Please **run each analysis at a time under the same folder, as a latter process will overwrite the previous tmporary files**. 
+
+
 
 
 ## Introduction
