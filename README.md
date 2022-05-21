@@ -1,8 +1,12 @@
 
 # SIGNET User's Manual
 
+## System Requirement 
 
-## Getting started 
+SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to make sure that you are running on UNIX bash shell. SIGNET uses the **Slurm Workload Manager** for high performance computing (HPC) clusters in its stage of constructing the gene regulatory network in parallel. **Zhongli: How to check whether the system uses SLURM?** 
+
+
+## Quick Installation of SIGNET 
 
 First you should clone the directory to the path in your server and add the path where you install the software to enable directly running the command without specifying a particular path.
 ```bash
@@ -13,14 +17,26 @@ export PATH=/path/to/signet:$PATH
 where `/path/to/signet` should be replaced with your path to **SIGNET**.
 
 
-## Requirement
+## Installation of Required Packages
 
-1. This package runs on UNIX bash shell. Check your shell with "echo $SHELL" to make sure that you are running on UNIX bash shell.
-2. This package assumes you are using the **Slurm Workload Manager** for high performance computing (HPC) clusters in the network analysis stage.  
-3. This pacakge assumes you have singularity installed if you would like to use the container image that described below. If you are using the linux system, you could install singularity following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps. If you are a windows/mac user, you could find the installation guide in https://sylabs.io/guides/3.8/admin-guide/installation.html. You could also choose to skip the container, and instead install all the packages required mannually. 
+There are two ways to install the required packages for SIGNET: (1) Install Singularity and copy the Singularity container file `signet.sif` to your server; (2) Install all the required packages to your sever by yourselves (not recommended).
+
+### Required packages by SIGNET
+
+While you can install all of these packages in your sever, we would rather suggest you to install Singularity and use the Singularity container `signet.sif` coming with SIGNET. Here is a list of packages SIGNET runs on:
+
+- PLINK
+- IMPUTE2
+- ...
 
 
-## Container image
+
+
+
+
+### Use Singularity container for required packages 
+
+If you are using the linux system, you could install singularity following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps. If you are a windows/mac user, you could find the installation guide in https://sylabs.io/guides/3.8/admin-guide/installation.html. You could also choose to skip the container, and instead install all the packages required mannually. 
 
 1. The Singularity Image Format file **signet.sif** comes with all the required pacakges for *SIGNET*, and an environment that *SIGNET* could run smoothly in. You could first pull the image from our repository and rename it as "signet.sif", after which you could append the path of package to singularity so it could execute *SIGNET* smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
 ```bash
