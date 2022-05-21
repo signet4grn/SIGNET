@@ -1,6 +1,10 @@
 
 # SIGNET User's Manual
 
+## Copyright of SIGNET
+
+The core of current version of SIGNET is to use the two-stage least squares approach proposed by [Chen et al. (2018)](https://www.jmlr.org/papers/volume19/16-225/16-225.pdf) to construct genome-wide gene regulatory networks. 
+
 ## System Requirement 
 
 SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to make sure that you are running on UNIX bash shell. SIGNET uses the **Slurm Workload Manager** for high performance computing (HPC) clusters in its stage of constructing the gene regulatory network in parallel. **Zhongli: How to check whether the system uses SLURM?** 
@@ -25,11 +29,9 @@ There are two ways to install the required packages for SIGNET: (1) Install Sing
 
 While you can install all of these packages in your sever, we would rather suggest you to install Singularity and use the Singularity container `signet.sif` coming with SIGNET. Here is a list of packages SIGNET runs on:
 
-- PLINK
+- PLINK 
 - IMPUTE2
-- ...
-
-
+- R & its libararies.
 
 
 
