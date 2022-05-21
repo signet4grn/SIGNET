@@ -1,0 +1,15 @@
+DEPENDENCIES
+
+### Below is a list of softwares
+sed, awk, perl, ParaFly
+
+
+
+Here is a list of of R dependencies:
+
+
+
+### Below is a list of R packages:
+data.table, dataPreparation, parcor, MASS, matrixcalc, chron, igraph, dnet,
+visNetwork, STRINGdb, TFutils, shiny, shinyfullscreen, shinycustomloader, 
+shinydashboard, plotly, DT, circlize
