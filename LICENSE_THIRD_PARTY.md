@@ -1,12 +1,14 @@
-# SIGNET integrated code from the following projects, we describe their license below.
+# Third Party License and Acknowledgement
+
+## SIGNET integrated code from the following projects, we describe their license below.
 
 
-## We integrated and modified GTEx pipeline available under `script/geno_prep` from
+### We integrated and modified GTEx pipeline available under `script/geno_prep` from
 
 https://github.com/broadinstitute/gtex-pipeline.
 
 
-## The code is subject to their license
+### The code is subject to their license
 
 https://github.com/broadinstitute/gtex-pipeline/blob/6699f19d3f5ed06ce2fa30dcfc6f0c2aae035608/LICENSE.txt
 
@@ -37,7 +39,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-## We integrated and adapated the code under `script/cis-eQTL` from 
+### We integrated and adapated the code under `script/cis-eQTL` from 
 
 http://www.biostat.umn.edu/~weip/prog/BasuPanGE11/aSumTest.r
 
