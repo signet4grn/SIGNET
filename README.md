@@ -4,13 +4,13 @@
 
 ## Getting started 
 
-First you should clone the directory to your path in server and add the path you installed the software to enable directly running the command without specifying a particular path.
+First you should clone the directory to the path in your server and add the path where you install the software to enable directly running the command without specifying a particular path.
 ```bash
 git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
 cd SIGNET
 export PATH=/path/to/signet:$PATH
 ```
-where */path/to/signet* should be replaced with your path to *SIGNET*.
+where `/path/to/signet` should be replaced with your path to **SIGNET**.
 
 
 ## Requirement
