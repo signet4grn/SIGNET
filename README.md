@@ -30,7 +30,7 @@ SIGNET runs dependent on several packages such as PLINK, IMPUTE2, and R (with it
 
 Before having the Singularity container `signet.sif`, first you have to install **Singularity** following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps.
 
-You can pull the image from **our repository (Zhongli: where is it?)** and rename it as `signet.sif`, after which you can append the path of package to singularity so it can execute SIGNET smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
+You can pull the image from [our repository](https://cloud.sylabs.io/library/geomeday/signet/signet) and rename it as `signet.sif`, after which you can append the path of package to singularity so it can execute SIGNET smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
 ```bash
 singularity pull library://geomeday/signet/signet:0.0.5
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
