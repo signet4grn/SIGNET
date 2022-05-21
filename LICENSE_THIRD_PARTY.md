@@ -53,7 +53,7 @@ The code is under their license and restrictions.
 
 https://rdrr.io/cran/SIS/
 
-The code is under their license and restrictions. 
+The code is under their `GPL-2` license and restrictions. 
 
 
 
