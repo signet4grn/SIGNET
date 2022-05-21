@@ -3,7 +3,7 @@
 ## SIGNET integrated code from the following projects, we describe their license below.
 
 
-### We integrated and modified GTEx pipeline available under `script/geno_prep` from
+### We integrated and modified GTEx pipeline available under `script/geno_prep` and `script/gexp_prep` from
 
 https://github.com/broadinstitute/gtex-pipeline.
 
