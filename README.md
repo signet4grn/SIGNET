@@ -1,11 +1,6 @@
 
----
-title: "SIGNET User's Manual"
-output:
-  html_document:
-    toc: true
-    theme: united
----
+# SIGNET User's Manual
+
 
 ## Reference to SIGNET
 
