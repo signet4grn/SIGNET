@@ -1,5 +1,11 @@
 
-# SIGNET User's Manual
+---
+title: "SIGNET User's Manual"
+output:
+  html_document:
+    toc: true
+    theme: united
+---
 
 ## Reference to SIGNET
 
