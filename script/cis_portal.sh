@@ -28,7 +28,7 @@ function usage() {
 	echo '  --alpha | -a			significance level for cis-eQTL'
 	echo '  --nperms                 	number of permutations'
 	echo '  --upstream               	number of base pairs upstream the genetic region'
-	echo '  --downstream                   number of base pairs downstream the genetic region'
+	echo '  --downstream                  number of base pairs downstream the genetic region'
         echo '  --resc                        result prefix'
 	echo '  --help | -h			user guide'
 }
