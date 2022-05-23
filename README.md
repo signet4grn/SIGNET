@@ -1,3 +1,4 @@
+![GitHub All Releases](https://img.shields.io/github/downloads/lewdev/hw-gen/total
 
 # SIGNET User's Manual
 
