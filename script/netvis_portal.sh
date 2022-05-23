@@ -15,7 +15,7 @@ forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
 function usage() {
         echo -e 'Pre-requisite: \n'
-	echo -e 'You should first ssh -Y $(hostname) to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser \n'
+	echo -e 'You should first type "ssh -Y $(hostname)" to a server with DISPLAY if you would like to use the singularity container, and the result can be viewed through a pop up firefox web browser \n'
 	echo 'Usage:'
 	echo 'signet -v [OPTION VAL] ...'
         echo -e '\n'
