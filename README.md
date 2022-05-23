@@ -516,7 +516,7 @@ signet -c [OPTION VAL] ...
   --alpha | -a			significance level for cis-eQTL
   --nperms                 	number of permutations
   --upstream               	number of base pairs upstream the genetic region
-  --downstream                   number of base pairs downstream the genetic region
+  --downstream                  number of base pairs downstream the genetic region
   --resc                        result prefix
   --help | -h			user guide
 ```
