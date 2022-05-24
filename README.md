@@ -73,9 +73,7 @@ To use this streamline tool, user need first to prepare the genetype data in vcf
 
 #### 1. Prepare the DataSet
 
-We highly recommand you to prepare the gene expression data and genotype data first, and place them to a specific data folder, to organize each step as it may involve many files:
-
-[Click here](#data-format) for more detail about genotype and genexpression dataset
+We highly recommand you to prepare the gene expression data and genotype data first, and place them to a specific data folder, to organize each step as it may involve many files.
 
 
 #### 2. Set configuration 
