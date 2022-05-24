@@ -616,7 +616,10 @@ signet -n [OPTION VAL] ...
 #### Example
 
 ```
-signet -n --nboots 100 --queue standby --walltime 4:00:00 --memory 256
+signet -n --nboots 100 \
+          --queue standby \
+	  --walltime 4:00:00 \
+	  --memory 256
 ```
 
 
