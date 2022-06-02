@@ -1,77 +1,27 @@
-name: prs
-
-on: [push]
+on:
+  schedule:
+    # Run this once per day, towards the end of the day for keeping the most
+    # recent data point most meaningful (hours are interpreted in UTC).
+    - cron: "0 23 * * *"
+  workflow_dispatch: # Allow for running this manually.
 
 jobs:
-  test:
+  j1:
+    name: repostats-for-nice-project
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.10.0]
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - name: run-ghrs
+        uses: jgehrcke/github-repo-stats@v1.4.0
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: bats-based CLI tests
-        run: make clitests
-      - name: lint (flake8, black, mypy...)
-        run: make lint
-      - name: test main Dockerfile (builds jgehrcke/github-repo-stats:local)
-        run: make action-image
-      - name: test entrypoint.sh in action container
-        env:
-          INPUT_GHTOKEN: ${{ secrets.SIGNET }}
-          INPUT_DATABRANCH: github-repo-stats
-          INPUT_REPOSITORY: jgehrcke/github-repo-stats
-          INPUT_GHPAGESPREFIX: none
-          GHRS_DATA_REPOSPEC_OVERRIDE: jgehrcke/ghrs-test
-          GHRS_TESTING: true
-          GHRS_FILES_ROOT_PATH: /
-        run: |
-          docker run \
-            --entrypoint "/bin/bash" \
-            -e GITHUB_REPOSITORY \
-            -e GITHUB_WORKFLOW \
-            -e INPUT_GHTOKEN \
-            -e INPUT_DATABRANCH \
-            -e INPUT_REPOSITORY \
-            -e INPUT_GHPAGESPREFIX \
-            -e GHRS_DATA_REPOSPEC_OVERRIDE \
-            -e GHRS_TESTING \
-            -e GHRS_FILES_ROOT_PATH \
-            -v $(pwd):/cwd \
-            jgehrcke/github-repo-stats:local -c \
-            'set -o errexit && mkdir /tmp/testrun && cd /tmp/testrun &&
-              bash /cwd/entrypoint.sh
-            '
-      - name: test fetch.py in action container
-        env:
-          GHRS_GITHUB_API_TOKEN: ${{ secrets.SIGNET }}
-        run: |
-          docker run \
-            --entrypoint "/bin/bash" \
-            -e GHRS_GITHUB_API_TOKEN \
-            -v $(pwd):/cwd \
-            jgehrcke/github-repo-stats:local -c \
-            'set -o errexit && cd /cwd
-             python fetch.py jgehrcke/github-repo-stats
-            '
-      - name: test analyze.py in action container
-        env:
-          GHRS_GITHUB_API_TOKEN: ${{ secrets.SIGNET }}
-        run: |
-          docker run \
-            --entrypoint "/bin/bash" \
-            -e GHRS_GITHUB_API_TOKEN \
-            -v $(pwd):/cwd \
-            jgehrcke/github-repo-stats:local -c \
-            'set -o errexit && cd /cwd
-              python fetch.py jgehrcke/github-repo-stats
-              python analyze.py jgehrcke/github-repo-stats _ghrs_jgehrcke_github-repo-stats
-              cat *_report/*_report.md
-            '
-      - name: test building new base image (base.Dockerfile)
-        run: make new-base-image
+          # Define the stats repository (the repo to fetch
+          # stats for and to generate the report for).
+          # Remove the parameter when the stats repository
+          # and the data repository are the same.
+          repository: signet4grn/SIGNET
+          # Set a GitHub API token that can read the stats
+          # repository, and that can push to the data
+          # repository (which this workflow file lives in),
+          # to store data and the report files. This is
+          # not needed when the stats repository and the
+          # data repository are the same.
+          ghtoken: ${{ secrets.SIGNET }}
