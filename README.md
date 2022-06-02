@@ -1,4 +1,4 @@
-[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/signet4grn/14d820465c482ad9415484807bf50cec/raw/clone.json&logo=github)](https://github.com/MShawon/github-clone-count-badge)
+[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/signet4grn/b37cb8a98b5f2702091189764c7efd65/raw/clone.json&logo=github)](https://github.com/MShawon/github-clone-count-badge)
 
 
 # SIGNET User's Manual
