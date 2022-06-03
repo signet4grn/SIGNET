@@ -17,7 +17,7 @@ SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to mak
 
 First you should clone the directory to the path in your server and add the path where you install the software to enable directly running the command without specifying a particular path.
 ```bash
-git clone https://github.itap.purdue.edu/jiang548/SIGNET.git
+git clone https://github.com/signet4grn/SIGNET.git
 cd SIGNET
 export PATH=/path/to/signet:$PATH
 ```
