@@ -2,7 +2,7 @@
 # din, dout, source_bed, target_bed
 cat("Loading results for circular plot...\n")
 
-info <- din <- dout <- source_bed <- target_bed <- NULL
+info <- din <- dout <- source_bed <- target_bed <- circ_col <- NULL
 
 for(i in 1:ntop){ 
   info[[i]] <- as.data.frame(get.edge.attribute(g_top[[i]]), check.names = F)  
@@ -35,6 +35,6 @@ for(i in 1:ntop){
   dout[[i]] <- unique(dout[[i]])
   din[[i]] <- din[[i]][din[[i]][, 4]>0, ]
   dout[[i]] <- dout[[i]][dout[[i]][, 4]>0, ]
-  
-  #circ_col <- ifelse(info$coef>0, "blue", "yellow")
+
+  circ_col[[i]] <- ifelse(info[[i]]$coef>0, "green", "red")  
 }

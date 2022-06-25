@@ -184,7 +184,7 @@ server <- function(input, output) {
                         panel.fun = function(region, value, ...) {
                           circos.genomicPoints(region, value, col = 1, pch=20, cex=0.5)
                         })
-    circos.genomicLink(source_bed[[input$net_num2]], target_bed[[input$net_num2]], directional=1, arr.length=0.2, arr.type = "triangle")
+    circos.genomicLink(source_bed[[input$net_num2]], target_bed[[input$net_num2]], col=circ_col[[input$net_num2]], directional=1, arr.length=0.2, arr.type = "triangle")
   },
   # Put in Cache to save time
   cacheKeyExpr = {input$net_num2} )
