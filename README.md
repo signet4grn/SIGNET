@@ -361,8 +361,7 @@ Two files will be generated from preprocessing the genoytpe data (The filename b
 
 
 (GTEx)
-`signet -g` command provide the user the interface of preprocessing genotype data. We will first extract the genotype data that has corresponding samples from gene expression data for a particular tissue. 
-
+`signet -g` command provide the user the interface of preprocessing genotype data. We will first extract the genotype data that has corresponding samples from gene expression data for a particular tissue, and then select SNPs that have at least count 5.
 
 
 Output of `geno-prep` will be saved under `/res/resg`:
@@ -384,16 +383,16 @@ signet -g [OPTION VAL] ...
  --anno                        set the annotation file that contains the sample information
  --tissue                      set the tissue type
 ```
-- `vcf`: includes SNP data from GTEx v8 before phasing in vcf format
-- `vcf0`: includes SNP data from GTEx v8 after phasing in vcf format
-- `read`: gene count data in tpm format
-- `anno`: GTEx v8 annotation file
-- `tissue`: tissue type, lower/upper case must exactly map to what is included in the annotation file 
+- `vcf`: includes SNP data from GTEx v8 before phasing in vcf format, could be downloaded from [dbGaP](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2);
+- `vcf0`: includes SNP data from GTEx v8 after phasing in vcf format, could be downloaded from [dbGaP](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2);
+- `read`: gene count data in tpm format, could be downloaded from [GTEx_portal](https://gtexportal.org/home/datasets);
+- `anno`: GTEx v8 annotation file, could be downloaded from [GTEx_portal](https://gtexportal.org/home/datasets); 
+- `tissue`: tissue type, lower/upper case must exactly map to what is included in the annotation file.
 
 
 #### Example
 ```bash
-# Set the cohort
+# Set the cohort to GTEx
 signet -s --cohort GTEx
 
 
@@ -405,7 +404,11 @@ signet -g --vcf0 data/geno-prep/Geno_GTEx.vcf \
 	  --tissue Lung
 ```
 
-
+#### Result files
+Output of `signet -g` will be saved to res/resg.
+- `signet_clean_Genotype_repNA.data`: cleaned SNP data.
+- `signet_snps.maf`: minor allele frequency file for selected SNPs.
+- `signet_snps.map`: map file for selected SNPs.
 
 
 ### Adj
