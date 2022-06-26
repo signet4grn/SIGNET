@@ -178,11 +178,11 @@ server <- function(input, output) {
              error = function(e) circos.initializeWithIdeogram(species = Sys.getenv("assembly"), chromosome.index = paste0("chr", 1:Sys.getenv("nchr")))) 
     circos.genomicTrack(dout[[input$net_num2]], track.height=0.1, 
                         panel.fun = function(region, value, ...) {
-                          circos.genomicPoints(region, value, col = 1, pch=20, cex=0.5)
+                          circos.genomicPoints(region, value, col = 1, pch=16, cex=0.5)
                         })
     circos.genomicTrack(din[[input$net_num2]], track.height=0.1, 
                         panel.fun = function(region, value, ...) {
-                          circos.genomicPoints(region, value, col = 1, pch=20, cex=0.5)
+                          circos.genomicPoints(region, value, col = 1, pch=16, cex=0.5)
                         })
     circos.genomicLink(source_bed[[input$net_num2]], target_bed[[input$net_num2]], col=circ_col[[input$net_num2]], directional=1, arr.length=0.2, arr.type = "triangle")
   },

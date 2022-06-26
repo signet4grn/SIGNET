@@ -37,4 +37,18 @@ for(i in 1:ntop){
   dout[[i]] <- dout[[i]][dout[[i]][, 4]>0, ]
 
   circ_col[[i]] <- ifelse(info[[i]]$coef>0, "green", "red")  
+
+  pdf(file=paste0(Sys.getenv("resv"), "_circular_top", i, "_freq", Sys.getenv("freq"), ".pdf"))
+  tryCatch(circos.initializeWithIdeogram(species = Sys.getenv("assembly"), chromosome.index = paste0("chr", c(1:Sys.getenv("nchr"), "X", "Y"))),
+             error = function(e) circos.initializeWithIdeogram(species = Sys.getenv("assembly"), chromosome.index = paste0("chr", 1:Sys.getenv("nchr"))))
+  circos.genomicTrack(dout[[i]], track.height=0.1,
+                        panel.fun = function(region, value, ...) {
+                          circos.genomicPoints(region, value, col = 1, pch=16, cex=0.5)
+                        })
+  circos.genomicTrack(din[[i]], track.height=0.1,
+                        panel.fun = function(region, value, ...) {
+                          circos.genomicPoints(region, value, col = 1, pch=16, cex=0.5)
+                        })
+   circos.genomicLink(source_bed[[i]], target_bed[[i]], col=circ_col[[i]], directional=1, arr.length=0.2, arr.type = "triangle")
+   dev.off()
 }
