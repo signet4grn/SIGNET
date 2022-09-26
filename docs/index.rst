@@ -130,7 +130,7 @@ Quit Start
 ----------
 
 1. Prepare the DataSet
-^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""
 
 We highly recommand you to prepare the gene expression data and genotype
 data first, and place them to a specific data folder, to organize each
