@@ -1,4 +1,4 @@
 html_theme_options = {
-    'collapse_navigation': Flase,
+    'collapse_navigation': False,
     'navigation_depth': 4,
 }
