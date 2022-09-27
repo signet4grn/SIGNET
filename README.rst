@@ -130,14 +130,14 @@ Quit Start
 ----------
 
 1. Prepare the DataSet
-^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~
 
 We highly recommand you to prepare the gene expression data and genotype
 data first, and place them to a specific data folder, to organize each
 step as it may involve many files.
 
 2. Set configuration
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 Here we set the number of autosomes to 22, so the chromosomes we study
 are 1-22.
@@ -173,7 +173,7 @@ or
     signet -s --nchar --d
 
 3. Genotype Preprocess
-^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~
 
 For preprocessing genotype data
 
@@ -182,7 +182,7 @@ For preprocessing genotype data
     signet -g
 
 4. Gene Expression Preprocess
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For preprocessing transcriptomic (gene expression) data
 
@@ -191,7 +191,7 @@ For preprocessing transcriptomic (gene expression) data
     signet -t
 
 5. cis-eQTL Analysis
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 For cis-eQTL analysis.
 
@@ -200,7 +200,7 @@ For cis-eQTL analysis.
     signet -c
 
 6. Network Analysis
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~
 
 For network construction.
 
@@ -209,7 +209,7 @@ For network construction.
     signet -n 
 
 7. Network Visualization
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 For network visualization.
 
