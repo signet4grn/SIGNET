@@ -2,6 +2,7 @@ SIGNET User's Manual
 ====================
 
 .. toctree::
-   :maxdepth: 5
-
+   :maxdepth: 1
+   :caption: Contents:
+   
    mannual

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="BASH" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference to SIGNET &mdash; signet 0.0.1.alpha documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> signet
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Reference to SIGNET</a></li>
+<li><a class="reference internal" href="#system-requirement">System Requirement</a></li>
+<li><a class="reference internal" href="#quick-installation-of-signet">Quick Installation of SIGNET</a><ul>
+<li><a class="reference internal" href="#installation-of-required-packages">Installation of Required Packages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#quit-start">Quit Start</a><ul>
+<li><a class="reference internal" href="#prepare-the-dataset">1. Prepare the DataSet</a></li>
+<li><a class="reference internal" href="#set-configuration">2. Set configuration</a></li>
+<li><a class="reference internal" href="#genotype-preprocess">3. Genotype Preprocess</a></li>
+<li><a class="reference internal" href="#gene-expression-preprocess">4. Gene Expression Preprocess</a></li>
+<li><a class="reference internal" href="#cis-eqtl-analysis">5. cis-eQTL Analysis</a></li>
+<li><a class="reference internal" href="#network-analysis">6. Network Analysis</a></li>
+<li><a class="reference internal" href="#network-visualization">7. Network Visualization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#command-guide">Command Guide</a><ul>
+<li><a class="reference internal" href="#settings">Settings</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#error-input-handling">Error input handling</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transcript-prep">Transcript-prep</a><ul>
+<li><a class="reference internal" href="#id1">Usage</a></li>
+<li><a class="reference internal" href="#id2">Description</a></li>
+<li><a class="reference internal" href="#result-files">Result files</a></li>
+<li><a class="reference internal" href="#id3">Example</a></li>
+<li><a class="reference internal" href="#id4">Usage</a></li>
+<li><a class="reference internal" href="#id5">Description</a></li>
+<li><a class="reference internal" href="#id6">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#geno-prep">Geno-prep</a><ul>
+<li><a class="reference internal" href="#id7">Usage</a></li>
+<li><a class="reference internal" href="#id8">Description</a></li>
+<li><a class="reference internal" href="#id9">Example</a></li>
+<li><a class="reference internal" href="#id10">Result files</a></li>
+<li><a class="reference internal" href="#id11">Usage</a></li>
+<li><a class="reference internal" href="#id12">Description</a></li>
+<li><a class="reference internal" href="#id13">Example</a></li>
+<li><a class="reference internal" href="#id14">Result files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adj">Adj</a><ul>
+<li><a class="reference internal" href="#id15">Usage</a></li>
+<li><a class="reference internal" href="#id16">Description</a></li>
+<li><a class="reference internal" href="#id17">Example</a></li>
+<li><a class="reference internal" href="#id18">Usage</a></li>
+<li><a class="reference internal" href="#id19">Description</a></li>
+<li><a class="reference internal" href="#id20">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cis-eqtl">Cis-eqtl</a><ul>
+<li><a class="reference internal" href="#id21">Usage</a></li>
+<li><a class="reference internal" href="#id22">Description</a></li>
+<li><a class="reference internal" href="#id23">Result files</a></li>
+<li><a class="reference internal" href="#id24">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#network">Network</a><ul>
+<li><a class="reference internal" href="#id25">Usage</a></li>
+<li><a class="reference internal" href="#id26">Description</a></li>
+<li><a class="reference internal" href="#id27">Result files</a></li>
+<li><a class="reference internal" href="#id28">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#netvis">Netvis</a><ul>
+<li><a class="reference internal" href="#id29">Usage</a></li>
+<li><a class="reference internal" href="#id30">Description</a></li>
+<li><a class="reference internal" href="#id31">Result files</a></li>
+<li><a class="reference internal" href="#id32">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#appendix">Appendix</a><ul>
+<li><a class="reference internal" href="#configuration-file">Configuration File</a></li>
+<li><a class="reference internal" href="#file-structure">File Structure</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">signet</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Reference to SIGNET</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/mannual.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="reference-to-signet">
+<h1>Reference to SIGNET<a class="headerlink" href="#reference-to-signet" title="Permalink to this headline">¶</a></h1>
+<p>The core of current version of SIGNET is to use the two-stage penalized
+least squares (2SPLS) method proposed by <a class="reference external" href="https://www.jmlr.org/papers/volume19/16-225/16-225.pdf">Chen et al.
+(2018)</a> to
+construct genome-wide gene regulatory networks (GW-GRNs). An application
+of 2SPLS to yeast data can be found in <a class="reference external" href="https://www.nature.com/articles/s41598-018-37667-4">Chen et al.
+(2019)</a>.</p>
+<p>While current SIGNET constructs the GW-GRN with transcriptomic and
+genotype data collected from on population, we are developing SIGNET to
+simultaneiously construct and compare GW-GRNs for two or more
+populations for the purpose of (i) more powerful to establish comment
+reguations shared across different populations; (ii) more effectively
+identify population-specific (e.g., cancer-specific) gene regulations.</p>
+</div>
+<div class="section" id="system-requirement">
+<h1>System Requirement<a class="headerlink" href="#system-requirement" title="Permalink to this headline">¶</a></h1>
+<p>SIGNET runs on a <strong>UNIX bash shell</strong>. Check your shell with
+<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$SHELL</span></code> to make sure that you are running on UNIX bash shell.
+SIGNET uses the <a class="reference external" href="https://slurm.schedmd.com/overview.html">**Slurm Workload
+Manager**</a> for high
+performance computing (HPC) clusters in its stage of constructing the
+gene regulatory network in parallel.</p>
+</div>
+<div class="section" id="quick-installation-of-signet">
+<h1>Quick Installation of SIGNET<a class="headerlink" href="#quick-installation-of-signet" title="Permalink to this headline">¶</a></h1>
+<p>First you should clone the directory to the path in your server and add
+the path where you install the software to enable directly running the
+command without specifying a particular path.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/signet4grn/SIGNET.git
+cd SIGNET
+export PATH=/path/to/signet:$PATH
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">/path/to/signet</span></code> should be replaced with your path to
+<strong>SIGNET</strong>.</p>
+<div class="section" id="installation-of-required-packages">
+<h2>Installation of Required Packages<a class="headerlink" href="#installation-of-required-packages" title="Permalink to this headline">¶</a></h2>
+<p>SIGNET runs dependent on several packages such as PLINK, IMPUTE2, and R
+(with its libraries). While you may install all of these packages by
+yourself, we also provide a Singularity container <code class="docutils literal notranslate"><span class="pre">signet.sif</span></code> which
+packs all the packages required by SIGNET. The Singularity container
+<code class="docutils literal notranslate"><span class="pre">signet.sif</span></code> provides an environment in which <em>SIGNET</em> can smoothly
+run, so you don't have to separately install any of the required
+packages for SIGNET.</p>
+<p>Before having the Singularity container <code class="docutils literal notranslate"><span class="pre">signet.sif</span></code>, first you have
+to install <strong>Singularity</strong> following
+<a class="reference external" href="https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps">https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps</a>.</p>
+<p>You can pull the image from <a class="reference external" href="https://cloud.sylabs.io/library/geomeday/signet/signet">our
+repository</a>
+and rename it as <code class="docutils literal notranslate"><span class="pre">signet.sif</span></code>, after which you can append the path of
+package to singularity so it can execute SIGNET smoothly. You may also
+need to bind a path in case container doesn't recognize your file. The
+environment variables have to be exported <strong>everytime you start a new
+terminal</strong>.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singularity</span> <span class="n">pull</span> <span class="n">library</span><span class="p">:</span><span class="o">//</span><span class="n">geomeday</span><span class="o">/</span><span class="n">signet</span><span class="o">/</span><span class="n">signet</span><span class="p">:</span><span class="mf">0.0</span><span class="o">.</span><span class="mi">5</span>
+<span class="n">export</span> <span class="n">SINGULARITYENV_APPEND_PATH</span><span class="o">=</span><span class="s2">&quot;/path/to/signet&quot;</span>
+<span class="n">export</span> <span class="n">SINGULARITY_BIND</span><span class="o">=</span><span class="s2">&quot;/path/to/bind&quot;</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">/path/to/signet</span></code> should be replaced with your path to SIGNET,
+and <code class="docutils literal notranslate"><span class="pre">/path/to/bind</span></code> should be replaced with the desired bath to bind.</p>
+<p>You can use the image by attaching a prefix ahead of the original
+commands you want to execute, which are described in details in sections
+below.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singularity</span> <span class="n">exec</span> <span class="n">signet</span><span class="o">.</span><span class="n">sif</span> <span class="p">[</span><span class="n">Command</span><span class="p">]</span>
+<span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span>
+<span class="n">singularity</span> <span class="n">exec</span> <span class="n">signet</span><span class="o">.</span><span class="n">sif</span> <span class="n">signet</span> <span class="o">-</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>Or you could first shell into the container by</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singularity</span> <span class="n">shell</span> <span class="n">signet</span><span class="o">.</span><span class="n">sif</span>
+</pre></div>
+</div>
+<p>and then execute all the commands as usual.</p>
+<p><strong>Caution:</strong> All the intermediate result for each step will by default
+return to the corresponding folders in the tmporary directory starting
+with 'tmp' and all the final result will return to the result folders
+starting with 'res'. You could also change the path of result files in
+the configuration file named config.ini, or use signet -s described
+below. Please be careful if you are using the relative path instead of
+the absolute path. The config.ini will record the path relative to the
+folder that <strong>SIGNET is installed</strong>, in order to reach file mangement
+consistency. It's highly recommended to run command where signet is
+installed. In each of the process, you could specify the result path,
+and you will be asked to whether purge the tmporary files, if you
+already have those. It's also suggested you keep a copy of the temporary
+files for each analysis, in case you need them in later steps. Please
+<strong>run each analysis at a time under the same folder, as a latter process
+will overwrite the previous tmporary files</strong>.</p>
+</div>
+</div>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This streamline project provide users easy linux user interface for
+constructing whole-genome gene regulatory networks using transciptomic
+data (from RNA sequence) and genotypic data.</p>
+<p>Procedures of constructing gene regulatory networks can be split into
+six main steps: 1. genotype preprocess 2. gene expression preprocess 3.
+adjust for covariates 4. cis-eQTL analysis 5. network analysis 6.
+network visualization</p>
+<p>To use this streamline tool, user need first to prepare the genetype
+data in vcf format. Then set the configuration file properly, and run
+each step command seperately.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="quit-start">
+<h1>Quit Start<a class="headerlink" href="#quit-start" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prepare-the-dataset">
+<h2>1. Prepare the DataSet<a class="headerlink" href="#prepare-the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>We highly recommand you to prepare the gene expression data and genotype
+data first, and place them to a specific data folder, to organize each
+step as it may involve many files.</p>
+</div>
+<div class="section" id="set-configuration">
+<h2>2. Set configuration<a class="headerlink" href="#set-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Here we set the number of autosomes to 22, so the chromosomes we study
+are 1-22.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">nchr</span> <span class="mi">22</span>
+</pre></div>
+</div>
+<p>We can use the command to check below to check autosome number</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">nchr</span>
+</pre></div>
+</div>
+<p>That is, when no value is provided, we will display the value of the
+specified parameter. We can also use</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>to display the values of all parameters. We may also provide a way to
+reset the value of one parameter or all parameters to default values.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">d</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">nchar</span> <span class="o">--</span><span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="genotype-preprocess">
+<h2>3. Genotype Preprocess<a class="headerlink" href="#genotype-preprocess" title="Permalink to this headline">¶</a></h2>
+<p>For preprocessing genotype data</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gene-expression-preprocess">
+<h2>4. Gene Expression Preprocess<a class="headerlink" href="#gene-expression-preprocess" title="Permalink to this headline">¶</a></h2>
+<p>For preprocessing transcriptomic (gene expression) data</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cis-eqtl-analysis">
+<h2>5. cis-eQTL Analysis<a class="headerlink" href="#cis-eqtl-analysis" title="Permalink to this headline">¶</a></h2>
+<p>For cis-eQTL analysis.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="network-analysis">
+<h2>6. Network Analysis<a class="headerlink" href="#network-analysis" title="Permalink to this headline">¶</a></h2>
+<p>For network construction.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="network-visualization">
+<h2>7. Network Visualization<a class="headerlink" href="#network-visualization" title="Permalink to this headline">¶</a></h2>
+<p>For network visualization.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="command-guide">
+<h1>Command Guide<a class="headerlink" href="#command-guide" title="Permalink to this headline">¶</a></h1>
+<p><em>Please note that you have to run genotype preprocessing before gene
+expression preprocessing if you are using the GTEx cohort</em></p>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-s</span></code> command is used for look up and modify parameter in the
+configuration file config.ini. You don't have to modify the parameters
+at the very beginning, as you will have options to change your input
+parameters in each step.</p>
+<p><a class="reference external" href="#config-file">click here</a> for detailed introduction for
+configuration file.</p>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="p">[</span><span class="o">--</span><span class="n">PARAM</span><span class="p">]</span> <span class="p">[</span><span class="n">PARAM</span> <span class="n">VAL</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">PARAM</span>                                      <span class="nb">list</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">parameter</span> <span class="n">PARAM</span>
+<span class="o">--</span><span class="n">PARAM</span> <span class="p">[</span><span class="n">PARAM</span> <span class="n">VAL</span><span class="p">]</span>      <span class="n">modify</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">parameter</span> <span class="n">PARAM</span> <span class="n">to</span> <span class="n">be</span> <span class="p">[</span><span class="n">PARAM</span> <span class="n">VAL</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># list all the parameters</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">s</span>
+<span class="c1">## echo: all the current parameters</span>
+
+<span class="c1"># List the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">nchr</span>
+<span class="c1">## echo: 22</span>
+
+<span class="c1"># Replace s with settings would also work</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">settings</span> <span class="o">--</span><span class="n">nchr</span>
+
+<span class="c1"># Modify the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">nchr</span> <span class="mi">22</span>
+<span class="c1">## echo: Modification applied to nchr</span>
+
+<span class="c1"># Set all the parameters to default</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">d</span>
+<span class="c1">## echo: Set all the parameters to default</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="error-input-handling">
+<h3>Error input handling<a class="headerlink" href="#error-input-handling" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you input wrong format such as &quot;-nchr&quot;</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">nchr</span>
+<span class="n">echo</span><span class="p">:</span> <span class="n">The</span> <span class="n">usage</span> <span class="ow">and</span> <span class="n">description</span> <span class="n">instruction</span><span class="o">.</span>
+
+<span class="c1"># If you input wrong name such as &quot;-nchro&quot;</span>
+<span class="n">echo</span><span class="p">:</span> <span class="n">Please</span> <span class="n">check</span> <span class="n">the</span> <span class="n">file</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="transcript-prep">
+<h2>Transcript-prep<a class="headerlink" href="#transcript-prep" title="Permalink to this headline">¶</a></h2>
+<p>(TCGA)</p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-t</span></code> will take the matrix of base-2 logarithm
+transformed gene count data and preprocess it. Each row represents the
+data for each gene, and each column represents the data for each sample,
+while the first row is the sample name, and the first column is the gene
+name. Note that the last 5 rows are not considered in the analysis since
+they contain ambigous gene information by UCSC.</p>
+<p>In this step, we will filter out genes with total counts less than 2.5
+million according to NIH standard and are counted in less than 20% of
+the samples, after which we will apply variance stablizing
+transformation by DESeq2 to normalize data. Furthermore, we will only
+focus on protein coding genes.</p>
+<div class="section" id="id1">
+<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="p">[</span><span class="o">--</span><span class="n">g</span> <span class="n">GEXP_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">p</span> <span class="n">MAP_FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Description<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">g</span> <span class="o">|</span> <span class="o">--</span><span class="n">gexp</span>                   <span class="n">gene</span> <span class="n">expression</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">p</span> <span class="o">|</span> <span class="o">--</span><span class="n">pmap</span>                   <span class="n">genecode</span> <span class="n">gtf</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">restrict</span>                     <span class="n">restrict</span> <span class="n">the</span> <span class="n">chromosomes</span> <span class="n">of</span> <span class="n">study</span>
+<span class="o">--</span><span class="n">r</span> <span class="o">|</span> <span class="o">--</span><span class="n">rest</span>                   <span class="n">result</span> <span class="n">prefix</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">gexp</span></code>: the base-2 logarithm transformed count data for genes as a
+matrix with the first column containing the ENSEMBEL ID, the first
+row containing sample names, the rest rows include data for genes and
+rest columns encode data for samples (however, the last 5 rows are
+not included in the following analysis since they contain ambigous
+gene information by UCSC);</li>
+<li><code class="docutils literal notranslate"><span class="pre">pmap</span></code>: collapsed genecode v22 gtf file, an annotation file which
+combines all isoforms of a gene into a single transcript. The
+detailed information could be found in <a class="reference external" href="https://github.com/broadinstitute/gtex-pipeline/tree/master/gene_model">collapsed gene
+model</a>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">restrict</span></code>: specifing chromosome(s) of interest, which may be dash
+separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a
+number, e.g. 1.</li>
+</ul>
+</div>
+<div class="section" id="result-files">
+<h3>Result files<a class="headerlink" href="#result-files" title="Permalink to this headline">¶</a></h3>
+<p>Output of <code class="docutils literal notranslate"><span class="pre">gexp-prep</span></code> will be saved to <code class="docutils literal notranslate"><span class="pre">res/rest</span></code>. -
+<code class="docutils literal notranslate"><span class="pre">signet_gexp</span></code>: gene expression data after pre-processing. -
+<code class="docutils literal notranslate"><span class="pre">signet_gene_name</span></code>: corresponding gene name. - <code class="docutils literal notranslate"><span class="pre">signet_gene_pos</span></code>:
+correspongding gene position. - <code class="docutils literal notranslate"><span class="pre">signet_gexpID</span></code>: correspdonding sample
+ID.</p>
+</div>
+<div class="section" id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="o">--</span><span class="n">help</span>
+<span class="c1">## Display the help page</span>
+
+<span class="c1"># Modify the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="o">--</span><span class="n">g</span> <span class="n">data</span><span class="o">/</span><span class="n">gexp</span><span class="o">-</span><span class="n">prep</span><span class="o">/</span><span class="n">TCGA</span><span class="o">-</span><span class="n">LUAD</span><span class="o">.</span><span class="n">htseq_counts</span><span class="o">.</span><span class="n">tsv</span> \
+          <span class="o">--</span><span class="n">p</span> <span class="n">data</span><span class="o">/</span><span class="n">gexp</span><span class="o">-</span><span class="n">prep</span><span class="o">/</span><span class="n">gencode</span><span class="o">.</span><span class="n">v22</span><span class="o">.</span><span class="n">gene</span><span class="o">.</span><span class="n">gtf</span> \
+      <span class="o">--</span><span class="n">restrict</span> <span class="mi">1</span>
+
+<span class="c1">## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/</span>
+</pre></div>
+</div>
+<p>(GTEx)</p>
+</div>
+<div class="section" id="id4">
+<h3>Usage<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="p">[</span><span class="o">--</span><span class="n">r</span> <span class="n">READS_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">tpm</span> <span class="n">TPM_FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Description<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">r</span> <span class="o">|</span> <span class="o">--</span><span class="n">read</span>                    <span class="n">gene</span> <span class="n">reads</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">gct</span> <span class="nb">format</span>
+<span class="o">--</span><span class="n">t</span> <span class="o">|</span> <span class="o">--</span><span class="n">tpm</span>                     <span class="n">gene</span> <span class="n">tpm</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">g</span> <span class="o">|</span> <span class="o">--</span><span class="n">gtf</span>                     <span class="n">genecode</span> <span class="n">gtf</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">rest</span>                          <span class="n">result</span> <span class="n">prefix</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">read</span></code>: GTEx reads file in gct format.</li>
+<li><code class="docutils literal notranslate"><span class="pre">tpm</span></code>: GTEx TPM file in gct format.</li>
+<li><code class="docutils literal notranslate"><span class="pre">gtf</span></code>: collapse gene code v26 gtf file.</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>Example<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="o">--</span><span class="n">help</span>
+<span class="c1">## Display the help page</span>
+
+<span class="c1"># Modify the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="o">--</span><span class="n">reads</span> <span class="n">data</span><span class="o">/</span><span class="n">gexp</span><span class="o">/</span><span class="n">GTEx_gene_reads</span><span class="o">.</span><span class="n">gct</span> \
+          <span class="o">--</span><span class="n">tpm</span> <span class="n">data</span><span class="o">/</span><span class="n">gexp</span><span class="o">/</span><span class="n">GTEx_gene_tpm</span><span class="o">.</span><span class="n">gct</span> \
+          <span class="o">--</span><span class="n">gtf</span> <span class="n">data</span><span class="o">/</span><span class="n">gexp</span><span class="o">-</span><span class="n">prep</span><span class="o">/</span><span class="n">gencode</span><span class="o">.</span><span class="n">v26</span><span class="o">.</span><span class="n">GRCh38</span><span class="o">.</span><span class="n">genes</span><span class="o">.</span><span class="n">gtf</span>
+
+<span class="c1">## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="geno-prep">
+<h2>Geno-prep<a class="headerlink" href="#geno-prep" title="Permalink to this headline">¶</a></h2>
+<p>(TCGA)</p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-g</span></code> provides the user interface of preprocessing
+genotype data. We first use
+<a class="reference external" href="https://zzz.bwh.harvard.edu/plink/">**PLINK**</a> to conduct quality
+control, filtering out samples and SNPs with high missing rates and
+filtering SNPs discordant with Hardy Weinberg equilibruim. We then use
+<a class="reference external" href="https://mathgen.stats.ox.ac.uk/impute/impute_v2.html">**IMPUTE2**</a>
+to impute missing genotypes in parallel.</p>
+<div class="section" id="id7">
+<h3>Usage<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">g</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Description<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">p</span> <span class="o">|</span> <span class="o">--</span><span class="n">ped</span>                   <span class="n">ped</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">m</span> <span class="o">|</span> <span class="o">--</span><span class="nb">map</span>                   <span class="nb">map</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">mind</span>                        <span class="n">missing</span> <span class="n">rate</span> <span class="n">per</span> <span class="n">individual</span> <span class="n">cutoff</span>
+<span class="o">--</span><span class="n">geno</span>                        <span class="n">missing</span> <span class="n">rate</span> <span class="n">per</span> <span class="n">markder</span> <span class="n">cutoff</span>
+<span class="o">--</span><span class="n">hwe</span>                         <span class="n">Hardy</span><span class="o">-</span><span class="n">Weinberg</span> <span class="n">equilibrium</span> <span class="n">cutoff</span>
+<span class="o">--</span><span class="n">nchr</span>                        <span class="n">chromosome</span> <span class="n">number</span>
+<span class="o">--</span><span class="n">r</span> <span class="o">|</span> <span class="o">--</span><span class="n">ref</span>                   <span class="n">reference</span> <span class="n">file</span> <span class="k">for</span> <span class="n">imputation</span>
+<span class="o">--</span><span class="n">gmap</span>                        <span class="n">genomic</span> <span class="nb">map</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">i</span> <span class="o">|</span> <span class="o">--</span><span class="nb">int</span>                   <span class="n">interval</span> <span class="n">length</span> <span class="k">for</span> <span class="n">IMPUTE2</span>
+<span class="o">--</span><span class="n">ncores</span>                      <span class="n">number</span> <span class="n">of</span> <span class="n">cores</span>
+<span class="o">--</span><span class="n">resg</span>                        <span class="n">result</span> <span class="n">prefix</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">ped</span></code>: includes pedgree information, i.e.,[family_ID,
+individual_ID, mother_ID, father_ID, gender,phenotype] in the ﬁrst
+six columns, followed by 2p columns with two columns for each of p
+SNPs;</li>
+<li><code class="docutils literal notranslate"><span class="pre">map</span></code>: includes SNP location information with four columns, i.e.,
+[chromosome, SNP_name, genetic_distance,locus] for each of p SNPs;</li>
+<li><code class="docutils literal notranslate"><span class="pre">mind</span></code>: missing rate cutoff for individuals, a value in [0, 1]. By
+default 0.1;</li>
+<li><code class="docutils literal notranslate"><span class="pre">geno</span></code>: missing rate cutoff for SNPs, a value in [0, 1]. By default
+0.1;</li>
+<li><code class="docutils literal notranslate"><span class="pre">hwe</span></code>: Hardy-Weinberg equilibrium cutoff, a value in (0, 1]. By
+default 10^-4;</li>
+<li><code class="docutils literal notranslate"><span class="pre">ref</span></code>: reference file for imputation, can be downloaded from
+website of
+<a class="reference external" href="http://mathgen.stats.ox.ac.uk/impute/impute_v2.html">IMPUTE2</a>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">gmap</span></code>: genomic map file for imputation, can be downloaded from
+website of
+<a class="reference external" href="http://mathgen.stats.ox.ac.uk/impute/impute_v2.html">IMPUTE2</a>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">int</span></code>: a positive number specifying the interval length for
+imputation. By default 10^6;</li>
+<li><code class="docutils literal notranslate"><span class="pre">ncores</span></code>: an integer larger than 1 specifying number of cores in
+the current server. By default 20.</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3>Example<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">g</span> <span class="o">--</span><span class="n">help</span>
+<span class="c1">## Display the help page</span>
+
+<span class="c1"># Modify the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">g</span> <span class="o">--</span><span class="n">ped</span> <span class="n">data</span><span class="o">/</span><span class="n">geno</span><span class="o">-</span><span class="n">prep</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">ped</span> \
+          <span class="o">--</span><span class="nb">map</span> <span class="n">data</span><span class="o">/</span><span class="n">geno</span><span class="o">-</span><span class="n">prep</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">map</span> \
+      <span class="o">--</span><span class="n">ref</span> <span class="n">data</span><span class="o">/</span><span class="n">ref_panel_38</span><span class="o">/</span><span class="nb">chr</span> \
+      <span class="o">--</span><span class="n">gmap</span> <span class="n">data</span><span class="o">/</span><span class="n">gmap</span><span class="o">/</span><span class="nb">chr</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>Result files<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Two files will be generated from preprocessing the genoytpe data (The
+filename begins with <code class="docutils literal notranslate"><span class="pre">signet</span></code> by default, you are able to customize it
+by setting an additional flag <code class="docutils literal notranslate"><span class="pre">--resg</span></code>. e.g.
+<code class="docutils literal notranslate"><span class="pre">--resg</span> <span class="pre">res/resg/[younameit]</span></code>):</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">signet_Geno</span></code>: Genotype data with each row denoting the SNP data
+for one subject;</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_Genotype.sampleID</span></code>: Sample ID for each individual, which
+uses the reading barcode.</li>
+</ul>
+<p>(GTEx) <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-g</span></code> command provide the user the interface of
+preprocessing genotype data. We will first extract the genotype data
+that has corresponding samples from gene expression data for a
+particular tissue, and then select SNPs that have at least count 5.</p>
+<p>Output of <code class="docutils literal notranslate"><span class="pre">geno-prep</span></code> will be saved under <code class="docutils literal notranslate"><span class="pre">/res/resg</span></code>:</p>
+</div>
+<div class="section" id="id11">
+<h3>Usage<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">g</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>Description<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">vcf0</span>                        <span class="nb">set</span> <span class="n">the</span> <span class="n">VCF</span> <span class="n">file</span> <span class="k">for</span> <span class="n">genotype</span> <span class="n">data</span> <span class="n">before</span> <span class="n">phasing</span>
+<span class="o">--</span><span class="n">vcf</span>                         <span class="nb">set</span> <span class="n">the</span> <span class="n">VCF</span> <span class="n">file</span> <span class="k">for</span> <span class="n">genotype</span> <span class="n">data</span><span class="p">,</span> <span class="n">the</span> <span class="n">genotype</span> <span class="n">data</span> <span class="ow">is</span> <span class="kn">from</span> <span class="nn">GTEx</span> <span class="n">after</span> <span class="n">phasing</span> <span class="n">using</span> <span class="n">SHAPEIT</span>
+<span class="o">--</span><span class="n">read</span>                        <span class="nb">set</span> <span class="n">the</span> <span class="n">read</span> <span class="n">file</span> <span class="k">for</span> <span class="n">gene</span> <span class="n">expression</span> <span class="n">read</span> <span class="n">count</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">gct</span> <span class="nb">format</span>
+<span class="o">--</span><span class="n">anno</span>                        <span class="nb">set</span> <span class="n">the</span> <span class="n">annotation</span> <span class="n">file</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">sample</span> <span class="n">information</span>
+<span class="o">--</span><span class="n">tissue</span>                      <span class="nb">set</span> <span class="n">the</span> <span class="n">tissue</span> <span class="nb">type</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">vcf</span></code>: includes SNP data from GTEx v8 before phasing in vcf format,
+could be downloaded from
+<a class="reference external" href="https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2">dbGaP</a>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">vcf0</span></code>: includes SNP data from GTEx v8 after phasing in vcf format,
+could be downloaded from
+<a class="reference external" href="https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2">dbGaP</a>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">read</span></code>: gene count data in tpm format, could be downloaded from
+<a class="reference external" href="https://gtexportal.org/home/datasets">GTEx_portal</a>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">anno</span></code>: GTEx v8 annotation file, could be downloaded from
+<a class="reference external" href="https://gtexportal.org/home/datasets">GTEx_portal</a>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">tissue</span></code>: tissue type, lower/upper case must exactly map to what is
+included in the annotation file.</li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3>Example<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the cohort to GTEx</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">cohort</span> <span class="n">GTEx</span>
+
+
+<span class="c1"># Modify the paramter</span>
+<span class="n">signet</span> <span class="o">-</span><span class="n">g</span> <span class="o">--</span><span class="n">vcf0</span> <span class="n">data</span><span class="o">/</span><span class="n">geno</span><span class="o">-</span><span class="n">prep</span><span class="o">/</span><span class="n">Geno_GTEx</span><span class="o">.</span><span class="n">vcf</span> \
+          <span class="o">--</span><span class="n">vcf</span> <span class="n">data</span><span class="o">/</span><span class="n">genotype_after_phasing</span><span class="o">/</span><span class="n">Geno_GTEx</span><span class="o">.</span><span class="n">vcf</span> \
+          <span class="o">--</span><span class="n">read</span> <span class="n">data</span><span class="o">/</span><span class="n">gexp</span><span class="o">/</span><span class="n">GTEx_gene_reads</span><span class="o">.</span><span class="n">gct</span> \
+      <span class="o">--</span><span class="n">anno</span> <span class="n">data</span><span class="o">/</span><span class="n">GTEx_Analysis_v8_Annotations_SampleAttributesDS</span><span class="o">.</span><span class="n">txt</span> \
+      <span class="o">--</span><span class="n">tissue</span> <span class="n">Lung</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>Result files<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>Output of <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-g</span></code> will be saved to res/resg. -
+<code class="docutils literal notranslate"><span class="pre">signet_clean_Genotype_repNA.data</span></code>: cleaned SNP data. -
+<code class="docutils literal notranslate"><span class="pre">signet_snps.maf</span></code>: minor allele frequency file for selected SNPs. -
+<code class="docutils literal notranslate"><span class="pre">signet_snps.map</span></code>: map file for selected SNPs.</p>
+</div>
+</div>
+<div class="section" id="adj">
+<h2>Adj<a class="headerlink" href="#adj" title="Permalink to this headline">¶</a></h2>
+<p>The command <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-a</span></code> provides users the interface to match genotype
+and gene expression files, calculate principal components (PCs) for
+population stratification, adjust for covariates effect by top PCs,
+races and gender. Then calculate the minor allele frequency (MAF).</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-a</span></code> reads the output from <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-g</span></code> and
+<code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-t</span></code>.</p>
+<p>output of <code class="docutils literal notranslate"><span class="pre">adj</span></code> will be saved under <code class="docutils literal notranslate"><span class="pre">/res/resa</span></code>:</p>
+<p>(TCGA)</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">c</span></code>: clinical file from TCGA project. Should contain at least a
+column of submitter id.</li>
+</ul>
+<div class="section" id="id15">
+<h3>Usage<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">a</span> <span class="p">[</span><span class="o">--</span><span class="n">c</span> <span class="n">CLINIVAL_FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id16">
+<h3>Description<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">c</span> <span class="o">|</span> <span class="n">clinical</span>                   <span class="n">clinical</span> <span class="n">file</span> <span class="k">for</span> <span class="n">your</span> <span class="n">cohort</span>
+<span class="o">--</span><span class="n">resa</span>                           <span class="n">result</span> <span class="n">prefix</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">c</span></code>: specifying a TSV file including clinical information, with at
+least columns of submitter id, gender and race in TCGA data.</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h3>Example<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">a</span> <span class="o">--</span><span class="n">c</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">clinical</span><span class="o">.</span><span class="n">tsv</span>
+</pre></div>
+</div>
+<p>Output of <code class="docutils literal notranslate"><span class="pre">adj</span></code> will be saved to <code class="docutils literal notranslate"><span class="pre">res/resa</span></code>: - <code class="docutils literal notranslate"><span class="pre">signet_geno.data</span></code>:
+matched genotype data, with rows representing samples and columns
+representing SNPs. - <code class="docutils literal notranslate"><span class="pre">signet_gexp.data</span></code>: matched gene expression datat
+o be used further for network analysis, adjusted for covariates but
+don't include PCs, with rows representing samples and columns
+representing gene expressions. - <code class="docutils literal notranslate"><span class="pre">signet_gexp_rmpc.data</span></code>: matched gene
+expression data to be used further for cis-eQTL analysis, adjusted for
+covariates including PCs, with rows representing samples and columns
+representing gene expressions. - <code class="docutils literal notranslate"><span class="pre">signet_matched.gexp</span></code>: matched gene
+expression data, without ajusting for covariates, with rows representing
+samples and columns representing gene expressions. -
+<code class="docutils literal notranslate"><span class="pre">signet_new.Geno.maf</span></code>: MAF file for genotype data. -
+<code class="docutils literal notranslate"><span class="pre">signet_new.Geno.map</span></code>: MAP file for genotype data.</p>
+<p>(GTEx)</p>
+</div>
+<div class="section" id="id18">
+<h3>Usage<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">a</span> <span class="p">[</span><span class="o">--</span><span class="n">p</span> <span class="n">PHENOTYPE_FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h3>Description<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">pheno</span>                          <span class="n">GTEx</span> <span class="n">phenotype</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">resa</span>                           <span class="n">result</span> <span class="n">prefix</span>
+</pre></div>
+</div>
+<p>-<code class="docutils literal notranslate"><span class="pre">pheno</span></code>: phenotype file from the GTEx v8.</p>
+</div>
+<div class="section" id="id20">
+<h3>Example<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">a</span> <span class="o">--</span><span class="n">pheno</span> \
+<span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">pheno</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cis-eqtl">
+<h2>Cis-eqtl<a class="headerlink" href="#cis-eqtl" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have completed all necessary preprocessing, normalization,
+and data cleaning, we are ready to perform cis-eQTL mapping. If you want
+to construct GRN with your own data (rather than TCGA or GTEx data), you
+should preprocess your data by yourself (instead of above functions
+provided by <strong>SIGNET</strong>) and then use <strong>SIGNET</strong> from this step.</p>
+<p><strong>Before you start this step, please make sure that you have the
+following files ready:</strong> - Gene expression file including preprocessed
+gene expressions matched with preprocessed genotype data, adjusted for
+all covariates including top PCs (for <code class="docutils literal notranslate"><span class="pre">--gexp</span></code>); - Gene expression
+file including preprocessed gene expressions matched with preprocessed
+genotype data, adjusted for all covariates other than top PCs (for
+<code class="docutils literal notranslate"><span class="pre">--gexp.withpc</span></code>); - Genotype file including SNP minor allele count
+data as a matrix of values 0, 1, 2, with each row encoding for one
+subject and each column encoding for one SNP (for <code class="docutils literal notranslate"><span class="pre">--geno</span></code>); - Map
+file including SNP positions as a matrix in .map file format; - MAF file
+including SNP minor allele frequency data as one column where each value
+is the number of SNPs after preprocessing (for <code class="docutils literal notranslate"><span class="pre">--maf</span></code>); - Gene
+position information file with the first column specifying the gene
+name, second column specifying the chromosome index (e.g. &quot;chr1&quot;), the
+third and fourth columns specifying the start and the end positions of
+the gene, respectively (for <code class="docutils literal notranslate"><span class="pre">--gene_pos</span></code>).</p>
+<p><strong>Caution:</strong> Genes in the two gene expression files are arranged
+according to the order of genes in the gene position information file.</p>
+<p>For each gene, we will use an adaptive rank sum permutaion test to
+identify its cis-eQTL as instrumental variables. Therefore, the possible
+instrumental variables of a specific gene include any genetic variants
+within its coding region as well as upstream and downstream regions up
+to certain ranges which will be specified by options <code class="docutils literal notranslate"><span class="pre">--upstream</span></code> and
+<code class="docutils literal notranslate"><span class="pre">--downstream</span></code>, respectivly.</p>
+<div class="section" id="id21">
+<h3>Usage<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">c</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h3>Description<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">gexp</span>                        <span class="n">file</span> <span class="n">of</span> <span class="n">gene</span> <span class="n">expressions</span> <span class="n">adjusted</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">covariates</span><span class="p">,</span> <span class="n">matched</span> <span class="k">with</span> <span class="n">genotype</span> <span class="n">data</span>
+<span class="o">--</span><span class="n">gexp</span><span class="o">.</span><span class="n">withpc</span>                 <span class="n">file</span> <span class="n">of</span> <span class="n">gene</span> <span class="n">expressions</span> <span class="n">adjusted</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">covariates</span> <span class="n">other</span> <span class="n">than</span> <span class="n">top</span> <span class="n">PCs</span><span class="p">,</span> <span class="n">matched</span> <span class="k">with</span> <span class="n">genotype</span> <span class="n">data</span>
+<span class="o">--</span><span class="n">geno</span>                        <span class="n">file</span> <span class="n">of</span> <span class="n">genotype</span> <span class="n">data</span> <span class="n">matched</span> <span class="k">with</span> <span class="n">gene</span> <span class="n">expression</span> <span class="n">data</span>
+<span class="o">--</span><span class="nb">map</span>                         <span class="n">snps</span> <span class="nb">map</span> <span class="n">file</span> <span class="n">path</span>
+<span class="o">--</span><span class="n">maf</span>                         <span class="n">snps</span> <span class="n">maf</span> <span class="n">file</span> <span class="n">path</span>
+<span class="o">--</span><span class="n">gene_pos</span>                    <span class="n">gene</span> <span class="n">position</span> <span class="n">file</span>
+<span class="o">--</span><span class="n">alpha</span> <span class="o">|</span> <span class="o">-</span><span class="n">a</span>          <span class="n">significance</span> <span class="n">level</span> <span class="k">for</span> <span class="n">cis</span><span class="o">-</span><span class="n">eQTL</span>
+<span class="o">--</span><span class="n">nperms</span>                  <span class="n">number</span> <span class="n">of</span> <span class="n">permutations</span>
+<span class="o">--</span><span class="n">upstream</span>                <span class="n">number</span> <span class="n">of</span> <span class="n">base</span> <span class="n">pairs</span> <span class="n">upstream</span> <span class="n">the</span> <span class="n">genetic</span> <span class="n">region</span>
+<span class="o">--</span><span class="n">downstream</span>                  <span class="n">number</span> <span class="n">of</span> <span class="n">base</span> <span class="n">pairs</span> <span class="n">downstream</span> <span class="n">the</span> <span class="n">genetic</span> <span class="n">region</span>
+<span class="o">--</span><span class="n">resc</span>                        <span class="n">result</span> <span class="n">prefix</span>
+<span class="o">--</span><span class="n">help</span> <span class="o">|</span> <span class="o">-</span><span class="n">h</span>           <span class="n">user</span> <span class="n">guide</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">gexp</span></code>: specifying the gene expression file including preprocessed
+gene expressions matched with preprocessed genotype data, adjusted
+for all covariates including top PCs;</li>
+<li><code class="docutils literal notranslate"><span class="pre">gexp.withpc</span></code>: specifying the gene expression file including
+preprocessed gene expressions matched with preprocessed genotype
+data, adjusted for all covariates other than top PCs;</li>
+<li><code class="docutils literal notranslate"><span class="pre">map</span></code>: specify the file including SNP positions as a matrix in .map
+file format;</li>
+<li><code class="docutils literal notranslate"><span class="pre">maf</span></code>: specify the MAF file inlcuding SNP minor allele frequency
+data as one column where each value is the number of SNPs after
+preprocessing;</li>
+<li><code class="docutils literal notranslate"><span class="pre">geno</span></code>: specifying the genotype file including SNP minor allele
+count data as a matrix of values 0, 1, 2, with each row encoding for
+one subject and each column encoding for one SNP;</li>
+<li><code class="docutils literal notranslate"><span class="pre">gene_pos</span></code>: specifying the gene position information file with the
+first column specifying the gene name, second column specifying the
+chromosome index (e.g. &quot;chr1&quot;), the third and fourth columns
+specifying the start and the end positions of the gene, respectively
+(for <code class="docutils literal notranslate"><span class="pre">--gene_pos</span></code>).</li>
+<li><code class="docutils literal notranslate"><span class="pre">alpha</span></code> : specifying a value in (0, 1) as the significance level
+for identifying instrumental variables. By default 0.05;</li>
+<li><code class="docutils literal notranslate"><span class="pre">nperms</span></code>: specifying the number of permutations. By default 100;</li>
+<li><code class="docutils literal notranslate"><span class="pre">upstream</span></code>: specifying the number of base pairs upstream each
+genetic region. By default 1000;</li>
+<li><code class="docutils literal notranslate"><span class="pre">downstream</span></code>: specifying the number of base pairs downstream each
+genetic region. By default 1000.</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h3>Result files<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>Output of <code class="docutils literal notranslate"><span class="pre">cie-eQTL</span></code> will be saved to <code class="docutils literal notranslate"><span class="pre">res/resc</span></code>:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">signet_net.Gexp.data</span></code>: is the expression data for gene expression,
+wo removing the PC by default.</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_net.genepos</span></code>: include the position for genes in
+<code class="docutils literal notranslate"><span class="pre">signet_net.Gexp.data</span></code>, has four columns: gene name, chromosome
+number, start and end position, respectively.</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_cis.name</span></code>: genes with cis-eQTLs.</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_[common|low|rare|all].eQTL.data</span></code>: includes the genotype
+data for marginally significant [ common | low | rare | all ]
+cis-eQTL;</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_[common|low|rare|all].sig.pValue_alpa</span></code>: includes the
+p-value of each pair of gene and its marginally significant [ common
+| low | rare | all ] cis-eQTL, where Column 1 is Gene Index,
+Column is SNP Index in <code class="docutils literal notranslate"><span class="pre">common.eQTL.data</span></code>, and Column 3 is p-Value.</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_[common|low|rare|all].sig.weight_alpha</span></code>: includes the
+weight of collapsed SNPs for marginally significant cis-eQTL. The
+first column is the gene index, the second column is the SNP index,
+the third column is the index of collapsed SNP group, and the fourth
+column is the weight of each SNP in its collapsed group (with value 1
+or -1).</li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h3>Example<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">c</span> <span class="o">--</span><span class="n">upstream</span> <span class="mi">1000</span> \
+          <span class="o">--</span><span class="n">downstream</span> <span class="mi">1000</span> \
+      <span class="o">--</span><span class="n">nperms</span> <span class="mi">100</span> \
+      <span class="o">--</span><span class="n">alpha</span> <span class="mf">0.05</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="network">
+<h2>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h2>
+<p>The command <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-n</span></code> provides the tools for constructing a GRN
+using the two-stage penalized least squares (2SPLS) approach proposed by
+Chen et al. (2018). Note that the same set of data will be bootstrapped
+<code class="docutils literal notranslate"><span class="pre">nboots</span></code> times and each bootstrapping data set will be used to
+construct a GRN. The frequencies of the regulations appeared in the
+<code class="docutils literal notranslate"><span class="pre">nboots</span></code> GRNs will be used to evaluate the robustness of constructed
+GRN with higher frequency implying more robust regulation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">network</span></code> receive the input from the previous step, or it could be the
+output data from your own pipeline:</p>
+<p><strong>Caution</strong> <strong>Please make sure that you are using the SLURM system.
+Please also don't run this step inside a container, as the singularity
+container is integrated as part of the procedure.</strong> as it is integrated
+in the analysis.</p>
+<div class="section" id="id25">
+<h3>Usage<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">n</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id26">
+<h3>Description<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">net</span><span class="o">.</span><span class="n">gexp</span><span class="o">.</span><span class="n">data</span>               <span class="n">gene</span> <span class="n">expression</span> <span class="n">data</span> <span class="k">for</span> <span class="n">GRN</span> <span class="n">construction</span>
+<span class="o">--</span><span class="n">net</span><span class="o">.</span><span class="n">geno</span><span class="o">.</span><span class="n">data</span>               <span class="n">marker</span> <span class="n">data</span> <span class="k">for</span> <span class="n">GRN</span> <span class="n">construction</span>
+<span class="o">--</span><span class="n">sig</span><span class="o">.</span><span class="n">pair</span>                    <span class="n">significant</span> <span class="n">index</span> <span class="n">pairs</span> <span class="k">for</span> <span class="n">gene</span> <span class="n">expression</span> <span class="ow">and</span> <span class="n">markers</span>
+<span class="o">--</span><span class="n">net</span><span class="o">.</span><span class="n">genename</span>                <span class="n">gene</span> <span class="n">name</span> <span class="n">files</span> <span class="k">for</span> <span class="n">gene</span> <span class="n">expression</span> <span class="n">data</span>
+<span class="o">--</span><span class="n">net</span><span class="o">.</span><span class="n">genepos</span>                 <span class="n">gene</span> <span class="n">position</span> <span class="n">files</span> <span class="k">for</span> <span class="n">gene</span> <span class="n">expression</span> <span class="n">data</span>
+<span class="o">--</span><span class="n">ncis</span>                        <span class="n">maximum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">biomarkers</span> <span class="k">for</span> <span class="n">each</span> <span class="n">gene</span>
+<span class="o">--</span><span class="n">cor</span>                         <span class="n">maximum</span> <span class="n">correlation</span> <span class="n">between</span> <span class="n">biomarkers</span>
+<span class="o">--</span><span class="n">nboots</span>                      <span class="n">number</span> <span class="n">of</span> <span class="n">bootstraps</span> <span class="n">datasets</span>
+<span class="o">--</span><span class="n">memory</span>                      <span class="n">memory</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">GB</span>
+<span class="o">--</span><span class="n">queue</span>                       <span class="n">queue</span> <span class="n">name</span>
+<span class="o">--</span><span class="n">ncores</span>                      <span class="n">number</span> <span class="n">of</span> <span class="n">cores</span> <span class="n">to</span> <span class="n">use</span> <span class="k">for</span> <span class="n">each</span> <span class="n">node</span>
+<span class="o">--</span><span class="n">walltime</span>            <span class="n">maximum</span> <span class="n">walltime</span> <span class="n">of</span> <span class="n">the</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">seconds</span>
+<span class="o">--</span><span class="n">interactive</span>                 <span class="n">T</span><span class="p">,</span> <span class="n">F</span> <span class="k">for</span> <span class="n">interactive</span> <span class="n">job</span> <span class="n">scheduling</span> <span class="ow">or</span> <span class="ow">not</span>
+<span class="o">--</span><span class="n">resn</span>                        <span class="n">result</span> <span class="n">prefix</span>
+<span class="o">--</span><span class="n">sif</span>                         <span class="n">singularity</span> <span class="n">container</span>
+<span class="o">--</span><span class="n">email</span>                       <span class="n">send</span> <span class="n">notification</span> <span class="n">emails</span> <span class="n">after</span> <span class="n">each</span> <span class="n">stage</span> <span class="ow">is</span> <span class="n">compeleted</span> <span class="k">if</span> <span class="n">you</span> <span class="n">have</span> <span class="n">mail</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">Linux</span><span class="p">,</span> <span class="ow">and</span> <span class="n">interactive</span><span class="o">=</span><span class="n">F</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">net.gexp.data</span></code>: output from <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-c</span></code>, including the
+expression data of genes with cis-eQTL, a n*p matrix with each row
+encoding the gene expression data for one subject;</li>
+<li><code class="docutils literal notranslate"><span class="pre">net.geno.data</span></code>: output from <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-c</span></code>, including the genotype
+data of significant cis-eQTL, a n*p matrix with each row encoding
+the genotype data for one subject;</li>
+<li><code class="docutils literal notranslate"><span class="pre">sig.pair</span></code>: output from <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-c</span></code>, including the p-value of
+each pair of gene and its significant cis-eQTL with Column 1
+specifying Gene Index (in <code class="docutils literal notranslate"><span class="pre">net.Gexp.data</span></code>), Column specifying SNP
+Index (in <code class="docutils literal notranslate"><span class="pre">all.Geno.data</span></code>), and Column 3 specifying p-value;</li>
+<li><code class="docutils literal notranslate"><span class="pre">net.genename</span></code>: gene name in a p*1 vector;</li>
+<li><code class="docutils literal notranslate"><span class="pre">net.genepos</span></code>: gene position as a p*4 matrix, with first column
+including gene names, second column including chromosome index (e.g,
+&quot;chr1&quot;), third and fourth columns including the start and end
+position of genes in the chromosome, respectly;</li>
+<li><code class="docutils literal notranslate"><span class="pre">ncis</span></code>: an integer as the maximum number of biomarkers associated
+with each gene. By default 3;</li>
+<li><code class="docutils literal notranslate"><span class="pre">cor</span></code>: a value in [-1, 1] specifying the maximum correlation
+between biomarkers. By default 0.6;</li>
+<li><code class="docutils literal notranslate"><span class="pre">nboots</span></code>: an integer as the number of bootstrapping data sets taken
+in calculation. By deault 100;</li>
+<li><code class="docutils literal notranslate"><span class="pre">queue</span></code>: a string for queue name in the cluster;</li>
+<li><code class="docutils literal notranslate"><span class="pre">ncores</span></code>: number of cores for each node. By default 128;</li>
+<li><code class="docutils literal notranslate"><span class="pre">memory</span></code>: memory of each node, in GB. By default 256;</li>
+<li><code class="docutils literal notranslate"><span class="pre">walltime</span></code>: maximum wall time for cluster. By default 4:00:00;</li>
+<li><code class="docutils literal notranslate"><span class="pre">sif</span></code>: a Singularity container, in .sif format;</li>
+<li><code class="docutils literal notranslate"><span class="pre">email</span></code>: the email address from which you can receive notification,
+with default value <code class="docutils literal notranslate"><span class="pre">F</span></code> meaning no notification and is only enabled
+where interactive=F.</li>
+</ul>
+</div>
+<div class="section" id="id27">
+<h3>Result files<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">signet_Afreq</span></code>: Ajacency matrix for final list of genes. A[i, j]=1
+if gene i is regulated by gene j. 0 entry indicates no regulation.</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_CoeffMat0</span></code>: Coefficient matrix of estimated regulatory
+effect on the original data set.</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_net.genepos</span></code>: Corresponding gene name, followed by
+chromsome location, start and end position.</li>
+</ul>
+</div>
+<div class="section" id="id28">
+<h3>Example<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">n</span> <span class="o">--</span><span class="n">nboots</span> <span class="mi">100</span> \
+          <span class="o">--</span><span class="n">queue</span> <span class="n">standby</span> \
+      <span class="o">--</span><span class="n">walltime</span> <span class="mi">4</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> \
+      <span class="o">--</span><span class="n">memory</span> <span class="mi">256</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="netvis">
+<h2>Netvis<a class="headerlink" href="#netvis" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-v</span></code> provide tools to visualize our constructed gene regulatory
+networks. Users can choose the bootstrap frequency threshold and number
+of subnetworks to visualize the network.</p>
+<p>You should first ssh -Y $(hostname) to a server with DISPLAY if you
+would like to use the singularity container, and the result can be
+viewed through a pop up firefox web browser</p>
+<div class="section" id="id29">
+<h3>Usage<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">v</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id30">
+<h3>Description<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">Afreq</span>                      <span class="n">matrix</span> <span class="n">of</span> <span class="n">regulation</span> <span class="n">frequencies</span> <span class="kn">from</span> <span class="nn">bootstrap</span> <span class="n">results</span>
+<span class="o">--</span><span class="n">freq</span>                       <span class="n">bootstrap</span> <span class="n">frequecy</span> <span class="k">for</span> <span class="n">the</span> <span class="n">visualization</span>
+<span class="o">--</span><span class="n">ntop</span>                       <span class="n">number</span> <span class="n">of</span> <span class="n">top</span> <span class="n">sub</span><span class="o">-</span><span class="n">networks</span> <span class="n">to</span> <span class="n">visualize</span>
+<span class="o">--</span><span class="n">coef</span>                       <span class="n">coefficient</span> <span class="n">of</span> <span class="n">estimation</span> <span class="k">for</span> <span class="n">the</span> <span class="n">original</span> <span class="n">dataset</span>
+<span class="o">--</span><span class="n">vis</span><span class="o">.</span><span class="n">genepos</span>                <span class="n">gene</span> <span class="n">position</span> <span class="n">file</span>
+<span class="o">--</span><span class="nb">id</span>                         <span class="n">NCBI</span> <span class="n">taxonomy</span> <span class="nb">id</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="mi">9606</span> <span class="k">for</span> <span class="n">Homo</span> <span class="n">Sapiens</span><span class="p">,</span> <span class="mi">10090</span> <span class="k">for</span> <span class="n">Mus</span> <span class="n">musculus</span>
+<span class="o">--</span><span class="n">assembly</span>                   <span class="n">genome</span> <span class="n">assembly</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">hg38</span> <span class="k">for</span> <span class="n">Homo</span> <span class="n">Sapiens</span><span class="p">,</span> <span class="n">mm10</span> <span class="k">for</span> <span class="n">Mus</span> <span class="n">musculus</span>
+<span class="o">--</span><span class="n">tf</span>                         <span class="n">transcirption</span> <span class="n">factor</span> <span class="n">file</span><span class="p">,</span> <span class="n">only</span> <span class="n">sepecified</span> <span class="k">for</span> <span class="n">non</span><span class="o">-</span><span class="n">human</span> <span class="n">data</span>
+<span class="o">--</span><span class="n">resv</span>                       <span class="n">result</span> <span class="n">prefix</span>
+<span class="o">--</span><span class="n">help</span>                       <span class="n">usage</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">Afreq</span></code>: specifying the estimated bootstrap frequencies for
+regulations in a matrix with <em>(row, column)</em>-th entry encoding the
+frequency of <em>row</em> gene regulated by <em>column</em> gene;</li>
+<li><code class="docutils literal notranslate"><span class="pre">freq</span></code>: specifying the bootstrap frequency cutoff as a value in [0,
+1]. By default 1;</li>
+<li><code class="docutils literal notranslate"><span class="pre">ntop</span></code>: specifying the number of top subnetworks to visualize. By
+default 1;</li>
+<li><code class="docutils literal notranslate"><span class="pre">coef</span></code>: specifying the file including the estimation of
+coefficients from the original data, a matrix with its <em>(row,column)</em>
+value for the <em>row</em> gene regulated by <em>column</em> gene;</li>
+<li><code class="docutils literal notranslate"><span class="pre">vis.genepos</span></code>: specifying the file including the position of genes
+to be visualized, a matrix with the first column including the gene
+name, second column including its chromosome index (e.g. &quot;chr1&quot;), the
+thrid and fourth column including its start and end positions in the
+chromosome, respectively;</li>
+<li><code class="docutils literal notranslate"><span class="pre">id</span></code>: specifying NCBI taxonomy id number, e.g, <code class="docutils literal notranslate"><span class="pre">9606</span></code> for Homo
+Sapiens. By default <code class="docutils literal notranslate"><span class="pre">9606</span></code>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">assembly</span></code>: specifying Genome assembly. e.g, <code class="docutils literal notranslate"><span class="pre">hg38</span></code> for Homo
+Sapiens. By default <code class="docutils literal notranslate"><span class="pre">hg38</span></code>;</li>
+<li><code class="docutils literal notranslate"><span class="pre">tf</span></code>: specifying a file with the names of genes that are
+transcription factors, only needed for the study which is <strong>not</strong> for
+Homo Sapiens.</li>
+</ul>
+</div>
+<div class="section" id="id31">
+<h3>Result files<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">signet_edgelist*</span></code>: Edgelist file includes infromation for all
+regulation for given cutoff. Includes gene symbol, chromosme number,
+start and end posistion for both source and target gene, followed by
+bootstrap frequency and coefficient estimated from the original data.</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_top*.html</span></code>: HTML file for largest sub-networks
+visualization.</li>
+<li><code class="docutils literal notranslate"><span class="pre">signet_top*.name.txt</span></code>: Gene name list fo largest sub-networks,
+given bootstrap cutoff.</li>
+</ul>
+</div>
+<div class="section" id="id32">
+<h3>Example<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="configuration-file">
+<h2>Configuration File<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>config.ini file is under the main folder and saving the costomized
+parameters for all of the stages of signet process. Settings in
+config.ini are orgnized by different sections.</p>
+<p>Users can change the SIGNET process by modifying the paramter settings
+in the configuration file.</p>
+</div>
+<div class="section" id="file-structure">
+<h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this headline">¶</a></h2>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># script folder save all the code</span>
+    <span class="o">-</span> <span class="n">script</span><span class="o">/</span>
+    <span class="o">-</span> <span class="n">gexp_prep</span>
+    <span class="o">-</span> <span class="n">geno_prep</span>
+    <span class="o">-</span> <span class="n">adj</span>
+    <span class="o">-</span> <span class="n">cis</span><span class="o">-</span><span class="n">eQTL</span>
+    <span class="o">-</span> <span class="n">network</span>
+    <span class="o">-</span> <span class="n">netvis</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Zhongli Jiang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
