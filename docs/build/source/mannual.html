@@ -145,7 +145,11 @@
            <div itemprop="articleBody">
              
   <div class="section" id="reference-to-signet">
+<<<<<<< HEAD
 <h1>Reference to SIGNET<a class="headerlink" href="#reference-to-signet" title="Permalink to this headline">¶</a></h1>
+=======
+<h1>Reference to SIGNET<a class="headerlink" href="#reference-to-signet" title="Permalink to this headline">\uf0c1</a></h1>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>The core of current version of SIGNET is to use the two-stage penalized
 least squares (2SPLS) method proposed by <a class="reference external" href="https://www.jmlr.org/papers/volume19/16-225/16-225.pdf">Chen et al.
 (2018)</a> to
@@ -160,7 +164,11 @@ reguations shared across different populations; (ii) more effectively
 identify population-specific (e.g., cancer-specific) gene regulations.</p>
 </div>
 <div class="section" id="system-requirement">
+<<<<<<< HEAD
 <h1>System Requirement<a class="headerlink" href="#system-requirement" title="Permalink to this headline">¶</a></h1>
+=======
+<h1>System Requirement<a class="headerlink" href="#system-requirement" title="Permalink to this headline">\uf0c1</a></h1>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>SIGNET runs on a <strong>UNIX bash shell</strong>. Check your shell with
 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$SHELL</span></code> to make sure that you are running on UNIX bash shell.
 SIGNET uses the <a class="reference external" href="https://slurm.schedmd.com/overview.html">**Slurm Workload
@@ -169,7 +177,11 @@ performance computing (HPC) clusters in its stage of constructing the
 gene regulatory network in parallel.</p>
 </div>
 <div class="section" id="quick-installation-of-signet">
+<<<<<<< HEAD
 <h1>Quick Installation of SIGNET<a class="headerlink" href="#quick-installation-of-signet" title="Permalink to this headline">¶</a></h1>
+=======
+<h1>Quick Installation of SIGNET<a class="headerlink" href="#quick-installation-of-signet" title="Permalink to this headline">\uf0c1</a></h1>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>First you should clone the directory to the path in your server and add
 the path where you install the software to enable directly running the
 command without specifying a particular path.</p>
@@ -181,7 +193,11 @@ export PATH=/path/to/signet:$PATH
 <p>where <code class="docutils literal notranslate"><span class="pre">/path/to/signet</span></code> should be replaced with your path to
 <strong>SIGNET</strong>.</p>
 <div class="section" id="installation-of-required-packages">
+<<<<<<< HEAD
 <h2>Installation of Required Packages<a class="headerlink" href="#installation-of-required-packages" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>Installation of Required Packages<a class="headerlink" href="#installation-of-required-packages" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>SIGNET runs dependent on several packages such as PLINK, IMPUTE2, and R
 (with its libraries). While you may install all of these packages by
 yourself, we also provide a Singularity container <code class="docutils literal notranslate"><span class="pre">signet.sif</span></code> which
@@ -237,7 +253,11 @@ will overwrite the previous tmporary files</strong>.</p>
 </div>
 </div>
 <div class="section" id="introduction">
+<<<<<<< HEAD
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+=======
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">\uf0c1</a></h1>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>This streamline project provide users easy linux user interface for
 constructing whole-genome gene regulatory networks using transciptomic
 data (from RNA sequence) and genotypic data.</p>
@@ -248,6 +268,7 @@ network visualization</p>
 <p>To use this streamline tool, user need first to prepare the genetype
 data in vcf format. Then set the configuration file properly, and run
 each step command seperately.</p>
+<<<<<<< HEAD
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -255,12 +276,23 @@ each step command seperately.</p>
 <h1>Quit Start<a class="headerlink" href="#quit-start" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="prepare-the-dataset">
 <h2>1. Prepare the DataSet<a class="headerlink" href="#prepare-the-dataset" title="Permalink to this headline">¶</a></h2>
+=======
+</div>
+<div class="section" id="quit-start">
+<h1>Quit Start<a class="headerlink" href="#quit-start" title="Permalink to this headline">\uf0c1</a></h1>
+<div class="section" id="prepare-the-dataset">
+<h2>1. Prepare the DataSet<a class="headerlink" href="#prepare-the-dataset" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>We highly recommand you to prepare the gene expression data and genotype
 data first, and place them to a specific data folder, to organize each
 step as it may involve many files.</p>
 </div>
 <div class="section" id="set-configuration">
+<<<<<<< HEAD
 <h2>2. Set configuration<a class="headerlink" href="#set-configuration" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>2. Set configuration<a class="headerlink" href="#set-configuration" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>Here we set the number of autosomes to 22, so the chromosomes we study
 are 1-22.</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">nchr</span> <span class="mi">22</span>
@@ -286,35 +318,55 @@ reset the value of one parameter or all parameters to default values.</p>
 </div>
 </div>
 <div class="section" id="genotype-preprocess">
+<<<<<<< HEAD
 <h2>3. Genotype Preprocess<a class="headerlink" href="#genotype-preprocess" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>3. Genotype Preprocess<a class="headerlink" href="#genotype-preprocess" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>For preprocessing genotype data</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">g</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="gene-expression-preprocess">
+<<<<<<< HEAD
 <h2>4. Gene Expression Preprocess<a class="headerlink" href="#gene-expression-preprocess" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>4. Gene Expression Preprocess<a class="headerlink" href="#gene-expression-preprocess" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>For preprocessing transcriptomic (gene expression) data</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">t</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="cis-eqtl-analysis">
+<<<<<<< HEAD
 <h2>5. cis-eQTL Analysis<a class="headerlink" href="#cis-eqtl-analysis" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>5. cis-eQTL Analysis<a class="headerlink" href="#cis-eqtl-analysis" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>For cis-eQTL analysis.</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">c</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="network-analysis">
+<<<<<<< HEAD
 <h2>6. Network Analysis<a class="headerlink" href="#network-analysis" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>6. Network Analysis<a class="headerlink" href="#network-analysis" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>For network construction.</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">n</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="network-visualization">
+<<<<<<< HEAD
 <h2>7. Network Visualization<a class="headerlink" href="#network-visualization" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>7. Network Visualization<a class="headerlink" href="#network-visualization" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>For network visualization.</p>
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">v</span>
 </pre></div>
@@ -322,11 +374,19 @@ reset the value of one parameter or all parameters to default values.</p>
 </div>
 </div>
 <div class="section" id="command-guide">
+<<<<<<< HEAD
 <h1>Command Guide<a class="headerlink" href="#command-guide" title="Permalink to this headline">¶</a></h1>
 <p><em>Please note that you have to run genotype preprocessing before gene
 expression preprocessing if you are using the GTEx cohort</em></p>
 <div class="section" id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+=======
+<h1>Command Guide<a class="headerlink" href="#command-guide" title="Permalink to this headline">\uf0c1</a></h1>
+<p><em>Please note that you have to run genotype preprocessing before gene
+expression preprocessing if you are using the GTEx cohort</em></p>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p><code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-s</span></code> command is used for look up and modify parameter in the
 configuration file config.ini. You don't have to modify the parameters
 at the very beginning, as you will have options to change your input
@@ -334,20 +394,32 @@ parameters in each step.</p>
 <p><a class="reference external" href="#config-file">click here</a> for detailed introduction for
 configuration file.</p>
 <div class="section" id="usage">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="p">[</span><span class="o">--</span><span class="n">PARAM</span><span class="p">]</span> <span class="p">[</span><span class="n">PARAM</span> <span class="n">VAL</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="description">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">PARAM</span>                                      <span class="nb">list</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">parameter</span> <span class="n">PARAM</span>
 <span class="o">--</span><span class="n">PARAM</span> <span class="p">[</span><span class="n">PARAM</span> <span class="n">VAL</span><span class="p">]</span>      <span class="n">modify</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">parameter</span> <span class="n">PARAM</span> <span class="n">to</span> <span class="n">be</span> <span class="p">[</span><span class="n">PARAM</span> <span class="n">VAL</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="example">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># list all the parameters</span>
 <span class="n">signet</span> <span class="o">-</span><span class="n">s</span>
 <span class="c1">## echo: all the current parameters</span>
@@ -370,7 +442,11 @@ configuration file.</p>
 </div>
 </div>
 <div class="section" id="error-input-handling">
+<<<<<<< HEAD
 <h3>Error input handling<a class="headerlink" href="#error-input-handling" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Error input handling<a class="headerlink" href="#error-input-handling" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you input wrong format such as &quot;-nchr&quot;</span>
 <span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">nchr</span>
 <span class="n">echo</span><span class="p">:</span> <span class="n">The</span> <span class="n">usage</span> <span class="ow">and</span> <span class="n">description</span> <span class="n">instruction</span><span class="o">.</span>
@@ -382,7 +458,11 @@ configuration file.</p>
 </div>
 </div>
 <div class="section" id="transcript-prep">
+<<<<<<< HEAD
 <h2>Transcript-prep<a class="headerlink" href="#transcript-prep" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>Transcript-prep<a class="headerlink" href="#transcript-prep" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>(TCGA)</p>
 <p>The command <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-t</span></code> will take the matrix of base-2 logarithm
 transformed gene count data and preprocess it. Each row represents the
@@ -396,13 +476,21 @@ the samples, after which we will apply variance stablizing
 transformation by DESeq2 to normalize data. Furthermore, we will only
 focus on protein coding genes.</p>
 <div class="section" id="id1">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="p">[</span><span class="o">--</span><span class="n">g</span> <span class="n">GEXP_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">p</span> <span class="n">MAP_FILE</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id2">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id2" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">g</span> <span class="o">|</span> <span class="o">--</span><span class="n">gexp</span>                   <span class="n">gene</span> <span class="n">expression</span> <span class="n">file</span>
 <span class="o">--</span><span class="n">p</span> <span class="o">|</span> <span class="o">--</span><span class="n">pmap</span>                   <span class="n">genecode</span> <span class="n">gtf</span> <span class="n">file</span>
 <span class="o">--</span><span class="n">restrict</span>                     <span class="n">restrict</span> <span class="n">the</span> <span class="n">chromosomes</span> <span class="n">of</span> <span class="n">study</span>
@@ -426,7 +514,11 @@ number, e.g. 1.</li>
 </ul>
 </div>
 <div class="section" id="result-files">
+<<<<<<< HEAD
 <h3>Result files<a class="headerlink" href="#result-files" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Result files<a class="headerlink" href="#result-files" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>Output of <code class="docutils literal notranslate"><span class="pre">gexp-prep</span></code> will be saved to <code class="docutils literal notranslate"><span class="pre">res/rest</span></code>. -
 <code class="docutils literal notranslate"><span class="pre">signet_gexp</span></code>: gene expression data after pre-processing. -
 <code class="docutils literal notranslate"><span class="pre">signet_gene_name</span></code>: corresponding gene name. - <code class="docutils literal notranslate"><span class="pre">signet_gene_pos</span></code>:
@@ -434,7 +526,11 @@ correspongding gene position. - <code class="docutils literal notranslate"><span
 ID.</p>
 </div>
 <div class="section" id="id3">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the paramter</span>
 <span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="o">--</span><span class="n">help</span>
 <span class="c1">## Display the help page</span>
@@ -450,13 +546,21 @@ ID.</p>
 <p>(GTEx)</p>
 </div>
 <div class="section" id="id4">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id4" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="p">[</span><span class="o">--</span><span class="n">r</span> <span class="n">READS_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">tpm</span> <span class="n">TPM_FILE</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id5">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id5" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">r</span> <span class="o">|</span> <span class="o">--</span><span class="n">read</span>                    <span class="n">gene</span> <span class="n">reads</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">gct</span> <span class="nb">format</span>
 <span class="o">--</span><span class="n">t</span> <span class="o">|</span> <span class="o">--</span><span class="n">tpm</span>                     <span class="n">gene</span> <span class="n">tpm</span> <span class="n">file</span>
 <span class="o">--</span><span class="n">g</span> <span class="o">|</span> <span class="o">--</span><span class="n">gtf</span>                     <span class="n">genecode</span> <span class="n">gtf</span> <span class="n">file</span>
@@ -470,7 +574,11 @@ ID.</p>
 </ul>
 </div>
 <div class="section" id="id6">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id6" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the paramter</span>
 <span class="n">signet</span> <span class="o">-</span><span class="n">t</span> <span class="o">--</span><span class="n">help</span>
 <span class="c1">## Display the help page</span>
@@ -486,7 +594,11 @@ ID.</p>
 </div>
 </div>
 <div class="section" id="geno-prep">
+<<<<<<< HEAD
 <h2>Geno-prep<a class="headerlink" href="#geno-prep" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>Geno-prep<a class="headerlink" href="#geno-prep" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>(TCGA)</p>
 <p>The command <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-g</span></code> provides the user interface of preprocessing
 genotype data. We first use
@@ -496,13 +608,21 @@ filtering SNPs discordant with Hardy Weinberg equilibruim. We then use
 <a class="reference external" href="https://mathgen.stats.ox.ac.uk/impute/impute_v2.html">**IMPUTE2**</a>
 to impute missing genotypes in parallel.</p>
 <div class="section" id="id7">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id7" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">g</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id8">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id8" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">p</span> <span class="o">|</span> <span class="o">--</span><span class="n">ped</span>                   <span class="n">ped</span> <span class="n">file</span>
 <span class="o">--</span><span class="n">m</span> <span class="o">|</span> <span class="o">--</span><span class="nb">map</span>                   <span class="nb">map</span> <span class="n">file</span>
 <span class="o">--</span><span class="n">mind</span>                        <span class="n">missing</span> <span class="n">rate</span> <span class="n">per</span> <span class="n">individual</span> <span class="n">cutoff</span>
@@ -542,7 +662,11 @@ the current server. By default 20.</li>
 </ul>
 </div>
 <div class="section" id="id9">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id9" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the paramter</span>
 <span class="n">signet</span> <span class="o">-</span><span class="n">g</span> <span class="o">--</span><span class="n">help</span>
 <span class="c1">## Display the help page</span>
@@ -556,7 +680,11 @@ the current server. By default 20.</li>
 </div>
 </div>
 <div class="section" id="id10">
+<<<<<<< HEAD
 <h3>Result files<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Result files<a class="headerlink" href="#id10" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>Two files will be generated from preprocessing the genoytpe data (The
 filename begins with <code class="docutils literal notranslate"><span class="pre">signet</span></code> by default, you are able to customize it
 by setting an additional flag <code class="docutils literal notranslate"><span class="pre">--resg</span></code>. e.g.
@@ -574,13 +702,21 @@ particular tissue, and then select SNPs that have at least count 5.</p>
 <p>Output of <code class="docutils literal notranslate"><span class="pre">geno-prep</span></code> will be saved under <code class="docutils literal notranslate"><span class="pre">/res/resg</span></code>:</p>
 </div>
 <div class="section" id="id11">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id11" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">g</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id12">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id12" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">vcf0</span>                        <span class="nb">set</span> <span class="n">the</span> <span class="n">VCF</span> <span class="n">file</span> <span class="k">for</span> <span class="n">genotype</span> <span class="n">data</span> <span class="n">before</span> <span class="n">phasing</span>
 <span class="o">--</span><span class="n">vcf</span>                         <span class="nb">set</span> <span class="n">the</span> <span class="n">VCF</span> <span class="n">file</span> <span class="k">for</span> <span class="n">genotype</span> <span class="n">data</span><span class="p">,</span> <span class="n">the</span> <span class="n">genotype</span> <span class="n">data</span> <span class="ow">is</span> <span class="kn">from</span> <span class="nn">GTEx</span> <span class="n">after</span> <span class="n">phasing</span> <span class="n">using</span> <span class="n">SHAPEIT</span>
 <span class="o">--</span><span class="n">read</span>                        <span class="nb">set</span> <span class="n">the</span> <span class="n">read</span> <span class="n">file</span> <span class="k">for</span> <span class="n">gene</span> <span class="n">expression</span> <span class="n">read</span> <span class="n">count</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">gct</span> <span class="nb">format</span>
@@ -604,7 +740,11 @@ included in the annotation file.</li>
 </ul>
 </div>
 <div class="section" id="id13">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id13" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the cohort to GTEx</span>
 <span class="n">signet</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">cohort</span> <span class="n">GTEx</span>
 
@@ -619,7 +759,11 @@ included in the annotation file.</li>
 </div>
 </div>
 <div class="section" id="id14">
+<<<<<<< HEAD
 <h3>Result files<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Result files<a class="headerlink" href="#id14" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>Output of <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-g</span></code> will be saved to res/resg. -
 <code class="docutils literal notranslate"><span class="pre">signet_clean_Genotype_repNA.data</span></code>: cleaned SNP data. -
 <code class="docutils literal notranslate"><span class="pre">signet_snps.maf</span></code>: minor allele frequency file for selected SNPs. -
@@ -627,7 +771,11 @@ included in the annotation file.</li>
 </div>
 </div>
 <div class="section" id="adj">
+<<<<<<< HEAD
 <h2>Adj<a class="headerlink" href="#adj" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>Adj<a class="headerlink" href="#adj" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>The command <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-a</span></code> provides users the interface to match genotype
 and gene expression files, calculate principal components (PCs) for
 population stratification, adjust for covariates effect by top PCs,
@@ -641,13 +789,21 @@ races and gender. Then calculate the minor allele frequency (MAF).</p>
 column of submitter id.</li>
 </ul>
 <div class="section" id="id15">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id15" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">a</span> <span class="p">[</span><span class="o">--</span><span class="n">c</span> <span class="n">CLINIVAL_FILE</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id16">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id16" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">c</span> <span class="o">|</span> <span class="n">clinical</span>                   <span class="n">clinical</span> <span class="n">file</span> <span class="k">for</span> <span class="n">your</span> <span class="n">cohort</span>
 <span class="o">--</span><span class="n">resa</span>                           <span class="n">result</span> <span class="n">prefix</span>
 </pre></div>
@@ -658,7 +814,11 @@ least columns of submitter id, gender and race in TCGA data.</li>
 </ul>
 </div>
 <div class="section" id="id17">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id17" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">a</span> <span class="o">--</span><span class="n">c</span> <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">clinical</span><span class="o">.</span><span class="n">tsv</span>
 </pre></div>
 </div>
@@ -678,13 +838,21 @@ samples and columns representing gene expressions. -
 <p>(GTEx)</p>
 </div>
 <div class="section" id="id18">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id18" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">a</span> <span class="p">[</span><span class="o">--</span><span class="n">p</span> <span class="n">PHENOTYPE_FILE</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id19">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id19" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">pheno</span>                          <span class="n">GTEx</span> <span class="n">phenotype</span> <span class="n">file</span>
 <span class="o">--</span><span class="n">resa</span>                           <span class="n">result</span> <span class="n">prefix</span>
 </pre></div>
@@ -692,7 +860,11 @@ samples and columns representing gene expressions. -
 <p>-<code class="docutils literal notranslate"><span class="pre">pheno</span></code>: phenotype file from the GTEx v8.</p>
 </div>
 <div class="section" id="id20">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id20" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">a</span> <span class="o">--</span><span class="n">pheno</span> \
 <span class="o">./</span><span class="n">data</span><span class="o">/</span><span class="n">pheno</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
@@ -700,7 +872,11 @@ samples and columns representing gene expressions. -
 </div>
 </div>
 <div class="section" id="cis-eqtl">
+<<<<<<< HEAD
 <h2>Cis-eqtl<a class="headerlink" href="#cis-eqtl" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>Cis-eqtl<a class="headerlink" href="#cis-eqtl" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>Now that we have completed all necessary preprocessing, normalization,
 and data cleaning, we are ready to perform cis-eQTL mapping. If you want
 to construct GRN with your own data (rather than TCGA or GTEx data), you
@@ -731,13 +907,21 @@ within its coding region as well as upstream and downstream regions up
 to certain ranges which will be specified by options <code class="docutils literal notranslate"><span class="pre">--upstream</span></code> and
 <code class="docutils literal notranslate"><span class="pre">--downstream</span></code>, respectivly.</p>
 <div class="section" id="id21">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id21" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">c</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id22">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id22" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">gexp</span>                        <span class="n">file</span> <span class="n">of</span> <span class="n">gene</span> <span class="n">expressions</span> <span class="n">adjusted</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">covariates</span><span class="p">,</span> <span class="n">matched</span> <span class="k">with</span> <span class="n">genotype</span> <span class="n">data</span>
 <span class="o">--</span><span class="n">gexp</span><span class="o">.</span><span class="n">withpc</span>                 <span class="n">file</span> <span class="n">of</span> <span class="n">gene</span> <span class="n">expressions</span> <span class="n">adjusted</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">covariates</span> <span class="n">other</span> <span class="n">than</span> <span class="n">top</span> <span class="n">PCs</span><span class="p">,</span> <span class="n">matched</span> <span class="k">with</span> <span class="n">genotype</span> <span class="n">data</span>
 <span class="o">--</span><span class="n">geno</span>                        <span class="n">file</span> <span class="n">of</span> <span class="n">genotype</span> <span class="n">data</span> <span class="n">matched</span> <span class="k">with</span> <span class="n">gene</span> <span class="n">expression</span> <span class="n">data</span>
@@ -782,7 +966,11 @@ genetic region. By default 1000.</li>
 </ul>
 </div>
 <div class="section" id="id23">
+<<<<<<< HEAD
 <h3>Result files<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Result files<a class="headerlink" href="#id23" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>Output of <code class="docutils literal notranslate"><span class="pre">cie-eQTL</span></code> will be saved to <code class="docutils literal notranslate"><span class="pre">res/resc</span></code>:</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">signet_net.Gexp.data</span></code>: is the expression data for gene expression,
@@ -807,7 +995,11 @@ or -1).</li>
 </ul>
 </div>
 <div class="section" id="id24">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id24" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">c</span> <span class="o">--</span><span class="n">upstream</span> <span class="mi">1000</span> \
           <span class="o">--</span><span class="n">downstream</span> <span class="mi">1000</span> \
       <span class="o">--</span><span class="n">nperms</span> <span class="mi">100</span> \
@@ -817,7 +1009,11 @@ or -1).</li>
 </div>
 </div>
 <div class="section" id="network">
+<<<<<<< HEAD
 <h2>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>Network<a class="headerlink" href="#network" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>The command <code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-n</span></code> provides the tools for constructing a GRN
 using the two-stage penalized least squares (2SPLS) approach proposed by
 Chen et al. (2018). Note that the same set of data will be bootstrapped
@@ -832,13 +1028,21 @@ Please also don't run this step inside a container, as the singularity
 container is integrated as part of the procedure.</strong> as it is integrated
 in the analysis.</p>
 <div class="section" id="id25">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id25" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">n</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id26">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id26" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">net</span><span class="o">.</span><span class="n">gexp</span><span class="o">.</span><span class="n">data</span>               <span class="n">gene</span> <span class="n">expression</span> <span class="n">data</span> <span class="k">for</span> <span class="n">GRN</span> <span class="n">construction</span>
 <span class="o">--</span><span class="n">net</span><span class="o">.</span><span class="n">geno</span><span class="o">.</span><span class="n">data</span>               <span class="n">marker</span> <span class="n">data</span> <span class="k">for</span> <span class="n">GRN</span> <span class="n">construction</span>
 <span class="o">--</span><span class="n">sig</span><span class="o">.</span><span class="n">pair</span>                    <span class="n">significant</span> <span class="n">index</span> <span class="n">pairs</span> <span class="k">for</span> <span class="n">gene</span> <span class="n">expression</span> <span class="ow">and</span> <span class="n">markers</span>
@@ -890,7 +1094,11 @@ where interactive=F.</li>
 </ul>
 </div>
 <div class="section" id="id27">
+<<<<<<< HEAD
 <h3>Result files<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Result files<a class="headerlink" href="#id27" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">signet_Afreq</span></code>: Ajacency matrix for final list of genes. A[i, j]=1
 if gene i is regulated by gene j. 0 entry indicates no regulation.</li>
@@ -901,7 +1109,11 @@ chromsome location, start and end position.</li>
 </ul>
 </div>
 <div class="section" id="id28">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id28" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">n</span> <span class="o">--</span><span class="n">nboots</span> <span class="mi">100</span> \
           <span class="o">--</span><span class="n">queue</span> <span class="n">standby</span> \
       <span class="o">--</span><span class="n">walltime</span> <span class="mi">4</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> \
@@ -911,7 +1123,11 @@ chromsome location, start and end position.</li>
 </div>
 </div>
 <div class="section" id="netvis">
+<<<<<<< HEAD
 <h2>Netvis<a class="headerlink" href="#netvis" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>Netvis<a class="headerlink" href="#netvis" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p><code class="docutils literal notranslate"><span class="pre">signet</span> <span class="pre">-v</span></code> provide tools to visualize our constructed gene regulatory
 networks. Users can choose the bootstrap frequency threshold and number
 of subnetworks to visualize the network.</p>
@@ -919,13 +1135,21 @@ of subnetworks to visualize the network.</p>
 would like to use the singularity container, and the result can be
 viewed through a pop up firefox web browser</p>
 <div class="section" id="id29">
+<<<<<<< HEAD
 <h3>Usage<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Usage<a class="headerlink" href="#id29" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">v</span> <span class="p">[</span><span class="n">OPTION</span> <span class="n">VAL</span><span class="p">]</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id30">
+<<<<<<< HEAD
 <h3>Description<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Description<a class="headerlink" href="#id30" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">Afreq</span>                      <span class="n">matrix</span> <span class="n">of</span> <span class="n">regulation</span> <span class="n">frequencies</span> <span class="kn">from</span> <span class="nn">bootstrap</span> <span class="n">results</span>
 <span class="o">--</span><span class="n">freq</span>                       <span class="n">bootstrap</span> <span class="n">frequecy</span> <span class="k">for</span> <span class="n">the</span> <span class="n">visualization</span>
 <span class="o">--</span><span class="n">ntop</span>                       <span class="n">number</span> <span class="n">of</span> <span class="n">top</span> <span class="n">sub</span><span class="o">-</span><span class="n">networks</span> <span class="n">to</span> <span class="n">visualize</span>
@@ -964,7 +1188,11 @@ Homo Sapiens.</li>
 </ul>
 </div>
 <div class="section" id="id31">
+<<<<<<< HEAD
 <h3>Result files<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Result files<a class="headerlink" href="#id31" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">signet_edgelist*</span></code>: Edgelist file includes infromation for all
 regulation for given cutoff. Includes gene symbol, chromosme number,
@@ -977,7 +1205,11 @@ given bootstrap cutoff.</li>
 </ul>
 </div>
 <div class="section" id="id32">
+<<<<<<< HEAD
 <h3>Example<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+=======
+<h3>Example<a class="headerlink" href="#id32" title="Permalink to this headline">\uf0c1</a></h3>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signet</span> <span class="o">-</span><span class="n">v</span>
 </pre></div>
 </div>
@@ -985,9 +1217,15 @@ given bootstrap cutoff.</li>
 </div>
 </div>
 <div class="section" id="appendix">
+<<<<<<< HEAD
 <h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="configuration-file">
 <h2>Configuration File<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+=======
+<h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">\uf0c1</a></h1>
+<div class="section" id="configuration-file">
+<h2>Configuration File<a class="headerlink" href="#configuration-file" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <p>config.ini file is under the main folder and saving the costomized
 parameters for all of the stages of signet process. Settings in
 config.ini are orgnized by different sections.</p>
@@ -995,7 +1233,11 @@ config.ini are orgnized by different sections.</p>
 in the configuration file.</p>
 </div>
 <div class="section" id="file-structure">
+<<<<<<< HEAD
 <h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this headline">¶</a></h2>
+=======
+<h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this headline">\uf0c1</a></h2>
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 <div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># script folder save all the code</span>
     <span class="o">-</span> <span class="n">script</span><span class="o">/</span>
     <span class="o">-</span> <span class="n">gexp_prep</span>

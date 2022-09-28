@@ -124,7 +124,10 @@ To use this streamline tool, user need first to prepare the genetype
 data in vcf format. Then set the configuration file properly, and run
 each step command seperately.
 
+<<<<<<< HEAD
 .. toctree::
+=======
+>>>>>>> 09d3b4ee848ce2c2c196addba8950014644c8e69
 Quit Start
 ----------
 
