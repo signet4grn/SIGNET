@@ -256,7 +256,8 @@ signet -t --g data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
 ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
 ```
 
-(GTEx)
+(GTEx)  
+
 We adopted and modified the code from [GTEx pipeline](https://github.com/broadinstitute/gtex-pipeline/tree/master/qtl).  
 
 #### Usage
