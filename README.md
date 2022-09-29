@@ -360,7 +360,7 @@ Two files will be generated from preprocessing the genoytpe data (The filename b
 
 
 
-(GTEx)
+(GTEx)  
 `signet -g` command provide the user the interface of preprocessing genotype data. We will first extract the genotype data that has corresponding samples from gene expression data for a particular tissue, and then select SNPs that have at least count 5.
 
 
