@@ -257,7 +257,7 @@ signet -t --g data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
 ```
 
 (GTEx)
-We adopted and modified the code from [GTEx cohort](https://github.com/broadinstitute/gtex-pipeline/tree/master/qtl).  
+We adopted and modified the code from [GTEx pipeline](https://github.com/broadinstitute/gtex-pipeline/tree/master/qtl).  
 
 #### Usage
 
