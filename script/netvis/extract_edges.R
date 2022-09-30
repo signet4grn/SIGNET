@@ -24,6 +24,6 @@ Coeff=as.matrix(fread(Sys.getenv("coef")))
 
   edgelist_genesymbol=cbind(source,target,edgefreq,edgecoeff) #Col 1-4 is source, Col 5-8 is target, Col 9 is frequency
 
-  write.table(edgelist_genesymbol,paste0(Sys.getenv("resv"), "_edgelist_",freq),row.names=F,col.names=c("source_gene_symbol","source_chr","source_start","source_end","target_gene_symbol","target_chr","target_start","target_end","frequency","coefficient"),quote=F,sep=",")
+  write.table(edgelist_genesymbol,paste0(Sys.getenv("resv"), "_edgelist_",freq, ".txt"),row.names=F,col.names=c("source_gene_symbol","source_chr","source_start","source_end","target_gene_symbol","target_chr","target_start","target_end","frequency","coefficient"),quote=F,sep=",")
 #}
 
