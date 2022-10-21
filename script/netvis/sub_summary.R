@@ -101,8 +101,10 @@ for(i in 1:ntop){
   enrichment[[i]]$description <- paste0(enrichment[[i]]$description, ", Term: ", enrichment[[i]]$term)
   enrichment[[i]]$description <- factor(enrichment[[i]]$description, levels = unique(enrichment[[i]]$description)[order(enrichment[[i]]$p_value)])
   }
+           
+  write.table(enrichment[[i]], paste0(Sys.getenv("resv"), "_enrich_info_top", i, "_", name, ".txt"), row.names=F, col.names=T, quote=F, sep="@")
   
-  # save html version
+           # save html version
   vis_g_top[[i]] <- visNetwork(nodes[[i]], edges[[i]], width="100%", height="1000px") %>%
     visOptions(selectedBy = list(variable = "enrichment", multiple=T),
                highlightNearest = list(enabled = T, degree = 2, hover = T)) %>%
