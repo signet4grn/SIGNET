@@ -92,7 +92,7 @@ email=$1
 job_name=$2
 status=$3
 
-if [[ $email != "*@*" ]]
+if [[ $email != "*@*" && $email != "F" ]]
 then
   if [[ $(which mail) != "" ]]
   then
