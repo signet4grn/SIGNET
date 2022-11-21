@@ -19,6 +19,8 @@ resn=$($SIGNET_ROOT/signet -s --resn  | sed -r '/^\s*$/d')
 sif=$($SIGNET_ROOT/signet -s --sif  | sed -r '/^\s*$/d' | xargs readlink -f)
 forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 email=$($SIGNET_ROOT/signet -s --email | sed -r '/^\s*$/d')
+computing=$($SIGNET_ROOT/signet -s --computing | sed -r '/^\s*$/d')
+stage=cor=$(${cmdprefix}stage | sed -r '/^\s*$/d')
 
 function usage() {
 	echo 'Usage:'
@@ -43,11 +45,13 @@ function usage() {
         echo "  --resn                        result prefix"
 	echo "  --sif                         singularity container"
 	echo "  --email                       send notification emails after each stage is compeleted if you have mail installed in Linux, and interactive=F"
+        echo "  --computing                   computing method, slurm for SLURM scheduler, cloud for cloud computing"
+        echo "  --stage                       1 for stage 1, 2 for stage 2, this option is only enabled for cloud computing"
         exit -1 
 }
 [ $? -ne 0 ] && usage
 
-ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,interactive:,resn:,sif:,email:,h:,help -- "$@"`
+ARGS=`getopt -a -o r: -l net.gexp.data:,net.geno.data:,sig.pair:,net.genepos:,net.genename:,ncis:,r:,cor:,memory:,m:,queue:,q:,walltime:,:w:,nboots:,ncores:,interactive:,resn:,sif:,email:,computing:,stage:,h:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -128,6 +132,14 @@ case "$1" in
 		email=$2
 		sed -iE "s/email.*/email = $email/g" $SIGNET_ROOT/config.ini 
 		shift;;
+        --computing)
+                computing=$2
+                $SIGNET_ROOT/signet -s --computing $computing
+                shift;;
+        --stage)
+                stage=$2
+                ${cmdprefix}stage $stage
+                shift;; 
 	--h|--help)
 		usage
 		exit
@@ -140,14 +152,17 @@ case "$1" in
 shift
 done 
    
+# check singularity container 
+if [[ "$computing" == "slurm" ]]; then
 
-$SINGULARITY_COMMAND
+   $SINGULARITY_COMMAND
 
 # check if in a singularity container
-if [[ $(which singularity) == "" ]];then
-echo -e "Cannot find the container. \nPlease don't invoke a container mannually as it's integrated in the analysis.
-You could edit the path of the container using --sif argument."
-exit -1 
+   if [[ $(which singularity) == "" ]];then
+   echo -e "Cannot find the container. \nPlease don't invoke a container mannually as it's integrated in the analysis.
+   You could edit the path of the container using --sif argument."
+   exit -1 
+   fi
 fi
 
 file_purge $SIGNET_TMP_ROOT/tmpn $forcerm
@@ -159,19 +174,30 @@ if [[ "$resn" == *"doesn't exist"* ]]; then
 exit -1
 fi
 
-var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime interactive resn sif email"
+var="net_gexp net_geno sig_pair net_genename net_genepos cor ncis ncores memory nboots queue walltime interactive resn sif email computing stage"
 for i in $var
 do
 export "${i}"
 done
 
 # check file existence
-input_file="net_gexp net_geno sig_pair net_genename net_genepos sif"
+input_file="net_gexp net_geno sig_pair net_genename net_genepos"
 for i in $input_file
 do
 file_check $(eval "$(echo "echo \$${i}")")
 done
 
+# check singularity container if computing=slurm
+if [[ "$computing" == "slurm" ]];then
+file_check $sif
+fi
+
+echo -e "You are using $computing for computing ...\n"
+
+if [[ "$computing" == "slurm" ]];then
 $SIGNET_SCRIPT_ROOT/network/network.sh
+else
+$SIGNET_SCRIPT_ROOT/network/network_cloud.sh
+fi
 
 echo -e "Finish time: $(date)"

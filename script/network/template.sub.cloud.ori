@@ -1,0 +1,1 @@
+ParaFly -c paramsXXX.txt -CPU ncores -failed_cmds rerunXXX.txt
