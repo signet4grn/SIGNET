@@ -4,15 +4,15 @@
 ### load data
 library(MASS)
 library(data.table)
-y=fread("../nety") #expression data for all genes
+y=fread("nety") #expression data for all genes
 y=as.matrix(y)
-x=fread("../netx") #cis-eQTL data
+x=fread("netx") #cis-eQTL data
 x=as.matrix(x)
-netyx_idx=read.table("../netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
+netyx_idx=read.table("netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
 netyx_idx=as.matrix(netyx_idx)
 y=y[,YYfirstYY:YYlastYY]
 ##change 
-uniqy_idx=read.table("../uniqy_idx")
+uniqy_idx=read.table("uniqy_idx")
 ##change2
 py1 = dim(uniqy_idx)[1]
 if(YYlastYY > py1){
@@ -32,7 +32,7 @@ for (i in 1:py){
 }
 
 ### Bootstrap
-idx=read.table('../IDXXXbsXX')
+idx=read.table('IDXXXbsXX')
 idx=as.matrix(idx)
 y=y[idx,]
 x=x[idx,]

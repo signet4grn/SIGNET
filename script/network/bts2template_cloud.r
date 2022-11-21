@@ -8,11 +8,11 @@ suppressMessages(library(MASS))
 suppressMessages(library(parcor))
 suppressMessages(library(matrixcalc))
 
-y=fread("../nety") #expression data for genes
+y=fread("nety") #expression data for genes
 y=as.matrix(y)
-x=fread("../netx") #cis-eQTL data
+x=fread("netx") #cis-eQTL data
 x=as.matrix(x)
-netyx_idx=read.table("../netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
+netyx_idx=read.table("netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
 netyx_idx=as.matrix(netyx_idx)
 y=y[, YYfirstYY:YYlastYY]
 ##change2
@@ -38,7 +38,7 @@ if(py1 >= YYfirstYY){
 }
 
 ### Bootstrap
-idx=read.table('../IDXXXbsXX')
+idx=read.table('IDXXXbsXX')
 idx=as.matrix(idx)
 y=y[idx,]
 x=x[idx,]
