@@ -39,7 +39,7 @@ function usage() {
         echo '  --memory                      memory in each node in GB'
 	echo '  --queue                       queue name'
         echo '  --ncores                      number of cores to use for each node'
-        echo '  --walltime       		maximum walltime of the server in seconds'
+        echo '  --walltime       		maximum walltime of the server'
         echo "  --interactive                 T, F for interactive job scheduling or not"
  #       echo "  --filter                      To focus on a list of genes"
         echo "  --resn                        result prefix"
