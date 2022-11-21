@@ -586,7 +586,7 @@ signet -n [OPTION VAL] ...
   --memory                      memory in each node in GB
   --queue                       queue name
   --ncores                      number of cores to use for each node
-  --walltime       		maximum walltime of the server in seconds
+  --walltime       		maximum walltime of the server
   --interactive                 T, F for interactive job scheduling or not
   --resn                        result prefix
   --sif                         singularity container
