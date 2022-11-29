@@ -32,7 +32,7 @@ Before having the Singularity container `signet.sif`, first you have to install 
 
 You can pull the image from [our repository](https://cloud.sylabs.io/library/geomeday/signet/signet) and rename it as `signet.sif`, after which you can append the path of package to singularity so it can execute SIGNET smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
 ```bash
-singularity pull library://geomeday/signet/signet:0.0.5
+singularity pull library://jiang548/signet/signet:0.0.6
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
 export SINGULARITY_BIND="/path/to/bind"
 ```
