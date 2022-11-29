@@ -5,6 +5,10 @@ nrow_max_enrich <- 30
 
 enrich <- read.table(paste0(Sys.getenv("resv"), "_enrich_", cat, "_info_top", i, "_", name, ".txt"), sep="@", header=T)
 
+if(nrow(enrich) < 5) {
+ print("There is no enough pathways for histogram plot")
+}else{
+
 # remove Term
 enrich$description <- apply(as.matrix(enrich$description), 1, function(x) unlist(strsplit(x, ","))[1])
 enrich$description <- paste0(enrich$description, " (", enrich$number_of_genes, "/", enrich$number_of_genes_in_background, ")")
@@ -34,4 +38,5 @@ labs(x="Process",
 scale_fill_gradient(low = "yellow", high = "red", na.value = NA)
 print(plot)
 dev.off()
-  
+
+}

@@ -65,7 +65,7 @@ bs_plot <- data.frame(count=c(boot[, 1], boot[, 2]),
                             rep(-1, length(boot[, 3])))
                       )
                       
-pdf(file=paste0(Sys.getenv("resv"),"/count_vs_freq.pdf"), height=8.3, width=12.5)
+pdf(file=paste0(Sys.getenv("resv"),"_count_vs_freq.pdf"), height=8.3, width=12.5)
 
 ggplot(bs_plot, aes(x=freq, y=count, group=group, fill=group)) + 
   geom_col(position="dodge") +
@@ -82,7 +82,7 @@ ggplot(bs_plot, aes(x=freq, y=count, group=group, fill=group)) +
 
 dev.off()
 
-ggsave(file=paste0(Sys.getenv("resv"),"/count_vs_freq.eps"), device="eps")
+ggsave(file=paste0(Sys.getenv("resv"),"_count_vs_freq.eps"), device="eps")
 
 
 
