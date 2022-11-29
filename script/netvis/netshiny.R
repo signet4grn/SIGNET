@@ -11,6 +11,8 @@ suppressMessages(library(shinydashboard))
 suppressMessages(library(plotly))
 suppressMessages(library(DT))
 suppressMessages(library(circlize))
+suppressMessages(library(ggthemes))
+suppressMessages(library(fmsb))
 
 project_path = paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/netvis")
 freq <- as.numeric(Sys.getenv("freq"))

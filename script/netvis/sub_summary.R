@@ -35,7 +35,7 @@ for(i in 1:ntop){
   nodes[[i]] <- data.frame(
     id = V(g_top[[i]])$name,
     label = V(g_top[[i]])$name,
-    value = V(g_top[[i]])$degree,
+    value = 2*V(g_top[[i]])$degree,
     title = V(g_top[[i]])$annotation,
     group = ifelse(is.na(match(V(g_top[[i]])$name, tf)), "non-TF", "TF")
     #font.size = rep(10, length(V(g_top[[i]]))),
@@ -44,8 +44,9 @@ for(i in 1:ntop){
   edges[[i]] <- data.frame(
     from = g_top_e[[i]][, 1],
     to = g_top_e[[i]][, 2],
-    arrows.to.type = ifelse(E(g_top[[i]])$coef>0, "arrow", "circle")
-  )
+    arrows.to.type = ifelse(E(g_top[[i]])$coef>0, "arrow", "circle"),
+    width=5
+)
   
   ##modularity clustering 
   net_simp <- simplify(g_top[[i]], edge.attr.comb=list(weight="sum"))
@@ -69,7 +70,8 @@ for(i in 1:ntop){
   ##STRING enrichment 
   # p_ppi <- string_db$get_ppi_enrichment(mapped_id)$enrichment
   ## An error would occur where too many genes are consulted at the same time
-  tryCatch(enrich <- string_db$get_enrichment(mapped_id), error = function(e) cat("\n You may have too many input genes, you could try to raise the frequency cutoff, or try to run network analysis stage with more bootstrap dataset"))
+  for (cat in c("KEGG", "Process")){
+  tryCatch(enrich <- string_db$get_enrichment(mapped_id, category=cat), error = function(e) cat("\n You may have too many input genes, you could try to raise the frequency cutoff, or try to run network analysis stage with more bootstrap dataset"))
   
   
   ##sort by p value 
@@ -101,10 +103,19 @@ for(i in 1:ntop){
   enrichment[[i]]$description <- paste0(enrichment[[i]]$description, ", Term: ", enrichment[[i]]$term)
   enrichment[[i]]$description <- factor(enrichment[[i]]$description, levels = unique(enrichment[[i]]$description)[order(enrichment[[i]]$p_value)])
   }
-           
-  write.table(enrichment[[i]], paste0(Sys.getenv("resv"), "_enrich_info_top", i, "_", name, ".txt"), row.names=F, col.names=T, quote=F, sep="@")
-  
-           # save html version
+
+  write.table(enrichment[[i]], paste0(Sys.getenv("resv"), "_enrich_", cat, "_info_top", i, "_", name, ".txt"), row.names=F, col.names=T, quote=F, sep="@")
+ 
+
+  if(cat=="KEGG"){
+   source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/netvis/enrichment_radar.R"))   
+  }else{
+   source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/netvis/enrichment_hist.R"))
+  } 
+
+}
+
+# save html version
   vis_g_top[[i]] <- visNetwork(nodes[[i]], edges[[i]], width="100%", height="1000px") %>%
     visOptions(selectedBy = list(variable = "enrichment", multiple=T),
                highlightNearest = list(enabled = T, degree = 2, hover = T)) %>%
