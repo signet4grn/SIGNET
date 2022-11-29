@@ -1,4 +1,4 @@
-edgelist <- read.table(paste0(Sys.getenv("resv"), "_edgelist_", freq), sep=",", header=T)
+edgelist <- read.table(paste0(Sys.getenv("resv"), "_edgelist_", freq, ".txt"), sep=",", header=T)
 # remove "chr"
 edgelist$'source_chr' <- substring(edgelist$'source_chr', 4)
 edgelist$'target_chr' <- substring(edgelist$'target_chr', 4)

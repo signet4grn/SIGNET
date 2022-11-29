@@ -29,7 +29,7 @@ string_db <- STRINGdb$new(version="11.5", species=as.numeric(Sys.getenv("id")), 
 string_proteins <- string_db$get_proteins()
 
 source(paste0(project_path, "/tot_summary.R"))   # summarize total
-source(paste0(project_path, "/ui.R"))     
+source(paste0(project_path, "/ui.R"))
 source(paste0(project_path, "/sub_summary.R"))   # summarize subnetwork
 source(paste0(project_path, "/circular.R"))      # summarize circular plot
 source(paste0(project_path, "/server.R"))
