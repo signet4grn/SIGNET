@@ -23,6 +23,8 @@ server <- function(input, output) {
     ##sort according to degree
     top_nodes <- sort(igraph::degree(net_bs), decreasing = T)
     tn_frame <- data.frame(gene_name=names(top_nodes), degree=top_nodes)
+    filename <- paste0(Sys.getenv("resv"), "_", name, "_top_degree.txt")
+    write.table(tn_frame, filename, row.names=F, col.names=F, quote=F)
     nrow_max_nodes <- min(50, nrow(tn_frame))
     tn_frame_reduce <- tn_frame[1:nrow_max_nodes, ]
     tn_frame_reduce$gene_name <- factor(tn_frame_reduce$gene_name, levels = unique(tn_frame_reduce$gene_name)[order(tn_frame_reduce$degree)])

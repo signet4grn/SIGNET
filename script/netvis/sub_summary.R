@@ -35,7 +35,7 @@ for(i in 1:ntop){
   nodes[[i]] <- data.frame(
     id = V(g_top[[i]])$name,
     label = V(g_top[[i]])$name,
-    value = 2*V(g_top[[i]])$degree,
+    value = V(g_top[[i]])$degree,
     title = V(g_top[[i]])$annotation,
     group = ifelse(is.na(match(V(g_top[[i]])$name, tf)), "non-TF", "TF")
     #font.size = rep(10, length(V(g_top[[i]]))),
@@ -44,8 +44,8 @@ for(i in 1:ntop){
   edges[[i]] <- data.frame(
     from = g_top_e[[i]][, 1],
     to = g_top_e[[i]][, 2],
-    arrows.to.type = ifelse(E(g_top[[i]])$coef>0, "arrow", "circle"),
-    width=5
+    arrows.to.type = ifelse(E(g_top[[i]])$coef>0, "arrow", "circle")
+    #width=5
 )
   
   ##modularity clustering 
