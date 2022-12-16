@@ -72,5 +72,3 @@ awk "NR >= $LEFTOVER && NR <= $NJOBS {print}" < params.txt > params$CHUNK.txt
 perl -pe 's/XXX/'$CHUNK'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$CHUNK.sh
 fi
 
-#walltime_s=$(echo $walltime | awk -F: '{ print (3600 * $1) + (60 * $2) + $3 }')
-#echo "progress_bar $walltime_s 100 40 params $NJOBS slurm &" >> qsub1.sh
