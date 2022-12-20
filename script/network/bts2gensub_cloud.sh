@@ -1,16 +1,15 @@
 #!/bin/bash
-#echo -e "Combining results in stage1...\n"
+echo -e "Combining results in stage1...\n"
 # summarize the result in stage1
+exit -2
+mkdir -p $SIGNET_TMP_ROOT/tmpn/stage1/output
+for i in $( seq 0 $nboots )
+do
+  paste -d' ' $(find ./ -name '$SIGNET_TMP_ROOT/tmpn/stage1/*ypre'$i'_*' | sort -V) > $SIGNET_TMP_ROOT/tmpn/stage1/output/ypre$i
+done
 
-#mkdir -p $SIGNET_TMP_ROOT/tmpn/stage1/output
-#for i in $( seq 0 $nboots )
-#do
-#  paste -d' ' $(find ./ -name '$SIGNET_TMP_ROOT/tmpn/stage1/*ypre'$i'_*' | sort -V) > $SIGNET_TMP_ROOT/tmpn/stage1/output/ypre$i
-#done
+echo -e "Combining finished...\n"
 
-#echo -e "Combining finished...\n"
-
-exit
 echo -e "Testing on the first bootstrap data with the first 10 genes...\n"
 
 # test time
