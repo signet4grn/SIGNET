@@ -7,7 +7,7 @@ echo -e "Testing on the first bootstrap data with the first 10 genes...\n"
 mkdir -p $SIGNET_TMP_ROOT/tmpn/stage1/output
 for i in $( seq 0 $nboots )
 do 
-  paste -d' ' $(find ./ -name '$SIGNET_TMP_ROOT/tmpn/stage1/ypre'$i'_*' | sort -V) > $SIGNET_TMP_ROOT/tmpn/stage1/output/ypre$i
+  paste -d' ' $(find ./ -name '$SIGNET_TMP_ROOT/tmpn/stage1/*ypre'$i'_*' | sort -V) > $SIGNET_TMP_ROOT/tmpn/stage1/output/ypre$i
 done
 
 # test time
