@@ -10,6 +10,7 @@
 
 #echo -e "Combining finished...\n"
 
+exit
 echo -e "Testing on the first bootstrap data with the first 10 genes...\n"
 
 # test time
@@ -19,7 +20,7 @@ rm -f Adj*
 rm -f Coef*
 
 cd $SIGNET_TMP_ROOT/tmpn/stage2
-##create the jobs for stage1  
+##create the jobs for stage2 
 echo "#!/bin/bash" > qsub2.sh
 chmod +x qsub2.sh
 
