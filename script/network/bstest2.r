@@ -51,7 +51,7 @@ x=x[idx,]
 
 
 ### predicted y 
-ypre=read.table("stage1/output/*ypre1")
+ypre=read.table(list.files(path=""stage1/output", pattern="ypre1", full.names=T)[1])
 ypre=as.matrix(ypre[,1:py1])
 nypre=dim(ypre)[2]
 
