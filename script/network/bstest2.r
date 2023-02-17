@@ -51,13 +51,14 @@ x=x[idx,]
 
 
 ### predicted y 
-ypre_file <- list.files(path="stage1/output", pattern="ypre1", full.names=T)
-if(length(ypre_file) > 0){
-ypre <- read.table(ypre_file[1])
-}else{
-cat("The ypre file doesn't exists")
-quit()
-}
+#ypre_file <- list.files(path="stage1/output", pattern="ypre1", full.names=T)
+#if(length(ypre_file) > 0){
+#ypre <- read.table(ypre_file[1])
+#}else{
+#cat("The ypre file doesn't exists")
+#quit()
+#}
+print(list.files())
 ypre=as.matrix(ypre[,1:py1])
 nypre=dim(ypre)[2]
 
