@@ -15,7 +15,8 @@ echo -e "Combining results in stage1...\n"
 echo -e "Testing on the first bootstrap data with the first 10 genes...\n"
 
 # test time
-Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
+pwd
+#Rscript $SIGNET_SCRIPT_ROOT/network/bstest2.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
 
 rm -f Adj*
 rm -f Coef*
