@@ -51,11 +51,10 @@ x=x[idx,]
 
 
 ### predicted y 
-ypre_file <- list.files(path="stage1/output", pattern="ypre1", full.names=T)[1]
+ypre_file <- list.files(path="stage1/output", pattern="ypre1", full.names=T)
 if(length(ypre_file) > 0){
-ypre <- read.table(ypre_file)
-}
-else{
+ypre <- read.table(ypre_file[1])
+}else{
 cat("The ypre file doesn't exists")
 quit()
 }
