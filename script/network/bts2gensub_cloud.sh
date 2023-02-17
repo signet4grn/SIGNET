@@ -46,14 +46,14 @@ for j in $( seq 1 $NUMJOBS )
 do
 A=`expr $j \* $gene_trunk2 - $(( gene_trunk2 - 1))`
 B=`expr $j \* $gene_trunk2`
-perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$A'/e; s/YYlastYY/'$B'/e' < $SIGNET_SCRIPT_ROOT/network/bts2template.r > bs$i'_'$A'-'$B'.r'
+perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$A'/e; s/YYlastYY/'$B'/e' < $SIGNET_SCRIPT_ROOT/network/bts2template_cloud.r > bs$i'_'$A'-'$B'.r'
 echo 'Rscript bs'$i'_'$A-$B'.r' >> params.txt
 done
 
 LEFTOVER=$(( (gene_trunk2 * NUMJOBS) + 1))
 if [ $LEFTOVER -le $NGENES ];then
 CHUNK=$((NUMJOBS+1))
-perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$LEFTOVER'/e; s/YYlastYY/'$NGENES'/e' < $SIGNET_SCRIPT_ROOT/network/bts2template.r > bs$i'_'$LEFTOVER'-'$NGENES'.r'
+perl -pe 's/XXbsXX/'$i'/e; s/YYfirstYY/'$LEFTOVER'/e; s/YYlastYY/'$NGENES'/e' < $SIGNET_SCRIPT_ROOT/network/bts2template_cloud.r > bs$i'_'$LEFTOVER'-'$NGENES'.r'
 echo 'Rscript bs'$i'_'$LEFTOVER'-'$NGENES'.r' >> params.txt
 fi
 done
