@@ -69,6 +69,6 @@ done
 LEFTOVER=$(( ($ncores * NSUB) + 1))
 CHUNK=$(( NSUB +1 ))
 awk "NR >= $LEFTOVER && NR <= $NJOBS {print}" < params.txt > params$CHUNK.txt      
-perl -pe 's/XXX/'$CHUNK'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$CHUNK.sh
+perl -pe 's/XXX/'$CHUNK'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub.cloud > sub$CHUNK.sh
 fi
 
