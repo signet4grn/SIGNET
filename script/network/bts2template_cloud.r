@@ -8,11 +8,11 @@ suppressMessages(library(MASS))
 suppressMessages(library(parcor))
 suppressMessages(library(matrixcalc))
 
-y=fread("nety") #expression data for genes
+y=fread("/SIGNET/nety") #expression data for genes
 y=as.matrix(y)
-x=fread("netx") #cis-eQTL data
+x=fread("/SIGNET/netx") #cis-eQTL data
 x=as.matrix(x)
-netyx_idx=read.table("netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
+netyx_idx=read.table("/SIGNET/netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
 netyx_idx=as.matrix(netyx_idx)
 y=y[, YYfirstYY:YYlastYY]
 ##change2
@@ -45,7 +45,7 @@ x=x[idx,]
 
 
 ### predicted y 
-ypre=read.table("../stage1/output/ypreXXbsXX")
+ypre=read.table("/SIGNET/ypreXXbsXX")
 ypre=as.matrix(ypre[,1:py1])
 nypre=dim(ypre)[2]
 
@@ -164,5 +164,5 @@ if(py1 < YYlastYY){
 
 
 ### save results and all objects
-write.table(estimatedA,'AdjMatXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")
-write.table(estimatedC,'CoeffMatXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")
+write.table(estimatedA,'/SIGNET/AdjMatXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")
+write.table(estimatedC,'/SIGNET/CoeffMatXXbsXX_YYfirstYY-YYlastYY',row.names=F,col.names=F,quote=F,sep=" ")
