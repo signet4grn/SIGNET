@@ -54,7 +54,14 @@ x=x[idx,]
 if(Sys.getenv("computing")=="SLURM"){ 
 ypre <- read.table("stage1/output/ypre1")
 }else{
-ypre <- read.table("/SIGNET/ypre1")
+ypre_file <- list.files(path="/SIGNET", pattern="ypre1", full.names=T)[1]
+if(length(ypre_file) > 0){
+ypre <- read.table(ypre_file)
+}
+else{
+cat("The ypre file doesn't exists")
+quit()
+}
 }
 ypre=as.matrix(ypre[,1:py1])
 nypre=dim(ypre)[2]
