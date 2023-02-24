@@ -70,7 +70,7 @@ do
     A=`expr $i \* $ncores - $((ncores - 1))`
     B=`expr $i \* $ncores`
     awk "NR >= $A && NR <= $B {print}" < params.txt > params$i.txt
-    perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
+    perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub.cloud > sub$i.sh
 done
 else
 for i in $( seq 1 $NSUB )
@@ -78,7 +78,7 @@ do
     A=`expr $i \* $ncores - $((ncores - 1))`
     B=`expr $i \* $ncores`
     awk "NR >= $A && NR <= $B {print}" < params.txt > params$i.txt      
-    perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub > sub$i.sh
+    perl -pe 's/XXX/'$i'/g' < $SIGNET_SCRIPT_ROOT/network/template.sub.cloud > sub$i.sh
 done
 
 
