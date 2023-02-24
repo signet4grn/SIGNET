@@ -51,7 +51,7 @@ x=x[idx,]
 
 
 ### predicted y
-if(Sys.getenv(computing)=="SLURM"){ 
+if(Sys.getenv("computing")=="SLURM"){ 
 ypre <- read.table("stage1/output/ypre1")
 }else{
 ypre <- read.table("/SIGNET/ypre1")
