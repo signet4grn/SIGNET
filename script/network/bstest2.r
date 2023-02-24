@@ -50,15 +50,12 @@ y=y[idx,]
 x=x[idx,]
 
 
-### predicted y 
-#ypre_file <- list.files(path="stage1/output", pattern="ypre1", full.names=T)
-#if(length(ypre_file) > 0){
-#ypre <- read.table(ypre_file[1])
-#}else{
-#cat("The ypre file doesn't exists")
-#quit()
-#}
-print(list.files())
+### predicted y
+if(Sys.getenv(computing)=="SLURM"){ 
+ypre <- read.table("stage1/output/ypre1")
+}else{
+ypre <- read.table("/SIGNET/ypre1")
+}
 ypre=as.matrix(ypre[,1:py1])
 nypre=dim(ypre)[2]
 
@@ -196,3 +193,4 @@ write.table(gene_trunk, file="gene_trunk_stage2", row.names=F, col.names=F, quot
 ### save results and all objects
 write.table(estimatedA,'AdjMat1_1-10',row.names=F,col.names=F,quote=F,sep=" ")
 write.table(estimatedC,'CoeffMat1_1-10',row.names=F,col.names=F,quote=F,sep=" ")
+
