@@ -12,7 +12,7 @@ Rscript $SIGNET_SCRIPT_ROOT/network/uncor.R "r=$cor"
 Rscript $SIGNET_SCRIPT_ROOT/network/gendata.R "nboots=$nboots"
 Rscript $SIGNET_SCRIPT_ROOT/network/rmcons.R "nboots=$nboots"
 
-sed "s/walltime/$walltime/g;s/ncores/$ncores/g;s/queue/$queue/g" $SIGNET_SCRIPT_ROOT/network/template.sub.cloud.ori > $SIGNET_SCRIPT_ROOT/network/template.sub
+sed "s/walltime/$walltime/g;s/ncores/$ncores/g;s/queue/$queue/g" $SIGNET_SCRIPT_ROOT/network/template.sub.cloud.ori > $SIGNET_SCRIPT_ROOT/network/template.sub.cloud
 
 echo -e 'Stage 1 of 2SPLS [nboots:'$nboots',ncores:'$ncores',memory:'$memory', queue:'$queue']......\n'
 
