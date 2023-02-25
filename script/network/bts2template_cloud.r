@@ -38,7 +38,7 @@ if(py1 >= YYfirstYY){
 }
 
 ### Bootstrap
-idx=read.table('IDXXXbsXX')
+idx=read.table('/SIGNET/IDXXXbsXX')
 idx=as.matrix(idx)
 y=y[idx,]
 x=x[idx,]
