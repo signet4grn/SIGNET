@@ -45,7 +45,12 @@ x=x[idx,]
 
 
 ### predicted y 
-ypre=read.table("/SIGNET/ypreXXbsXX")
+yprefile <- list.files(path="/SIGNET", pattern="*ypreXXbsXX$", full.names=T)
+if(length(yprefile)==1){
+ypre=read.table(yprefile[1])
+}else{
+cat("ypreXXbsXX not found")
+}
 ypre=as.matrix(ypre[,1:py1])
 nypre=dim(ypre)[2]
 
