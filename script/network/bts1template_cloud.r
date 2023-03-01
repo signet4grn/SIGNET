@@ -10,7 +10,7 @@ x=fread("/SIGNET/netx") #cis-eQTL data
 x=as.matrix(x)
 netyx_idx=read.table("/SIGNET/netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
 netyx_idx=as.matrix(netyx_idx)
-y=y[,YYfirstYY:YYlastYY]
+y=y[,YYfirstYY:YYlastYY, drop=F]
 ##change 
 uniqy_idx=read.table("/SIGNET/uniqy_idx")
 ##change2
