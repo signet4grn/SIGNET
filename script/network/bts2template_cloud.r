@@ -23,6 +23,9 @@ px=dim(x)[2]
 
 #source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/network/SIS.R"))
 #source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), "/network/subfuns.R"))
+source("/SIGNET/script/network/SIS.R")
+source("/SIGNET/script/network/subfuns.R")
+
 
 ##ptm <- proc.time()
 ##change
