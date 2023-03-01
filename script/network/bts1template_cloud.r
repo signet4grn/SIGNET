@@ -4,15 +4,36 @@
 ### load data
 library(MASS)
 library(data.table)
-y=fread("/SIGNET/nety") #expression data for all genes
+netyfile <- list.files(path="/SIGNET", pattern="nety", full.names=T)[1]
+if(length(netyfile) > 0){
+y=fread(netyfile) #expression data for all genes
+}else{
+cat("The nety file doesn't exist")
+}
 y=as.matrix(y)
-x=fread("/SIGNET/netx") #cis-eQTL data
+netxfile <- list.files(path="/SIGNET", pattern="netx", full.names=T)[1]
+if(length(netxfile) > 0){
+x=fread(netxfile) #cis-eQTL data
+}else{
+cat("The netx file doesn't exist")
+}
 x=as.matrix(x)
-netyx_idx=read.table("/SIGNET/netyx_idx") #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
-netyx_idx=as.matrix(netyx_idx)
+netyx_idxfile <- list.files(path="/SIGNET", pattern="netyx_idx", full.names=T)[1]
+if(length(netyx_idxfile) > 0){
+netyx_idx=read.table(netyx_idxfile) #Col 1 is index of gene, Col 2 is index of corresponding cis-eQTL
+}else{
+cat("The netyx_idx file doesn't exist")
+}
+
+netyx_idx <- as.matrix(nety_idx)
 y=y[,YYfirstYY:YYlastYY]
 ##change 
-uniqy_idx=read.table("/SIGNET/uniqy_idx")
+uniqy_idxfile <- list.files(path="/SIGNET", pattern="uniqy_idx", full.names=T)[1]
+if(length(uniqy_idxfile)>0){
+uniqy_idx=read.table(uniqy_idxfile)
+}else{
+cat("The uniqy_idx file doesn't exist")
+}
 ##change2
 py1 = dim(uniqy_idx)[1]
 if(YYlastYY > py1){
@@ -32,7 +53,12 @@ for (i in 1:py){
 }
 
 ### Bootstrap
-idx=read.table('/SIGNET/IDXXXbsXX')
+idxfile <- list.files(path="/SIGNET", pattern="IDXXXbsXX$", full.names=T)[1]
+if(length(idxfile) > 0){
+idx=read.table(idxfile)
+}else{
+cat("The idx file doesn't exist")
+}
 idx=as.matrix(idx)
 y=y[idx,]
 x=x[idx,]
