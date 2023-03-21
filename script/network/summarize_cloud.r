@@ -1,9 +1,7 @@
-setwd("/SIGNET/output")
-
 eps <- .Machine$double.eps 
 
 library(data.table)
-Afiles=list.files(pattern='AdjMat')
+Afiles <- list.files(path="/SIGNET/output", pattern="AdjMat", full.names=T)
 ##remove original
 Afiles <- Afiles[-1]
 N <- length(Afiles)
