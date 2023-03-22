@@ -1,9 +1,7 @@
 eps <- .Machine$double.eps 
 
 library(data.table)
-print(getwd())
-print(list.files("/SIGNET/output"))
-Afiles <- list.files(path="/SIGNET/output", pattern="AdjMat*", full.names=T)
+Afiles <- list.files(path="output", pattern="AdjMat*", full.names=T)
 print(Afiles)
 ##remove original
 Afiles <- Afiles[-1]
