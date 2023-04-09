@@ -120,7 +120,10 @@ for(i in 1:ntop){
     visOptions(selectedBy = list(variable = "enrichment", multiple=T),
                highlightNearest = list(enabled = T, degree = 2, hover = T)) %>%
     visLayout(randomSeed=1) %>%
-    visEdges(arrows = 'to')
+    visEdges(arrows = 'to') %>%
+    visGroups(group="non-TF", color="#97C2FC") %>%
+    visGroups(group="TF", color="#FFFF00")
+
   visSave(vis_g_top[[i]], paste(Sys.getenv("resv"), "_top", i, "_", name, ".html", sep=""), selfcontained=F) 
   
   ## end information 
