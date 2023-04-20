@@ -87,4 +87,6 @@ net_number <- length(unique(comp))
 vertex_number  <- length(V(g_bs))
 edge_number <- length(E(g_bs))
 
+cat(paste('There are a total of ', net_number, ' subnetworks with ', vertex_number, " genes and ", edge_number, " regulatory relationships \n"))
+
 gc()
