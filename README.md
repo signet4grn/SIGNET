@@ -384,8 +384,8 @@ signet -g [OPTION VAL] ...
  --anno                        set the annotation file that contains the sample information
  --tissue                      set the tissue type
 ```
-- `vcf`: includes SNP data from GTEx v8 before phasing in vcf format, could be downloaded from [dbGaP](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2);
-- `vcf0`: includes SNP data from GTEx v8 after phasing in vcf format, could be downloaded from [dbGaP](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2);
+- `vcf0`: includes SNP data from GTEx v8 before phasing in vcf format, could be downloaded from [dbGaP](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2);
+- `vcf`: includes SNP data from GTEx v8 after phasing in vcf format, could be downloaded from [dbGaP](https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2);
 - `read`: gene count data in tpm format, could be downloaded from [GTEx_portal](https://gtexportal.org/home/datasets);
 - `anno`: GTEx v8 annotation file, could be downloaded from [GTEx_portal](https://gtexportal.org/home/datasets); 
 - `tissue`: tissue type, lower/upper case must exactly map to what is included in the annotation file.
