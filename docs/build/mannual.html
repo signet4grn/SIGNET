@@ -17,7 +17,8 @@
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="SIGNET User&#39;s Manual" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,93 +40,92 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Reference to SIGNET</a></li>
-<li><a class="reference internal" href="#system-requirement">System Requirement</a></li>
-<li><a class="reference internal" href="#quick-installation-of-signet">Quick Installation of SIGNET</a><ul>
-<li><a class="reference internal" href="#installation-of-required-packages">Installation of Required Packages</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference to SIGNET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#system-requirement">System Requirement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#quick-installation-of-signet">Quick Installation of SIGNET</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-of-required-packages">Installation of Required Packages</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#introduction">Introduction</a></li>
-<li><a class="reference internal" href="#quit-start">Quit Start</a><ul>
-<li><a class="reference internal" href="#prepare-the-dataset">1. Prepare the DataSet</a></li>
-<li><a class="reference internal" href="#set-configuration">2. Set configuration</a></li>
-<li><a class="reference internal" href="#genotype-preprocess">3. Genotype Preprocess</a></li>
-<li><a class="reference internal" href="#gene-expression-preprocess">4. Gene Expression Preprocess</a></li>
-<li><a class="reference internal" href="#cis-eqtl-analysis">5. cis-eQTL Analysis</a></li>
-<li><a class="reference internal" href="#network-analysis">6. Network Analysis</a></li>
-<li><a class="reference internal" href="#network-visualization">7. Network Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-the-dataset">1. Prepare the DataSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-configuration">2. Set configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#genotype-preprocess">3. Genotype Preprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gene-expression-preprocess">4. Gene Expression Preprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cis-eqtl-analysis">5. cis-eQTL Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-analysis">6. Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-visualization">7. Network Visualization</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#command-guide">Command Guide</a><ul>
-<li><a class="reference internal" href="#settings">Settings</a><ul>
-<li><a class="reference internal" href="#usage">Usage</a></li>
-<li><a class="reference internal" href="#description">Description</a></li>
-<li><a class="reference internal" href="#example">Example</a></li>
-<li><a class="reference internal" href="#error-input-handling">Error input handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#command-guide">Command Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#settings">Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-input-handling">Error input handling</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#transcript-prep">Transcript-prep</a><ul>
-<li><a class="reference internal" href="#id1">Usage</a></li>
-<li><a class="reference internal" href="#id2">Description</a></li>
-<li><a class="reference internal" href="#result-files">Result files</a></li>
-<li><a class="reference internal" href="#id3">Example</a></li>
-<li><a class="reference internal" href="#id4">Usage</a></li>
-<li><a class="reference internal" href="#id5">Description</a></li>
-<li><a class="reference internal" href="#id6">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transcript-prep">Transcript-prep</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#result-files">Result files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#geno-prep">Geno-prep</a><ul>
-<li><a class="reference internal" href="#id7">Usage</a></li>
-<li><a class="reference internal" href="#id8">Description</a></li>
-<li><a class="reference internal" href="#id9">Example</a></li>
-<li><a class="reference internal" href="#id10">Result files</a></li>
-<li><a class="reference internal" href="#id11">Usage</a></li>
-<li><a class="reference internal" href="#id12">Description</a></li>
-<li><a class="reference internal" href="#id13">Example</a></li>
-<li><a class="reference internal" href="#id14">Result files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#geno-prep">Geno-prep</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Result files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Result files</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#adj">Adj</a><ul>
-<li><a class="reference internal" href="#id15">Usage</a></li>
-<li><a class="reference internal" href="#id16">Description</a></li>
-<li><a class="reference internal" href="#id17">Example</a></li>
-<li><a class="reference internal" href="#id18">Usage</a></li>
-<li><a class="reference internal" href="#id19">Description</a></li>
-<li><a class="reference internal" href="#id20">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adj">Adj</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#cis-eqtl">Cis-eqtl</a><ul>
-<li><a class="reference internal" href="#id21">Usage</a></li>
-<li><a class="reference internal" href="#id22">Description</a></li>
-<li><a class="reference internal" href="#id23">Result files</a></li>
-<li><a class="reference internal" href="#id24">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cis-eqtl">Cis-eqtl</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Result files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#network">Network</a><ul>
-<li><a class="reference internal" href="#id25">Usage</a></li>
-<li><a class="reference internal" href="#id26">Description</a></li>
-<li><a class="reference internal" href="#id27">Result files</a></li>
-<li><a class="reference internal" href="#id28">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network">Network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Result files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#netvis">Netvis</a><ul>
-<li><a class="reference internal" href="#id29">Usage</a></li>
-<li><a class="reference internal" href="#id30">Description</a></li>
-<li><a class="reference internal" href="#id31">Result files</a></li>
-<li><a class="reference internal" href="#id32">Example</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#appendix">Appendix</a><ul>
-<li><a class="reference internal" href="#configuration-file">Configuration File</a></li>
-<li><a class="reference internal" href="#file-structure">File Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#netvis">Netvis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Result files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Example</a></li>
 </ul>
 </li>
 </ul>
-</div>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#appendix">Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-file">Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-structure">File Structure</a></li>
+</ul>
+</li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -254,11 +254,9 @@ network visualization</p>
 <p>To use this streamline tool, user need first to prepare the genetype
 data in vcf format. Then set the configuration file properly, and run
 each step command seperately.</p>
-<div class="toctree-wrapper compound">
-</div>
 </section>
-<section id="quit-start">
-<h1>Quit Start<a class="headerlink" href="#quit-start" title="Permalink to this headline"></a></h1>
+<section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline"></a></h1>
 <section id="prepare-the-dataset">
 <h2>1. Prepare the DataSet<a class="headerlink" href="#prepare-the-dataset" title="Permalink to this headline"></a></h2>
 <p>We highly recommand you to prepare the gene expression data and genotype
@@ -1018,7 +1016,9 @@ in the configuration file.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="SIGNET User&#39;s Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
