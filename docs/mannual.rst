@@ -3,11 +3,11 @@ Reference to SIGNET
 -------------------
 
 The core of current version of SIGNET is to use the two-stage penalized
-least squares (2SPLS) method proposed by `Chen et al.
-(2018) <https://www.jmlr.org/papers/volume19/16-225/16-225.pdf>`__ to
-construct genome-wide gene regulatory networks (GW-GRNs). An application
-of 2SPLS to yeast data can be found in `Chen et al.
-(2019) <https://www.nature.com/articles/s41598-018-37667-4>`__.
+least squares (2SPLS) method proposed by `Chen et
+al. (2018) <https://www.jmlr.org/papers/volume19/16-225/16-225.pdf>`__
+to construct genome-wide gene regulatory networks (GW-GRNs). An
+application of 2SPLS to yeast data can be found in `Chen et
+al. (2019) <https://www.nature.com/articles/s41598-018-37667-4>`__.
 
 While current SIGNET constructs the GW-GRN with transcriptomic and
 genotype data collected from on population, we are developing SIGNET to
@@ -21,10 +21,10 @@ System Requirement
 
 SIGNET runs on a **UNIX bash shell**. Check your shell with
 ``echo $SHELL`` to make sure that you are running on UNIX bash shell.
-SIGNET uses the `**Slurm Workload
-Manager** <https://slurm.schedmd.com/overview.html>`__ for high
+SIGNET uses the `Slurm Workload
+Manager <https://slurm.schedmd.com/overview.html>`__ for high
 performance computing (HPC) clusters in its stage of constructing the
-gene regulatory network in parallel.
+gquiene regulatory network in parallel.
 
 Quick Installation of SIGNET
 ----------------------------
@@ -35,9 +35,9 @@ command without specifying a particular path.
 
 .. code:: bash
 
-    git clone https://github.com/signet4grn/SIGNET.git
-    cd SIGNET
-    export PATH=/path/to/signet:$PATH
+   git clone https://github.com/signet4grn/SIGNET.git
+   cd SIGNET
+   export PATH=/path/to/signet:$PATH
 
 where ``/path/to/signet`` should be replaced with your path to
 **SIGNET**.
@@ -50,26 +50,26 @@ SIGNET runs dependent on several packages such as PLINK, IMPUTE2, and R
 yourself, we also provide a Singularity container ``signet.sif`` which
 packs all the packages required by SIGNET. The Singularity container
 ``signet.sif`` provides an environment in which *SIGNET* can smoothly
-run, so you don't have to separately install any of the required
+run, so you don’t have to separately install any of the required
 packages for SIGNET.
 
 Before having the Singularity container ``signet.sif``, first you have
 to install **Singularity** following
-https://sylabs.io/guides/3.8/user-guide/quick\_start.html#quick-installation-steps.
+https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps.
 
 You can pull the image from `our
 repository <https://cloud.sylabs.io/library/geomeday/signet/signet>`__
 and rename it as ``signet.sif``, after which you can append the path of
 package to singularity so it can execute SIGNET smoothly. You may also
-need to bind a path in case container doesn't recognize your file. The
+need to bind a path in case container doesn’t recognize your file. The
 environment variables have to be exported **everytime you start a new
 terminal**.
 
 .. code:: bash
 
-    singularity pull library://geomeday/signet/signet:0.0.5
-    export SINGULARITYENV_APPEND_PATH="/path/to/signet"
-    export SINGULARITY_BIND="/path/to/bind"
+   singularity pull library://jiang548/signet/signet:0.0.6
+   export SINGULARITYENV_APPEND_PATH="/path/to/signet"
+   export SINGULARITY_BIND="/path/to/bind"
 
 where ``/path/to/signet`` should be replaced with your path to SIGNET,
 and ``/path/to/bind`` should be replaced with the desired bath to bind.
@@ -80,30 +80,30 @@ below.
 
 .. code:: bash
 
-    singularity exec signet.sif [Command]
-    e.g. 
-    singularity exec signet.sif signet -s 
+   singularity exec signet.sif [Command]
+   e.g. 
+   singularity exec signet.sif signet -s 
 
 Or you could first shell into the container by
 
 .. code:: bash
 
-    singularity shell signet.sif
+   singularity shell signet.sif
 
 and then execute all the commands as usual.
 
 **Caution:** All the intermediate result for each step will by default
 return to the corresponding folders in the tmporary directory starting
-with 'tmp' and all the final result will return to the result folders
-starting with 'res'. You could also change the path of result files in
+with ‘tmp’ and all the final result will return to the result folders
+starting with ‘res’. You could also change the path of result files in
 the configuration file named config.ini, or use signet -s described
 below. Please be careful if you are using the relative path instead of
 the absolute path. The config.ini will record the path relative to the
 folder that **SIGNET is installed**, in order to reach file mangement
-consistency. It's highly recommended to run command where signet is
+consistency. It’s highly recommended to run command where signet is
 installed. In each of the process, you could specify the result path,
 and you will be asked to whether purge the tmporary files, if you
-already have those. It's also suggested you keep a copy of the temporary
+already have those. It’s also suggested you keep a copy of the temporary
 files for each analysis, in case you need them in later steps. Please
 **run each analysis at a time under the same folder, as a latter process
 will overwrite the previous tmporary files**.
@@ -125,7 +125,7 @@ data in vcf format. Then set the configuration file properly, and run
 each step command seperately.
 
 Quick Start
-----------
+-----------
 
 1. Prepare the DataSet
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -142,33 +142,33 @@ are 1-22.
 
 .. code:: bash
 
-    signet -s --nchr 22
+   signet -s --nchr 22
 
 We can use the command to check below to check autosome number
 
 .. code:: bash
 
-    signet -s --nchr
+   signet -s --nchr
 
 That is, when no value is provided, we will display the value of the
 specified parameter. We can also use
 
 .. code:: bash
 
-    signet -s
+   signet -s
 
 to display the values of all parameters. We may also provide a way to
 reset the value of one parameter or all parameters to default values.
 
 .. code:: bash
 
-    signet -s --d
+   signet -s --d
 
 or
 
 .. code:: bash
 
-    signet -s --nchar --d
+   signet -s --nchar --d
 
 3. Genotype Preprocess
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -177,7 +177,7 @@ For preprocessing genotype data
 
 .. code:: bash
 
-    signet -g
+   signet -g
 
 4. Gene Expression Preprocess
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -186,7 +186,7 @@ For preprocessing transcriptomic (gene expression) data
 
 .. code:: bash
 
-    signet -t
+   signet -t
 
 5. cis-eQTL Analysis
 ~~~~~~~~~~~~~~~~~~~~
@@ -195,7 +195,7 @@ For cis-eQTL analysis.
 
 .. code:: bash
 
-    signet -c
+   signet -c
 
 6. Network Analysis
 ~~~~~~~~~~~~~~~~~~~
@@ -204,7 +204,7 @@ For network construction.
 
 .. code:: bash
 
-    signet -n 
+   signet -n 
 
 7. Network Visualization
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -213,7 +213,7 @@ For network visualization.
 
 .. code:: bash
 
-    signet -v 
+   signet -v 
 
 Command Guide
 -------------
@@ -225,7 +225,7 @@ Settings
 ~~~~~~~~
 
 ``signet -s`` command is used for look up and modify parameter in the
-configuration file config.ini. You don't have to modify the parameters
+configuration file config.ini. You don’t have to modify the parameters
 at the very beginning, as you will have options to change your input
 parameters in each step.
 
@@ -237,51 +237,51 @@ Usage
 
 .. code:: bash
 
-    signet -s [--PARAM] [PARAM VAL] 
+   signet -s [--PARAM] [PARAM VAL] 
 
 Description
 ^^^^^^^^^^^
 
 .. code:: bash
 
-        --PARAM                                      list the value of parameter PARAM
-        --PARAM [PARAM VAL]      modify the value of parameter PARAM to be [PARAM VAL]
+       --PARAM                                      list the value of parameter PARAM
+       --PARAM [PARAM VAL]      modify the value of parameter PARAM to be [PARAM VAL]
 
 Example
 ^^^^^^^
 
 .. code:: bash
 
-    # list all the parameters
-    signet -s 
-    ## echo: all the current parameters
+   # list all the parameters
+   signet -s 
+   ## echo: all the current parameters
 
-    # List the paramter
-    signet -s --nchr
-    ## echo: 22
+   # List the paramter
+   signet -s --nchr
+   ## echo: 22
 
-    # Replace s with settings would also work
-    signet -settings --nchr 
+   # Replace s with settings would also work
+   signet -settings --nchr 
 
-    # Modify the paramter
-    signet -s --nchr 22
-    ## echo: Modification applied to nchr
+   # Modify the paramter
+   signet -s --nchr 22
+   ## echo: Modification applied to nchr
 
-    # Set all the parameters to default 
-    signet -s --d 
-    ## echo: Set all the parameters to default 
+   # Set all the parameters to default 
+   signet -s --d 
+   ## echo: Set all the parameters to default 
 
 Error input handling
 ^^^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
-    # If you input wrong format such as "-nchr"
-    signet -s -nchr
-    echo: The usage and description instruction.
+   # If you input wrong format such as "-nchr"
+   signet -s -nchr
+   echo: The usage and description instruction.
 
-    # If you input wrong name such as "-nchro"
-    echo: Please check the file name
+   # If you input wrong name such as "-nchro"
+   echo: Please check the file name
 
 Transcript-prep
 ~~~~~~~~~~~~~~~
@@ -301,22 +301,26 @@ the samples, after which we will apply variance stablizing
 transformation by DESeq2 to normalize data. Furthermore, we will only
 focus on protein coding genes.
 
+.. _usage-1:
+
 Usage
 ^^^^^
 
 .. code:: bash
 
-    signet -t [--g GEXP_FILE] [--p MAP_FILE]
+   signet -t [--g GEXP_FILE] [--p MAP_FILE]
+
+.. _description-1:
 
 Description
 ^^^^^^^^^^^
 
 .. code:: bash
 
-     --g | --gexp                   gene expression file
-     --p | --pmap                   genecode gtf file
-     --restrict                     restrict the chromosomes of study
-     --r | --rest                   result prefix
+    --g | --gexp                   gene expression file
+    --p | --pmap                   genecode gtf file
+    --restrict                     restrict the chromosomes of study
+    --r | --rest                   result prefix
 
 -  ``gexp``: the base-2 logarithm transformed count data for genes as a
    matrix with the first column containing the ENSEMBEL ID, the first
@@ -329,8 +333,8 @@ Description
    detailed information could be found in `collapsed gene
    model <https://github.com/broadinstitute/gtex-pipeline/tree/master/gene_model>`__;
 -  ``restrict``: specifing chromosome(s) of interest, which may be dash
-   separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a
-   number, e.g. 1.
+   separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a
+   number, e.g. 1.
 
 Result files
 ^^^^^^^^^^^^
@@ -341,60 +345,71 @@ Output of ``gexp-prep`` will be saved to ``res/rest``. -
 correspongding gene position. - ``signet_gexpID``: correspdonding sample
 ID.
 
+.. _example-1:
+
 Example
 ^^^^^^^
 
 .. code:: bash
 
-    # List the paramter
-    signet -t --help
-    ## Display the help page 
+   # List the paramter
+   signet -t --help
+   ## Display the help page 
 
-    # Modify the paramter
-    signet -t --g data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
-              --p data/gexp-prep/gencode.v22.gene.gtf \
-          --restrict 1
-          
-    ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
+   # Modify the paramter
+   signet -t --g data/gexp-prep/TCGA-LUAD.htseq_counts.tsv \
+             --p data/gexp-prep/gencode.v22.gene.gtf \
+         --restrict 1
+         
+   ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
 
 (GTEx)
+
+We adopted and modified the code from `GTEx
+pipeline <https://github.com/broadinstitute/gtex-pipeline/tree/master/qtl>`__.
+
+.. _usage-2:
 
 Usage
 ^^^^^
 
 .. code:: bash
 
-    signet -t [--r READS_FILE] [--tpm TPM_FILE]
+   signet -t [--r READS_FILE] [--tpm TPM_FILE]
+
+.. _description-2:
 
 Description
 ^^^^^^^^^^^
 
 .. code:: bash
 
-     --r | --read                    gene reads file in gct format
-     --t | --tpm                     gene tpm file
-     --g | --gtf                     genecode gtf file
-     --rest                          result prefix
+    --r | --read                    gene reads file in gct format
+    --t | --tpm                     gene tpm file
+    --g | --gtf                     genecode gtf file
+    --rest                          result prefix
 
 -  ``read``: GTEx reads file in gct format.
 -  ``tpm``: GTEx TPM file in gct format.
 -  ``gtf``: collapse gene code v26 gtf file.
+
+.. _example-2:
 
 Example
 ^^^^^^^
 
 .. code:: bash
 
-    # List the paramter
-    signet -t --help
-    ## Display the help page 
+   # List the paramter
+   signet -t --help
+   ## Display the help page 
 
-    # Modify the paramter
-    signet -t --reads data/gexp/GTEx_gene_reads.gct \
-              --tpm data/gexp/GTEx_gene_tpm.gct \
-              --gtf data/gexp-prep/gencode.v26.GRCh38.genes.gtf
-          
-    ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
+   # Modify the paramter
+   signet -t --reads data/gexp/GTEx_gene_reads.gct \
+             --tpm data/gexp/GTEx_gene_tpm.gct \
+             --gtf data/gexp-prep/gencode.v26.GRCh38.genes.gtf
+         
+   ## The preprocessed gene expresion result with correpsonding position file will be stored in /res/rest/
 
 Geno-prep
 ~~~~~~~~~
@@ -403,48 +418,56 @@ Geno-prep
 
 The command ``signet -g`` provides the user interface of preprocessing
 genotype data. We first use
-`**PLINK** <https://zzz.bwh.harvard.edu/plink/>`__ to conduct quality
+`PLINK <https://zzz.bwh.harvard.edu/plink/>`__ to conduct quality
 control, filtering out samples and SNPs with high missing rates and
 filtering SNPs discordant with Hardy Weinberg equilibruim. We then use
-`**IMPUTE2** <https://mathgen.stats.ox.ac.uk/impute/impute_v2.html>`__
-to impute missing genotypes in parallel.
+`IMPUTE2 <https://mathgen.stats.ox.ac.uk/impute/impute_v2.html>`__ to
+impute missing genotypes in parallel.
+
+.. _usage-3:
 
 Usage
 ^^^^^
 
 .. code:: bash
 
-    signet -g [OPTION VAL] ...
+   signet -g [OPTION VAL] ...
+
+.. _description-3:
 
 Description
 ^^^^^^^^^^^
 
 ::
 
-      --p | --ped                   ped file
-      --m | --map                   map file
-      --mind                        missing rate per individual cutoff
-      --geno                        missing rate per markder cutoff
-      --hwe                         Hardy-Weinberg equilibrium cutoff
-      --nchr                        chromosome number
-      --r | --ref                   reference file for imputation
-      --gmap                        genomic map file
-      --i | --int                   interval length for IMPUTE2
-      --ncores                      number of cores
-      --resg                        result prefix
+     --p | --ped                   ped file
+     --m | --map                   map file
+     --mind                        missing rate per individual cutoff
+     --geno                        missing rate per markder cutoff
+     --hwe                         Hardy-Weinberg equilibrium cutoff
+     --nchr                        chromosome number
+     --restrict                    restrict to the chromosome of interest
+     --r | --ref                   reference file for imputation
+     --gmap                        genomic map file
+     --i | --int                   interval length for IMPUTE2
+     --ncores                      number of cores
+     --resg                        result prefix
 
--  ``ped``: includes pedgree information, i.e.,[family\_ID,
-   individual\_ID, mother\_ID, father\_ID, gender,phenotype] in the ﬁrst
+-  ``ped``: includes pedgree information, i.e.,[family_ID,
+   individual_ID, mother_ID, father_ID, gender,phenotype] in the ﬁrst
    six columns, followed by 2p columns with two columns for each of p
    SNPs;
 -  ``map``: includes SNP location information with four columns, i.e.,
-   [chromosome, SNP\_name, genetic\_distance,locus] for each of p SNPs;
+   [chromosome, SNP_name, genetic_distance,locus] for each of p SNPs;
 -  ``mind``: missing rate cutoff for individuals, a value in [0, 1]. By
    default 0.1;
 -  ``geno``: missing rate cutoff for SNPs, a value in [0, 1]. By default
    0.1;
 -  ``hwe``: Hardy-Weinberg equilibrium cutoff, a value in (0, 1]. By
    default 10^-4;
+-  ``restrict``: specifing chromosome(s) of interest, which may be dash
+   separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a
+   number, e.g. 1.
 -  ``ref``: reference file for imputation, can be downloaded from
    website of
    `IMPUTE2 <http://mathgen.stats.ox.ac.uk/impute/impute_v2.html>`__;
@@ -456,87 +479,100 @@ Description
 -  ``ncores``: an integer larger than 1 specifying number of cores in
    the current server. By default 20.
 
+.. _example-3:
+
 Example
 ^^^^^^^
 
 .. code:: bash
 
-    # List the paramter
-    signet -g --help
-    ## Display the help page 
+   # List the paramter
+   signet -g --help
+   ## Display the help page 
 
-    # Modify the paramter
-    signet -g --ped data/geno-prep/test.ped \
-              --map data/geno-prep/test.map \
-          --ref data/ref_panel_38/chr \
-          --gmap data/gmap/chr
+   # Modify the paramter
+   signet -g --ped data/geno-prep/test.ped \
+             --map data/geno-prep/test.map \
+         --ref data/ref_panel_38/chr \
+         --gmap data/gmap/chr
+
+.. _result-files-1:
 
 Result files
 ^^^^^^^^^^^^
 
 Two files will be generated from preprocessing the genoytpe data (The
 filename begins with ``signet`` by default, you are able to customize it
-by setting an additional flag ``--resg``. e.g.
-``--resg res/resg/[younameit]``):
+by setting an additional flag ``--resg``.
+e.g. ``--resg res/resg/[younameit]``):
 
 -  ``signet_Geno``: Genotype data with each row denoting the SNP data
    for one subject;
 -  ``signet_Genotype.sampleID``: Sample ID for each individual, which
    uses the reading barcode.
 
-(GTEx) ``signet -g`` command provide the user the interface of
-preprocessing genotype data. We will first extract the genotype data
-that has corresponding samples from gene expression data for a
-particular tissue, and then select SNPs that have at least count 5.
+| (GTEx)
+| ``signet -g`` command provide the user the interface of preprocessing
+  genotype data. We will first extract the genotype data that has
+  corresponding samples from gene expression data for a particular
+  tissue, and then select SNPs that have at least count 5.
 
 Output of ``geno-prep`` will be saved under ``/res/resg``:
+
+.. _usage-4:
 
 Usage
 ^^^^^
 
 .. code:: bash
 
-    signet -g [OPTION VAL] ...
+   signet -g [OPTION VAL] ...
+
+.. _description-4:
 
 Description
 ^^^^^^^^^^^
 
 ::
 
-     --vcf0                        set the VCF file for genotype data before phasing   
-     --vcf                         set the VCF file for genotype data, the genotype data is from GTEx after phasing using SHAPEIT
-     --read                        set the read file for gene expression read count data in gct format
-     --anno                        set the annotation file that contains the sample information
-     --tissue                      set the tissue type
+    --vcf0                        set the VCF file for genotype data before phasing   
+    --vcf                         set the VCF file for genotype data, the genotype data is from GTEx after phasing using SHAPEIT
+    --read                        set the read file for gene expression read count data in gct format
+    --anno                        set the annotation file that contains the sample information
+    --tissue                      set the tissue type
 
--  ``vcf``: includes SNP data from GTEx v8 before phasing in vcf format,
-   could be downloaded from
+-  ``vcf0``: includes SNP data from GTEx v8 before phasing in vcf
+   format, could be downloaded from
    `dbGaP <https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2>`__;
--  ``vcf0``: includes SNP data from GTEx v8 after phasing in vcf format,
+-  ``vcf``: includes SNP data from GTEx v8 after phasing in vcf format,
    could be downloaded from
    `dbGaP <https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000424.v8.p2>`__;
 -  ``read``: gene count data in tpm format, could be downloaded from
-   `GTEx\_portal <https://gtexportal.org/home/datasets>`__;
+   `GTEx_portal <https://gtexportal.org/home/datasets>`__;
 -  ``anno``: GTEx v8 annotation file, could be downloaded from
-   `GTEx\_portal <https://gtexportal.org/home/datasets>`__;
+   `GTEx_portal <https://gtexportal.org/home/datasets>`__;
 -  ``tissue``: tissue type, lower/upper case must exactly map to what is
    included in the annotation file.
+
+.. _example-4:
 
 Example
 ^^^^^^^
 
 .. code:: bash
 
-    # Set the cohort to GTEx
-    signet -s --cohort GTEx
+   # Set the cohort to GTEx
+   signet -s --cohort GTEx
 
 
-    # Modify the paramter
-    signet -g --vcf0 data/geno-prep/Geno_GTEx.vcf \
-              --vcf data/genotype_after_phasing/Geno_GTEx.vcf \
-              --read data/gexp/GTEx_gene_reads.gct \
-          --anno data/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
-          --tissue Lung
+   # Modify the paramter
+   signet -g --vcf0 data/geno-prep/Geno_GTEx.vcf \
+             --vcf data/genotype_after_phasing/Geno_GTEx.vcf \
+             --read data/gexp/GTEx_gene_reads.gct \
+         --anno data/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt \
+         --tissue Lung
+
+.. _result-files-2:
 
 Result files
 ^^^^^^^^^^^^
@@ -564,36 +600,42 @@ output of ``adj`` will be saved under ``/res/resa``:
 -  ``c``: clinical file from TCGA project. Should contain at least a
    column of submitter id.
 
+.. _usage-5:
+
 Usage
 ^^^^^
 
 .. code:: bash
 
-    signet -a [--c CLINIVAL_FILE]
+   signet -a [--c CLINIVAL_FILE]
+
+.. _description-5:
 
 Description
 ^^^^^^^^^^^
 
 .. code:: bash
 
-     --c | clinical                   clinical file for your cohort
-     --resa                           result prefix
+    --c | clinical                   clinical file for your cohort
+    --resa                           result prefix
 
 -  ``c``: specifying a TSV file including clinical information, with at
    least columns of submitter id, gender and race in TCGA data.
+
+.. _example-5:
 
 Example
 ^^^^^^^
 
 .. code:: bash
 
-    signet -a --c ./data/clinical.tsv
+   signet -a --c ./data/clinical.tsv
 
 Output of ``adj`` will be saved to ``res/resa``: - ``signet_geno.data``:
 matched genotype data, with rows representing samples and columns
 representing SNPs. - ``signet_gexp.data``: matched gene expression datat
 o be used further for network analysis, adjusted for covariates but
-don't include PCs, with rows representing samples and columns
+don’t include PCs, with rows representing samples and columns
 representing gene expressions. - ``signet_gexp_rmpc.data``: matched gene
 expression data to be used further for cis-eQTL analysis, adjusted for
 covariates including PCs, with rows representing samples and columns
@@ -605,30 +647,36 @@ samples and columns representing gene expressions. -
 
 (GTEx)
 
+.. _usage-6:
+
 Usage
 ^^^^^
 
 .. code:: bash
 
-    signet -a [--p PHENOTYPE_FILE]
+   signet -a [--p PHENOTYPE_FILE]
+
+.. _description-6:
 
 Description
 ^^^^^^^^^^^
 
 ::
 
-     --pheno                          GTEx phenotype file
-     --resa                           result prefix
+    --pheno                          GTEx phenotype file
+    --resa                           result prefix
 
 -``pheno``: phenotype file from the GTEx v8.
+
+.. _example-6:
 
 Example
 ^^^^^^^
 
 .. code:: bash
 
-    signet -a --pheno \
-    ./data/pheno.txt 
+   signet -a --pheno \
+   ./data/pheno.txt 
 
 Cis-eqtl
 ~~~~~~~~
@@ -652,7 +700,7 @@ file including SNP positions as a matrix in .map file format; - MAF file
 including SNP minor allele frequency data as one column where each value
 is the number of SNPs after preprocessing (for ``--maf``); - Gene
 position information file with the first column specifying the gene
-name, second column specifying the chromosome index (e.g. "chr1"), the
+name, second column specifying the chromosome index (e.g. “chr1”), the
 third and fourth columns specifying the start and the end positions of
 the gene, respectively (for ``--gene_pos``).
 
@@ -666,30 +714,34 @@ within its coding region as well as upstream and downstream regions up
 to certain ranges which will be specified by options ``--upstream`` and
 ``--downstream``, respectivly.
 
+.. _usage-7:
+
 Usage
 ^^^^^
 
 ::
 
-    signet -c [OPTION VAL] ...
+   signet -c [OPTION VAL] ...
+
+.. _description-7:
 
 Description
 ^^^^^^^^^^^
 
 ::
 
-      --gexp                        file of gene expressions adjusted for all covariates, matched with genotype data
-      --gexp.withpc                 file of gene expressions adjusted for all covariates other than top PCs, matched with genotype data
-      --geno                        file of genotype data matched with gene expression data
-      --map                         snps map file path
-      --maf                         snps maf file path
-      --gene_pos                    gene position file
-      --alpha | -a          significance level for cis-eQTL
-      --nperms                  number of permutations
-      --upstream                number of base pairs upstream the genetic region
-      --downstream                  number of base pairs downstream the genetic region
-      --resc                        result prefix
-      --help | -h           user guide
+     --gexp                        file of gene expressions adjusted for all covariates, matched with genotype data
+     --gexp.withpc                 file of gene expressions adjusted for all covariates other than top PCs, matched with genotype data
+     --geno                        file of genotype data matched with gene expression data
+     --map                         snps map file path
+     --maf                         snps maf file path
+     --gene_pos                    gene position file
+     --alpha | -a          significance level for cis-eQTL
+     --nperms                  number of permutations
+     --upstream                number of base pairs upstream the genetic region
+     --downstream                  number of base pairs downstream the genetic region
+     --resc                        result prefix
+     --help | -h           user guide
 
 -  ``gexp``: specifying the gene expression file including preprocessed
    gene expressions matched with preprocessed genotype data, adjusted
@@ -707,7 +759,7 @@ Description
    one subject and each column encoding for one SNP;
 -  ``gene_pos``: specifying the gene position information file with the
    first column specifying the gene name, second column specifying the
-   chromosome index (e.g. "chr1"), the third and fourth columns
+   chromosome index (e.g. “chr1”), the third and fourth columns
    specifying the start and the end positions of the gene, respectively
    (for ``--gene_pos``).
 -  ``alpha`` : specifying a value in (0, 1) as the significance level
@@ -717,6 +769,8 @@ Description
    genetic region. By default 1000;
 -  ``downstream``: specifying the number of base pairs downstream each
    genetic region. By default 1000.
+
+.. _result-files-3:
 
 Result files
 ^^^^^^^^^^^^
@@ -743,22 +797,24 @@ Output of ``cie-eQTL`` will be saved to ``res/resc``:
    column is the weight of each SNP in its collapsed group (with value 1
    or -1).
 
+.. _example-7:
+
 Example
 ^^^^^^^
 
 ::
 
-     signet -c --upstream 1000 \
-               --downstream 1000 \
-           --nperms 100 \
-           --alpha 0.05
+    signet -c --upstream 1000 \
+              --downstream 1000 \
+          --nperms 100 \
+          --alpha 0.05
 
 Network
 ~~~~~~~
 
 The command ``signet -n`` provides the tools for constructing a GRN
 using the two-stage penalized least squares (2SPLS) approach proposed by
-Chen et al. (2018). Note that the same set of data will be bootstrapped
+Chen et al. (2018). Note that the same set of data will be bootstrapped
 ``nboots`` times and each bootstrapping data set will be used to
 construct a GRN. The frequencies of the regulations appeared in the
 ``nboots`` GRNs will be used to evaluate the robustness of constructed
@@ -768,53 +824,57 @@ GRN with higher frequency implying more robust regulation.
 output data from your own pipeline:
 
 **Caution** **Please make sure that you are using the SLURM system.
-Please also don't run this step inside a container, as the singularity
+Please also don’t run this step inside a container, as the singularity
 container is integrated as part of the procedure.** as it is integrated
 in the analysis.
+
+.. _usage-8:
 
 Usage
 ^^^^^
 
 ::
 
-    signet -n [OPTION VAL] ...
+   signet -n [OPTION VAL] ...
+
+.. _description-8:
 
 Description
 ^^^^^^^^^^^
 
 ::
 
-      --net.gexp.data               gene expression data for GRN construction
-      --net.geno.data               marker data for GRN construction
-      --sig.pair                    significant index pairs for gene expression and markers
-      --net.genename                gene name files for gene expression data
-      --net.genepos                 gene position files for gene expression data
-      --ncis                        maximum number of biomarkers for each gene
-      --cor                         maximum correlation between biomarkers
-      --nboots                      number of bootstraps datasets
-      --memory                      memory in each node in GB
-      --queue                       queue name
-      --ncores                      number of cores to use for each node
-      --walltime            maximum walltime of the server in seconds
-      --interactive                 T, F for interactive job scheduling or not
-      --resn                        result prefix
-      --sif                         singularity container
-      --email                       send notification emails after each stage is compeleted if you have mail installed in Linux, and interactive=F
+     --net.gexp.data               gene expression data for GRN construction
+     --net.geno.data               marker data for GRN construction
+     --sig.pair                    significant index pairs for gene expression and markers
+     --net.genename                gene name files for gene expression data
+     --net.genepos                 gene position files for gene expression data
+     --ncis                        maximum number of biomarkers for each gene
+     --cor                         maximum correlation between biomarkers
+     --nboots                      number of bootstraps datasets
+     --memory                      memory in each node in GB
+     --queue                       queue name
+     --ncores                      number of cores to use for each node
+     --walltime            maximum walltime of the server
+     --interactive                 T, F for interactive job scheduling or not
+     --resn                        result prefix
+     --sif                         singularity container
+     --email                       send notification emails after each stage is compeleted if you have mail installed in Linux, and interactive=F
 
 -  ``net.gexp.data``: output from ``signet -c``, including the
-   expression data of genes with cis-eQTL, a n\*p matrix with each row
+   expression data of genes with cis-eQTL, a n*p matrix with each row
    encoding the gene expression data for one subject;
 -  ``net.geno.data``: output from ``signet -c``, including the genotype
-   data of significant cis-eQTL, a n\*p matrix with each row encoding
-   the genotype data for one subject;
+   data of significant cis-eQTL, a n*p matrix with each row encoding the
+   genotype data for one subject;
 -  ``sig.pair``: output from ``signet -c``, including the p-value of
    each pair of gene and its significant cis-eQTL with Column 1
    specifying Gene Index (in ``net.Gexp.data``), Column specifying SNP
    Index (in ``all.Geno.data``), and Column 3 specifying p-value;
--  ``net.genename``: gene name in a p\*1 vector;
--  ``net.genepos``: gene position as a p\*4 matrix, with first column
+-  ``net.genename``: gene name in a p*1 vector;
+-  ``net.genepos``: gene position as a p*4 matrix, with first column
    including gene names, second column including chromosome index (e.g,
-   "chr1"), third and fourth columns including the start and end
+   “chr1”), third and fourth columns including the start and end
    position of genes in the chromosome, respectly;
 -  ``ncis``: an integer as the maximum number of biomarkers associated
    with each gene. By default 3;
@@ -831,6 +891,8 @@ Description
    with default value ``F`` meaning no notification and is only enabled
    where interactive=F.
 
+.. _result-files-4:
+
 Result files
 ^^^^^^^^^^^^
 
@@ -841,15 +903,17 @@ Result files
 -  ``signet_net.genepos``: Corresponding gene name, followed by
    chromsome location, start and end position.
 
+.. _example-8:
+
 Example
 ^^^^^^^
 
 ::
 
-    signet -n --nboots 100 \
-              --queue standby \
-          --walltime 4:00:00 \
-          --memory 256
+   signet -n --nboots 100 \
+             --queue standby \
+         --walltime 4:00:00 \
+         --memory 256
 
 Netvis
 ~~~~~~
@@ -862,28 +926,32 @@ You should first ssh -Y $(hostname) to a server with DISPLAY if you
 would like to use the singularity container, and the result can be
 viewed through a pop up firefox web browser
 
+.. _usage-9:
+
 Usage
 ^^^^^
 
 ::
 
-    signet -v [OPTION VAL] ...
+   signet -v [OPTION VAL] ...
+
+.. _description-9:
 
 Description
 ^^^^^^^^^^^
 
 ::
 
-      --Afreq                      matrix of regulation frequencies from bootstrap results
-      --freq                       bootstrap frequecy for the visualization
-      --ntop                       number of top sub-networks to visualize
-      --coef                       coefficient of estimation for the original dataset
-      --vis.genepos                gene position file
-      --id                         NCBI taxonomy id, e.g. 9606 for Homo Sapiens, 10090 for Mus musculus
-      --assembly                   genome assembly, e.g. hg38 for Homo Sapiens, mm10 for Mus musculus
-      --tf                         transcirption factor file, only sepecified for non-human data
-      --resv                       result prefix
-      --help                       usage
+     --Afreq                      matrix of regulation frequencies from bootstrap results
+     --freq                       bootstrap frequecy for the visualization
+     --ntop                       number of top sub-networks to visualize
+     --coef                       coefficient of estimation for the original dataset
+     --vis.genepos                gene position file
+     --id                         NCBI taxonomy id, e.g. 9606 for Homo Sapiens, 10090 for Mus musculus
+     --assembly                   genome assembly, e.g. hg38 for Homo Sapiens, mm10 for Mus musculus
+     --tf                         transcirption factor file, only sepecified for non-human data
+     --resv                       result prefix
+     --help                       usage
 
 -  ``Afreq``: specifying the estimated bootstrap frequencies for
    regulations in a matrix with *(row, column)*-th entry encoding the
@@ -897,7 +965,7 @@ Description
    value for the *row* gene regulated by *column* gene;
 -  ``vis.genepos``: specifying the file including the position of genes
    to be visualized, a matrix with the first column including the gene
-   name, second column including its chromosome index (e.g. "chr1"), the
+   name, second column including its chromosome index (e.g. “chr1”), the
    thrid and fourth column including its start and end positions in the
    chromosome, respectively;
 -  ``id``: specifying NCBI taxonomy id number, e.g, ``9606`` for Homo
@@ -907,6 +975,8 @@ Description
 -  ``tf``: specifying a file with the names of genes that are
    transcription factors, only needed for the study which is **not** for
    Homo Sapiens.
+
+.. _result-files-5:
 
 Result files
 ^^^^^^^^^^^^
@@ -920,12 +990,14 @@ Result files
 -  ``signet_top*.name.txt``: Gene name list fo largest sub-networks,
    given bootstrap cutoff.
 
+.. _example-9:
+
 Example
 ^^^^^^^
 
 ::
 
-    signet -v 
+   signet -v 
 
 Appendix
 --------
@@ -945,11 +1017,11 @@ File Structure
 
 .. code:: bash
 
-    # script folder save all the code
-        - script/
-        - gexp_prep
-        - geno_prep
-        - adj
-        - cis-eQTL
-        - network 
-        - netvis
+   # script folder save all the code
+       - script/
+       - gexp_prep
+       - geno_prep
+       - adj
+       - cis-eQTL
+       - network 
+       - netvis
