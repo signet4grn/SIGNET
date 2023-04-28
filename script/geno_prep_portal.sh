@@ -25,7 +25,8 @@ usage() {
     echo "  --mind                        missing rate per individual cutoff"
     echo "  --geno                        missing rate per markder cutoff"
     echo "  --hwe                         Hardy-Weinberg equilibrium cutoff"
-    echo "  --nchr                        chromosome number"
+    echo "  --nchr                        total chromosome number"
+    echo "  --restrict                    restrict to the chromosome of interest"
     echo "  --r | --ref                   reference file for imputation"
     echo "  --gmap                        genomic map file"
     echo "  --i | --int                   interval length for IMPUTE2"
@@ -41,6 +42,7 @@ mind=$($SIGNET_ROOT/signet -s --mind)
 geno=$($SIGNET_ROOT/signet -s --geno)
 hwe=$($SIGNET_ROOT/signet -s --hwe)
 nchr=$($SIGNET_ROOT/signet -s --nchr)
+restrict=$($SIGNET_ROOT/signet -s --restrict.tcga.geno | sed -r '/^\s*$/d')
 ref=$($SIGNET_ROOT/signet -s --ref)
 gmap=$($SIGNET_ROOT/signet -s --gmap)
 int=$($SIGNET_ROOT/signet -s --int)
@@ -48,7 +50,7 @@ ncores=$($SIGNET_ROOT/signet -s --ncore_local)
 resg=$($SIGNET_ROOT/signet -s --resg.tcga)
 forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
-ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,gmap:,i:,int:,ncores:,h:,resg:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,restrict:,gmap:,i:,int:,ncores:,h:,resg:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
@@ -81,6 +83,10 @@ case "$1" in
 		nchr=$2
 		$SIGNET_ROOT/signet -s --nchr $nchr
                 shift;;
+	--restrict)
+                restrict=$2
+                $SIGNET_ROOT/signet -s --restrict.tcga.geno $restrict
+                shift;;	
         --r|--ref)
                 ref=$2
 		ref=$(readlink -f $ref)
@@ -116,6 +122,7 @@ done
 echo -e "\n"
 echo "ped.file: "$pedfile
 echo "map.file: "$mapfile
+echo "chromosome(s) in study: "$restrict
 echo -e "\n"
 
 file_purge $SIGNET_TMP_ROOT/tmpg $forcerm
@@ -128,7 +135,7 @@ if [[ "$resg" == *"doesn't exist"* ]]; then
 exit -1
 fi
 
-var="pedfile mapfile mind geno hwe nchr ref gmap ncores int resg"
+var="pedfile mapfile mind geno hwe nchr restrict ref gmap ncores int resg"
 for i in $var
 do
 export "${i}"
