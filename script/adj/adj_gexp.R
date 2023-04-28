@@ -20,11 +20,7 @@ type=as.integer(substring(gexp_id$V1,14,15))
 canc=which(type<10)
 gexp_id=gexp_id[which(type<10),]
 
-#average different vials for the same patient
 dup=gexp_id[duplicated(gexp_id$patient) | duplicated(gexp_id$patient, fromLast=T),]
-g2=as.data.frame(gexp)
-#tpm.2=tpm_format[3:587,]
-g2=g2[canc,]
 
 #LUAD: one patient has data for multiple tumors. Data is 80% correlated. just remove one.
 #merged=merged[unique(merged$patient),]
