@@ -4,4 +4,3 @@ then
         kill -10 $job_id
         exit -1
 fi
-done
