@@ -321,6 +321,7 @@ signet -g [OPTION VAL] ...
   --geno                        missing rate per markder cutoff
   --hwe                         Hardy-Weinberg equilibrium cutoff
   --nchr                        chromosome number
+  --restrict                    restrict to the chromosome of interest
   --r | --ref                   reference file for imputation
   --gmap                        genomic map file
   --i | --int                   interval length for IMPUTE2
@@ -332,6 +333,7 @@ signet -g [OPTION VAL] ...
 - `mind`: missing rate cutoff for individuals, a value in [0, 1]. By default 0.1;
 - `geno`: missing rate cutoff for SNPs, a value in [0, 1]. By default 0.1;
 - `hwe`: Hardy-Weinberg equilibrium cutoff, a value in (0, 1]. By default 10^-4;
+- `restrict`: specifing chromosome(s) of interest, which may be dash separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a number, e.g. 1.
 - `ref`: reference file for imputation, can be downloaded from website of [IMPUTE2]( http://mathgen.stats.ox.ac.uk/impute/impute_v2.html);
 - `gmap`: genomic map file for imputation, can be downloaded from website of [IMPUTE2]( http://mathgen.stats.ox.ac.uk/impute/impute_v2.html); 
 - `int`: a positive number specifying the interval length for imputation. By default 10^6;
