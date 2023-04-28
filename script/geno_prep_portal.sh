@@ -13,7 +13,6 @@ $SIGNET_SCRIPT_ROOT/geno_prep_portal_gtex.sh ${options}
 exit 1
 fi
 
-echo -e "Preprocessing data for TCGA cohort\n"
 
 usage() {
     echo "Usage:"
@@ -35,6 +34,7 @@ usage() {
     exit -1
 }
 
+echo -e "Preprocessing data for TCGA cohort\n"
 
 pedfile=$($SIGNET_ROOT/signet -s --ped.file | sed -r '/^\s*$/d'|xargs readlink -f)
 mapfile=$($SIGNET_ROOT/signet -s --map.file | sed -r '/^\s*$/d'|xargs readlink -f)
