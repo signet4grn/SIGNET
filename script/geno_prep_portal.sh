@@ -49,7 +49,7 @@ ncores=$($SIGNET_ROOT/signet -s --ncore_local)
 resg=$($SIGNET_ROOT/signet -s --resg.tcga)
 forcerm=$($SIGNET_ROOT/signet -s --forcerm | sed -r '/^\s*$/d')
 
-ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,hwe:,nchr:,restrict:,gmap:,i:,int:,ncores:,h:,resg:,help -- "$@"`
+ARGS=`getopt -a -o a:r -l p:,ped:,m:,map:,mind:,geno:,r:,ref:,restrict:,hwe:,nchr:,gmap:,i:,int:,ncores:,h:,resg:,help -- "$@"`
 
 eval set -- "${ARGS}"
 
