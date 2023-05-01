@@ -10,7 +10,7 @@ While current SIGNET constructs the GW-GRN with transcriptomic and genotype data
 
 ## System Requirement 
 
-SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to make sure that you are running on UNIX bash shell. SIGNET uses the [**Slurm Workload Manager**](https://slurm.schedmd.com/overview.html) for high performance computing (HPC) clusters in its stage of constructing the gquiene regulatory network in parallel.
+SIGNET runs on a **UNIX bash shell**. Check your shell with `echo $SHELL` to make sure that you are running on UNIX bash shell. SIGNET uses the [**Slurm Workload Manager**](https://slurm.schedmd.com/overview.html) for high performance computing (HPC) clusters in its stage of constructing the gene regulatory network in parallel.
 
 
 ## Quick Installation of SIGNET 
