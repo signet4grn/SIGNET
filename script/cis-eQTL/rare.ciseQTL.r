@@ -15,7 +15,7 @@ alpha0=0.1 #the cut-off value;
            #if the marginal p-value of an SNP is less than alpha0 and 
            #its marginal regression coefficient is negative,
            #we flip its coding;
-B=100 #the number of permutations
+B=nperms #the number of permutations
 
 source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), '/cis-eQTL/SumTest.r'))
 source(paste0(Sys.getenv("SIGNET_SCRIPT_ROOT"), '/cis-eQTL/rSumTest.r'))
