@@ -336,7 +336,7 @@ signet -g [OPTION VAL] ...
 - `restrict`: specifing chromosome(s) of interest, which may be dash separated, e.g. 1-22; comma separated, e.g. 1,2,3; or simply a number, e.g. 1.
 - `ref`: reference file for imputation, can be downloaded from website of [IMPUTE2]( http://mathgen.stats.ox.ac.uk/impute/impute_v2.html);
 - `gmap`: genomic map file for imputation, can be downloaded from website of [IMPUTE2]( http://mathgen.stats.ox.ac.uk/impute/impute_v2.html); 
-- `int`: a positive number specifying the interval length for imputation. By default 10^6;
+- `int`: a positive number specifying the interval length for imputation. By default 5 * 10^6;
 - `ncores`: an integer larger than 1 specifying number of cores in the current server. By default 20.
 
 #### Example
