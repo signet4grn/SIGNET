@@ -102,7 +102,7 @@ case "$1" in
                 shift;;
 	--ncores) 
 		ncores=$2
-		$SIGNET_ROOT/signet -s --ncore $ncore
+		$SIGNET_ROOT/signet -s --ncore_local $ncores
 		shift;;
         --resg)
                 resg=$2
