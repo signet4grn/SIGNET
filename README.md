@@ -98,7 +98,7 @@ signet -s --d
 ```
 or 
 ```bash
-signet -s --nchar --d
+signet -s --nchr --d
 ```
 
 
