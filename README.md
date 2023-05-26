@@ -208,7 +208,7 @@ echo: Please check the file name
 
 (TCGA)
 
-The command `signet -t` will take the matrix of base-2 logarithm transformed gene count data and preprocess it. Each row represents the data for each gene, and each column represents the data for each sample, while the first row is the sample name, and the first column is the gene name. Note that the last 5 rows are not considered in the analysis since they contain ambigous gene information by UCSC.
+The command `signet -t` will take the matrix of base-2 logarithm transformed gene count data and preprocess it. Each row represents the data for each gene, and each column represents the data for each sample, while the first row is the sample name, and the first column is the gene name. Note that the last 5 rows are not considered in the analysis since they contain ambigous gene information by [UCSC](https://xenabrowser.net/datapages/).
 
 In this step, we will filter out genes with total counts less than 2.5 million according to NIH standard and are counted in less than 20% of the samples, after which we will apply variance stablizing transformation by DESeq2 to normalize data. Furthermore, we will only focus on protein coding genes. 
 
