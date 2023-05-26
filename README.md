@@ -564,7 +564,7 @@ The command `signet -n` provides the tools for constructing a GRN using the two-
 `network` receive the input from the previous step, or it could be the output data from your own pipeline:
 
 **Caution**
-**Please make sure that you are using the SLURM system. Please also don't run this step inside a container, as the singularity container is integrated as part of the procedure.** as it is integrated in the analysis. 
+**Please make sure that you are using the SLURM system. Please also don't run this step inside a container, as the singularity container is integrated as part of the procedure.**
 
 
 #### Usage
