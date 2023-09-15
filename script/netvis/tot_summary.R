@@ -31,6 +31,14 @@ net_bs <- graph_from_edgelist(bs_ring) %>%
 nodes_bs <- V(net_bs)$name
 annotation <- string_proteins[match(nodes_bs, string_proteins[, "preferred_name"]), "annotation"]
 annotation[is.na(annotation)] <- "Not identified in database"
+# break to several lines
+sep_line <- function(x, frac=0.8){
+res <- paste0(strwrap(x, width=frac*getOption("width")), collapse="<br>");
+return(res)
+}
+annotation <- sapply(annotation, sep_line)
+
+
 net_bs <- net_bs %>% set_vertex_attr("annotation", value=annotation)
 
 ## convert edge to string id
