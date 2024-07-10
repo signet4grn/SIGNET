@@ -2,7 +2,7 @@
 #testing runtime and memeory
 echo -e "Testing on the first bootstrap data with the first 10 genes...\n"
 
-singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest1.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
+singularity exec --no-home $sif Rscript $SIGNET_SCRIPT_ROOT/network/bstest1.r "ncores='$ncores'" "memory='$memory'" "walltime='$walltime'"
 
 rm -f ypre1_1-10
 
