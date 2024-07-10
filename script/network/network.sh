@@ -8,9 +8,9 @@ cd $SIGNET_ROOT/data/network
 
 #Prepare for network analysis
 echo -e 'Select uncorrelated SNPs [ncis:'$ncis', r:'$cor', nboots:'$nboots']......\n'
-singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/uncor.R "r=$cor"
-singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/gendata.R "nboots=$nboots"
-singularity exec $sif Rscript $SIGNET_SCRIPT_ROOT/network/rmcons.R "nboots=$nboots" 
+singularity exec --no-home $sif Rscript $SIGNET_SCRIPT_ROOT/network/uncor.R "r=$cor"
+singularity exec --no-home $sif Rscript $SIGNET_SCRIPT_ROOT/network/gendata.R "nboots=$nboots"
+singularity exec --no-home $sif Rscript $SIGNET_SCRIPT_ROOT/network/rmcons.R "nboots=$nboots" 
 
 ##create the template.sub file 
 sed "s/walltime/$walltime/g;s/ncores/$ncores/g;s/queue/$queue/g" $SIGNET_SCRIPT_ROOT/network/template.sub.ori > $SIGNET_SCRIPT_ROOT/network/template.sub
