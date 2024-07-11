@@ -11,4 +11,4 @@ export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 
-singularity exec $sif ParaFly -c paramsXXX.txt -CPU 64 -failed_cmds rerunXXX.txt
+singularity exec --no-home $sif ParaFly -c paramsXXX.txt -CPU 64 -failed_cmds rerunXXX.txt
