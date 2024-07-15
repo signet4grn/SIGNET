@@ -16,7 +16,7 @@
 
 ## Reference to SIGNET
 
-SIGNET is based on the paper Jiang, Z., Chen, C., Xu, Z., Wang, X., Zhang, M., & Zhang, D. (2023). SIGNET: transcriptome-wide causal inference for gene regulatory networks. Scientific Reports, 13(1), 19371. The core of the current version of SIGNET is to use the two-stage penalized least squares (2SPLS) method proposed by [Chen et al. (2018)](https://www.jmlr.org/papers/volume19/16-225/16-225.pdf) to construct genome-wide gene regulatory networks (GW-GRNs). An application of 2SPLS to yeast data can be found in [Chen et al. (2019)](https://www.nature.com/articles/s41598-018-37667-4).
+SIGNET is based on the paper [Jiang et al. (2023)](https://www.nature.com/articles/s41598-023-46295-6). The core of the current version of SIGNET is to use the two-stage penalized least squares (2SPLS) method proposed by [Chen et al. (2018)](https://www.jmlr.org/papers/volume19/16-225/16-225.pdf) to construct genome-wide gene regulatory networks (GW-GRNs). An application of 2SPLS to yeast data can be found in [Chen et al. (2019)](https://www.nature.com/articles/s41598-018-37667-4).
 
 While current SIGNET constructs the GW-GRN with transcriptomic and genotype data collected from on population, we are developing SIGNET to simultaneiously construct and compare GW-GRNs for two or more populations for the purpose of (i) more powerful to establish comment reguations shared across different populations; (ii) more effectively identify population-specific (e.g., cancer-specific) gene regulations.
 
