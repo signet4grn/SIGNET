@@ -1,6 +1,7 @@
 # SIGNET User's Manual
 
 ## Citation
+```
 @article{jiang2023signet,
   title={SIGNET: transcriptome-wide causal inference for gene regulatory networks},
   author={Jiang, Zhongli and Chen, Chen and Xu, Zhenyu and Wang, Xiaojian and Zhang, Min and Zhang, Dabao},
@@ -11,6 +12,7 @@
   year={2023},
   publisher={Nature Publishing Group UK London}
 }
+```
 
 ## Reference to SIGNET
 
