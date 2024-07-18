@@ -1,6 +1,6 @@
 # SIGNET User's Manual
 
-## Citation
+## Paper
 ```
 @article{jiang2023signet,
   title={SIGNET: transcriptome-wide causal inference for gene regulatory networks},
