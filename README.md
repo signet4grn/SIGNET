@@ -1,19 +1,5 @@
 # SIGNET User's Manual
 
-## Paper
-```
-@article{jiang2023signet,
-  title={SIGNET: transcriptome-wide causal inference for gene regulatory networks},
-  author={Jiang, Zhongli and Chen, Chen and Xu, Zhenyu and Wang, Xiaojian and Zhang, Min and Zhang, Dabao},
-  journal={Scientific Reports},
-  volume={13},
-  number={1},
-  pages={19371},
-  year={2023},
-  publisher={Nature Publishing Group UK London}
-}
-```
-
 ## Reference to SIGNET
 
 SIGNET is based on the paper [Jiang et al. (2023)](https://www.nature.com/articles/s41598-023-46295-6). The core of the current version of SIGNET is to use the two-stage penalized least squares (2SPLS) method proposed by [Chen et al. (2018)](https://www.jmlr.org/papers/volume19/16-225/16-225.pdf) to construct genome-wide gene regulatory networks (GW-GRNs). An application of 2SPLS to yeast data can be found in [Chen et al. (2019)](https://www.nature.com/articles/s41598-018-37667-4).
@@ -715,4 +701,18 @@ Users can change the SIGNET process by modifying the paramter settings in the co
     - cis-eQTL
     - network 
     - netvis
+```
+
+## Paper
+```
+@article{jiang2023signet,
+  title={SIGNET: transcriptome-wide causal inference for gene regulatory networks},
+  author={Jiang, Zhongli and Chen, Chen and Xu, Zhenyu and Wang, Xiaojian and Zhang, Min and Zhang, Dabao},
+  journal={Scientific Reports},
+  volume={13},
+  number={1},
+  pages={19371},
+  year={2023},
+  publisher={Nature Publishing Group UK London}
+}
 ```
