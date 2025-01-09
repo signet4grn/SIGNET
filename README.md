@@ -27,14 +27,20 @@ where `/path/to/signet` should be replaced with your path to **SIGNET**.
 
 SIGNET runs dependent on several packages such as PLINK, IMPUTE2, and R (with its libraries). While you may install all of these packages by yourself, we also provide a Singularity container `signet.sif` which packs all the packages required by SIGNET. The Singularity container `signet.sif` provides an environment in which *SIGNET* can smoothly run, so you don't have to separately install any of the required packages for SIGNET.
 
-Before having the Singularity container `signet.sif`, first you have to install **Singularity** following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps.
+Before having the Singularity container `signet.sif`, first you have to install **Singularity** following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps. Or if you are using apptainer (renamed version of Singularity), set the alias using the following command.
+```bash
+echo "alias singularity=apptainer" >> ~/.bashrc
+source ~/.bashrc
+```
 
-You can pull the image from [our repository](https://cloud.sylabs.io/library/geomeday/signet/signet) and rename it as `signet.sif`, after which you can append the path of package to singularity so it can execute SIGNET smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
+You can pull the image from [our repository]([https://cloud.sylabs.io/library/geomeday/signet/signet](https://cloud.sylabs.io/library/jiang548/signet/signet)) and rename it as `signet.sif`, after which you can append the path of package to singularity so it can execute SIGNET smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
 ```bash
 singularity pull library://jiang548/signet/signet:0.0.6
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
 export SINGULARITY_BIND="/path/to/bind"
 ```
+
+
 where `/path/to/signet` should be replaced with your path to SIGNET, and `/path/to/bind` should be replaced with the desired bath to bind.
 
 You can use the image by attaching a prefix ahead of the original commands you want to execute, which are described in details in sections below.
