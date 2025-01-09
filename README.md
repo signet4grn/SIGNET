@@ -27,7 +27,7 @@ where `/path/to/signet` should be replaced with your path to **SIGNET**.
 
 SIGNET runs dependent on several packages such as PLINK, IMPUTE2, and R (with its libraries). While you may install all of these packages by yourself, we also provide a Singularity container `signet.sif` which packs all the packages required by SIGNET. The Singularity container `signet.sif` provides an environment in which *SIGNET* can smoothly run, so you don't have to separately install any of the required packages for SIGNET.
 
-Before having the Singularity container `signet.sif`, first you have to install **Singularity** following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps. Or if you are using apptainer (renamed version of Singularity), set the alias using the following command.
+Before having the Singularity container `signet.sif`, first you have to install **Singularity** following https://sylabs.io/guides/3.8/user-guide/quick_start.html#quick-installation-steps. Or if you are using Apptainer (renamed version of Singularity), set the alias using the following command.
 ```bash
 echo "alias singularity=apptainer" >> ~/.bashrc
 source ~/.bashrc
