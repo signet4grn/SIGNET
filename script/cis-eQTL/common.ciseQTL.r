@@ -18,10 +18,10 @@ for (i in 1:len){
   gexp = y[, idx[i, 1]]
   geno = x[, idx[i, 2]]
   
-  if(any(is.nan(geno)))
+  if(any(is.nan(geno))){
     p[i] <- 1
     beta[i] <- NA
-  else {
+  } else {
     fit=lm(gexp ~ geno)
     beta[i] = summary(fit)$coefficients[2, 1]
     p[i]=summary(fit)$coefficients[2, 4]
