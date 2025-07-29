@@ -9,8 +9,8 @@ eval(parse(text=args))
 library(data.table)
 common=read.table(paste0(Sys.getenv("resc"),"_new.common.sig.pValue_", alpha))
 
-low_file <- paste0(Sys.getenv("resc"), "_rare.sig.pValue_", alpha)
-if (file.exists(rare_file) && file.size(rare_file) > 0) {
+low_file <- paste0(Sys.getenv("resc"), "_low.sig.pValue_", alpha)
+if (file.exists(low_file) && file.size(low_file) > 0) {
   rare <- read.table(rare_file)
 } else {
   rare <- NULL
