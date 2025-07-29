@@ -4,9 +4,14 @@ SumTest <- function(Y,X,alpha0){
     pv <- NULL
     beta <- NULL
     for(i in 1:ncol(X)){
+        if (sd(X[, i]) == 0){
+            beta <- c(beta, NA)
+            pv <- c(pv, 1)
+        } else{
        fit  <- lm(Y~X[,i])
        beta <- c(beta,fit$coefficients[-1])
        pv <- c(pv,as.numeric(summary(fit)$coefficients[,4][-1]))
+        }
     }
     
     Xg <- X    
