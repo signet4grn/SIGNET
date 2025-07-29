@@ -8,15 +8,19 @@ eval(parse(text=args))
 
 library(data.table)
 common=read.table(paste0(Sys.getenv("resc"),"_new.common.sig.pValue_", alpha))
-if(file.size(paste0(Sys.getenv("resc"),"_low.sig.pValue_", alpha))>0){
-low=read.table(paste0(Sys.getenv("resc"),"_low.sig.pValue_", alpha))
-}else{
-low <- NULL
+
+low_file <- paste0(Sys.getenv("resc"), "_rare.sig.pValue_", alpha)
+if (file.exists(rare_file) && file.size(rare_file) > 0) {
+  rare <- read.table(rare_file)
+} else {
+  rare <- NULL
 }
-if(file.size(paste0(Sys.getenv("resc"), "_rare.sig.pValue_", alpha))>0){
-rare=read.table(paste0(Sys.getenv("resc"),"_rare.sig.pValue_",alpha))
-}else{
-rare <- NULL
+
+rare_file <- paste0(Sys.getenv("resc"), "_rare.sig.pValue_", alpha)
+if (file.exists(rare_file) && file.size(rare_file) > 0) {
+  rare <- read.table(rare_file)
+} else {
+  rare <- NULL
 }
 
 # number of common cis-eQTL:
