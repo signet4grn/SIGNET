@@ -29,8 +29,10 @@ for (i in 1:len){
   if( (i%%10000)==0)  print(i)
 }
 
+res = cbind(idx, beta, p)
+write.table(res, "common.pValue.effect", row.names = F, col.names = F, quote = F, sep = " ")
+
 p=cbind(idx,p) # Col 1 is index of gene, Col 2 is index of its cis-SNP, Col 3 is p-value
 write.table(p,"common.pValue",row.names=F,col.names=F,quote=F,sep=" ")
 
-res = cbind(idx, beta, p)
-write.table(res, "common.pValue.effect", row.names = F, col.names = F, quote = F, sep = " ")
+
