@@ -38,7 +38,7 @@ radarchart(enrich_radar,
            pcol=color_radar, pfcol=scales::alpha(color_radar, 0.5), plwd=2, 
            # grid
            cglcol="grey", cglty=1,
-           caxislabels=seq(rmin, rmax, length.out=5), cglwd=1,
+           caxislabels=round(seq(rmin, rmax, length.out=5), 2), cglwd=1,
            # label
            vlcex=1)
 dev.off()
