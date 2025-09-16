@@ -23,7 +23,7 @@ ntop <- as.numeric(Sys.getenv("ntop"))
 
 ## E(net_bs)$coef to check coefficients
 ## Incorporate STRINGdb
-string_db <- STRINGdb$new(version="11.5", species=as.numeric(Sys.getenv("id")), input_directory="")
+string_db <- STRINGdb$new(version="12.0", species=as.numeric(Sys.getenv("id")), input_directory="")
 #string_db_graph <- string_db$get_graph()
 #string_score <- E(string_db_graph)$combined_score
 string_proteins <- string_db$get_proteins()
