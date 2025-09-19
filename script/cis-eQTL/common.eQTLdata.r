@@ -16,6 +16,7 @@ uniqx=unique(sigp$x)
 eQTL=data[,uniqx]
 write.table(eQTL,paste(Sys.getenv("resc"),"_common.eQTL.data", sep=""),row.names=F,col.names=F,quote=F,sep=" ")
 
+# Replaces SNP IDs with column indices in the reduced genotype matrix
 lx=nrow(sigp)
 newx=matrix(0,lx,1)
 for (i in 1:lx){
