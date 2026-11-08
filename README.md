@@ -33,7 +33,7 @@ echo "alias singularity=apptainer" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-You can pull the image from [our repository]([https://cloud.sylabs.io/library/geomeday/signet/signet](https://cloud.sylabs.io/library/jiang548/signet/signet)) and rename it as `signet.sif`, after which you can append the path of package to singularity so it can execute SIGNET smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
+You can pull version `0.0.6` from [GitHub Container Registry (GHCR)](https://github.com/users/catstats/packages/container/package/signet) and save it as `signet.sif`, after which you can append the path of package to singularity so it can execute SIGNET smoothly. You may also need to bind a path in case container doesn't recognize your file. The environment variables have to be exported **everytime you start a new terminal**.
 ```bash
 singularity pull signet.sif oras://ghcr.io/catstats/signet:0.0.6
 export SINGULARITYENV_APPEND_PATH="/path/to/signet"
